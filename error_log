@@ -1,0 +1,5 @@
+[10-May-2017 09:06:27] PHP Fatal error:  Call to undefined method DateTime::diff() in /home3/joymalla/public_html/application/controllers/Ref_patient.php on line 139
+[10-May-2017 09:06:49] PHP Fatal error:  Call to undefined method DateTime::diff() in /home3/joymalla/public_html/application/controllers/Ref_patient.php on line 139
+[15-May-2017 16:46:17] PHP Fatal error:  Call to undefined method DateTime::diff() in /home3/joymalla/public_html/application/controllers/Ref_patient.php on line 139
+[15-May-2017 16:46:31] PHP Fatal error:  Call to undefined method DateTime::diff() in /home3/joymalla/public_html/application/controllers/Ref_patient.php on line 139
+[15-May-2017 16:46:45] PHP Fatal error:  Call to undefined method DateTime::diff() in /home3/joymalla/public_html/application/controllers/Ref_patient.php on line 139
