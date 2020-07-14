@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +14,15 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <style type="text/css">.
+    td.details-control {
+        background: url('assets/img/icons/Folder_Closed.png') no-repeat center center;
+        cursor: pointer;
+    }
+    tr.details td.details-control {
+        background: url('assets/img/icons/Folder_Opened.png') no-repeat center center;
+    }
+  </style>  
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
@@ -42,7 +50,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive" style="overflow:hidden;">
-              <table id="tbl_user_group" class="table table-bordered table-striped">
+              <table id="tbl_user_group" class="table table-striped">
                 <thead class="tbl-header">
                     <tr>
                         <th></th>
@@ -53,14 +61,14 @@
                 </thead>
                 <tbody>
                 </tbody>
-                <tfoot>
+<!--                 <tfoot>
                 <tr>
                     <th></th>
                     <th>User Group</th>
                     <th>Description</th>
                     <th style="text-align:center;">Action</th>
                 </tr>
-                </tfoot>
+                </tfoot> -->
               </table>
             </div>
             <!-- /.box-body -->
@@ -1041,7 +1049,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> Modified by JBPV
+      <b>Version</b> Modified by JBPV | JJLN
     </div>
     <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
     reserved.
@@ -1064,8 +1072,9 @@
             "ajax" : "UserGroups/transaction/list",
             "columns": [
                 {
+                "visible": false,
                 "targets": [0],
-                "class":          "patient-details ",
+                "class":          "details-control",
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": "<center><span class='glyphicon glyphicon-plus-sign'></span></center>",

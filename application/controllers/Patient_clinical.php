@@ -34,7 +34,7 @@ class Patient_clinical extends CORE_Controller {
 
                 $response['data']=$this->Patient_clinical_model->get_list(
                     array('patient_clinical.ref_patient_id'=>$ref_patient_id,'patient_clinical.is_deleted'=>FALSE),
-                    'patient_clinical.*'
+                    'patient_clinical.*, date_format(date_created, "%m/%d/%Y") as date_created'
                        /*array(
                             array('patient_prescription','patient_prescription.ref_patient_id=patient_prescription.ref_patient_id','left'),
                         )*/
@@ -73,14 +73,14 @@ class Patient_clinical extends CORE_Controller {
                 case 'delete':
                     $m_clinical = $this->Patient_clinical_model;
 
-                    $patient_visiting_record_id =$this->input->post('patient_visiting_record_id',TRUE);
+                    $patient_clinical_id =$this->input->post('patient_clinical_id',TRUE);
                     
                     $m_clinical->is_deleted=1;
                    /* echo $patient_visiting_record_id;*/
-                    if($m_clinical ->modify($patient_visiting_record_id)){
+                    if($m_clinical ->modify($patient_clinical_id)){
                         $response['title']='Success!';
                         $response['stat']='success';
-                        $response['msg']='Patient Visiting Successfully deleted.';
+                        $response['msg']='Patient Clinical Database Successfully deleted.';
 
                         echo json_encode($response);
                 }
@@ -147,8 +147,5 @@ class Patient_clinical extends CORE_Controller {
                 }
                 break;        
         }
-
     }
-
-
 }

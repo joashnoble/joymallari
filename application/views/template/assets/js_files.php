@@ -106,12 +106,15 @@
 
     var selectcolor = getBgColorHex($('.navbar'));
     var textcolor = gettextColorHex($('.logo'));
+    $('.box').css('border-top','3px solid '+selectcolor);
     $('.modal-header').css('background-color',selectcolor);
-    $('.btn-primary').css('background-color',selectcolor);
-    $('.btn-primary').css('color',textcolor);
+    // $('.btn-primary').css('background-color',selectcolor);
+    // $('.btn-primary').css('color',textcolor);
     $('.patient_txn').css('color',textcolor);
     $('.modal-title').css('color',textcolor);
     $('.xbutton').css('color',textcolor);
+    $('.bh-text-title').css('color',selectcolor);
+
     /*loadder color */
     /*$('.loader').css('background-color',selectcolor);*/
     
@@ -119,20 +122,21 @@
     $('.clearfix li').click(function(){
         var selectcolor = getBgColorHex($('.navbar'));
         var textcolor = gettextColorHex($('.logo'));
+        $('.box').css('border-top','3px solid '+selectcolor);
         $('.modal-header').css('background-color',selectcolor);
-        $('.btn-primary').css('background-color',selectcolor);
-        $('.btn-primary').css('color',textcolor);
+        // $('.btn-primary').css('background-color',selectcolor);
+        // $('.btn-primary').css('color',textcolor);
         $('.patient_txn').css('color',textcolor);
         $('.modal-title').css('color',textcolor);
         $('.xbutton').css('color',textcolor);
-       
+        $('.bh-text-title').css('color',selectcolor);
     });
 
     $('#tbl_ref_patient tbody').delegate('tr', 'click', function() {
             //for printing checkboxes JBPV
             var selectcolor = getBgColorHex($('.navbar'));
             var textcolor = gettextColorHex($('.logo'));
-            $('.odd').css('background-color','#eeeeee');
+            $('.odd').css('background-color','#f9f9f9');
             $('.odd').css('color','#616161');
             $('.even').css('background-color','white');
             $('.even').css('color','#616161');
@@ -144,13 +148,14 @@
             else{
                 $(this).closest("tr").css('background-color',selectcolor);
                 $(this).closest("tr").css('color','white');
+
             }
                 _selectRowObj=$(this).closest('tr');
                 var data=dt.row(_selectRowObj).data();
                 _selectedID=data.ref_patient_id;
                 _selectedname = data.fullname;
                 $('.areasex').text(data.sex);
-                $('.areaage').text(data.age);
+                $('.areaage').text(data.patient_age);
                 $('.areadryweight').text(data.dry_weight);
                 $('.areaaddress').text(data.address);
                 $('.areabirthdate').text(data.bdate);
@@ -159,6 +164,7 @@
                 /*alert(_selectedID);*/
                 _isChecked = this.checked = true; //for checking if there is any highlighted field
              
+
     });
 
     $('#tbl_ref_patient').bind("contextmenu", function(event) {
@@ -173,7 +179,7 @@
             }
         }  
     });
-
+    
     var showSpinningProgress=function(e){
                 $.blockUI({ message: '<img src="assets/loader.svg" width="100px" height="100px;"></img><h3 style="color:white;font-family:Segoe UI Light">Saving Changes</h3>',
                     css: { 

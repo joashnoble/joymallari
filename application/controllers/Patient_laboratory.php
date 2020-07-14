@@ -34,7 +34,7 @@ class Patient_laboratory extends CORE_Controller {
 
                 $response['data']=$this->Patient_laboratory_model->get_list(
                     array('patient_lab.ref_patient_id'=>$ref_patient_id,'patient_lab.is_deleted'=>FALSE),
-                    'patient_lab.*'
+                    'patient_lab.*, date_format(date_lab, "%m/%d/%Y") as date_lab'
                        /*array(
                             array('patient_prescription','patient_prescription.ref_patient_id=patient_prescription.ref_patient_id','left'),
                         )*/
@@ -42,8 +42,7 @@ class Patient_laboratory extends CORE_Controller {
                 echo json_encode($response);
                 break;
             
-
-                case 'create':
+            case 'create':
                 $m_laboratory = $this->Patient_laboratory_model;
                 /*$date = $this->input->post('date', TRUE);*/
                 $date = $this->input->post('date_lab', TRUE);
@@ -60,11 +59,9 @@ class Patient_laboratory extends CORE_Controller {
                 $response['msg'] = 'Laboratory Result Successfully Created.';
                     
                 echo json_encode($response);
+                break;
 
-                
-                break; 
-
-                case 'delete':
+            case 'delete':
                     $m_laboratory = $this->Patient_laboratory_model;
 
                     $patient_lab_id =$this->input->post('patient_lab_id',TRUE);
@@ -77,10 +74,9 @@ class Patient_laboratory extends CORE_Controller {
 
                         echo json_encode($response);
                 }
-
                 break;
 
-                case 'update':
+            case 'update':
                 $m_laboratory = $this->Patient_laboratory_model;
                 /*$date = $this->input->post('date', TRUE);*/
                 $patient_lab_id = $this->input->post('patient_lab_id', TRUE);
@@ -97,10 +93,9 @@ class Patient_laboratory extends CORE_Controller {
                 $response['msg'] = 'Laboratory Result Successfully Updated.';
                     
                 echo json_encode($response);
-
                 break;
 
-                case 'upload':
+            case 'upload':
                 $allowed = array('png', 'jpg', 'jpeg','bmp');
 
                 $data=array();
@@ -131,8 +126,5 @@ class Patient_laboratory extends CORE_Controller {
                 }
                 break;        
         }
-
     }
-
-
 }

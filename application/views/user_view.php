@@ -15,6 +15,15 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <style type="text/css">
+    td.details-control {
+        background: url('assets/img/icons/Folder_Closed.png') no-repeat center center;
+        cursor: pointer;
+    }
+    tr.details td.details-control {
+        background: url('assets/img/icons/Folder_Opened.png') no-repeat center center;
+    }
+  </style>
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
@@ -42,7 +51,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive" style="overflow-x:scroll;">
-              <table id="tbl_users" class="table table-bordered table-striped">
+              <table id="tbl_users" class="table table-striped">
                 <thead class="tbl-header">
                     <tr>
                         <th></th>
@@ -56,7 +65,7 @@
                 </thead>
                 <tbody>
                 </tbody>
-                <tfoot>
+<!--                 <tfoot>
                 <tr>
                     <th></th>
                     <th>Username</th>
@@ -66,7 +75,7 @@
                     <th>User Group</th>
                     <th style="text-align:center;">Action</th>
                 </tr>
-                </tfoot>
+                </tfoot> -->
               </table>
             </div>
             <!-- /.box-body -->
@@ -222,7 +231,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> Modified by JBPV
+      <b>Version</b> Modified by JBPV | JJLN
     </div>
     <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
     reserved.
@@ -246,10 +255,10 @@
             "columns": [
                 {
                 "targets": [0],
-                "class":          "patient-details ",
+                "class":          "details-control",
                 "orderable":      false,
                 "data":           null,
-                "defaultContent": "<center><span class='glyphicon glyphicon-plus-sign'></span></center>",
+                "defaultContent": "",
                 "bDestroy": true,
                 },
                 { targets:[1],data: "user_name" },
@@ -407,7 +416,7 @@
 
     });
 
-    $('#tbl_users tbody').on( 'click', 'tr td.patient-details', function () {
+    $('#tbl_users tbody').on( 'click', 'tr td.details-control', function () {
         var detailRows = [];
         var tr = $(this).closest('tr');
         var row = dt.row( tr );
@@ -417,18 +426,29 @@
             tr.removeClass( 'details' );
             row.child.hide();
 
+            // Remove from the 'open' array
             detailRows.splice( idx, 1 );
         }
         else {
             tr.addClass( 'details' );
+            var d=row.data();        
+            $.ajax({
+                "dataType":"html",
+                "type":"POST",
+                "url":"Users/transaction/user-details/"+ d.user_id+"?type=fullview",
+                "beforeSend" : function(){
+                    row.child( '<center><br /><img src="assets/img/loader/ajax-loader-lg.gif" /><br /><br /></center>' ).show();
+                }
+            }).done(function(response){
+                row.child( response ).show();
+                // Add to the 'open' array
+                if ( idx === -1 ) {
+                    detailRows.push( tr.attr('id') );
+                }
+            });
 
-            row.child( format( row.data() ) ).show();
-
-            if ( idx === -1 ) {
-                detailRows.push( tr.attr('id') );
-            }
         }
-    } );
+    });
 
     var createUserAccount=function(){
         var _data=$('#frm_users').serializeArray();

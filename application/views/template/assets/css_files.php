@@ -47,9 +47,9 @@
       resize: vertical;
     }
 
-    input{
+/*    input{
         font-size:8pt !important;
-    }
+    }*/
     .fa-size{
       width:15px;
     }
@@ -63,12 +63,11 @@
 
     /* Input Focus */
     input:focus { 
-      background-color: #2980b9;
-      color:white;
-      font-weight:bold;
+      background-color: #fff9b1;
+      color:black;
     }
 
-    input:focus::-webkit-input-placeholder {
+   /* input:focus::-webkit-input-placeholder {
         color: #dddddd;
     }
 
@@ -82,17 +81,16 @@
 
     input:focus:-ms-input-placeholder {
         color: #dddddd;
-    }
+    }*/
 
 
     /* Textarea Focus */
     textarea:focus { 
-      background-color: #2980b9;
-      color:white;
-      font-weight:bold;
+      background-color: #fff9b1;
+      color:black;
     }
 
-    textarea:focus::-webkit-input-placeholder {
+    /*textarea:focus::-webkit-input-placeholder {
         color: #dddddd;
     }
 
@@ -106,16 +104,15 @@
 
     textarea:focus:-ms-input-placeholder {
         color: #dddddd;
-    }    
+    }    */
     
      /* Select Focus */
     select:focus { 
-      background-color: #2980b9;
-      color:white;
-      font-weight:bold;
+      background-color: #fff9b1;
+      color:black;
     }
 
-    select:focus::-webkit-input-placeholder {
+   /* select:focus::-webkit-input-placeholder {
         color: #dddddd;
     }
 
@@ -129,7 +126,7 @@
 
     select:focus:-ms-input-placeholder {
         color: #dddddd;
-    }    
+    }    */
 
     input[type="checkbox"]:focus {
       outline:1px solid #2980b9 !important;
@@ -163,6 +160,79 @@
     .even{
       height:20px !important;
     }
-    
+    .box {
+        border-radius: 0;
+        border-top:3px solid;
+        -webkit-box-shadow: 0px 0px 13px 1px rgba(153,153,153,1)!important;
+        -moz-box-shadow: 0px 0px 13px 1px rgba(153,153,153,1)!important;
+        box-shadow: 0px 0px 13px 1px rgba(153,153,153,1)!important;
+    }
 
+    table tbody{
+      cursor: pointer;
+    }
+
+    hr{
+      margin: 0;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    table.table_patient{
+      width: 100%;border: 1px solid lightgray;
+    }
+
+    table.dataTable td.dataTables_empty {
+        text-align: center;    
+    }    
+
+    .btn-dark{
+      background: #222d32;
+      color: white;
+    }
+
+    .btn-dark:hover{
+      background: #515556;
+      color: white;
+    }
+
+    .btn-dark:focus{
+      background: #00a65a;
+      color: white;
+    }
+
+    .pagination>.active>a{
+      background-color: gray!important;
+      border-color: gray!important;
+    }
+
+    .mb{
+      margin-bottom: 10px;
+    }
+
+    textarea{
+      resize: vertical;
+    }
+    .patient-panel-content{
+      background-color: #F0F0F0;
+      color: black;
+      padding-top: 20px;
+    }
+    div.p-header{
+      text-transform: uppercase; 
+      background: lightgray;
+      padding: 10px;
+      width: 100%;
+      font-weight: bold;
+      border: 1px solid lightgray;
+    }
+    .uppercase{
+      text-transform: uppercase;
+    }
+    .close_patient_field:focus{
+      outline: none!important;
+    }
+    .header-text-title{
+      text-transform: 
+    }
   </style>

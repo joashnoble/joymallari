@@ -35,7 +35,12 @@ class Patient_prescription extends CORE_Controller {
 
                 $response['data']=$this->Patient_prescription_model->get_list(
                     array('patient_prescription.ref_patient_id'=>$ref_patient_id,'patient_prescription.is_deleted'=>FALSE),
-                    'patient_prescription.*, date_format(date_prescribed, "%m/%d/%Y") as date_prescribed, date_format(appointment_date, "%m/%d/%Y") as appointment_date'
+                    'patient_prescription.*, date_format(date_prescribed, "%m/%d/%Y") as date_prescribed,
+                    (CASE
+                        WHEN DATE_FORMAT(appointment_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(appointment_date, "%m/%d/%Y")
+                    END) as appointment_date'
                        /*array(
                             array('patient_prescription','patient_prescription.ref_patient_id=patient_prescription.ref_patient_id','left'),
                         )*/
@@ -215,13 +220,17 @@ class Patient_prescription extends CORE_Controller {
                 $response['title']='Success';
                 $response['stat']='success';
                 $response['msg']='Patient Prescription successfully updated.';
-                $response['row_updated']=$this->Patient_prescription_model->get_list($patient_prescription_id);
-                echo json_encode($response);
+                $response['row_updated']=$this->Patient_prescription_model->get_list(
+                    $patient_prescription_id,
+                    'patient_prescription.*, date_format(date_prescribed, "%m/%d/%Y") as date_prescribed,
+                    (CASE
+                        WHEN DATE_FORMAT(appointment_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(appointment_date, "%m/%d/%Y")
+                    END) as appointment_date');
 
+                echo json_encode($response);
                 break;            
         }
-
     }
-
-
 }

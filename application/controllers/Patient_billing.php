@@ -35,7 +35,7 @@ class Patient_billing extends CORE_Controller {
 
                 $response['data']=$this->Patient_billing_model->get_list(
                     array('patient_billing.ref_patient_id'=>$ref_patient_id,'patient_billing.is_deleted'=>FALSE),
-                    'patient_billing.*'
+                    'patient_billing.*, date_format(billing_date, "%m/%d/%Y") as billing_date'
                        /*array(
                             array('patient_prescription','patient_prescription.ref_patient_id=patient_prescription.ref_patient_id','left'),
                         )*/
@@ -97,9 +97,9 @@ class Patient_billing extends CORE_Controller {
                                array(
                                     'patient_billing_id' => $patient_billing_id,
                                     'ref_service_desc_id' => $ref_service_desc_id[$i],
-                                    'qty' => $qty[$i],
-                                    'amount' => $amount[$i],
-                                    'total' => $total[$i],
+                                    'qty' => $this->get_numeric_value($qty[$i]),
+                                    'amount' => $this->get_numeric_value($amount[$i]),
+                                    'total' => $this->get_numeric_value($total[$i]),
                                );  
 
 
@@ -134,7 +134,7 @@ class Patient_billing extends CORE_Controller {
 
                 break;
 
-                case 'update':
+            case 'update':
                 $m_billing = $this->Patient_billing_model;
                 $m_billing_items = $this->patient_billing_items_model;
                 /*$date = $this->input->post('date', TRUE);*/
@@ -164,9 +164,9 @@ class Patient_billing extends CORE_Controller {
                                array(
                                     'patient_billing_id' => $patient_billing_id,
                                     'ref_service_desc_id' => $ref_service_desc_id[$i],
-                                    'qty' => $qty[$i],
-                                    'amount' => $amount[$i],
-                                    'total' => $total[$i],
+                                    'qty' => $this->get_numeric_value($qty[$i]),
+                                    'amount' => $this->get_numeric_value($amount[$i]),
+                                    'total' => $this->get_numeric_value($total[$i]),
                                );  
 
 
@@ -214,8 +214,5 @@ class Patient_billing extends CORE_Controller {
                 }
                 break;        
         }
-
     }
-
-
 }

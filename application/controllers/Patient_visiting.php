@@ -33,7 +33,7 @@ class Patient_visiting extends CORE_Controller {
 
                 $response['data']=$this->Patient_visiting_model->get_list(
                     array('patient_visiting_record.ref_patient_id'=>$ref_patient_id,'patient_visiting_record.is_deleted'=>FALSE),
-                    'patient_visiting_record.*'
+                    'patient_visiting_record.*, date_format(visiting_date, "%m/%d/%Y") as visiting_date, date_format(next_visit_date, "%m/%d/%Y") as next_visit_date'
                        /*array(
                             array('patient_prescription','patient_prescription.ref_patient_id=patient_prescription.ref_patient_id','left'),
                         )*/
@@ -42,7 +42,7 @@ class Patient_visiting extends CORE_Controller {
                 break;
 
 
-                case 'create':
+            case 'create':
                 $m_visiting = $this->Patient_visiting_model;
                 /*$date = $this->input->post('date', TRUE);*/
                 $visiting_date_temp = $this->input->post('visiting_date', TRUE);
@@ -147,8 +147,5 @@ class Patient_visiting extends CORE_Controller {
                 }
                 break;
         }
-
     }
-
-
 }

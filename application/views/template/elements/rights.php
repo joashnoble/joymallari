@@ -40,8 +40,8 @@
 		var remove_clinical='<button class="btn btn-danger btn-xs" name="remove_clinical"  data-toggle="tooltip" data-placement="left" title="Move to trash" style="margin-left:5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>';
         
 		/*ref patient button*/
-		var btn_refpatient_edit='<button class="btn btn-success btn-xs" name="edit_info"   data-toggle="tooltip" data-placement="left" title="Edit" style="margin-left:5px;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>';
-        var btn_refpatient_trash='<button class="btn btn-danger btn-xs" name="remove_info"  data-toggle="tooltip" data-placement="left" title="Move to trash" style="margin-left:5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>';
+		var btn_refpatient_edit='<button class="btn btn-success btn-xs" name="edit_info"  data-toggle="tooltip" data-placement="top" title="Edit" style="margin-left:5px;border-radius: 0!important;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>';
+        var btn_refpatient_trash='<button class="btn btn-danger btn-xs" name="remove_info"  data-toggle="tooltip" data-placement="top" title="Move to trash" style="margin-left:5px;border-radius: 0!important;"><i class="fa fa-trash" aria-hidden="true"></i></button>';
 
 		/*service button*/
 		var btn_services_edit='<button class="btn btn-success btn-xs" name="edit_info"   data-toggle="tooltip" data-placement="left" title="Edit" style="margin-left:5px;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>';
@@ -65,7 +65,7 @@
 
 		/*referral button*/
 		var edit_referral='<button class="btn btn-success btn-xs" name="edit_info" data-toggle="tooltip" data-placement="left" title="Edit" style="margin-left:5px;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>';
-        var remove_referral='<button class="btn btn-danger btn-xs" name="remove_info" data-toggle="tooltip" data-placement="left" title="Move to trash" style="margin-left:5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>';        
+        var remove_referral='<button class="btn btn-danger btn-xs" name="remove_referral" data-toggle="tooltip" data-placement="left" title="Move to trash" style="margin-left:5px;"><i class="fa fa-trash" aria-hidden="true"></i></button>';        
 
 		/*admitting order button*/
 		var edit_admitting_order='<button class="btn btn-success btn-xs" name="edit_info" data-toggle="tooltip" data-placement="left" title="Edit" style="margin-left:5px;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>';

@@ -22,7 +22,8 @@ class Ref_services extends CORE_Controller {
         $data['_def_css_files']=$this->load->view('template/assets/css_files','',TRUE);
         $data['_def_js_files']=$this->load->view('template/assets/js_files','',TRUE);
         $data['_top_navigation']=$this->load->view('template/elements/top_navigation','',TRUE);
-        $data['_side_navigation']=$this->load->view('template/elements/side_bar_navigation','',TRUE);
+        $data_1['active'] = 3;
+        $data['_side_navigation']=$this->load->view('template/elements/side_bar_navigation',$data_1,TRUE);
         $data['_right_navigation']=$this->load->view('template/elements/right_bar_navigation','',TRUE);
         $data['_rights']=$this->load->view('template/elements/rights','',TRUE);
         $data['_title']='Services Reference';

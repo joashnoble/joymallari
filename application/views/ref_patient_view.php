@@ -17,6 +17,13 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
   <style>
+    td.patient-details {
+        background: url('assets/img/icons/Folder_Closed.png') no-repeat center center;
+        cursor: pointer;
+    }
+    tr.details td.patient-details {
+        background: url('assets/img/icons/Folder_Opened.png') no-repeat center center;
+    }
     .ospace{
         margin:0 !important;
         padding:0 !important;
@@ -55,9 +62,19 @@
     .txt_left{
         border:0px;border-bottom:1px solid #2c3e50;text-align: left;
     }
+    .required{
+        color: red;
+    }
+    .padding{
+        padding-bottom: 20px!important;
+        margin-bottom: 20px!important;
+    }
+    .numeric, .number{
+        text-align: right;
+    }
   </style>
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini fixed">
 <div class="wrapper">
     <?php echo $_top_navigation; ?>
     <?php echo $_side_navigation; ?>
@@ -76,267 +93,358 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="box">
-            <div class="box-header" style="">
-              <button class="btn btn-success right_patientref_create" id="btn_new_refpatient"><i class="fa fa-user" aria-hidden="true"></i> New Patient</button>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive" >
-              <table id="tbl_ref_patient" class="table table-bordered table-striped" style="width: 100%;">
-                <thead class="tbl-header">
-                    <tr>
-                        <th>#</th>
-                        <th>Fullname</th>
-                        <th>Birthdate</th>
-                        <th>Sex</th>
-                        <th>Telephone #</th>
-                        <th>Mobile #</th>
-                        <th style="text-align:center;">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Fullname</th>
-                        <th>Birthdate</th>
-                        <th>Sex</th>
-                        <th>Telephone #</th>
-                        <th>Mobile #</th>
-                        <th style="text-align:center;">Action</th>
-                    </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
+
+        <div id="div_patient_list">
+            <div class="box">
+                <div class="box-header" style="">
+                    <button class="btn btn-dark right_patientref_create" id="btn_new_refpatient">
+                        <i class="fa fa-user" aria-hidden="true"></i> New Patient
+                    </button>
+
+                    <a href="Ref_patient/transaction/export-patient-masterlist" class="btn btn-default" style="float: right;" data-toggle="tooltip" data-placement="bottom" title="Export Patient Masterlist">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                    </a>
+                    <hr>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive" >
+                  <table id="tbl_ref_patient" width="100%" class="table table-striped table_patient">
+                    <thead class="tbl-header">
+                        <tr>
+                            <th><center>#</center></th>
+                            <th>Fullname</th>
+                            <th>Birthdate</th>
+                            <th>Sex</th>
+                            <th>Telephone #</th>
+                            <th>Mobile #</th>
+                            <th style="text-align:center;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.box-body -->
+              </div>
+        </div>
+        <div id="div_patient_fields" style="display: none;">
+            <div class="box">
+                <div class="box-header" style="">
+                    <h4 class="bh-text-title"><span class="header-text-title"></span> | <small> <span class="header-text-info"></span></small>
+                        <div style="float: right;margin-top: -10px;">
+                            <button class="btn btn-default close_patient_field" style="border-radius: 50%;">
+                                <i class="fa fa-close" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </h4>
+                    <hr>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <form id="frm_ref_patients">
+                            <div class="col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-user"></i> <b class="uppercase">Patient Information</b>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">  
+                                            <div class="form-group">
+                                                <label class="col-sm-3" for="inputEmail1">
+                                                    <span class="required">*</span> Firstname :
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-user fa-size" aria-hidden="true"></i></span>
+                                                            <input type="text" name="first_name" class="form-control" placeholder="Firstname" data-error-msg="Firstname is required." required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3" for="inputEmail1">
+                                                    Middlename :
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-user fa-size" aria-hidden="true"></i></span>
+                                                            <input type="text" name="middle_name" class="form-control" placeholder="Middlename" data-error-msg="Middlename is required.">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3" for="inputEmail1">
+                                                    <span class="required">*</span> Lastname :
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-user fa-size" aria-hidden="true"></i></span>
+                                                            <input type="text" name="last_name" class="form-control" placeholder="Lastname" data-error-msg="Lastname is required." required>
+                                                    </div>
+                                                </div>
+                                            </div>                                                              
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default" style="min-height: 343px;">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-list"></i> <b class="uppercase">Personal Information</b>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-3" for="inputEmail1">
+                                                    <span class="required">*</span> Birthday :
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-birthday-cake fa-size" aria-hidden="true"></i></span>
+                                                            <input type="text" name="bdate" class="form-control date-picker" placeholder="Birthdate" data-error-msg="Birthday is required." required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3" for="inputEmail1">
+                                                    <span class="required">*</span> Gender :
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-transgender fa-size" aria-hidden="true"></i></span>
+                                                            <select class="form-control" name="sex" id="sex" data-error-msg="Sex is required." required style="width: 50%;">
+                                                               <option value="Male">Male</option>
+                                                               <option value="Female">Female</option>
+                                                           </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3" for="inputEmail1">
+                                                    Civil Status:
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-file" aria-hidden="true"></i></span>
+                                                            <input type="text" name="civil_status" class="form-control" placeholder="Civil Status" data-error-msg="Civil Status is required." style="width: 50%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3">
+                                                    Height:
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-file" aria-hidden="true"></i></span>
+                                                            <input type="text" name="height" class="form-control" placeholder="Height" data-error-msg="Height is required." style="width: 50%;">
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                            <div class="form-group">
+                                                <label class="col-sm-3">
+                                                    Weight:
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-file" aria-hidden="true"></i></span>
+                                                            <input type="text" name="weight" class="form-control" placeholder="Weight" data-error-msg="Weight is required." style="width: 50%;">
+                                                    </div>
+                                                </div>
+                                            </div>                            
+                                            <div class="form-group">
+                                                <label class="col-sm-3">
+                                                    Blood Type :
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-file fa-size" aria-hidden="true"></i></span>
+                                                            <input type="text" name="blood_type" class="form-control" placeholder="Blood Type" data-error-msg="Blood Type is required." style="width: 50%;">
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-phone"></i> <b class="uppercase">Contact Information</b>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Email:</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group mb">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope fa-size" aria-hidden="true"></i></span>
+                                                        <input type="email" name="email" class="form-control" placeholder="Email" data-error-msg="Email is required.">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2" for="inputEmail1">Tel #:</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group mb">
+                                                    <span class="input-group-addon"><i class="fa fa-phone fa-size" aria-hidden="true"></i></span>
+                                                        <input type="text" name="telephone" class="form-control" placeholder="Telephone" data-error-msg="Telephone is required.">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2" for="inputEmail1">Mobile #:</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group mb">
+                                                    <span class="input-group-addon"><i class="fa fa-mobile fa-size" aria-hidden="true"></i></span>
+                                                        <input type="text" name="mobile" class="form-control" placeholder="Mobile #">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-home"></i> <b class="uppercase">Address Information</b>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-2">Address :</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-location-arrow fa-size" aria-hidden="true"></i></span>
+                                                            <textarea name="address" rows="1" placeholder="Address" class="form-control" data-error-msg="Address is required." style="min-height: 35px;"></textarea>
+                                                    </div>            
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2">Notes :</label>
+                                                <div class="col-sm-10">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-sticky-note fa-size"></i></span>
+                                                            <textarea name="ref_note" name="ref_note" rows="1" placeholder="Notes" class="form-control" data-error-msg="Notes is required." style="min-height: 35px;"></textarea>
+                                                    </div>            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-building"></i> <b class="uppercase">Work Information</b>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-3">Occupation:</label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-file fa-size" aria-hidden="true"></i></span>
+                                                            <input type="text" name="occupation" class="form-control" placeholder="Occupation" data-error-msg="Occupation is required.">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3">Company Name:</label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group mb">
+                                                        <span class="input-group-addon"><i class="fa fa-file fa-size" aria-hidden="true"></i></span>
+                                                            <input type="text" name="company_name" class="form-control" placeholder="Company Name" data-error-msg="Company Name is required.">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-user"></i> <b class="uppercase">Guardian Information</b>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="" for="inputEmail1">Guardian Name :</label>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user fa-size" aria-hidden="true"></i></span>
+                                                            <input type="text" name="guardian_name" class="form-control" placeholder="Guardian Name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="" for="inputEmail1">Relationship :</label>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-transgender fa-size" aria-hidden="true"></i></span>
+                                                            <select class="form-control" name="ref_relationship_id" data-error-msg="Relationship is required." id="ref_relationship_id" required>
+                                                               <option value="1">Mother</option>
+                                                               <option value="2">Father</option>
+                                                           </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="" for="inputEmail1">Mobile # :</label>
+                                                <div class="form-group" >
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-mobile fa-size" aria-hidden="true"></i></span>
+                                                            <input type="text" name="guardian_mobile" class="form-control" placeholder="Telephone" data-error-msg="Mobile Number is required.">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="" for="inputEmail1">Tel # :</label>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-phone fa-size" aria-hidden="true"></i></span>
+                                                            <input type="text" name="guardian_telephone" class="form-control" placeholder="Telephone #">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="" for="inputEmail1">Address :</label>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-location-arrow fa-size" aria-hidden="true"></i></span>
+                                                            <textarea name="guardian_address" rows="3" placeholder="Address" class="form-control" data-error-msg="Gurdian's Address is required." style="min-height: 35px;"></textarea>
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="box-footer" style="background: lightgray;">
+                    <div class="col-md-12">
+                       <button class="btn btn-danger" id="btn_cancel_refpatient" style="float: right;margin-left: 5px;">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i> Cancel
+                        </button> 
+                       <button class="btn btn-success" id="btn_createrefpatient" style="float: right;">
+                            <i class="fa fa-check-circle"></i> Save
+                        </button> 
+                    </div>
+                </div>
+            </div> 
+        </div>         
 
         <!--patient modal-->
-        <div id="modal_ref_patient" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
+<!--         <div id="modal_ref_patient" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bgm-indigo">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span>
                         </button>
-                        <h3 class="modal-title">Patient General Info <small id="patient_txn"></small></h3>
+                        <h3 class="modal-title">Patient General Info <small id="patient_txn" style="color: white;"></small></h3>
                     </div>
                     <div class="modal-body">
-                        <form id="frm_ref_patients">
-                        <div class="container-fluid">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;" for="inputEmail1">Firstname :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user fa-size" aria-hidden="true"></i></span>
-                                                <input type="text" name="first_name" class="form-control" placeholder="Firstname" data-error-msg="Firstname is required." required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;" for="inputEmail1">Middlename :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user fa-size" aria-hidden="true"></i></span>
-                                                <input type="text" name="middle_name" class="form-control" placeholder="Middlename" data-error-msg="Middlename is required.">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;" for="inputEmail1">Lastname :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user fa-size" aria-hidden="true"></i></span>
-                                                <input type="text" name="last_name" class="form-control" placeholder="Lastname" data-error-msg="Lastname is required." required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;" for="inputEmail1">Birthdate :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-birthday-cake fa-size" aria-hidden="true"></i></span>
-                                                <input type="text" name="bdate" class="form-control date-picker" placeholder="Birthdate" data-error-msg="Birthdate is required.">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;" for="inputEmail1">Sex :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-transgender fa-size" aria-hidden="true"></i></span>
-                                                <select class="form-control" name="sex" id="sex" data-error-msg="Sex is required." required>
-                                                   <option value="Male">Male</option>
-                                                   <option value="Female">Female</option>
-                                               </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;" for="inputEmail1">Civil Status :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-file" aria-hidden="true"></i></span>
-                                                <input type="text" name="civil_status" class="form-control" placeholder="Civil Status" data-error-msg="Civil Status is required.">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;">Height :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-file" aria-hidden="true"></i></span>
-                                                <input type="text" name="height" class="form-control" placeholder="Height" data-error-msg="Height is required.">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;">Weight :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-file" aria-hidden="true"></i></span>
-                                                <input type="text" name="weight" class="form-control" placeholder="Weight" data-error-msg="Weight is required.">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;">Blood Type :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-file fa-size" aria-hidden="true"></i></span>
-                                                <input type="text" name="blood_type" class="form-control" placeholder="Blood Type" data-error-msg="Blood Type is required.">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;">Email :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-inbox fa-size" aria-hidden="true"></i></span>
-                                                <input type="email" name="email" class="form-control" placeholder="Email" data-error-msg="Email is required.">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;" for="inputEmail1">Tel # :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-phone fa-size" aria-hidden="true"></i></span>
-                                                <input type="text" name="telephone" class="form-control" placeholder="Telephone" data-error-msg="Telephone is required.">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;" for="inputEmail1">Mobile # :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-mobile fa-size" aria-hidden="true"></i></span>
-                                                <input type="text" name="mobile" class="form-control" placeholder="Mobile #">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;">Occupation :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-file fa-size" aria-hidden="true"></i></span>
-                                                <input type="text" name="occupation" class="form-control" placeholder="Occupation" data-error-msg="Occupation is required.">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4" style="margin-top:8px;">Comp. Name :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-file fa-size" aria-hidden="true"></i></span>
-                                                <input type="text" name="company_name" class="form-control" placeholder="Company Name" data-error-msg="Company Name is required.">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 inlinecustomlabel-sm" style="margin-top:8px;" for="inputEmail1">Address :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-location-arrow fa-size" aria-hidden="true"></i></span>
-                                                <textarea name="address" rows="1" placeholder="Address" class="form-control" data-error-msg="Address is required."></textarea>
-                                        </div>            
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 inlinecustomlabel-sm" style="margin-top:8px;" for="inputEmail1">Notes :</label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-sticky-note fa-size"></i></span>
-                                                <textarea name="ref_note" name="ref_note" rows="2" placeholder="Notes" class="form-control" data-error-msg="Notes is required."></textarea>
-                                        </div>            
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <h4 style="margin:0;padding:0;font-weight:bold;">Guardian</h4>
-                                <hr style="margin:0;padding:0;">
-                                <div class="row" style="margin-top:8px;">
-                                    <div class="col-md-6">
-                                        <label class="" for="inputEmail1">Guardian Name :</label>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-user fa-size" aria-hidden="true"></i></span>
-                                                    <input type="text" name="guardian_name" class="form-control" placeholder="Guardian Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class=""  for="inputEmail1">Relationship :</label>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-transgender fa-size" aria-hidden="true"></i></span>
-                                                    <select class="form-control" name="ref_relationship_id" data-error-msg="Relationship is required." required>
-                                                       <option value="1">Mother</option>
-                                                       <option value="2">Father</option>
-                                                   </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="" for="inputEmail1">Mobile # :</label>
-                                        <div class="form-group" >
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-mobile fa-size" aria-hidden="true"></i></span>
-                                                    <input type="text" name="guardian_mobile" class="form-control" placeholder="Telephone" data-error-msg="Mobile Number is required.">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="" for="inputEmail1">Tel # :</label>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-phone fa-size" aria-hidden="true"></i></span>
-                                                    <input type="text" name="guardian_telephone" class="form-control" placeholder="Telephone #">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label class="" for="inputEmail1">Address :</label>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="fa fa-location-arrow fa-size" aria-hidden="true"></i></span>
-                                                    <textarea name="guardian_address" rows="1" placeholder="Address" class="form-control" data-error-msg="Gurdian's Address is required."></textarea>
-                                            </div>   
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    </form>
                     <div class="modal-footer" >
                         <button id="btn_createrefpatient" style="margin-top:5px;" type="button" class="btn btn-success bgm-green">
                             <i class="fa fa-check-circle"></i> Save
@@ -347,7 +455,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- patient modal -->
 
         <!-- modal patient prescription start -->
@@ -358,33 +466,27 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
                         <h4 class="modal-title">
-                            <span class="fa fa-list"></span> Prescription of : <areafullname class="areafullname"></areafullname>
+                            <span class="fa fa-user-md"></span> Prescription of : <areafullname class="areafullname"></areafullname>
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="box-body table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                          <table id="tbl_patient_prescription" class="table table-bordered table-striped">
+                        <div class="">
+                          <table id="tbl_patient_prescription" class="table table-striped">
                             <thead class="tbl-header">
                                 <tr>
                                     <th style="color:white;">PR #</th>
                                     <th style="color:white;">Date Prescribed</th>
                                     <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>PR #</th>
-                                    <th>Date Prescribed</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </tfoot>
                           </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_prescription" class="btn btn-success bgm-green waves-effect right_prescription_create">
+                        <button id="new_prescription" class="btn btn-dark bgm-green waves-effect right_prescription_create">
                             <i class="fa fa-plus-circle"></i> New Prescription
                         </button>
                         <button type="button" id="close_prescription" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">    <i class="fa fa-times-circle"></i> Close
@@ -567,33 +669,27 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
                         <h4 class="modal-title">
-                            <span class="fa fa-list"></span> Laboratory Report of : <areafullname class="areafullname"></areafullname>
+                            <span class="fa fa-stethoscope"></span> Laboratory Report of : <areafullname class="areafullname"></areafullname>
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="table table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                        <table id="tbl_lab" width="100%" class="table table-bordered">
-                            <thead class="tbl-header">
-                            <tr>
-                                <th style="color:white;">Date</th>
-                                <th style="color:white;">Details</th>
-                                <th style="text-align:center;color:white;">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                            <tfoot>
+                        <div>
+                            <table id="tbl_lab" width="100%" class="table table-striped">
+                                <thead class="tbl-header">
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Details</th>
-                                    <th style="text-align:center;">Action</th>
+                                    <th style="color:white;">Date</th>
+                                    <th style="color:white;">Details</th>
+                                    <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
                                 </tr>
-                            </tfoot>
-                        </table>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_laboratory" class="btn btn-success bgm-green waves-effect right_medlab_create">
+                        <button id="new_laboratory" class="btn btn-dark bgm-green waves-effect right_medlab_create">
                             <i class="fa fa-plus-circle"></i> New Laboratory
                         </button>
                         <button type="button" id="close_laboratory" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
@@ -621,7 +717,7 @@
                                 <div class="row">
                                     <div class="col-md-6"><br><br>
                                             <div class="form-group">
-                                                <label for="" class="col-sm-4 boldlabel control-label" style="margin-top:6px;">Date :</label>
+                                                <label for="" class="col-sm-4 boldlabel control-label" style="margin-top:6px;"><span class="required">*</span> Date :</label>
                                                 <div class="col-sm-8">
                                                     <div class="fg-line">
                                                         <input type="text" class="form-control date-picker" id="date_lab" name="date_lab" placeholder="Date Lab" data-error-msg="Date Is Required!" required>
@@ -629,7 +725,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group" style="margin-top:10px;">
-                                                <label for="" class="col-sm-4 boldlabel control-label" style="margin-top:6px;">Results :</label>
+                                                <label for="" class="col-sm-4 boldlabel control-label" style="margin-top:6px;"><span class="required">*</span> Results:</label>
                                                 <div class="col-sm-8">
                                                     <div class="fg-line">
                                                         <textarea class="form-control" name="results" id="results" rows="8" placeholder="Results Here" data-error-msg="Results Is required!" required></textarea>
@@ -643,8 +739,8 @@
                                             <h4 style="padding:0px;margin:0px;font-weight:bold;">Image Attachment</h4>
                                             <hr style="padding:0px;margin:10px;height:2px;background-color:#2c3e50;margin-top:2px;">
                                                 <div id="lightgallery" class="imagelight">
-                                                    <a name="img_a" href="assets/img/lab.png">
-                                                        <img Name="img_preview" style="width:150px; height:150px;" src="assets/img/lab.png" />
+                                                    <a name="img_a" href="assets/img/icons/default.png">
+                                                        <img name="img_preview" style="width:150px; height:150px;" src="assets/img/icons/default.png" />
                                                     </a>
                                                 </div>
                                         </div>
@@ -682,17 +778,17 @@
                             </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="col-sm-12 text-center" style="margin-bottom:10px;">
-                        <h4>Date : <lab_date id="lab_date"></lab_date></h4>
-                        <p id="lab_details"></p>
-                        <center>
-                            <div id="lightgallery" class="imagelight">
-                                <a name="img_a" href="assets/img/lab.png">
-                                    <img Name="img_preview" style="width:100%;border:2px solid black" src="assets/img/lab.png" />
-                                </a>
-                            </div>
-                            <p>Click the Image to view it in fullscreen mode.</p>
-                        </center>
+                        <div class="col-sm-12">
+                            <h4>Date : <labdate id="lab_date"></labdate></h4>
+                            <p id="lab_details"></p>
+                            <center>
+                                <div id="lightgallery" class="imagelight">
+                                    <a name="img_a" href="assets/img/icons/default.png">
+                                        <img name="img_preview" style="width:100%;border:1px solid gray" src="assets/img/icons/default.png" />
+                                    </a>
+                                </div>
+                                <p>Click the Image to view it in fullscreen mode.</p>
+                            </center>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -713,33 +809,27 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
                         <h4 class="modal-title">
-                            <span class="fa fa-list"></span> Patient Billing of : <areafullname class="areafullname"></areafullname>
+                            <span class="fa fa-money"></span> Patient Billing of : <areafullname class="areafullname"></areafullname>
                         </h4>
                     </div>
-                    <div class="modal-body" style="overflow:hidden;">
-                        <div class="table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
+                    <div class="modal-body">
+                        <div>
                         <table id="tbl_billing" width="100%" class="table table-striped">
                             <thead class="tbl-header">
                             <tr>
                                 <th style="color:white;">Billing Code</th>
                                 <th style="color:white;">Date</th>
                                 <th style="text-align:center;color:white;">Action</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Billing Code</th>
-                                    <th>Date</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </tfoot>
                         </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_billing" class="btn btn-success bgm-green waves-effect right_billing_create">
+                        <button id="new_billing" class="btn btn-dark bgm-green waves-effect right_billing_create">
                             <i class="fa fa-plus-circle"></i> New Billing
                         </button>
                         <button type="button" id="close_billing" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
@@ -779,15 +869,14 @@
                                     <thead class="tbl-header" id="addrow">
                                         <tr>
                                             <th style="color:white;">Service Desc</th>
-                                            <th style="color:white;">Qty</th>
-                                            <th style="color:white;">Amount</th>
-                                            <th style="color:white;">Total</th>
+                                            <th style="color:white;text-align: right;">Qty</th>
+                                            <th style="color:white;text-align: right;">Amount</th>
+                                            <th style="color:white;text-align: right;">Total</th>
                                             <th style="color:white;">Action</th>
                                          </tr>
-                                     </thead>
-                                     <tbody class="tbody_new_billing">
-                                        
-                                     </tbody>
+                                    </thead>
+                                    <tbody class="tbody_new_billing">
+                                    </tbody>
                                 </table>
                             </form>
                         </div>
@@ -852,9 +941,9 @@
                                             <table class="table table-bordered">
                                                 <thead class="text-uppercase">
                                                     <th>Service Desc</th>
-                                                    <th>Qty</th>
-                                                    <th>Amount</th>
-                                                    <th>Total</th>
+                                                    <th style="text-align: right;">Qty</th>
+                                                    <th style="text-align: right;">Amount</th>
+                                                    <th style="text-align: right;">Total</th>
                                                 </thead>
                                                 <tbody class="billing_view">
                                                 </tbody>
@@ -904,35 +993,28 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
                         <h4 class="modal-title">
-                            <span class="fa fa-list"></span> Patient Visiting of : <b><areafullname class="areafullname"></areafullname>
+                            <span class="fa fa-file-text-o"></span> Patient Visiting Record of : <b><areafullname class="areafullname"></areafullname>
                         </h4></b>
                     </div>
                     <div class="modal-body">
-                        <div class="table table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                        <table id="tbl_visiting_record" width="100%" class="table table-bordered">
+                        <div>
+                        <table id="tbl_visiting_record" width="100%" class="table table-striped">
                             <thead class="tbl-header">
                             <tr>
                                 <th style="color:white;">Date</th>
                                 <th style="color:white;">Note</th>
                                 <th style="color:white;">Diagnostics</th>
                                 <th style="text-align:center;color:white;">Action</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Note</th>
-                                    <th>Diagnostics</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </tfoot>
                         </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_visiting_record" class="btn btn-success bgm-green waves-effect right_visiting_create">
+                        <button id="new_visiting_record" class="btn btn-dark bgm-green waves-effect right_visiting_create">
                             <i class="fa fa-plus-circle"></i> New Visiting Record
                         </button>
                         <button type="button" id="close_visiting" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
@@ -961,7 +1043,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group" style="margin-top:10px;">
-                                            <label class="" for="inputEmail1">Date Visited :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Date Visited :</label>
                                             <div class="fg-line">
                                                <input type="text" name="visiting_date" id="visiting_date" class="form-control date-picker" placeholder="Date Visited" data-error-msg="Date Visited is required." required>
                                             </div>
@@ -969,7 +1051,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group" style="margin-top:10px;">
-                                            <label class="" for="inputEmail1">Next Visit Date :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Next Visit Date :</label>
                                             <div class="fg-line">
                                                <input type="text" name="next_visit_date" class="form-control date-picker" placeholder="Next Visit Date" data-error-msg="Next Visit Date is required." required>
                                             </div>
@@ -979,7 +1061,7 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1">Note :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Note :</label>
                                             <div class="fg-line">
                                                <textarea name="visiting_note" placeholder="Note" class="form-control" data-error-msg="Diagnostics is required." required></textarea>            
                                             </div>
@@ -987,7 +1069,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1">Diagnostics :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Diagnostics :</label>
                                             <div class="fg-line">
                                                <textarea name="visiting_diagnostics" placeholder="Diagnostics" class="form-control" data-error-msg="Diagnostics is required." required></textarea>            
                                             </div>
@@ -995,7 +1077,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1">Findings :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Findings :</label>
                                             <div class="fg-line">
                                                <textarea  name="visiting_findings" placeholder="Findings" class="form-control" data-error-msg="Findings is required." required></textarea>            
                                             </div>
@@ -1003,7 +1085,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1">Treatment :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Treatment :</label>
                                             <div class="fg-line">
                                                <textarea name="treatment" placeholder="Treatment" class="form-control" data-error-msg="Treatment is required." required></textarea>            
                                             </div>
@@ -1011,7 +1093,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1">Remarks :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Remarks :</label>
                                             <div class="fg-line">
                                                <textarea  name="visiting_remarks" placeholder="Address" class="form-control" data-error-msg="Remarks is required." required></textarea>            
                                             </div>
@@ -1132,13 +1214,13 @@
                     <div class="modal-header" style="background-color:#2980b9;" class="table table-striped">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
-                        <h4 class="modal-title">
-                            <i class="fa fa-list"></i> Clinical Database of: <areafullname class="areafullname"></areafullname>
-                        </h4>
+                            <h4 class="modal-title">
+                                <i class="fa fa-medkit"></i> Clinical Database of: <areafullname class="areafullname"></areafullname>
+                            </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="table table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                        <table id="tbl_clinical" width="100%" class="table table-bordered">
+                        <div>
+                        <table id="tbl_clinical" width="100%" class="table table-striped">
                             <thead class="tbl-header">
                             <tr>
                                 <th>Date</th>
@@ -1147,25 +1229,16 @@
                                 <th style="color:white;">Medication</th>
                                 <th style="color:white;">Remarks</th>
                                 <th style="text-align:center;color:white;">Action</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Diagnostics</th>
-                                    <th>Treatment</th>
-                                    <th>Medication</th>
-                                    <th>Remarks</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </tfoot>
                         </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_clinical" class="btn btn-success bgm-green waves-effect right_clinicaldb_create">
+                        <button id="new_clinical" class="btn btn-dark bgm-green waves-effect right_clinicaldb_create">
                             <i class="fa fa-plus-circle"></i> New Clinical Database
                         </button>
                         <button type="button" id="close_visiting" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
@@ -1194,7 +1267,7 @@
                                 <div class="col-md-12 container-fluid">
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1">Date :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Date :</label>
                                             <div class="fg-line">
                                                <input type="text" name="date_created" id="cd_date" placeholder="Date" class="form-control date-picker" data-error-msg="Date is required." required>       
                                             </div>
@@ -1202,7 +1275,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1">Diagnostics :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Diagnostics :</label>
                                             <div class="fg-line">
                                                <textarea name="clinical_diagnostics" placeholder="Diagnostics" class="form-control" data-error-msg="Diagnostics is required." required></textarea>            
                                             </div>
@@ -1210,7 +1283,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1">Treatment :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Treatment :</label>
                                             <div class="fg-line">
                                                <textarea  name="clinical_treatment" placeholder="Findings" class="form-control" data-error-msg="Treatment is required." required></textarea>            
                                             </div>
@@ -1218,7 +1291,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1">Medications :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Medications :</label>
                                             <div class="fg-line">
                                                <textarea name="clinical_medication" placeholder="Treatment" class="form-control" data-error-msg="Medications is required." required></textarea>            
                                             </div>
@@ -1226,7 +1299,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1">Remarks :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Remarks :</label>
                                             <div class="fg-line">
                                                <textarea  name="clinical_remarks" placeholder="Address" class="form-control" data-error-msg="Remarks is required." required></textarea>            
                                             </div>
@@ -1412,35 +1485,28 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
                         <h4 class="modal-title">
-                            <span class="fa fa-list"></span> Medical Abstract of : <areafullname class="areafullname"></areafullname>
+                            <span class="fa fa-stethoscope"></span> Medical Abstract of : <areafullname class="areafullname"></areafullname>
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="box-body table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                          <table id="tbl_patient_medical_abstract" class="table table-bordered table-striped">
+                        <div>
+                          <table id="tbl_patient_medical_abstract" class="table table-striped">
                             <thead class="tbl-header">
                                 <tr>
                                     <th style="color:white;">Code</th>
                                     <th style="color:white;">Case No</th>
                                     <th style="color:white;">Date Created</th>
                                     <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Code</th>
-                                    <th>Case No</th>
-                                    <th>Date Created</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </tfoot>
                           </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_medical_abstract" class="btn btn-success bgm-green waves-effect right_medical_abstract_create">
+                        <button id="new_medical_abstract" class="btn btn-dark bgm-green waves-effect right_medical_abstract_create">
                             <i class="fa fa-plus-circle"></i> New Medical Abstract
                         </button>
                         <button type="button" id="close_medical_abstract" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
@@ -1834,33 +1900,27 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
                             <h4 class="modal-title">
-                                <span class="fa fa-list"></span> Nephrologist's Order of : <areafullname class="areafullname"></areafullname>
+                                <span class="fa fa-heart"></span> Nephrologist's Order of : <areafullname class="areafullname"></areafullname>
                             </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="box-body table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                          <table id="tbl_patient_nephro_order" class="table table-bordered table-striped">
+                        <div>
+                          <table id="tbl_patient_nephro_order" class="table table-striped">
                             <thead class="tbl-header">
                                 <tr>
                                     <th style="color:white;">Code #</th>
                                     <th style="color:white;">Date Created</th>
                                     <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Code #</th>
-                                    <th>Date Created</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </tfoot>
                           </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_nephro_order" class="btn btn-success bgm-green waves-effect right_nephro_order_create">
+                        <button id="new_nephro_order" class="btn btn-dark bgm-green waves-effect right_nephro_order_create">
                             <i class="fa fa-plus-circle"></i> New Nephro Order
                         </button>
                         <button type="button" id="close_nephro_order" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
@@ -1905,7 +1965,7 @@
                                     </div>
                                     <div class="text-right">
                                         <div class="col-xs-6" style="float:right;font-size:11pt;">
-                                            <span style="margin-right: 50px!important;">
+                                            <span style="margin-right: 21px!important;">
                                                 Dry Weight : <u><areadryweight class="areadryweight"></areadryweight></u>
                                             </span>
                                         </div>
@@ -2045,33 +2105,27 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
                         <h4 class="modal-title">
-                            <span class="fa fa-list"></span> Laboratory Request of : <areafullname class="areafullname"></areafullname>
+                            <span class="fa fa-commenting-o"></span> Laboratory Request of : <areafullname class="areafullname"></areafullname>
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="box-body table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                          <table id="tbl_patient_lab_report" class="table table-bordered table-striped">
+                        <div>
+                          <table id="tbl_patient_lab_report" class="table table-striped">
                             <thead class="tbl-header">
                                 <tr>
                                     <th style="color:white;">Code #</th>
                                     <th style="color:white;">Date Created</th>
                                     <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Code #</th>
-                                    <th>Date Created</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </tfoot>
                           </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_diagnostic" class="btn btn-success bgm-green waves-effect right_diagnostic_create">
+                        <button id="new_diagnostic" class="btn btn-dark bgm-green waves-effect right_diagnostic_create">
                             <i class="fa fa-plus-circle"></i> New Diagnostic Test
                         </button>
                         <button type="button" id="close_diagnostic" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
@@ -2114,7 +2168,7 @@
                                             </div>
                                         </div>
                                         <div class="text-right">
-                                            <div class="col-xs-6" style="float:right;font-size:11pt;">Date : <arealabreportdate class="arealabreportdate"><input type="text" class="date-picker" id="lab_report_date" name="lab_report_date" style="border:0px;border-bottom:1px solid #2c3e50;width:78px;" value="<?php echo date('m/d/Y'); ?>"></arealabreportdate>
+                                            <div class="col-xs-6" style="float:right;font-size:11pt;">Date : <arealabreportdate class="arealabreportdate"><input type="text" class="date-picker" id="lab_report_date" name="lab_report_date" style="border:0px;border-bottom:1px solid #2c3e50;width:78px;" value="<?php echo date('m/d/Y'); ?>" data-error-msg="Date is required." required></arealabreportdate>
                                             </div>
                                         </div>
                                     </div>
@@ -2260,33 +2314,27 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
                         <h4 class="modal-title">
-                            <span class="fa fa-list"></span> Medical Report of : <areafullname class="areafullname"></areafullname>
+                            <span class="fa fa-certificate"></span> Medical Report of : <areafullname class="areafullname"></areafullname>
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="box-body table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                          <table id="tbl_med_cert_report" class="table table-bordered table-striped">
+                        <div>
+                          <table id="tbl_med_cert_report" class="table table-striped">
                             <thead class="tbl-header">
                                 <tr>
                                     <th style="color:white;">Code #</th>
                                     <th style="color:white;">Date Created</th>
                                     <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Code #</th>
-                                    <th>Date Created</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </tfoot>
                           </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_medical_cert" class="btn btn-success bgm-green waves-effect right_medical_cert">
+                        <button id="new_medical_cert" class="btn btn-dark bgm-green waves-effect right_medical_cert">
                             <i class="fa fa-plus-circle"></i> New Medical Certificate
                         </button>
                         <button type="button" id="close_medical_cert" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
@@ -2407,35 +2455,28 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
                         <h4 class="modal-title"> 
-                            <span class="fa fa-list"></span> Nephro Record of : <areafullname class="areafullname"></areafullname>
+                            <span class="fa fa-heartbeat"></span> Nephro Record of : <areafullname class="areafullname"></areafullname>
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="table table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                        <table id="tbl_nephro_record" class="table table-bordered table-striped">
+                        <div>
+                        <table id="tbl_nephro_record" class="table table-striped">
                         <thead class="tbl-header">
                             <tr>
                                 <th>Date</th>
                                 <th>Attending Physician</th>
                                 <th>Treatment No.</th>
                                 <th style="text-align:center;">Action</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Attending Physician</th>
-                                <th>Treatment No.</th>
-                                <th>Patient Name</th>
-                                <th style="text-align:center;">Action</th>
-                            </tr>
-                        </tfoot>
                       </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-success right_patientinfo_create" id="btn_new">
+                        <button class="btn btn-dark right_patientinfo_create" id="btn_new">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i> New Nephro Record</button>
                         <button type="button" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
                             <i class="fa fa-times-circle"></i> Close
@@ -2463,12 +2504,12 @@
                             <div role="tabpanel" class="container-fluid">
                                 <form id="frm_nephro_record" role="form">
                                     <div  id="printcontentpatientdetails">
-                                        <titlenephro style="color:#2c3e50;padding:0px;margin:0px;font-size:15pt;font-weight:bold;" class="text-left">Nephro Record</titlenephro><date style="float:right;">Date : <input class="date-picker" name="nephrorecorddate" id="nephrorecorddate"></date>
+                                        <titlenephro style="color:#2c3e50;padding:0px;margin:0px;font-size:15pt;font-weight:bold;" class="text-left">Nephro Record</titlenephro><date style="float:right;">Date : <input class="date-picker" name="nephrorecorddate" id="nephrorecorddate" data-error-msg="Date is required." required></date>
                                         <hr style="border:1px solid #2c3e50"></hr>
                                         <div class="col-xs-12 ospace">
                                             <div class="col-xs-4">
                                                     <div class="form-group ospace">
-                                                    <label for="exampleInputEmail1" class="ospace">* Attending Physician</label>
+                                                    <label for="exampleInputEmail1" class="ospace"><span class="required">*</span> Attending Physician</label>
                                                         <div class="fg-line fg-toggled">
                                                             <input type="text" data-toggle="" class="form-control" name="attending_physc" placeholder="" data-error-msg="Attending Physician is required!" required>
                                                         </div>
@@ -2476,7 +2517,7 @@
                                             </div>
                                             <div class="col-xs-4">
                                                     <div class="form-group ospace">
-                                                    <label for="exampleInputEmail1" class="ospace">* Treatment No</label>
+                                                    <label for="exampleInputEmail1" class="ospace"><span class="required">*</span> Treatment No</label>
                                                         <div class="fg-line">
                                                             <input type="text" data-toggle="" class="form-control" name="treatment_no" placeholder="" data-error-msg="Treatment No!" required>
                                                         </div>
@@ -4051,33 +4092,27 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" class="xbutton">×</span></button>
                         <h4 class="modal-title">
-                            <span class="fa fa-list"></span> Patient Referral of : <areafullname class="areafullname"></areafullname>
+                            <span class="fa fa-envelope"></span> Patient Referral of : <areafullname class="areafullname"></areafullname>
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="box-body table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                          <table id="tbl_patient_referral" class="table table-bordered table-striped">
+                        <div>
+                          <table id="tbl_patient_referral" class="table table-striped">
                             <thead class="tbl-header">
                                 <tr>
                                     <th style="color:white;">Referral Code #</th>
                                     <th style="color:white;">Referral Date</th>
                                     <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Referral Code #</th>
-                                    <th>Referral Date</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </tfoot>
                           </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_referral" class="btn btn-success bgm-green waves-effect right_medical_cert">
+                        <button id="new_referral" class="btn btn-dark bgm-green waves-effect right_medical_cert">
                             <i class="fa fa-plus-circle"></i> New Referral Letter
                         </button>
                         <button type="button" id="close_referral" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
@@ -4228,8 +4263,8 @@
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <div class="box-body table-responsive" style="height: 400px;overflow-x:hidden;overflow-y:scroll;">
-                          <table id="tbl_patient_admitting_order" class="table table-bordered table-striped">
+                        <div class="box-body">
+                          <table id="tbl_patient_admitting_order" class="table table-striped">
                             <thead class="tbl-header">
                                 <tr>
                                     <th style="color:white;">Admitting Code #</th>
@@ -4239,18 +4274,11 @@
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Admitting Code #</th>
-                                    <th>Date</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </tfoot>
                           </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="new_admitting_order" class="btn btn-success bgm-green waves-effect right_admitting_order">
+                        <button id="new_admitting_order" class="btn btn-dark bgm-green waves-effect right_admitting_order">
                             <i class="fa fa-plus-circle"></i> New Admitting Order
                         </button>
                         <button type="button" id="close_admitting_order" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
@@ -4277,7 +4305,6 @@
                     </div>
                     <div class="modal-body" style="padding:5px;">
                         <div id="print_admitting_order_content">
-
                             <form id="frm_admitting_order">
                             <div class="container-fluid">
                                 <?php echo $header_2; ?>
@@ -4305,18 +4332,21 @@
                                             <h4 style="font-family:tahoma;font-size:14pt;font-weight:bold;text-transform: uppercase;">
                                                 <u>Admitting Order</u>
                                             </h4>
+                                            <button type="button" class="btn btn-success hidden" id="btn_check_all_checkbox">
+                                                Check all checkbox
+                                            </button>
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12">
                                             <div class="text-left">
                                                     <i class="fa fa-angle-right"></i> Please admit to 
-                                                        <input type="checkbox" name="cb_icu"> ICU <br />
-                                                        <input type="checkbox" name="cb_room" style="margin-left: 100px;"> Room of choice under my service. <br />
+                                                        <input type="checkbox" name="cb_icu" id="cb_icu"> <label for="cb_icu" class="normal">ICU</label> <br />
+                                                        <input type="checkbox" name="cb_room" id="cb_room" style="margin-left: 100px;"> <label for="cb_room" class="normal">Room of choice under my service.</label> <br />
                                                     <i class="fa fa-angle-right"></i> Secure consent for admission &amp; management <br />
                                                     <i class="fa fa-angle-right"></i> Monitor VS q 
-                                                        <input type="text" class="txt_right" name="txt_mon_vsq" style="width: 30px;"> hours <br />
+                                                        <input type="text" class="txt_right" name="txt_mon_vsq" id="txt_mon_vsq" style="width: 30px;"> hours <br />
                                                     <i class="fa fa-angle-right"></i> Monitor 1 &amp; 0 q
-                                                        <input type="text" class="txt_right" name="txt_mon_10" style="width: 30px;"> hours <br />
+                                                        <input type="text" class="txt_right" name="txt_mon_10" id="txt_mon_10" style="width: 30px;"> hours <br />
                                                     <i class="fa fa-angle-right"></i> Diet: <br/ >
 
                                                         <input type="checkbox" name="cb_low_fat_salt_diet" id="cb_low_fat_salt_diet"> 
@@ -4437,6 +4467,7 @@
                                             </div>
                                             </div>
                                         </div>
+                                        <hr>
                                         <div class="row">
                                         <div class="col-xs-12">
                                             <div class="col-xs-12">
@@ -4444,398 +4475,399 @@
                                             </div>
                                             <div class="col-xs-4">
                                                 <h5><b>HEMATOLOGY</b></h5>
-                                               <input type="checkbox" name="" id="hm_cbc" style="width:50px;border:0px;border-bottom:1px solid black;">CBC with PC <br>
-                                               <input type="checkbox" name="" id="hm_ph_bsmear" style="width:50px;border:0px;border-bottom:1px solid black;">Peripheral Blood Smear <br>
+                                               <input type="checkbox" name="cb_diag_hm_cbc" id="cb_diag_hm_cbc" style="width:50px;border:0px;border-bottom:1px solid black;"><label for="cb_diag_hm_cbc" class="normal">CBC with PC</label> <br>
+                                               <input type="checkbox" name="cb_diag_hm_ph_bsmear" id="cb_diag_hm_ph_bsmear" style="width:50px;border:0px;border-bottom:1px solid black;"><label for="cb_diag_hm_ph_bsmear" class="normal">Peripheral Blood Smear</label> <br>
                                                <h5><b>CHEMISTRY</b></h5>
-                                               <input type="checkbox" name="" id="chem_bun_prepost" style="width:50px;border:0px;border-bottom:1px solid black;">BUN (Pre and Post HD) <br>
-                                               <input type="checkbox" name="" id="chem_bun" style="width:50px;border:0px;border-bottom:1px solid black;">BUN <br>
-                                               <input type="checkbox" name="" id="chem_creatinine" style="width:50px;border:0px;border-bottom:1px solid black;">Creatinine <br>
-                                               <input type="checkbox" name="" id="chem_na" style="width:50px;border:0px;border-bottom:1px solid black;">Na <br>
-                                               <input type="checkbox" name="" id="chem_k" style="width:50px;border:0px;border-bottom:1px solid black;">K <br>
-                                               <input type="checkbox" name="" id="chem_fbs" style="width:50px;border:0px;border-bottom:1px solid black;">FBS <br>
-                                               <input type="checkbox" name="" id="chem_ion_calc" style="width:50px;border:0px;border-bottom:1px solid black;">Ionized Calcium <br>
-                                               <input type="checkbox" name="" id="chem_phosporus" style="width:50px;border:0px;border-bottom:1px solid black;">Phosphorus <br>
-                                               <input type="checkbox" name="" id="chem_albumin" style="width:50px;border:0px;border-bottom:1px solid black;">Albumin <br>
-                                               <input type="checkbox" name="" id="chem_uricacid" style="width:50px;border:0px;border-bottom:1px solid black;">Uric Acid <br>
-                                               <input type="checkbox" name="" id="chem_lipidprofile" style="width:50px;border:0px;border-bottom:1px solid black;">Lipid Profile <br>
-                                               <input type="checkbox" name="" id="chem_sgpt" style="width:50px;border:0px;border-bottom:1px solid black;">SGPT <br>
-                                               <input type="checkbox" name="" id="chem_specify" style="width:50px;border:0px;border-bottom:1px solid black;">Others, please specify <input type="text" name="chem_specify_txt" style="width:65px;border:0px;border-bottom:1px solid black;"><br>
+                                               <input type="checkbox" name="cb_diag_chem_bun_prepost" id="cb_diag_chem_bun_prepost" style="width:50px;border:0px;border-bottom:1px solid black;">BUN (Pre and Post HD) <br>
+                                               <input type="checkbox" name="cb_diag_chem_bun" id="cb_diag_chem_bun" style="width:50px;border:0px;border-bottom:1px solid black;">BUN <br>
+                                               <input type="checkbox" name="cb_diag_chem_creatinine" id="cb_diag_chem_creatinine" style="width:50px;border:0px;border-bottom:1px solid black;">Creatinine <br>
+                                               <input type="checkbox" name="cb_diag_chem_na" id="cb_diag_chem_na" style="width:50px;border:0px;border-bottom:1px solid black;">Na <br>
+                                               <input type="checkbox" name="cb_diag_chem_k" id="cb_diag_chem_k" style="width:50px;border:0px;border-bottom:1px solid black;">K <br>
+                                               <input type="checkbox" name="cb_diag_chem_fbs" id="cb_diag_chem_fbs" style="width:50px;border:0px;border-bottom:1px solid black;">FBS <br>
+                                               <input type="checkbox" name="cb_diag_chem_ion_calc" id="cb_diag_chem_ion_calc" style="width:50px;border:0px;border-bottom:1px solid black;">Ionized Calcium <br>
+                                               <input type="checkbox" name="cb_diag_chem_phosporus" id="cb_diag_chem_phosporus" style="width:50px;border:0px;border-bottom:1px solid black;">Phosphorus <br>
+                                               <input type="checkbox" name="cb_diag_chem_albumin" id="cb_diag_chem_albumin" style="width:50px;border:0px;border-bottom:1px solid black;">Albumin <br>
+                                               <input type="checkbox" name="cb_diag_chem_uricacid" id="cb_diag_chem_uricacid" style="width:50px;border:0px;border-bottom:1px solid black;">Uric Acid <br>
+                                               <input type="checkbox" name="cb_diag_chem_lipidprofile" id="cb_diag_chem_lipidprofile" style="width:50px;border:0px;border-bottom:1px solid black;">Lipid Profile <br>
+                                               <input type="checkbox" name="cb_diag_chem_sgpt" id="cb_diag_chem_sgpt" style="width:50px;border:0px;border-bottom:1px solid black;">SGPT <br>
+                                               <input type="checkbox" name="cb_diag_chem_specify" id="cb_diag_chem_specify" style="width:50px;border:0px;border-bottom:1px solid black;">Others, please specify <input type="text" name="txt_diag_chem_specify" id="txt_diag_chem_specify" style="width:65px;border:0px;border-bottom:1px solid black;"><br>
                                             </div>
                                             <div class="col-xs-8">
                                                 <div class="row">
                                                     <div class="col-xs-5">
                                                         <h5><b>IMAGING STUDIES</b></h5>
-                                                        <input type="checkbox" id="imag_12lecg" style="width:50px;border:0px;border-bottom:1px solid black;">12 L ECG <br />
-                                                        <input type="checkbox" id="imag_kubxray" style="width:50px;border:0px;border-bottom:1px solid black;">KUB XRAY <br />
-                                                        <input type="checkbox" id="imag_kubultrasound" style="width:50px;border:0px;border-bottom:1px solid black;">KUB Ultrasound <br />
-                                                        <input type="checkbox" id="imag_abdomen" style="width:50px;border:0px;border-bottom:1px solid black;">Ultrasound of WAB <br />
-                                                        <input type="checkbox" id="imag_ct_angiography" style="width:50px;border:0px;border-bottom:1px solid black;">CT angiography<br />
-                                                        <input type="checkbox" id="imag_renal_duplex" style="width:50px;border:0px;border-bottom:1px solid black;">Renal Duplex Scan <br />
+                                                        <input type="checkbox" name="cb_diag_imag_12lecg" id="cb_diag_imag_12lecg" style="width:50px;border:0px;border-bottom:1px solid black;">12 L ECG <br />
+                                                        <input type="checkbox" name="cb_diag_imag_kubxray" id="cb_diag_imag_kubxray" style="width:50px;border:0px;border-bottom:1px solid black;">KUB XRAY <br />
+                                                        <input type="checkbox" name="cb_diag_imag_kubultrasound" id="cb_diag_imag_kubultrasound" style="width:50px;border:0px;border-bottom:1px solid black;">KUB Ultrasound <br />
+                                                        <input type="checkbox" name="cb_diag_imag_abdomen" id="cb_diag_imag_abdomen" style="width:50px;border:0px;border-bottom:1px solid black;">Ultrasound of WAB <br />
+                                                        <input type="checkbox" name="cb_diag_imag_ct_angiography" id="cb_diag_imag_ct_angiography" style="width:50px;border:0px;border-bottom:1px solid black;">CT angiography<br />
+                                                        <input type="checkbox" name="cb_diag_imag_renal_duplex" id="cb_diag_imag_renal_duplex" style="width:50px;border:0px;border-bottom:1px solid black;">Renal Duplex Scan <br />
                                                     </div>
                                                     <div class="col-xs-7">
                                                         <br><br>
-                                                        <input type="checkbox" id="imag_cxrpa" style="width:50px;border:0px;border-bottom:1px solid black;">CXR PA <br/>
-                                                        <input type="checkbox" id="imag_ctstronogram" style="width:50px;border:0px;border-bottom:1px solid black;">CT STONOGRAM<br/>
-                                                        <input type="checkbox" id="imag_prosultra" style="width:50px;border:0px;border-bottom:1px solid black;">Prostate Ultrasound<br/>
-                                                        <input type="checkbox" id="imag_decho_plain" style="width:50px;border:0px;border-bottom:1px solid black;">2 Dechocardiography (Plain)<br/>
-                                                        <input type="checkbox" id="imag_decho_doppler" style="width:50px;border:0px;border-bottom:1px solid black;">2 Dechocardiography (with doppler)<br/>
-                                                        <input type="checkbox" id="imag_others" style="width:50px;border:0px;border-bottom:1px solid black;">Others: <input type="text" style="width:160px;border:0px;border-bottom:1px solid black;" name="imag_others_txt"> <br/>
+                                                        <input type="checkbox" name="cb_diag_imag_cxrpa" id="cb_diag_imag_cxrpa" style="width:50px;border:0px;border-bottom:1px solid black;">CXR PA <br/>
+                                                        <input type="checkbox" name="cb_diag_imag_ctstronogram" id="cb_diag_imag_ctstronogram" style="width:50px;border:0px;border-bottom:1px solid black;">CT STONOGRAM<br/>
+                                                        <input type="checkbox" name="cb_diag_imag_prosultra" id="cb_diag_imag_prosultra" style="width:50px;border:0px;border-bottom:1px solid black;">Prostate Ultrasound<br/>
+                                                        <input type="checkbox" name="cb_diag_imag_decho_plain" id="cb_diag_imag_decho_plain" style="width:50px;border:0px;border-bottom:1px solid black;">2 Dechocardiography (Plain)<br/>
+                                                        <input type="checkbox" name="cb_diag_imag_decho_doppler" id="cb_diag_imag_decho_doppler" style="width:50px;border:0px;border-bottom:1px solid black;">2 Dechocardiography (with doppler)<br/>
+                                                        <input type="checkbox" name="cb_diag_imag_others" id="cb_diag_imag_others" style="width:50px;border:0px;border-bottom:1px solid black;">Others: <input type="text" style="width:160px;border:0px;border-bottom:1px solid black;" name="txt_diag_imag_others" id="txt_diag_imag_others"> <br/>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-xs-5">
                                                         <h5><b>RENAL FUNCTION TEST</b></h5>
-                                                        <input type="checkbox" id="renal_gfr" style="width:50px;border:0px;border-bottom:1px solid black;"> Nuclear GFR Scan <br>
+                                                        <input type="checkbox" name="cb_diag_renal_gfr" id="cb_diag_renal_gfr" style="width:50px;border:0px;border-bottom:1px solid black;"> Nuclear GFR Scan <br>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-xs-5">
                                                         <h5><b>URINE EXAMS</b></h5>
-                                                            <input type="checkbox" id="urine_routine_analysis" style="width:50px;border:0px;border-bottom:1px solid black;">Routine Urinalysis <br />
-                                                            <input type="checkbox" id="urine_random" style="width:50px;border:0px;border-bottom:1px solid black;">Urine RBC morphology  <br />
-                                                            <input type="checkbox" id="urine_calcium" style="width:50px;border:0px;border-bottom:1px solid black;">Random Urine Protein  <br />
-                                                            <input type="checkbox" id="urine_afb" style="width:50px;border:0px;border-bottom:1px solid black;">Urine AFB <br />
+                                                            <input type="checkbox" name="cb_diag_urine_routine_analysis" id="cb_diag_urine_routine_analysis" style="width:50px;border:0px;border-bottom:1px solid black;">Routine Urinalysis <br />
+                                                            <input type="checkbox" name="cb_diag_urine_rbc_morph" id="cb_diag_urine_rbc_morph" style="width:50px;border:0px;border-bottom:1px solid black;">Urine RBC morphology  <br />
+                                                            <input type="checkbox" name="cb_diag_urine_random" id="cb_diag_urine_random" style="width:50px;border:0px;border-bottom:1px solid black;">Random Urine Protein  <br />
+                                                            <input type="checkbox" name="cb_diag_urine_afb" id="cb_diag_urine_afb" style="width:50px;border:0px;border-bottom:1px solid black;">Urine AFB <br />
                                                     </div>
                                                     <div class="col-xs-7">
                                                         <br><br>
-                                                        <input type="checkbox" id="urine_rbc_morph" style="width:50px;border:0px;border-bottom:1px solid black;">24 hour urine total protein<br>
-                                                       <input type="checkbox" id="urine_sodium" style="width:50px;border:0px;border-bottom:1px solid black;">24 hour creatinine clearance<br>
-                                                       <input type="checkbox" id="urine_creatinine_ratio" style="width:50px;border:0px;border-bottom:1px solid black;">Urine Albumin Creatinine Ratio<br>
-                                                       <input type="checkbox" id="urine_cytology" style="width:50px;border:0px;border-bottom:1px solid black;">Urine Cytology<br>
+                                                        <input type="checkbox" name="cb_diag_urine_total_protein" id="cb_diag_urine_total_protein" style="width:50px;border:0px;border-bottom:1px solid black;">24 hour urine total protein<br>
+                                                       <input type="checkbox" name="cb_diag_urine_clearance" id="cb_diag_urine_clearance" style="width:50px;border:0px;border-bottom:1px solid black;">24 hour creatinine clearance<br>
+                                                       <input type="checkbox" name="cb_diag_urine_creatinine_ratio" id="cb_diag_urine_creatinine_ratio" style="width:50px;border:0px;border-bottom:1px solid black;">Urine Albumin Creatinine Ratio<br>
+                                                       <input type="checkbox" name="cb_diag_urine_cytology" id="cb_diag_urine_cytology" style="width:50px;border:0px;border-bottom:1px solid black;">Urine Cytology<br>
                                                     </div>
                                                 </div>                                     
                                             </div>
                                         </div>
                                     </div>
-
+                                    <hr><br/>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <br />
                                             Therapeutics : 
-                                            <input type="checkbox" name=""> 
-                                            <label class="normal" for="">Oxygen Inhalation via</label> 
-                                            <input type="text" name="" class="txt_left"> 
+                                            <input type="checkbox" name="cb_thera_oxy_inha" id="cb_thera_oxy_inha"> 
+                                            <label class="normal" for="cb_thera_oxy_inha">Oxygen Inhalation via</label> 
+                                            <input type="text" name="txt_thera_oxy_inha" id="txt_thera_oxy_inha" class="txt_left"> 
 
-                                            <input type="checkbox" name=""> 
-                                            <label for="" class="normal">Nasal Cannula</label>
+                                            <input type="checkbox" name="cb_thera_nasal_cannula" id="cb_thera_nasal_cannula"> 
+                                            <label for="cb_thera_nasal_cannula" class="normal">Nasal Cannula</label>
 
-                                            <input type="checkbox" name=""> 
-                                            <input type="text" name="" class="txt_left" style="width: 80px;"> 
-                                            <label for="" class="normal">Lpm</label> <br />
+                                            <input type="checkbox" name="cb_thera_lpm" id="cb_thera_lpm"> 
+                                            <input type="text" name="txt_thera_lpm" id="txt_thera_lpm" class="txt_left" style="width: 80px;"> 
+                                            <label for="cb_thera_lpm" class="normal">Lpm</label> <br />
 
-                                            <input type="checkbox" name="" style="margin-left: 458px;"> 
-                                            <label for="" class="normal">%FiO2</label> <br />
+                                            <input type="checkbox" name="cb_thera_perc_fi02" id="cb_thera_perc_fi02" style="margin-left: 490px;"> 
+                                            <label for="cb_thera_perc_fi02" class="normal">%FiO2</label> <br />
 
-                                            <input type="checkbox" name="" style="margin-left: 358px;"> 
-                                            <label for="" class="normal">Venturi Mask</label> <br />
+                                            <input type="checkbox" name="cb_thera_venturi_mask" id="cb_thera_venturi_mask" style="margin-left: 390px;">
+                                            <label for="cb_thera_venturi_mask" class="normal">Venturi Mask</label> <br />
 
-                                            <input type="checkbox" name="" style="margin-left: 358px;"> 
-                                            <label for="" class="normal">Others</label>
-                                            <input type="text" name="" style="width: 150px;" class="txt_left">  <br />
+                                            <input type="checkbox" name="cb_thera_others" id="cb_thera_others" style="margin-left: 390px;"><label for="cb_thera_others" class="normal"> Others</label>
+                                            <input type="text" name="txt_thera_others" id="txt_thera_others" style="width: 150px;" class="txt_left">  <br />
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-12">
 
-                                            <input type="checkbox" name=""> IV Fluid :
+                                            <input type="checkbox" name="cb_ivfluid" id="cb_ivfluid"> IV Fluid :
                                             <br/> 
 
-                                            <input type="checkbox" name="" style="margin-left: 50px;"> PNSS 1L x 
-                                            <input type="text" name="" class="txt_left" style="width: 80px;"> 
-                                            <input type="checkbox" name="" style="margin-left: 40px;">
-                                            <label for="" class="normal">10 cc/hr</label> <br />
+                                            <input type="checkbox" name="cb_ivfluid_nss_1l" id="cb_ivfluid_nss_1l" style="margin-left: 50px;"> PNSS 1L x 
+                                            <input type="text" name="txt_ivfluid_nss_1l_rate" id="txt_ivfluid_nss_1l_rate" class="txt_left" style="width: 115px;"> 
+                                            <input type="checkbox" name="cb_ivfluid_10_cc_hr" id="cb_ivfluid_10_cc_hr" style="margin-left: 40px;">
+                                            <label for="cb_ivfluid_10_cc_hr" class="normal">10 cc/hr</label> <br />
 
-                                            <input type="checkbox" name="" style="margin-left: 50px;"> D5 0.3 NaCl x
-                                            <input type="text" name="" class="txt_left" style="width: 80px;"> 
-                                            <input type="checkbox" name="" style="margin-left: 40px;">
-                                            <label for="" class="normal">20 cc/hr</label> <br />
+                                            <input type="checkbox" name="cb_ivfluid_ds_0_3_nacl" id="cb_ivfluid_ds_0_3_nacl" style="margin-left: 50px;"> D5 0.3 NaCl x
+                                            <input type="text" name="txt_ivfluid_ds_0_3_nacl_rate" id="txt_ivfluid_ds_0_3_nacl_rate" class="txt_left" style="width: 95px;"> 
+                                            <input type="checkbox" name="cb_ivfluid_20_cc_hr" id="cb_ivfluid_20_cc_hr" style="margin-left: 42px;">
+                                            <label for="cb_ivfluid_20_cc_hr" class="normal">20 cc/hr</label> <br />
 
-                                            <input type="checkbox" name="" style="margin-left: 50px;"> D5 0.9 NaCl x 
-                                            <input type="text" name="" class="txt_left" style="width: 80px;"> 
-                                            <input type="checkbox" name="" style="margin-left: 40px;">
-                                            <label for="" class="normal">40 cc/hr</label> <br />
+                                            <input type="checkbox" name="cb_ivfluid_ds_0_9_nacl" id="cb_ivfluid_ds_0_9_nacl" style="margin-left: 50px;"> D5 0.9 NaCl x 
+                                            <input type="text" name="txt_ivfluid_ds_0_9_nacl_rate" id="txt_ivfluid_ds_0_9_nacl_rate" class="txt_left" style="width: 95px;"> 
+                                            <input type="checkbox" name="cb_ivfluid_40_cc_hr" id="cb_ivfluid_40_cc_hr" style="margin-left: 42px;">
+                                            <label for="cb_ivfluid_40_cc_hr" class="normal">40 cc/hr</label> <br />
 
-                                            <input type="checkbox" name="" style="margin-left: 50px;"> D5 Water 50ml x 
-                                            <input type="text" name="" class="txt_left" style="width: 80px;"> 
-                                            <input type="checkbox" name="" style="margin-left: 40px;">
-                                            <label for="" class="normal">60 cc/hr</label> <br />
+                                            <input type="checkbox" name="cb_ivfluid_ds_water_500ml" id="cb_ivfluid_ds_water_500ml" style="margin-left: 50px;"> D5 Water 50ml x 
+                                            <input type="text" name="txt_ivfluid_ds_water_500ml_rate" id="txt_ivfluid_ds_water_500ml_rate" class="txt_left" style="width: 75px;"> 
+                                            <input type="checkbox" name="cb_ivfluid_60_cc_hr" id="cb_ivfluid_60_cc_hr" style="margin-left: 44px;">
+                                            <label for="cb_ivfluid_60_cc_hr" class="normal">60 cc/hr</label> <br />
 
-                                            <input type="checkbox" name="" style="margin-left: 50px;"> D5 Water 1L x 
-                                            <input type="text" name="" class="txt_left" style="width: 80px;"> 
-                                            <input type="checkbox" name="" style="margin-left: 40px;">
-                                            <label for="" class="normal">80 cc/hr</label> <br />
+                                            <input type="checkbox" name="cb_ivfluid_ds_water_1L" id="cb_ivfluid_ds_water_1L" style="margin-left: 50px;"> D5 Water 1L x 
+                                            <input type="text" name="txt_ivfluid_ds_water_1L_rate" id="txt_ivfluid_ds_water_1L_rate" class="txt_left" style="width: 90px;"> 
+                                            <input type="checkbox" name="cb_ivfluid_80_cc_hr" id="cb_ivfluid_80_cc_hr" style="margin-left: 45px;">
+                                            <label for="cb_ivfluid_80_cc_hr" class="normal">80 cc/hr</label> <br />
 
-                                            <input type="checkbox" name="" style="margin-left: 50px;"> D5 NM 1L x 
-                                            <input type="text" name="" class="txt_left" style="width: 80px;"> 
-                                            <input type="checkbox" name="" style="margin-left: 40px;">
-                                            <label for="" class="normal">100 cc/hr</label> <br />
+                                            <input type="checkbox" name="cb_ivfluid_ds_nm_1l" id="cb_ivfluid_ds_nm_1l" style="margin-left: 50px;"> D5 NM 1L x 
+                                            <input type="text" name="txt_ivfluid_ds_nm_1l_rate" id="txt_ivfluid_ds_nm_1l_rate" class="txt_left" style="width: 105px;"> 
+                                            <input type="checkbox" name="cb_ivfluid_100_cc_hr" id="cb_ivfluid_100_cc_hr" style="margin-left: 44px;">
+                                            <label for="cb_ivfluid_100_cc_hr" class="normal">100 cc/hr</label> <br />
 
-                                            <input type="checkbox" name="" style="margin-left: 250px;">
-                                            <label for="" class="normal" >120 cc/hr</label> <br />
+                                            <input type="checkbox" name="cb_ivfluid_120_cc_hr" id="cb_ivfluid_120_cc_hr" style="margin-left: 284px;">
+                                            <label for="cb_ivfluid_120_cc_hr" class="normal" >120 cc/hr</label> <br />
 
-                                            <input type="checkbox" name="" style="margin-left: 250px;">
-                                            <label for="" class="normal">150 cc/hr</label> <br />
+                                            <input type="checkbox" name="cb_ivfluid_150_cc_hr" id="cb_ivfluid_150_cc_hr" style="margin-left: 284px;">
+                                            <label for="cb_ivfluid_150_cc_hr" class="normal">150 cc/hr</label> <br />
 
-                                            <input type="checkbox" name="">
-                                            <label for="" class="normal">Insert heplock</label> <br />
+                                            <input type="checkbox" name="cb_ivfluid_insert_helplock" id="cb_ivfluid_insert_helplock">
+                                            <label for="cb_ivfluid_insert_helplock" class="normal">Insert heplock</label> <br />
                                         </div>
                                     </div>
-
+                                    <hr><br/>
                                     <div class="row">
-                                        Oral Medications : 
+                                    <div class="col-xs-12">
+                                        <h4><b>Oral Medications :</b></h4>
+                                    </div>
                                     <div class="col-xs-12">                                    
                                     <table style="width:100%;margin:10px;padding: 10px;">
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_cal_carbo" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Calcium carbonate 500mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_cal_carbo_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_cal_carbo_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_cal_carbo_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_atenolol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Atenolol
-                                                <input type="text" class="mgright" name="med_atenolol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_atenolol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_atenolol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_atenolol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_cal_carbo" id="cb_med_cal_carbo" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Calcium carbonate 500mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_cal_carbo_od" id="cb_med_cal_carbo_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_cal_carbo_bid" id="cb_med_cal_carbo_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_cal_carbo_tid" id="cb_med_cal_carbo_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_atenolol" id="cb_med_atenolol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Atenolol
+                                                <input type="text" class="mgright" name="txt_med_atenolol_mg" id="txt_med_atenolol_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_atenolol_od" id="cb_med_atenolol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_atenolol_bid" id="cb_med_atenolol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_atenolol_tid" id="cb_med_atenolol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_sevelamer" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Sevelamer carbonate 600mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_sevelamer_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_sevelamer_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_sevelamer_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_carvedilol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Carvedilol
-                                                <input type="text" class="mgright" name="med_carvedilol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_carvedilol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_carvedilol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_carvedilol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_sevelamer" id="cb_med_sevelamer" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Sevelamer carbonate 600mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_sevelamer_od" id="cb_med_sevelamer_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_sevelamer_bid" id="cb_med_sevelamer_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_sevelamer_tid" id="cb_med_sevelamer_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_carvedilol" id="cb_med_carvedilol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Carvedilol
+                                                <input type="text" class="mgright" name="txt_med_carvedilol_mg" id="txt_med_carvedilol_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_carvedilol_od" id="cb_med_carvedilol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_carvedilol_bid" id="cb_med_carvedilol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_carvedilol_tid" id="cb_med_carvedilol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_calcitriol" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <tag style="font-size:8pt;">Calcitriol<input type="text" class="mgright" name="med_calcitriol_mcg" id="" style="width:50px;border:0px;border-bottom:1px solid black;"></tag>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_calcitriol" id="cb_med_calcitriol" style="width:15px;border:0px;border-bottom:1px solid black;"> 
+                                                <tag style="font-size:8pt;">Calcitriol<input type="text" class="mgright" name="txt_med_calcitriol_mg" id="txt_med_calcitriol_mg" style="width:50px;border:0px;border-bottom:1px solid black;"></tag>
                                             </td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_calcitriol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_calcitriol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_calcitriol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_metoprolol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Metoprolol
-                                                <input type="text" class="mgright" name="med_metoprolol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metoprolol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metoprolol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metoprolol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_calcitriol_od" id="cb_med_calcitriol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_calcitriol_bid" id="cb_med_calcitriol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_calcitriol_tid" id="cb_med_calcitriol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_metoprolol" id="cb_med_metoprolol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Metoprolol
+                                                <input type="text" class="mgright" name="txt_med_metoprolol_mg" id="txt_med_metoprolol_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_metoprolol_od" id="cb_med_metoprolol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_metoprolol_bid" id="cb_med_metoprolol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_metoprolol_tid" id="cb_med_metoprolol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_clopidogrel" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Clopidogrel 75mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clopidogrel_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clopidogrel_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clopidogrel_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_clonidine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Clonidine
-                                                <input type="text" class="mgright" name="med_clonidine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clonidine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clonidine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clonidine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_clopidogrel" id="cb_med_clopidogrel" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Clopidogrel 75mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_clopidogrel_od" id="cb_med_clopidogrel_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_clopidogrel_bid" id="cb_med_clopidogrel_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_clopidogrel_tid" id="cb_med_clopidogrel_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_clonidine" id="cb_med_clonidine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Clonidine
+                                                <input type="text" class="mgright" name="txt_med_clonidine_mg" id="txt_med_clonidine_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_clonidine_od" id="cb_med_clonidine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_clonidine_bid" id="cb_med_clonidine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_clonidine_tid" id="cb_med_clonidine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_ferrous" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Ferrous sulfate 75mg</tag><input type="text" class="mgright" name="med_ferrous_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;"></tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ferrous_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ferrous_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ferrous_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_atorvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Atorvastatin
-                                                <input type="text" class="mgright" name="med_atorvastatin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_atorvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_atorvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_atorvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_ferrous" id="cb_med_ferrous" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Ferrous sulfate 75mg</tag><input type="text" class="mgright" name="txt_med_ferrous_mg" id="txt_med_ferrous_mg" style="width:50px;border:0px;border-bottom:1px solid black;"></tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_ferrous_od" id="cb_med_ferrous_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_ferrous_bid" id="cb_med_ferrous_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_ferrous_tid" id="cb_med_ferrous_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_atorvastatin" id="cb_med_atorvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Atorvastatin
+                                                <input type="text" class="mgright" name="txt_med_atorvastatin_mg" id="txt_med_atorvastatin_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_atorvastatin_od" id="cb_med_atorvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_atorvastatin_bid" id="cb_med_atorvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_atorvastatin_tid" id="cb_med_atorvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_folic_acid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Folic Acid 5mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_folic_acid_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_folic_acid_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_folic_acid_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_fluvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Fluvastatin
-                                                <input type="text" class="mgright" name="med_fluvastatin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_fluvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_fluvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_fluvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_folic_acid" id="cb_med_folic_acid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Folic Acid 5mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_folic_acid_od" id="cb_med_folic_acid_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_folic_acid_bid" id="cb_med_folic_acid_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_folic_acid_tid" id="cb_med_folic_acid_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_fluvastatin" id="cb_med_fluvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Fluvastatin
+                                                <input type="text" class="mgright" name="txt_med_fluvastatin_mg" id="txt_med_fluvastatin_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_fluvastatin_od" id="cb_med_fluvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_fluvastatin_bid" id="cb_med_fluvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_fluvastatin_tid" id="cb_med_fluvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_vitamin_c" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Vitamin C 500mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_c_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_c_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_c_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input type="checkbox" name="" id="med_simvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Simvastatin
-                                                <input type="text" class="mgright" name="med_simvastatin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_simvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_simvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_simvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_vitamin_c" id="cb_med_vitamin_c" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Vitamin C 500mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_vitamin_c_od" id="cb_med_vitamin_c_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_vitamin_c_bid" id="cb_med_vitamin_c_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_vitamin_c_tid" id="cb_med_vitamin_c_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input type="checkbox" name="cb_med_simvastatin" id="cb_med_simvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Simvastatin
+                                                <input type="text" class="mgright" name="txt_med_simvastatin_mg" id="txt_med_simvastatin_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_simvastatin_od" id="cb_med_simvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_simvastatin_bid" id="cb_med_simvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_simvastatin_tid" id="cb_med_simvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_vitamin_b_complex" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Vitamin b complex 1 tablet</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_b_complex_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_b_complex_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_b_complex_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_lanoxin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Lanoxin
-                                                <input type="text" class="mgright" name="med_lanoxin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lanoxin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lanoxin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lanoxin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_vitamin_b_complex" id="cb_med_vitamin_b_complex" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Vitamin b complex 1 tablet</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_vitamin_b_complex_od" id="cb_med_vitamin_b_complex_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_vitamin_b_complex_bid" id="cb_med_vitamin_b_complex_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_vitamin_b_complex_tid" id="cb_med_vitamin_b_complex_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_lanoxin" id="cb_med_lanoxin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Lanoxin
+                                                <input type="text" class="mgright" name="txt_med_lanoxin_mg" id="txt_med_lanoxin_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_lanoxin_od" id="cb_med_lanoxin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_lanoxin_bid" id="cb_med_lanoxin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_lanoxin_tid" id="cb_med_lanoxin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_amlodipine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Amlodipine<input type="text" class="mgright" name="med_amlodipine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_amlodipine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_amlodipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_amlodipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_allopurinol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Allopurinol
-                                                <input type="text" class="mgright" name="med_allopurinol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_allopurinol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_allopurinol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_allopurinol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_amlodipine" id="cb_med_amlodipine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Amlodipine<input type="text" class="mgright" name="txt_med_amlodipine_mg" id="txt_med_amlodipine_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_amlodipine_od" id="cb_med_amlodipine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_amlodipine_bid" id="cb_med_amlodipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_amlodipine_tid" id="cb_med_amlodipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_allopurinol" id="cb_med_allopurinol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Allopurinol
+                                                <input type="text" class="mgright" name="txt_med_allopurinol_mg" id="txt_med_allopurinol_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_allopurinol_od" id="cb_med_allopurinol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_allopurinol_bid" id="cb_med_allopurinol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_allopurinol_tid" id="cb_med_allopurinol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_felodipine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Felodipine<input type="text" class="mgright" name="med_felodipine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_felodipine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_felodipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_felodipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_gliclazide" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Gliclazide
-                                                <input type="text" class="mgright" name="med_gliclazide_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_gliclazide_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_gliclazide_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_gliclazide_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_felodipine" id="cb_med_felodipine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Felodipine<input type="text" class="mgright" name="txt_med_felodipine_mg" id="txt_med_felodipine_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_felodipine_od" id="cb_med_felodipine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_felodipine_bid" id="cb_med_felodipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_felodipine_tid" id="cb_med_felodipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_gliclazide" id="cb_med_gliclazide" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Gliclazide
+                                                <input type="text" class="mgright" name="txt_med_gliclazide_mg" id="txt_med_gliclazide_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_gliclazide_od" id="cb_med_gliclazide_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_gliclazide_bid" id="cb_med_gliclazide_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_gliclazide_tid" id="cb_med_gliclazide_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_nifedipine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Nitedipine<input type="text" class="mgright" name="med_nifedipine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_nifedipine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_nifedipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_nifedipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_metformin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Metformin<input type="text" class="mgright" name="med_metformin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metformin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metformin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metformin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_nifedipine" id="cb_med_nifedipine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Nitedipine<input type="text" class="mgright" name="txt_med_nifedipine_mg" id="txt_med_nifedipine_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_nifedipine_od" id="cb_med_nifedipine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_nifedipine_bid" id="cb_med_nifedipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_nifedipine_tid" id="cb_med_nifedipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_metformin" id="cb_med_metformin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Metformin<input type="text" class="mgright" name="txt_med_metformin_mg" id="txt_med_metformin_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_metformin_od" id="cb_med_metformin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_metformin_bid" id="cb_med_metformin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_metformin_tid" id="cb_med_metformin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_diltiazcm" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Diltiazem<input type="text" class="mgright" name="med_diltiazcm_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_diltiazcm_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_diltiazcm_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_diltiazcm_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_renvela" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Renvela
-                                                <input type="text" class="mgright" name="med_renvela_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_renvela_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_renvela_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_renvela_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_diltiazcm" id="cb_med_diltiazcm" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Diltiazem<input type="text" class="mgright" name="txt_med_diltiazcm_mg" id="txt_med_diltiazcm_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_diltiazcm_od" id="cb_med_diltiazcm_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_diltiazcm_bid" id="cb_med_diltiazcm_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_diltiazcm_tid" id="cb_med_diltiazcm_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_renvela" id="cb_med_renvela" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Renvela
+                                                <input type="text" class="mgright" name="txt_med_renvela_mg" id="txt_med_renvela_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_renvela_od" id="cb_med_renvela_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_renvela_bid" id="cb_med_renvela_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_renvela_tid" id="cb_med_renvela_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_irbesartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Irbesartan<input type="text" class="mgright" name="med_irbesartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_irbesartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_irbesartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_irbesartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_exforge" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Exforge
-                                                <input type="text" class="mgright" name="med_exforge_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_exforge_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_exforge_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_exforge_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_irbesartan" id="cb_med_irbesartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Irbesartan<input type="text" class="mgright" name="txt_med_irbesartan_mg" id="txt_med_irbesartan_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_irbesartan_od" id="cb_med_irbesartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_irbesartan_bid" id="cb_med_irbesartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_irbesartan_tid" id="cb_med_irbesartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_exforge" id="cb_med_exforge" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Exforge
+                                                <input type="text" class="mgright" name="txt_med_exforge_mg" id="txt_med_exforge_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_exforge_od" id="cb_med_exforge_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_exforge_bid" id="cb_med_exforge_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_exforge_tid" id="cb_med_exforge_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_losartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Losartan<input type="text" class="mgright" name="med_losartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_losartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_losartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_losartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_twynsta" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Twynsta
-                                                <input type="text" class="mgright" name="med_twynsta_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_twynsta_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_twynsta_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_twynsta_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_losartan" id="cb_med_losartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Losartan<input type="text" class="mgright" name="txt_med_losartan_mg" id="txt_med_losartan_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_losartan_od" id="cb_med_losartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_losartan_bid" id="cb_med_losartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_losartan_tid" id="cb_med_losartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_twynsta" id="cb_med_twynsta" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Twynsta
+                                                <input type="text" class="mgright" name="txt_med_twynsta_mg" id="txt_med_twynsta_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_twynsta_od" id="cb_med_twynsta_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_twynsta_bid" id="cb_med_twynsta_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_twynsta_tid" id="cb_med_twynsta_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_telmisartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Telmisartan<input type="text" class="mgright" name="med_telmisartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_telmisartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_telmisartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_telmisartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_lacipil" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Lacipil
-                                                <input type="text" class="mgright" name="med_lacipil_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lacipil_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lacipil_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lacipil_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_telmisartan" id="cb_med_telmisartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Telmisartan<input type="text" class="mgright" name="txt_med_telmisartan_mg" id="txt_med_telmisartan_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_telmisartan_od" id="cb_med_telmisartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_telmisartan_bid" id="cb_med_telmisartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_telmisartan_tid" id="cb_med_telmisartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_lacipil" id="cb_med_lacipil" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Lacipil
+                                                <input type="text" class="mgright" name="txt_med_lacipil_mg" id="txt_med_lacipil_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_lacipil_od" id="cb_med_lacipil_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_lacipil_bid" id="cb_med_lacipil_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_lacipil_tid" id="cb_med_lacipil_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_valsartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Valsartan<input type="text" class="mgright" name="med_valsartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_valsartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_valsartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_valsartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_insulin_glargine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Insulin glargine
-                                                <input type="text" class="mgright" name="med_insulin_glargine_units" id="" style="width:50px;border:0px;border-bottom:1px solid black;">units</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_insulin_glargine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_insulin_glargine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_insulin_glargine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_valsartan" id="cb_med_valsartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Valsartan<input type="text" class="mgright" name="txt_med_valsartan_mg" id="txt_med_valsartan_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_valsartan_od" id="cb_med_valsartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_valsartan_bid" id="cb_med_valsartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_valsartan_tid" id="cb_med_valsartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_insulin_glargine" id="cb_med_insulin_glargine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Insulin glargine
+                                                <input type="text" class="mgright" name="txt_med_insulin_glargine_units" id="txt_med_insulin_glargine_units" style="width:50px;border:0px;border-bottom:1px solid black;">units</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_insulin_glargine_od" id="cb_med_insulin_glargine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_insulin_glargine_bid" id="cb_med_insulin_glargine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_insulin_glargine_tid" id="cb_med_insulin_glargine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_ketosteril" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Ketosteril 600mg<input type="text" class="mgright" name="med_ketosteril_tab" id="" style="width:50px;border:0px;border-bottom:1px solid black;">tab</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ketosteril_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ketosteril_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ketosteril_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_linagliptin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Linagliptin 5mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_linagliptin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_linagliptin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_linagliptin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_ketosteril" id="cb_med_ketosteril" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Ketosteril 600mg<input type="text" class="mgright" name="txt_med_ketosteril_tab" id="txt_med_ketosteril_tab" style="width:50px;border:0px;border-bottom:1px solid black;">tab</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_ketosteril_od" id="cb_med_ketosteril_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_ketosteril_bid" id="cb_med_ketosteril_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_ketosteril_tid" id="cb_med_ketosteril_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_linagliptin" id="cb_med_linagliptin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Linagliptin 5mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_linagliptin_od" id="cb_med_linagliptin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_linagliptin_bid" id="cb_med_linagliptin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_linagliptin_tid" id="cb_med_linagliptin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_kremezin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Kremezin 2g sachet<input type="text" class="mgright" name="med_perindopril_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;"></tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_kremezin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_kremezin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_kremezin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_vildaglitpin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Vildagliptin 50mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vildaglitpin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vildaglitpin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vildaglitpin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_kremezin" id="cb_med_kremezin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Kremezin 2g sachet<input type="text" class="mgright" name="txt_med_perindopril_mg" id="txt_med_perindopril_mg" style="width:50px;border:0px;border-bottom:1px solid black;"></tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_kremezin_od" id="cb_med_kremezin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_kremezin_bid" id="cb_med_kremezin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_kremezin_tid" id="cb_med_kremezin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_vildaglitpin" id="cb_med_vildaglitpin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Vildagliptin 50mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_vildaglitpin_od" id="cb_med_vildaglitpin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_vildaglitpin_bid" id="cb_med_vildaglitpin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_vildaglitpin_tid" id="cb_med_vildaglitpin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                         <tr>
-                                            <td style="width:27.5%;"><input class="margin" type="checkbox" name="" id="med_perindopril" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Perindopril<input type="text" class="mgright" name="med_perindopril_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_perindopril_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_perindopril_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_perindopril_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
-                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_glipizide" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Glipizide 50mg</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_glipizide_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_glipizide_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
-                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_glipizide_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="margin" type="checkbox" name="cb_med_perindopril" id="cb_med_perindopril" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Perindopril<input type="text" class="mgright" name="txt_med_perindopril_mg" id="txt_med_perindopril_mg" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_perindopril_od" id="cb_med_perindopril_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_perindopril_bid" id="cb_med_perindopril_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_perindopril_tid" id="cb_med_perindopril_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="cb_med_glipizide" id="cb_med_glipizide" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Glipizide 50mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_glipizide_od" id="cb_med_glipizide_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_glipizide_bid" id="cb_med_glipizide_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="cb_med_glipizide_tid" id="cb_med_glipizide_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
                                         </tr>
                                     </table>
                                 </div>
                                 </div>
-                                    <div class="row">
+                                <hr><br/>
+                                    <div class="row" style="padding-left: 12px;padding-right: 12px;">
                                         <div class="col-xs-12">
-                                            <input type="checkbox" name=""> For Emergency Hemodialysis once with consent <br />
-                                            <input type="checkbox" name=""> Refer to 
-                                            <input type="checkbox" name=""> Dr. Steven Charo <br />
-                                            <input type="checkbox" name=""> Dr. Arnel Ayro <br />
-                                            <input type="checkbox" name=""> Dr. Patrick Maglaya <br/>
+                                            <input type="checkbox" name="cb_emer_hemo" id="cb_emer_hemo"> For Emergency Hemodialysis once with consent <br />
+                                            <input type="checkbox" name="cb_emer_refer_to" id="cb_emer_refer_to"> Refer to 
+                                            <input type="checkbox" name="cb_emer_dr_1" id="cb_emer_dr_1"> Dr. Steven Charo <br />
+                                            <input type="checkbox" name="cb_emer_dr_2" id="cb_emer_dr_2"> Dr. Arnel Ayro <br />
+                                            <input type="checkbox" name="cb_emer_dr_3" id="cb_emer_dr_3"> Dr. Patrick Maglaya <br/>
 
-                                            <input type="checkbox" name=""> Emergency Dialysis Prescription <br />
+                                            <input type="checkbox" name="cb_emer_dialysis" id="cb_emer_dialysis"> Emergency Dialysis Prescription <br />
                                             Bicarbonate Bath <br />
-                                            Duration : <input type="text" name=""> Hours <br />
+                                            Duration : <input type="text" class="txt_right" name="txt_emer_dialysis_hrs" id="txt_emer_dialysis_hrs"> Hours <br />
                                             Anticoagulant : <br />
-                                            <input type="checkbox" name=""> No Heparin <br />
-                                            <input type="checkbox" name=""> LMWH <input type="text" name=""> cc <br />
-                                            <input type="checkbox" name=""> Unfractionated <br />
+                                            <input type="checkbox" name="cb_no_heparin" id="cb_no_heparin"> No Heparin <br />
+                                            <input type="checkbox" name="cb_lmwh" id="cb_lmwh"> LMWH <input type="text" name="txt_lmwh_cc" id="txt_lmwh_cc" class="txt_right"> cc <br />
+                                            <input type="checkbox" name="cb_unfractionated" id="cb_unfractionated"> Unfractionated <br />
                                             Heparin Dose <br />
-                                            Standard Dose : 2000 'U' then <input type="text" name=""> 'U'/hr <br />
-                                            Tight Heparization : 1000 'U' then <input type="text" name=""> 'U'/hr<br />
+                                            Standard Dose : 2000 'U' then <input type="text" name="txt_standard_u_hr" id="txt_standard_u_hr" class="txt_right"> 'U'/hr <br />
+                                            Tight Heparization : 1000 'U' then <input type="text" name="txt_hepa_u_hr" id="txt_hepa_u_hr" class="txt_right"> 'U'/hr<br />
 
                                             Dialyzer : Low Flux Dialyzer <br />
-                                            <input type="checkbox" name="">F6 dialyzer<br />
-                                            <input type="checkbox" name="">F7 dialyzer<br />
-                                            <input type="checkbox" name="">F8 dialyzer<br />
-                                            <input type="checkbox" name="">LOPS 15<br />
-                                            <input type="checkbox" name="">LOPS 18<br />
-                                            <input type="checkbox" name="">LOPS 20<br />
+                                            <input type="checkbox" name="cb_f6_dialyzer" id="cb_f6_dialyzer"> F6 dialyzer<br />
+                                            <input type="checkbox" name="cb_f7_dialyzer" id="cb_f7_dialyzer"> F7 dialyzer<br />
+                                            <input type="checkbox" name="cb_f8_dialyzer" id="cb_f8_dialyzer"> F8 dialyzer<br />
+                                            <input type="checkbox" name="cb_lops_15" id="cb_lops_15"> LOPS 15<br />
+                                            <input type="checkbox" name="cb_lops_18" id="cb_lops_18"> LOPS 18<br />
+                                            <input type="checkbox" name="cb_lops_20" id="cb_lops_20"> LOPS 20<br />
 
                                             Hiflux Dialyzer <br />
-                                            <input type="checkbox" name="">HF80s <br />
-                                            <input type="checkbox" name="">HF120s<br />
-                                            <input type="checkbox" name="">HIPS 18<br />
-                                            <input type="checkbox" name="">HIPS 20<br />
+                                            <input type="checkbox" name="cb_h480s" id="cb_h480s"> HF80s <br />
+                                            <input type="checkbox" name="cb_hf120s" id="cb_hf120s"> HF120s<br />
+                                            <input type="checkbox" name="cb_h1ps18" id="cb_h1ps18"> HIPS 18<br />
+                                            <input type="checkbox" name="cb_h1ps20" id="cb_h1ps20"> HIPS 20<br />
 
-                                            <input type="checkbox" name="">Refer to 
-                                            <input type="text" name=""> for evalutaion & comanagement
+                                            <input type="checkbox" name="cb_refer_to_dr" id="cb_refer_to_dr"> Refer to 
+                                            <input type="text" name="txt_refer_to_dr" id="txt_refer_to_dr" class="txt_right"> for evalutaion &amp; comanagement
                                             <br />
 
-                                            <input type="checkbox" name="">Others <input type="text" name=""><br/>
-                                            <input type="checkbox" name="">Inform me once admitted <br />
-                                            <input type="checkbox" name="">MROD to do database
+                                            <input type="checkbox" name="cb_others" id="cb_others"> Others <input type="text" name="txt_others" id="txt_others" class="txt_right"><br/>
+                                            <input type="checkbox" name="cb_inform_admitted" id="cb_inform_admitted"> Inform me once admitted <br />
+                                            <input type="checkbox" name="cb_mrod_db" id="cb_mrod_db"> MROD to do database
 
                                          </div>
                                     </div>
@@ -4885,7 +4917,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> Modified by JBPV
+      <b>Version</b> Modified by JBPV | JJLN
     </div>
     <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
     reserved.
@@ -4950,7 +4982,8 @@
 
         var initializeControls=function(){
         dt=$('#tbl_ref_patient').DataTable({
-            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "aLengthMenu": [[15, 25, 50], [15, 25, 50]],
+            "order": [[ 1, "asc" ]],
             "ajax" : "Ref_patient/transaction/list",
             "columns": [
                 {
@@ -4958,7 +4991,7 @@
                     "class":          "patient-details",
                     "orderable":      false,
                     "data":           null,
-                    "defaultContent": "<center><span class='glyphicon glyphicon-plus-sign'></span></center>",
+                    "defaultContent": "",
                 },
                 { targets:[1],data: "fullname" },
                 { targets:[2],data: "bdate" },
@@ -4986,7 +5019,14 @@
             }
         });
 
+        $('.numeric').autoNumeric('init');
     }();
+
+    var reInitializeNumeric=function(){
+        $('.numeric').autoNumeric('init',{mDec: 2});
+        $('.number').autoNumeric('init', {mDec:0});
+
+    };
 
     var checkHeader=function(status){
         if (status == 'view'){
@@ -4998,12 +5038,26 @@
 
     //stat ref patient 
 
+    // $('#btn_new_refpatient').click(function(){
+    //     _txnMode="new";
+    //     $('#patient_txn').text('New');
+    //     $('#modal_ref_patient').modal('show');
+    //     clearFields($('#frm_ref_patients'));
+    // });
+
     $('#btn_new_refpatient').click(function(){
         _txnMode="new";
-        $('#patient_txn').text('New');
-        $('#modal_ref_patient').modal('show');
+        $('.header-text-title').html('New Patient Record');
+        $('.header-text-info').html('Add');
+        // $('#patient_txn').text('New');
+        // $('#modal_ref_patient').modal('show');
         clearFields($('#frm_ref_patients'));
+        showList(false);
     });
+
+    $('#btn_cancel_refpatient, .close_patient_field').click(function(){
+        showList(true);
+    }); 
 
     $('#btn_createrefpatient').click(function(){
             if(validateRequiredFields($('#frm_ref_patients'))){
@@ -5014,7 +5068,8 @@
                         dt.row.add(response.row_added[0]).draw();
                         clearFields($('#frm_ref_patients'))
                     }).always(function(){
-                        $('#modal_ref_patient').modal('hide');
+                        // $('#modal_ref_patient').modal('hide');
+                        showList(true);
                         $.unblockUI();
                     });
                     return;
@@ -5025,7 +5080,8 @@
                         showNotification(response);
                         dt.row(_selectRowObj).data(response.row_updated[0]).draw();
                     }).always(function(){
-                        $('#modal_ref_patient').modal('hide');
+                        // $('#modal_ref_patient').modal('hide');
+                        showList(true);
                         $.unblockUI();
                     });
                     return;
@@ -5041,11 +5097,6 @@
         _selectRowObj=$(this).closest('tr');
         var data=dt.row(_selectRowObj).data();
         _selectedID=data.ref_patient_id;
-        //$('#emp_exemptpagibig').val(data.emp_exemptphilhealth);
-
-       // alert($('input[name="tax_exempt"]').length);
-        //$('input[name="tax_exempt"]').val(0);
-        //$('input[name="inventory"]').val(data.is_inventory);
 
         $('input,textarea').each(function(){
             var _elem=$(this);
@@ -5056,7 +5107,12 @@
             });
         });
 
-        $('#modal_ref_patient').modal('toggle');
+        $('#ref_relationship_id').val(data.ref_relationship_id);
+
+        $('.header-text-title').html(data.fullname);
+        $('.header-text-info').html('Edit');
+        showList(false);
+        // $('#modal_ref_patient').modal('toggle');
 
     });
 
@@ -5070,27 +5126,54 @@
     });
 
     $('#tbl_ref_patient tbody').on( 'click', 'tr td.patient-details', function () {
-            var detailRows = [];
-            var tr = $(this).closest('tr');
-            var row = dt.row( tr );
-            var idx = $.inArray( tr.attr('id'), detailRows );
+        var detailRows = [];
+        var tr = $(this).closest('tr');
+        var row = dt.row( tr );
+        var idx = $.inArray( tr.attr('id'), detailRows );
 
-            if ( row.child.isShown() ) {
-                tr.removeClass( 'details' );
-                row.child.hide();
+        if ( row.child.isShown() ) {
+            tr.removeClass( 'details' );
+            row.child.hide();
 
-                detailRows.splice( idx, 1 );
-            }
-            else {
-                tr.addClass( 'details' );
+            // Remove from the 'open' array
+            detailRows.splice( idx, 1 );
+        }
+        else {
+            tr.addClass( 'details' );
+            //console.log(row.data());
+            var d=row.data();
+            // row.child( format( row.data() ) ).show();
 
-                row.child( format( row.data() ) ).show();
-
+            // if ( idx === -1 ) {
+            //     detailRows.push( tr.attr('id') );
+            // }            
+            $.ajax({
+                "dataType":"html",
+                "type":"POST",
+                "url":"Ref_patient/transaction/patient-details/"+ d.ref_patient_id+"?type=fullview",
+                "beforeSend" : function(){
+                    row.child( '<center><br /><img src="assets/img/loader/ajax-loader-lg.gif" /><br /><br /></center>' ).show();
+                }
+            }).done(function(response){
+                row.child( response ).show();
+                // Add to the 'open' array
                 if ( idx === -1 ) {
                     detailRows.push( tr.attr('id') );
                 }
-            }
-        } );
+            });
+
+        }
+    });
+
+    var showList=function(b){
+        if(b){
+            $('#div_patient_list').show();
+            $('#div_patient_fields').hide();
+        }else{
+            $('#div_patient_list').hide();
+            $('#div_patient_fields').show();
+        }
+    };
 
     var createPatient=function(){
         var _data=$('#frm_ref_patients').serializeArray();
@@ -5138,7 +5221,11 @@
         if(_isChecked==true){
             $('#tbl_patient_prescription').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getPrescription();
+
+            setTimeout(function() {
+                 getPrescription();
+            }, 200);
+
             $('#modal_patient_prescription').modal('toggle');
         }
         else{
@@ -5153,7 +5240,12 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
             "paging":true,
+            "order": [[ 3, "desc" ]],            
             "ajax": {
             "url": "Patient_prescription/transaction/list",
             "type": "POST",
@@ -5170,15 +5262,15 @@
                 {
                     targets:[2],
                     render: function (data, type, full, meta){
-                         var view_prescription_details='<button class="btn btn-primary btn-xs" name="view_prescription_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                         var view_prescription_details='<button class="btn btn-default btn-xs" name="view_prescription_details" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
 
                         return '<center>'+view_prescription_details+edit_prescription+delete_prescription+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[3],data: "patient_prescription_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Prescription"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -5551,6 +5643,16 @@
         });
     };     
 
+    var removeAdmittingOrder=function(){
+        return $.ajax({
+            "dataType":"json",
+            "type":"POST",
+            "url":"Patient_admitting_order/transaction/delete",
+            "data":{patient_admitting_order_id: _selectedIDadmittingorder},
+            "beforeSend": showSpinningProgress($('#btn_save'))
+        });
+    };             
+
     var removeNephroOrder=function(){
         return $.ajax({
             "dataType":"json",
@@ -5621,7 +5723,11 @@
         if(_isChecked==true){
             $('#tbl_lab').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getLaboratory();
+
+            setTimeout(function() {
+                 getLaboratory();
+            }, 200);
+
             $('#modal_patient_laboratory').modal('toggle');
         }
         else{
@@ -5636,7 +5742,12 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",
             "paging":true,
+            "order": [[ 3, "desc" ]],
             "ajax": {
             "url": "Patient_laboratory/transaction/list",
             "type": "POST",
@@ -5653,15 +5764,15 @@
                 {
                     targets:[2],
                     render: function (data, type, full, meta){
-                         var view_lab_details='<button class="btn btn-primary btn-xs" name="view_lab_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                         var view_lab_details='<button class="btn btn-default btn-xs" name="view_lab_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
                         
                         return '<center>'+view_lab_details+edit_lab+remove_lab+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[3],data: "patient_lab_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Laboratory"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -5683,6 +5794,7 @@
         $('#lab_result_icon').removeClass();
         $('#lab_result_icon').addClass('fa fa-plus-circle');
 
+        $('img[name="img_preview"]').attr('src','assets/img/icons/default.png');
         $('#modal_new_lab').modal('toggle');
     });
 
@@ -5874,6 +5986,11 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",   
+            "order": [[ 3, "desc" ]],         
             "ajax": {
             "url": "Patient_billing/transaction/list",
             "type": "POST",
@@ -5890,15 +6007,15 @@
                 {
                     targets:[2],
                     render: function (data, type, full, meta){
-                        var view_billing_details='<button class="btn btn-primary btn-xs" name="view_billing_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                        var view_billing_details='<button class="btn btn-default btn-xs" name="view_billing_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
                         
                         return '<center>'+view_billing_details+edit_billing+remove_billing+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[3],data: "patient_billing_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Billing"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -5915,7 +6032,9 @@
         if(_isChecked==true){
             $('#tbl_billing').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getBilling();
+            setTimeout(function() {
+                 getBilling();
+            }, 200);
             $('#modal_patient_billing').modal('toggle');
         }
         else{
@@ -5943,17 +6062,17 @@
                             '</td>'+
                             '<td>'+
                                 '<div class="fg-line">'+
-                                    '<input type="text" class="form-control bill_qty" id="qty" name="qty[]" placeholder="Quantity"  data-error-msg="Quantity is Rquired." required>'+
+                                    '<input type="text" class="number form-control bill_qty" id="qty" name="qty[]" placeholder="Quantity"  data-error-msg="Quantity is Rquired."  required>'+
                                 '</div>'+
                             '</td>'+
                             '<td>'+
                                 '<div class="fg-line">'+
-                                    '<input class="form-control bill_amount" id="amount" name="amount[]" placeholder="Amount"></input>'+
+                                    '<input class="numeric form-control bill_amount" id="amount" name="amount[]" placeholder="Amount"></input>'+
                                 '</div>'+
                             '</td>'+
                             '<td>'+
                                 '<div class="fg-line">'+
-                                    '<input class="form-control bill_total" id="total" name="total[]" placeholder="Total Amount" readonly></input>'+
+                                    '<input class="numeric form-control bill_total" id="total" name="total[]" placeholder="Total Amount" readonly></input>'+
                                 '</div>'+
                             '</td>'+
                             '<td>'+
@@ -5961,7 +6080,7 @@
                             '</td>'+
                         '</tr>');
         
-
+        reInitializeNumeric();
         $('#modal_new_billing').modal('toggle');
     });
 
@@ -5977,23 +6096,25 @@
                             '</td>'+
                             '<td>'+
                                 '<div class="fg-line">'+
-                                    '<input type="text" class="form-control bill_qty" id="qty" name="qty[]" placeholder="Quantity"  data-error-msg="Quantity is Rquired." required>'+
+                                    '<input type="text" class="number form-control bill_qty" id="qty" name="qty[]" placeholder="Quantity"  data-error-msg="Quantity is Rquired." required>'+
                                 '</div>'+
                             '</td>'+
                             '<td>'+
                                 '<div class="fg-line">'+
-                                    '<input class="form-control bill_amount" id="amount" name="amount[]" placeholder="Amount"></input>'+
+                                    '<input class="numeric form-control bill_amount" id="amount" name="amount[]" placeholder="Amount"></input>'+
                                 '</div>'+
                             '</td>'+
                             '<td>'+
                                 '<div class="fg-line">'+
-                                    '<input class="form-control bill_total" id="total" name="total[]" placeholder="Total Amount" readonly></input>'+
+                                    '<input class="numeric form-control bill_total" id="total" name="total[]" placeholder="Total Amount" readonly></input>'+
                                 '</div>'+
                             '</td>'+
                             '<td>'+
                                 '<center><button class="btn btn-danger btn-sm" name="btn_delete" title="Delete Row" ><i class="fa fa-trash"></i></button></center>'+
                             '</td>'+
                         '</tr>');   
+
+                reInitializeNumeric();
     });
 
     $('#tbl_billing tbody').on('click','button[name="view_billing_details"]',function(){
@@ -6028,13 +6149,13 @@
                                                     '<td>'+
                                                         response.data[i].service_desc+
                                                     '</td>'+
-                                                    '<td>'+
+                                                    '<td align="right">'+
                                                         accounting.formatNumber(parseFloat(response.data[i].qty),0)+
                                                     '</td>'+
-                                                    '<td>'+
+                                                    '<td align="right">'+
                                                         accounting.formatNumber(parseFloat(response.data[i].amount),2)+
                                                     '</td>'+
-                                                    '<td>'+
+                                                    '<td align="right">'+
                                                         accounting.formatNumber(parseFloat(response.data[i].total),2)+
                                                     '</td>'+
                                                 '</tr>';
@@ -6053,15 +6174,19 @@
     });
 
     $(document).on('keyup', '.bill_qty', function(){
-        var bill_qty = $(this).closest('tr').find('.bill_qty').val();
-        var bill_amount = $(this).closest('tr').find('.bill_amount').val();
-        $(this).closest('tr').find('.bill_total').val(parseInt(bill_qty)*parseInt(bill_amount));
+        var bill_qty = accounting.unformat($(this).closest('tr').find('.bill_qty').val());
+        var bill_amount = accounting.unformat($(this).closest('tr').find('.bill_amount').val());
+    
+        var total = bill_qty*bill_amount;
+        $(this).closest('tr').find('.bill_total').val(accounting.formatNumber(total,2));
     });
 
     $(document).on('keyup', '.bill_amount', function(){
-        var bill_qty = $(this).closest('tr').find('.bill_qty').val();
-        var bill_amount = $(this).closest('tr').find('.bill_amount').val();
-        $(this).closest('tr').find('.bill_total').val(parseInt(bill_qty)*parseInt(bill_amount));
+        var bill_qty = accounting.unformat($(this).closest('tr').find('.bill_qty').val());
+        var bill_amount = accounting.unformat($(this).closest('tr').find('.bill_amount').val());
+    
+        var total = bill_qty*bill_amount;
+        $(this).closest('tr').find('.bill_total').val(accounting.formatNumber(total,2));
     });
 
     $('#btn_create_billing').click(function(){
@@ -6129,17 +6254,17 @@
                                                     '</td>'+
                                                     '<td>'+
                                                         '<div class="fg-line">'+
-                                                            '<input type="text" class="form-control bill_qty" value="'+response.data[i].qty+'" id="qty" name="qty[]" placeholder="Quantity"  data-error-msg="Quantity is Rquired." required>'+
+                                                            '<input type="text" class="number form-control bill_qty" value="'+response.data[i].qty+'" id="qty" name="qty[]" placeholder="Quantity"  data-error-msg="Quantity is Rquired." required>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td>'+
                                                         '<div class="fg-line">'+
-                                                            '<input class="form-control bill_amount" value="'+response.data[i].amount+'"  id="amount" name="amount[]" placeholder="Amount"></input>'+
+                                                            '<input class="numeric form-control bill_amount" value="'+response.data[i].amount+'"  id="amount" name="amount[]" placeholder="Amount"></input>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td>'+
                                                         '<div class="fg-line">'+
-                                                            '<input class="form-control bill_total" value="'+response.data[i].total+'"  id="total" name="total[]" placeholder="Total Amount" readonly></input>'+
+                                                            '<input class="numeric form-control bill_total" value="'+response.data[i].total+'"  id="total" name="total[]" placeholder="Total Amount" readonly></input>'+
                                                         '</div>'+
                                                     '</td>'+
                                                     '<td>'+
@@ -6151,6 +6276,7 @@
                                  }
                                     $('.tbody_new_billing').empty();
                                     $('.tbody_new_billing').html(show2table);
+                                    reInitializeNumeric();
                                 }).always(function(){
                                     $.unblockUI();
                                     $('#modal_new_billing').modal('toggle');
@@ -6245,6 +6371,11 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",      
+            "order": [[ 4, "desc" ]],      
             "ajax": {
             "url": "Patient_visiting/transaction/list",
             "type": "POST",
@@ -6262,15 +6393,15 @@
                 {
                     targets:[3],
                     render: function (data, type, full, meta){
-                        var view_visiting_details='<button class="btn btn-primary btn-xs" name="view_visiting_details_record"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                        var view_visiting_details='<button class="btn btn-default btn-xs" name="view_visiting_details_record"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
                         
                         return '<center>'+view_visiting_details+edit_visiting+remove_visiting+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[4],data: "patient_visiting_record_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Visiting Record"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -6288,7 +6419,9 @@
         if(_isChecked==true){
             $('#tbl_visiting_record').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getVisitingRecord();
+            setTimeout(function() {
+                 getVisitingRecord();
+            }, 200);
             $('#modal_vising_record').modal('toggle');
         }
         else{
@@ -6448,6 +6581,11 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",  
+            "order": [[ 6, "desc" ]],           
             "ajax": {
             "url": "Patient_clinical/transaction/list",
             "type": "POST",
@@ -6467,15 +6605,15 @@
                 {
                     targets:[5],
                     render: function (data, type, full, meta){
-                        var view_clinical_details='<button class="btn btn-primary btn-xs" name="view_clinical_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                        var view_clinical_details='<button class="btn btn-default btn-xs" name="view_clinical_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
                         
                         return '<center>'+view_clinical_details+edit_clinical+remove_clinical+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[6],data: "patient_clinical_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Clinical Database"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -6493,7 +6631,9 @@
         if(_isChecked==true){
             $('#tbl_clinical').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getClinical();
+            setTimeout(function() {
+                 getClinical();
+            }, 200);            
             $('#modal_clinical').modal('toggle');
         }
         else{
@@ -6578,11 +6718,11 @@
         $('#modal_clinical_details').modal('toggle');
     });
 
-    $('#tbl_ref_patient tbody').on('click','button[name="remove_info"]',function(){
-        _txdelete="patientrecord";
-        _selectRowObj=$(this).closest('tr');
-        var data=dt.row(_selectRowObj).data();
-        _selectedID=data.ref_patient_id;
+    $('#tbl_clinical tbody').on('click','button[name="remove_clinical"]',function(){
+        _txdelete="clinicaldatabase";
+        _selectRowObjclinical=$(this).closest('tr');
+        var data=patient_clinical_dt.row(_selectRowObjclinical).data();
+        _selectedIDclinical=data.patient_clinical_id;
         delete_notif();
 
     });
@@ -6642,7 +6782,9 @@
         if(_isChecked==true){
             $('#tbl_patient_medical_abstract').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getMedicalAbstractList();
+            setTimeout(function() {
+                 getMedicalAbstractList();
+            }, 200);
             $('#modal_medical_abstract_list').modal('toggle');
         }
         else{
@@ -6657,7 +6799,12 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
             "paging":true,
+            "order": [[ 4, "desc" ]], 
             "ajax": {
             "url": "Patient_medical_abstract/transaction/medical_abstract_list",
             "type": "POST",
@@ -6673,17 +6820,17 @@
                 { targets:[1],data: "case_no" },
                 { targets:[2],data: "date_created" },
                 {
-                    targets:[4],
+                    targets:[3],
                     render: function (data, type, full, meta){
-                         var view_medical_abstract_details='<button class="btn btn-primary btn-xs" name="view_medical_abstract_details" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                         var view_medical_abstract_details='<button class="btn btn-default btn-xs" name="view_medical_abstract_details" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
 
                         return '<center>'+view_medical_abstract_details+edit_medical_abstract+delete_medical_abstract+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[4],data: "patient_medical_abstract_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Medical Abstract"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -6949,7 +7096,9 @@
         if(_isChecked==true){
             $('#tbl_patient_nephro_order').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getNephroOrderList();
+            setTimeout(function() {
+                 getNephroOrderList();
+            }, 200);            
             $('#modal_nephro_order_list').modal('toggle');
         }
         else{
@@ -6964,7 +7113,12 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
             "paging":true,
+            "order": [[ 3, "desc" ]],
             "ajax": {
             "url": "Patient_nephro_order/transaction/list",
             "type": "POST",
@@ -6981,15 +7135,15 @@
                 {
                     targets:[2],
                     render: function (data, type, full, meta){
-                         var view_nephro_order='<button class="btn btn-primary btn-xs" name="view_nephro_order" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                         var view_nephro_order='<button class="btn btn-default btn-xs" name="view_nephro_order" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
 
                         return '<center>'+view_nephro_order+edit_nephro_order+delete_nephro_order+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[3],data: "patient_nephro_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Nephro Order"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -7189,7 +7343,9 @@
         if(_isChecked==true){
             $('#tbl_patient_lab_report').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getLabReportList();
+            setTimeout(function() {
+                 getLabReportList();
+            }, 200);            
             $('#modal_lab_report_list').modal('toggle');
         }
         else{
@@ -7203,7 +7359,12 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
             "paging":true,
+            "order": [[ 3, "desc" ]],
             "ajax": {
             "url": "Patient_lab_diagnostics/transaction/list",
             "type": "POST",
@@ -7220,15 +7381,15 @@
                 {
                     targets:[2],
                     render: function (data, type, full, meta){
-                         var view_diagnostic='<button class="btn btn-primary btn-xs" name="view_diagnostic" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                         var view_diagnostic='<button class="btn btn-default btn-xs" name="view_diagnostic" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
 
                         return '<center>'+view_diagnostic+edit_diagnostic+remove_diagnostic+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[3],data: "patient_lab_report_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Diagnostics"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -7477,7 +7638,9 @@
         if(_isChecked==true){
             $('#tbl_med_cert_report').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getMedicalCertList();
+            setTimeout(function() {
+                 getMedicalCertList();
+            }, 200);            
             $('#modal_med_cert_list').modal('toggle');
         }
         else{
@@ -7492,7 +7655,12 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
             "paging":true,
+            "order": [[ 3, "desc" ]],
             "ajax": {
             "url": "Patient_medical_record/transaction/list",
             "type": "POST",
@@ -7509,15 +7677,15 @@
                 {
                     targets:[2],
                     render: function (data, type, full, meta){
-                         var view_med_cert='<button class="btn btn-primary btn-xs" name="view_med_cert" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                         var view_med_cert='<button class="btn btn-default btn-xs" name="view_med_cert" data-toggle="tooltip" data-placement="left" title="View Details"><i class="fa fa-eye"></i> </button>';
 
                         return '<center>'+view_med_cert+edit_med_cert+remove_med_cert+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[3],data: "patient_medical_certificate_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Medical Certificate"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -7722,7 +7890,12 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
             "paging":true,
+            "order": [[ 4, "desc" ]],
             "ajax": {
             "url": "Patient_Info/transaction/list",
             "type": "POST",
@@ -7743,12 +7916,12 @@
 
                         return '<center>'+btn_nephrorecord_edit+btn_nephrorecord_trash+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[4],data: "patient_info_id" }
 
                 ],
                 language: {
-                             searchPlaceholder: "Search Patients"
+                             searchPlaceholder: ""
                          },
                 "rowCallback":function( row, data, index ){
 
@@ -7785,7 +7958,11 @@
                 });
 
             showSpinningProgressLOADING();
-            getNephroRecord();
+
+            setTimeout(function() {
+                 getNephroRecord();
+            }, 200);
+
             $('#modal_nephro_record').modal('toggle');
         }
         else{
@@ -9956,7 +10133,9 @@
         if(_isChecked==true){
             $('#tbl_patient_referral').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getReferralList();
+            setTimeout(function() {
+                 getReferralList();
+            }, 200);            
             $('#modal_referral_list').modal('toggle');
         }
         else{
@@ -9972,7 +10151,12 @@
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
             "paging":true,
+            "order": [[ 3, "desc" ]],  
             "ajax": {
             "url": "Patient_referral/transaction/list",
             "type": "POST",
@@ -9989,15 +10173,15 @@
                 {
                     targets:[2],
                     render: function (data, type, full, meta){
-                         var view_referral='<button class="btn btn-primary btn-xs" name="view_referral" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                         var view_referral='<button class="btn btn-default btn-xs" name="view_referral" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
 
                         return '<center>'+view_referral+edit_referral+remove_referral+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[3],data: "patient_referral_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Referral"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -10170,6 +10354,16 @@
         });
     };    
 
+    var removeClinicalDatabase=function(){
+        return $.ajax({
+            "dataType":"json",
+            "type":"POST",
+            "url":"Patient_clinical/transaction/delete",
+            "data":{patient_clinical_id: _selectedIDclinical},
+            "beforeSend": showSpinningProgress($('#btn_save'))
+        });
+    };        
+
     $('#print_referral').click(function(event){
         var currentURL = window.location.href;
         var output = currentURL.match(/^(.*)\/[^/]*$/)[1];
@@ -10197,7 +10391,9 @@
         if(_isChecked==true){
             $('#tbl_patient_admitting_order').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            getAmittingOrderList();
+            setTimeout(function() {
+                 getAmittingOrderList();
+            }, 200);
             $('#modal_admitting_order_list').modal('toggle');
         }
         else{
@@ -10206,13 +10402,19 @@
         
     });
 
+    //ash
     var getAmittingOrderList=function(){
             patient_admitting_order_dt=$('#tbl_patient_admitting_order').DataTable({
                 "fnInitComplete": function (oSettings, json) {
                 $.unblockUI();
                 },
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
             "paging":true,
+            "order": [[ 3, "desc" ]],
             "ajax": {
             "url": "Patient_admitting_order/transaction/list",
             "type": "POST",
@@ -10229,15 +10431,15 @@
                 {
                     targets:[2],
                     render: function (data, type, full, meta){
-                         var view_admitting_order='<button class="btn btn-primary btn-xs" name="view_admitting_order" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                         var view_admitting_order='<button class="btn btn-default btn-xs" name="view_admitting_order" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
 
                         return '<center>'+view_admitting_order+edit_admitting_order+remove_admitting_order+'</center>';
                     }
-
-                }
+                },
+                { visible:false, targets:[3],data: "patient_admitting_order_id" }
             ],
             language: {
-                 searchPlaceholder: "Search Admitting Order"
+                 searchPlaceholder: ""
              },
              "rowCallback":function( row, data, index ){
 
@@ -10254,11 +10456,12 @@
         _txnadmittingorder="new";
         checkHeader(_txnadmittingorder);
         $('.patient_txn').text('New');
-        clearFields($('#frm_referral'));
+        clearFields($('#frm_admitting_order'));
 
         $('#admitting_order_icon').removeClass();
         $('#admitting_order_icon').addClass('fa fa-plus-circle');
 
+        $("#frm_admitting_order input:checkbox").prop('checked',false);
         $("#frm_admitting_order input").prop('disabled',false);
         $("#frm_admitting_order textarea").prop('disabled',false);        
 
@@ -10270,6 +10473,217 @@
 
         $('#modal_admitting_order').modal('toggle');
     });    
+
+    $('#btn_check_all_checkbox').click(function(){
+        $("#frm_admitting_order input:checkbox").prop('checked',true);
+        $("#frm_admitting_order input:text").val('12'); 
+    });
+
+    $('#tbl_patient_admitting_order tbody').on('click','button[name="edit_info"]',function(){
+        _txnadmittingorder="edit";        
+        checkHeader(_txnadmittingorder);
+        $('.patient_txn').text('Edit');
+        clearFields($('#frm_admitting_order'));
+
+        $('#admitting_order_icon').removeClass();
+        $('#admitting_order_icon').addClass('fa fa-edit');
+
+        $("#frm_admitting_order input:checkbox").prop('checked',false);
+        $("#frm_admitting_order input:text").prop('disabled',false);
+
+        $("#frm_admitting_order input:checkbox").css('pointer-events','all'); 
+        $("#frm_admitting_order input:text").css('pointer-events','all'); 
+
+        $('#save_admitting_order').show();
+        $('#print_admitting_order').hide();
+        $('#ftr_admitting_order').hide();
+
+        _selectRowObjadmittingorder =$(this).closest('tr');
+        var dataadmittingorder=patient_admitting_order_dt.row(_selectRowObjadmittingorder).data();
+        _selectedIDadmittingorder=dataadmittingorder.patient_admitting_order_id;
+
+        $('input,textarea').each(function(){
+                var _elem=$(this);
+                $.each(dataadmittingorder,function(name,value){
+
+                    if(_elem.attr('name')==name){
+                        _elem.val(value);
+                    }
+
+                    if(_elem.attr('id')==name){
+                        if(value==1){ _elem.prop('checked', true); }
+                        else{ _elem.prop('checked', false); }
+                    }
+
+                });
+        }); 
+        $('#modal_admitting_order').modal('toggle');
+    });
+
+
+    $('#tbl_patient_admitting_order tbody').on('click','button[name="view_admitting_order"]',function(){
+        _txnadmittingorder="view";
+        checkHeader(_txnadmittingorder);
+        $('.patient_txn').text('View');
+        clearFields($('#frm_admitting_order'));
+
+        $('#admitting_order_icon').removeClass();
+        $('#admitting_order_icon').addClass('fa fa-print');
+
+        $("#frm_admitting_order input:checkbox").prop('checked',false);
+        $("#frm_admitting_order input:text").prop('disabled',true);
+
+        $("#frm_admitting_order input:checkbox").css('pointer-events','none'); 
+        $("#frm_admitting_order input:text").css('pointer-events','none'); 
+
+        $('#save_admitting_order').hide();
+        $('#print_admitting_order').show();
+        $('#ftr_admitting_order').show();        
+
+        _selectRowObjadmittingorder =$(this).closest('tr');
+        var dataadmittingorder=patient_admitting_order_dt.row(_selectRowObjadmittingorder).data();
+        _selectedIDadmittingorder=dataadmittingorder.patient_admitting_order_id;
+
+        $('input,textarea').each(function(){
+                var _elem=$(this);
+                $.each(dataadmittingorder,function(name,value){
+
+                    if(_elem.attr('name')==name){
+                        _elem.val(value);
+                    }
+
+                    if(_elem.attr('id')==name){
+                        if(value==1){ _elem.prop('checked', true); }
+                        else{ _elem.prop('checked', false); }
+                    }
+
+                });
+        }); 
+        $('#modal_admitting_order').modal('toggle');        
+    });
+
+    $('#tbl_patient_admitting_order tbody').on('click','button[name="remove_info"]',function(){
+        _txdelete="admittingorder";
+        _selectRowObjadmittingorder =$(this).closest('tr');
+        var dataadmittingorder=patient_admitting_order_dt.row(_selectRowObjadmittingorder).data();
+        _selectedIDadmittingorder=dataadmittingorder.patient_admitting_order_id;
+
+        delete_notif();
+    });
+
+
+    $('#save_admitting_order').click(function(){
+        if(validateRequiredFields($('#frm_admitting_order'))){
+            if(_txnadmittingorder=="new"){
+                Saveadmittingorder().done(function(response){
+                    showNotification(response);
+                    if(response.stat=="success"){
+                        $('#tbl_patient_admitting_order').DataTable().ajax.reload();
+                    }
+                }).always(function(){
+                    $.unblockUI();
+                    $('#modal_admitting_order').modal('toggle');
+                });
+            }
+            if(_txnadmittingorder=="edit"){
+
+                Updateadmittingorder().done(function(response){
+                    showNotification(response);
+                    if(response.stat=="success"){
+                        $('#tbl_patient_admitting_order').DataTable().ajax.reload();
+                    }
+                }).always(function(){
+                    $.unblockUI();
+                    $('#modal_admitting_order').modal('toggle');
+                });
+            }
+        }   
+    });
+
+    var Saveadmittingorder=function(){
+        var _data=$('#frm_admitting_order').serializeArray();
+            _data.push({name : "ref_patient_id" ,value : _selectedID});
+
+            $('#frm_admitting_order input:checkbox').each(function()
+            {
+                var A = ($(this).attr('id'));
+                _data.push({name : A ,value : $('#'+A+'').is(':checked') ? 1 : 0});
+            });
+
+            return $.ajax({
+                "dataType":"json",
+                "type":"POST",
+                "url":"Patient_admitting_order/transaction/create",
+                "data":_data,
+                "beforeSend": showSpinningProgress($('#btn_save'))
+            });
+       
+    };
+
+    var Updateadmittingorder=function(){
+        var _data=$('#frm_admitting_order').serializeArray();
+            _data.push({name : "patient_admitting_order_id" ,value : _selectedIDadmittingorder});
+            _data.push({name : "ref_patient_id" ,value : _selectedID});
+
+            $('#frm_admitting_order input:checkbox').each(function()
+            {
+                var A = ($(this).attr('id'));
+                _data.push({name : A ,value : $('#'+A+'').is(':checked') ? 1 : 0});
+            });
+
+            return $.ajax({
+                "dataType":"json",
+                "type":"POST",
+                "url":"Patient_admitting_order/transaction/update",
+                "data":_data,
+                "beforeSend": showSpinningProgress($('#btn_save'))
+            });
+       
+    };
+
+    $('#print_admitting_order').click(function(event){
+        printing_notif();
+        var currentURL = window.location.href;
+        var output = currentURL.match(/^(.*)\/[^/]*$/)[1];
+        output = output+"/assets/css/css_special_files.css";
+        /*alert(output);*/
+        /*$('input[type="checkbox"]').each(function() {
+               $(this).attr('checked', 'false') 
+        });*/
+
+        $('#frm_admitting_order input:checkbox').each(function() {
+            if($(this).is (':checked')) {
+               $(this).attr('checked', true);
+            }
+        });
+
+        /*$('input[type="checkbox"]').each(function() {
+            if($(this).is (':checked')) {
+               $(this).attr('checked', 'true') 
+            }
+        });*/
+
+        $('#frm_admitting_order input:text').each(function() {
+               /*var val = $(this).val();
+               var id = $(this).attr('id');
+               $('#'++'').val(10);*/
+                $(this).attr('value', $(this).val());
+
+        });
+
+
+        
+
+        $("#print_admitting_order_content").printThis({
+            debug: false,         
+            importCSS: true,       
+            importStyle: true,       
+            printContainer: true,
+            loadCSS: output,
+            formValues:false,
+            canvas: false 
+        });
+    });
 
     // End of Admitting Order Entry
 
@@ -10303,6 +10717,7 @@
                         $.unblockUI();
                     });
                 }
+                // 1
                 if(_txdelete=="prescription"){
                     swal("Deleted!", "Patient Prescription has been deleted.", "success");
                     removePrescription().done(function(response){
@@ -10328,6 +10743,7 @@
                         $.unblockUI();
                     });
                 }
+                // 8
                 if(_txdelete=="labreport"){
                     swal("Deleted!", "Laboratory Report has been deleted.", "success");
                     removeLaboratoryReport().done(function(response){
@@ -10344,6 +10760,7 @@
                         $.unblockUI();
                     });
                 }
+                // 2
                 if(_txdelete=="lab"){
                      swal("Deleted!", "Patient Lab has been deleted.", "success");
                     removeLab().done(function(response){
@@ -10353,6 +10770,7 @@
                         $.unblockUI();
                     });
                 }
+                // 3
                 if(_txdelete=="billing"){
                      swal("Deleted!", "Patient Billing has been deleted.", "success");
                     removeBilling().done(function(response){
@@ -10362,6 +10780,7 @@
                         $.unblockUI();
                     });
                 }
+                // 4
                 if(_txdelete=="visitingrecord"){
                      swal("Deleted!", "Patient Visiting Record has been deleted.", "success");
                     removeVisiting().done(function(response){
@@ -10388,6 +10807,23 @@
                         $.unblockUI();
                     });
                 }
+                // 5
+                if(_txdelete=="clinicaldatabase"){
+                    swal("Deleted!", "Clinical Database has been deleted.", "success");
+                    removeClinicalDatabase().done(function(response){
+                    showNotification(response);
+                        patient_clinical_dt.row(_selectRowObjclinical).remove().draw();
+                        $.unblockUI();
+                    });
+                }   
+                if(_txdelete=="admittingorder"){
+                    swal("Deleted!", "Admitting Order has been deleted.", "success");
+                    removeAdmittingOrder().done(function(response){
+                    showNotification(response);
+                        patient_admitting_order_dt.row(_selectRowObjadmittingorder).remove().draw();
+                        $.unblockUI();
+                    });
+                }                                
                  
             } else {     
                 swal("Cancelled", "Your file is safe :)", "error");   
@@ -10434,6 +10870,7 @@
     var stat=true;
 
     $('div.form-group').removeClass('has-error');
+    $('div.fg-line').removeClass('has-error');
     $('input[required],textarea[required],select[required]',f).each(function(){
 
             if($(this).is('select')){
@@ -10465,10 +10902,11 @@
 
     var clearFields=function(f){
         $('input,textarea',f).val('');
-        $(f).find('input:first').focus();
+        // $(f).find('input:first').focus();
         $('#card_type').val('');
         $('#points').val('');
         $('#description ').val('');
+        $('div.form-group').removeClass('has-error');
     };
 
     
@@ -10492,9 +10930,9 @@
     var stat=true;
     var pword=$('#user_pword').val();
     var cpword=$('#user_confirm_pword').val();
-    $('div.form-group').removeClass('has-error');
 
         $('div.form-group').removeClass('has-error');
+        $('div.fg-line').removeClass('has-error');
         $('input[required],textarea[required],select[required]',f).each(function(){
 
                 if($(this).is('select')){

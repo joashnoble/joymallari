@@ -34,89 +34,105 @@ class Patient_admitting_order extends CORE_Controller {
 
                 $response['data']=$this->Patient_admitting_order_model->get_list(
                     array('patient_admitting_order.ref_patient_id'=>$ref_patient_id,'patient_admitting_order.is_deleted'=>FALSE),
-                    'patient_admitting_order.*'
+                    'patient_admitting_order.*, DATE_FORMAT(date_created, "%m/%d/%Y") as date_created,
+                    (CASE
+                        WHEN DATE_FORMAT(admitting_order_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(admitting_order_date, "%m/%d/%Y")
+                    END) as admitting_order_date'
                     );
                 echo json_encode($response);
                 break;
 
-                case 'create':
+            case 'create':
+                $m_patient_admitting=$this->Patient_admitting_order_model;
+
+                $date = $this->input->post('admitting_order_date',TRUE);
+                $ref_patient_id=$this->input->post('ref_patient_id',TRUE);
+                $admitting_order_date = date("Y-m-d",strtotime($date));
 
                 function replaceCharsInNumber($num, $chars) {
                      return substr((string) $num, 0, -strlen($chars)) . $chars;
                 }
 
-                $m_patient_admitting = $this->Patient_admitting_order_model;
-
-                $referral_date = $this->input->post('referral_date', TRUE);
-                $appointment_date = $this->input->post('appointment_date', TRUE);
-
-                $m_patient_admitting->ref_patient_id = $this->input->post('ref_patient_id', TRUE);
-                $m_patient_admitting->referral_date = date("Y-m-d",strtotime($referral_date));
-                $m_patient_admitting->appointment_date = date("Y-m-d",strtotime($appointment_date));
-                $m_patient_admitting->referral_code = $this->input->post('referral_code', TRUE);
-                $m_patient_admitting->referral_doctors = $this->input->post('referral_doctors', TRUE);
-                $m_patient_admitting->referral_diagnostics = $this->input->post('referral_diagnostics', TRUE);
-                $m_patient_admitting->remarks = $this->input->post('remarks', TRUE);
-                $m_patient_admitting->created_by = $this->session->user_id;
-                $m_patient_admitting->save();
-
-                $patient_referral_id = $m_patient_admitting->last_insert_id();
-
-                $format = "000000";
-                $temp = replaceCharsInNumber($format, $patient_referral_id); //5069xxx
-                $referral_code = 'REF-'.$temp .'-'. $today = date("Y");
-
-                $m_patient_admitting->referral_code = $referral_code;
-                $m_patient_admitting->modify($patient_referral_id);
-                
-                $response['title'] = 'Success!';
-                $response['stat'] = 'success';
-                $response['msg'] = 'Patient Referral Successfully Created.';
-                    
-                echo json_encode($response);
-
-                
-                break;
-
-                case 'update':
-                $m_patient_admitting = $this->Patient_admitting_order_model;
-
-                $patient_referral_id = $this->input->post('patient_referral_id', TRUE);
-
-                $referral_date = $this->input->post('referral_date', TRUE);
-                $appointment_date = $this->input->post('appointment_date', TRUE);
-
-                $m_patient_admitting->referral_date = date("Y-m-d",strtotime($referral_date));
-                $m_patient_admitting->appointment_date = date("Y-m-d",strtotime($appointment_date));
-                $m_patient_admitting->referral_doctors = $this->input->post('referral_doctors', TRUE);
-                $m_patient_admitting->referral_diagnostics = $this->input->post('referral_diagnostics', TRUE);
-                $m_patient_admitting->remarks = $this->input->post('remarks', TRUE);
-                $m_patient_admitting->modified_by = $this->session->user_id;
-                $m_patient_admitting->modify($patient_referral_id);
-
-                $response['title'] = 'Success!';
-                $response['stat'] = 'success';
-                $response['msg'] = 'Patient Referral Successfully Updated.';
-                    
-                echo json_encode($response);
-                break;
-
-                case 'delete':
-                    $m_patient_admitting=$this->Patient_admitting_order_model;
-
-                    $patient_referral_id =$this->input->post('patient_referral_id',TRUE);
-                    
-                    $m_patient_admitting->is_deleted=1;
-                    if($m_patient_admitting ->modify($patient_referral_id)){
-                        $response['title']='Success!';
-                        $response['stat']='success';
-                        $response['msg']='Patient Referral Successfully deleted.';
-
-                        echo json_encode($response);
+                foreach($_POST as $key => $val)  
+                {  
+                    $m_patient_admitting->$key=$this->input->post($key);
                 }
 
+                $m_patient_admitting->date_created = date("Y-m-d");
+                $m_patient_admitting->admitting_order_date = $admitting_order_date;
+                $m_patient_admitting->created_by = $this->session->user_id;
+                $m_patient_admitting->save();
+                $patient_admitting_order_id = $m_patient_admitting->last_insert_id();
+
+                $format = "000000";
+                $temp = replaceCharsInNumber($format, $ref_patient_id.''.$patient_admitting_order_id); //5069xxx
+                $admitting_order_code = 'AO-'.$temp .'-'. $today = date("Y");
+                $m_patient_admitting->admitting_order_code = $admitting_order_code;
+                $m_patient_admitting->modify($patient_admitting_order_id);
+
+                $response['title']='Success!';
+                $response['stat']='success';
+                $response['msg']='Patient Admitting Order successfully created.';
+                $response['row_added']=$this->Patient_admitting_order_model->get_list(
+                    $patient_admitting_order_id,
+                    'patient_admitting_order.*,DATE_FORMAT(date_created, "%m/%d/%Y") as date_created,
+                    (CASE
+                        WHEN DATE_FORMAT(admitting_order_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(admitting_order_date, "%m/%d/%Y")
+                    END) as admitting_order_date'
+                    ); 
+                echo json_encode($response);
                 break;
-                   
+
+            case 'update':
+                $m_patient_admitting=$this->Patient_admitting_order_model;
+
+                $patient_admitting_order_id=$this->input->post('patient_admitting_order_id',TRUE);
+                $date = $this->input->post('admitting_order_date',TRUE);
+                $admitting_order_date = date("Y-m-d",strtotime($date));
+
+                foreach($_POST as $key => $val)  
+                {  
+                    $m_patient_admitting->$key=$this->input->post($key);
+                }
+
+                $m_patient_admitting->date_modified = date("Y-m-d");
+                $m_patient_admitting->admitting_order_date = $admitting_order_date;
+                $m_patient_admitting->modified_by = $this->session->user_id;
+                $m_patient_admitting->modify($patient_admitting_order_id);
+
+                $response['title']='Success!';
+                $response['stat']='success';
+                $response['msg']='Patient Admitting Order successfully updated.';
+                $response['row_updated']=$this->Patient_admitting_order_model->get_list(
+                    $patient_admitting_order_id,
+                    'patient_admitting_order.*,DATE_FORMAT(date_created, "%m/%d/%Y") as date_created,
+                    (CASE
+                        WHEN DATE_FORMAT(admitting_order_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(admitting_order_date, "%m/%d/%Y")
+                    END) as admitting_order_date'
+                    ); 
+                echo json_encode($response);
+                break;
+
+            case 'delete':
+                $m_patient_admitting=$this->Patient_admitting_order_model;
+                $patient_admitting_order_id=$this->input->post('patient_admitting_order_id',TRUE);
+                    
+                    $m_patient_admitting->is_deleted=1;
+                    if($m_patient_admitting ->modify($patient_admitting_order_id)){
+                        $response['title']='Success!';
+                        $response['stat']='success';
+                        $response['msg']='Patient Admitting Order successfully deleted.';
+
+                        echo json_encode($response);
+                    }
+
+                break;                      
         }
     }
 }

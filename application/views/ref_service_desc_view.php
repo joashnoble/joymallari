@@ -42,7 +42,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="tbl_ref_service_desc" class="table table-bordered table-striped">
+              <table id="tbl_ref_service_desc" class="table table-striped">
                 <thead class="tbl-header">
                     <tr>
                         <th>Service Description</th>
@@ -52,13 +52,13 @@
                 </thead>
                 <tbody>
                 </tbody>
-                <tfoot>
+<!--                 <tfoot>
                 <tr>
                     <th>Service Description</th>
                     <th>Remarks</th>
                     <th style="text-align:center;">Action</th>
                 </tr>
-                </tfoot>
+                </tfoot> -->
               </table>
             </div>
             <!-- /.box-body -->
@@ -113,7 +113,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> Modified by JBPV
+      <b>Version</b> Modified by JBPV | JJLN
     </div>
     <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
     reserved.

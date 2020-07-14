@@ -30,7 +30,7 @@ class Patient_medical_abstract extends CORE_Controller
                 $ref_patient_id=$this->input->post('ref_patient_id',TRUE);
                 $response['data']=$this->Patient_medical_abstract_model->get_list(
                     array('patient_medical_abstract.ref_patient_id'=>$ref_patient_id),
-                    'patient_medical_abstract.*'
+                    'patient_medical_abstract.*, DATE_FORMAT(date_created, "%m/%d/%Y") as date_created'
                     );
                 echo json_encode($response);
             break;
@@ -39,7 +39,7 @@ class Patient_medical_abstract extends CORE_Controller
                 $ref_patient_id=$this->input->post('ref_patient_id',TRUE);
                 $response['data']=$this->Patient_medical_abstract_model->get_list(
                     array('patient_medical_abstract.ref_patient_id'=>$ref_patient_id,'patient_medical_abstract.is_deleted'=>FALSE),
-                    'patient_medical_abstract.*'
+                    'patient_medical_abstract.*, DATE_FORMAT(date_created, "%m/%d/%Y") as date_created'
                     );
                 echo json_encode($response);
             break;
@@ -91,7 +91,7 @@ class Patient_medical_abstract extends CORE_Controller
                 $response['stat']='success';
                 $response['msg']='Patient Medical Abstract successfully created.';
                 $response['row_added'] = $this->Patient_medical_abstract_model->get_list($patient_medical_abstract_id,
-                    'patient_medical_abstract.*'
+                    'patient_medical_abstract.*, DATE_FORMAT(date_created, "%m/%d/%Y") as date_created'
                     );
                 echo json_encode($response);
                 break;
@@ -114,8 +114,8 @@ class Patient_medical_abstract extends CORE_Controller
                 $response['title']='Success!';
                 $response['stat']='success';
                 $response['msg']='Patient Medical Abstract successfully updated.';
-                $response['row_added'] = $this->Patient_medical_abstract_model->get_list($patient_medical_abstract_id,
-                    'patient_medical_abstract.*'
+                $response['row_updated'] = $this->Patient_medical_abstract_model->get_list($patient_medical_abstract_id,
+                    'patient_medical_abstract.*, DATE_FORMAT(date_created, "%m/%d/%Y") as date_created'
                     );
                 echo json_encode($response);
 
@@ -135,10 +135,6 @@ class Patient_medical_abstract extends CORE_Controller
                     }
 
                 break;                
-
-
         }
-
-
     }
 }

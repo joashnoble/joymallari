@@ -16,7 +16,8 @@ class Users extends CORE_Controller
         $data['_def_css_files']=$this->load->view('template/assets/css_files','',TRUE);
         $data['_def_js_files']=$this->load->view('template/assets/js_files','',TRUE);
         $data['_top_navigation']=$this->load->view('template/elements/top_navigation','',TRUE);
-        $data['_side_navigation']=$this->load->view('template/elements/side_bar_navigation','',TRUE);
+        $data_1['active'] = 5;
+        $data['_side_navigation']=$this->load->view('template/elements/side_bar_navigation',$data_1,TRUE);
         $data['_right_navigation']=$this->load->view('template/elements/right_bar_navigation','',TRUE);
         $data['_rights']=$this->load->view('template/elements/rights','',TRUE);
 
@@ -26,7 +27,7 @@ class Users extends CORE_Controller
         $this->load->view('user_view', $data);
     }
 
-    function transaction($txn = null) {
+    function transaction($txn = null,$filter_value = null) {
 
         switch($txn){
             case 'list':
@@ -199,6 +200,26 @@ class Users extends CORE_Controller
                     }
                 }
                 break;
+
+            case 'user-details':
+                $m_users=$this->Users_model;
+                $type=$this->input->get('type',TRUE);
+
+                $info=$m_users->get_list(
+                    $filter_value,
+                    'user_accounts.*,CONCAT(user_accounts.user_fname," ",user_accounts.user_mname," ",user_accounts.user_lname) as full_name,user_groups.user_group',
+                    array(
+                        array('user_groups','user_groups.user_group_id=user_accounts.user_group_id','left'),
+                        )
+                    );
+
+                $data['user']=$info[0];
+                //show only inside grid with menu button
+                if($type=='fullview'||$type==null){
+                    echo $this->load->view('template/user_details_content',$data,TRUE);
+                }  
+
+            break;
 
         }
 

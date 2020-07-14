@@ -30,8 +30,12 @@ class Patient_lab_diagnostics extends CORE_Controller
                 $ref_patient_id=$this->input->post('ref_patient_id',TRUE);
                 $response['data']=$this->Patient_lab_diagnostics_model->get_list(
                     array('patient_lab_report.ref_patient_id'=>$ref_patient_id,'patient_lab_report.is_deleted'=>FALSE),
-                    'patient_lab_report.*'
-                    );
+                    'patient_lab_report.*,
+                    (CASE
+                        WHEN DATE_FORMAT(lab_report_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(lab_report_date, "%m/%d/%Y")
+                    END) as lab_report_date');
                 echo json_encode($response);
                 break;
 /*
@@ -87,7 +91,12 @@ class Patient_lab_diagnostics extends CORE_Controller
                 $response['stat']='success';
                 $response['msg']='Lab Diagnostics successfully created.';
                 $response['row_added'] = $this->Patient_lab_diagnostics_model->get_list($patient_lab_report_id,
-                    'patient_lab_report.*'
+                    'patient_lab_report.*,
+                    (CASE
+                        WHEN DATE_FORMAT(lab_report_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(lab_report_date, "%m/%d/%Y")
+                    END) as lab_report_date'
                     );
                 echo json_encode($response);
                 break;
@@ -112,7 +121,12 @@ class Patient_lab_diagnostics extends CORE_Controller
                 $response['stat']='success';
                 $response['msg']='Lab Diagnostics successfully updated.';
                 $response['row_updated'] = $this->Patient_lab_diagnostics_model->get_list($patient_lab_report_id,
-                    'patient_lab_report.*'
+                    'patient_lab_report.*,
+                    (CASE
+                        WHEN DATE_FORMAT(lab_report_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(lab_report_date, "%m/%d/%Y")
+                    END) as lab_report_date'
                     );
                 echo json_encode($response);
 
@@ -132,10 +146,6 @@ class Patient_lab_diagnostics extends CORE_Controller
                     }
 
                 break;     
-
-
         }
-
-
     }
 }

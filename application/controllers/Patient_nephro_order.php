@@ -31,7 +31,7 @@ class Patient_nephro_order extends CORE_Controller
                 $ref_patient_id=$this->input->post('ref_patient_id',TRUE);
                 $response['data']=$this->Patient_nephro_order_model->get_list(
                     array('patient_nephro.ref_patient_id'=>$ref_patient_id,'patient_nephro.is_deleted'=>FALSE),
-                    'patient_nephro.*'
+                    'patient_nephro.*,DATE_FORMAT(date_created, "%m/%d/%Y") as date_created'
                     );
                 echo json_encode($response);
                 break;
@@ -105,7 +105,7 @@ class Patient_nephro_order extends CORE_Controller
 
 
                 $response['row_added'] = $this->Patient_nephro_order_model->get_list($patient_nephro_id,
-                    'patient_nephro.*'
+                    'patient_nephro.*,DATE_FORMAT(date_created, "%m/%d/%Y") as date_created'
                     );
                 echo json_encode($response);
                 break;
@@ -146,7 +146,10 @@ class Patient_nephro_order extends CORE_Controller
                     $response['title']='Success!';
                     $response['stat']='success';
                     $response['msg']='Nephro Order successfully updated.';
-                    $response['row_updated']=$m_nephro->get_list($patient_nephro_id);
+                    $response['row_updated'] = $this->Patient_nephro_order_model->get_list($patient_nephro_id,
+                    'patient_nephro.*,DATE_FORMAT(date_created, "%m/%d/%Y") as date_created'
+                    );
+
                     echo json_encode($response);
                 }
 

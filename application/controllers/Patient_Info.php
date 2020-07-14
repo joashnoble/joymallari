@@ -50,13 +50,19 @@ class Patient_Info extends CORE_Controller {
             case 'list':
                 $ref_patient_id = $this->input->post('ref_patient_id', TRUE);
                 $response['data']=$this->Patient_Info_model->get_list(array('patient.ref_patient_id'=>$ref_patient_id,'patient.is_deleted'=>FALSE),
-                    'patient.*,CONCAT(ref_patient.first_name," ",ref_patient.middle_name," ",ref_patient.last_name) as fullname,ref_patient.age,ref_patient.address,ref_patient.bdate',
+                    'patient.*,CONCAT(ref_patient.first_name," ",ref_patient.middle_name," ",ref_patient.last_name) as fullname,ref_patient.age,ref_patient.address,ref_patient.bdate,
+                        (CASE
+                            WHEN DATE_FORMAT(nephrorecorddate, "%Y") <= "1970"
+                            THEN ""
+                            ELSE DATE_FORMAT(nephrorecorddate, "%m/%d/%Y")
+                        END) as nephrorecorddate',
                        array(
                             array('ref_patient','ref_patient.ref_patient_id=patient.ref_patient_id','left'),
                         )
                     );
                 echo json_encode($response);
                 break;
+
             case 'create':
                 $m_patient_info = $this->Patient_Info_model;
                 $this->load->library('form_validation');
@@ -92,7 +98,12 @@ class Patient_Info extends CORE_Controller {
                 $response['msg'] = 'Nephro Record successfully created.';
 
                 $response['row_added'] = $this->Patient_Info_model->get_list($ref_department_id,
-                       'patient.*,CONCAT(ref_patient.first_name," ",ref_patient.middle_name," ",ref_patient.last_name) as fullname,ref_patient.age,ref_patient.address,ref_patient.bdate',
+                       'patient.*,CONCAT(ref_patient.first_name," ",ref_patient.middle_name," ",ref_patient.last_name) as fullname,ref_patient.age,ref_patient.address,ref_patient.bdate,
+                           (CASE
+                                WHEN DATE_FORMAT(nephrorecorddate, "%Y") <= "1970"
+                                THEN ""
+                                ELSE DATE_FORMAT(nephrorecorddate, "%m/%d/%Y")
+                            END) as nephrorecorddate',
                        array(
                             array('ref_patient','ref_patient.ref_patient_id=patient.ref_patient_id','left'),
                         )
@@ -163,7 +174,12 @@ class Patient_Info extends CORE_Controller {
                 $response['msg'] = 'Nephro Record Successfully Updated.';
 
                 $response['row_updated'] = $this->Patient_Info_model->get_list($patient_info_id,
-                    'patient.*,CONCAT(ref_patient.first_name," ",ref_patient.middle_name," ",ref_patient.last_name) as fullname,ref_patient.age,ref_patient.address,ref_patient.bdate',
+                    'patient.*,CONCAT(ref_patient.first_name," ",ref_patient.middle_name," ",ref_patient.last_name) as fullname,ref_patient.age,ref_patient.address,ref_patient.bdate,
+                        (CASE
+                            WHEN DATE_FORMAT(nephrorecorddate, "%Y") <= "1970"
+                            THEN ""
+                            ELSE DATE_FORMAT(nephrorecorddate, "%m/%d/%Y")
+                        END) as nephrorecorddate',
                        array(
                             array('ref_patient','ref_patient.ref_patient_id=patient.ref_patient_id','left'),
                         )
@@ -217,8 +233,5 @@ class Patient_Info extends CORE_Controller {
                     }
             break;
         }
-
     }
-
-
 }

@@ -34,7 +34,12 @@ class Patient_referral extends CORE_Controller {
 
                 $response['data']=$this->Patient_referral_model->get_list(
                     array('patient_referral.ref_patient_id'=>$ref_patient_id,'patient_referral.is_deleted'=>FALSE),
-                    'patient_referral.*'
+                    'patient_referral.*, DATE_FORMAT(referral_date, "%m/%d/%Y") as referral_date, 
+                    (CASE
+                        WHEN DATE_FORMAT(appointment_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(appointment_date, "%m/%d/%Y")
+                    END) as appointment_date'
                     );
                 echo json_encode($response);
                 break;
@@ -87,7 +92,7 @@ class Patient_referral extends CORE_Controller {
                 $appointment_date = $this->input->post('appointment_date', TRUE);
 
                 $m_patient_referral->referral_date = date("Y-m-d",strtotime($referral_date));
-                $m_patient_referral->appointment_date = date("Y-m-d",strtotime($appointment_date));
+                $m_patient_referral->appointment_date = date("Y-m-d",strtotime($appointment_date));                
                 $m_patient_referral->referral_doctors = $this->input->post('referral_doctors', TRUE);
                 $m_patient_referral->referral_diagnostics = $this->input->post('referral_diagnostics', TRUE);
                 $m_patient_referral->remarks = $this->input->post('remarks', TRUE);

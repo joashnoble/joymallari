@@ -6,26 +6,16 @@ class Login extends CORE_Controller {
     function __construct()
     {
         parent::__construct('');
+        
         if($this->session->user_id != '') {
+            // redirect(base_url("Homepage"));
             echo '<script>
             window.location.href = "../../Homepage";
-            </script>';
+            </script>';            
         } 
-        else{
-        }  
-        /*if($this->session->userdata('user_id') !== FALSE) {
-            echo '<script>
-            window.location.href = "Homepage";
-            </script>';
-        } 
-        else{
-            redirect(base_url().'login');
-        }  */
+
         $this->load->model('Users_model');
         $this->load->model('User_groups_model');
-        /*$this->load->model('Tax_types_model');
-        $this->load->model('Approval_status_model');
-        $this->load->model('Order_status_model');*/
 
     }
 

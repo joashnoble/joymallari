@@ -48,9 +48,9 @@
           <li class="hidden-xs right_referralletter_view patient_referral_letter">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Referral"><i class="fa fa-envelope"></i></a>
           </li>
-<!--           <li class="hidden-xs right_admitting_order_view patient_admitting_order">
+          <li class="hidden-xs right_admitting_order_view patient_admitting_order">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Admitting Order"><i class="fa fa-list-ul"></i></a>
-          </li> -->
+          </li>
           <li class="dropdown hidden-md hidden-lg hidden-sm">
             <a href="javascript:void();" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
             <ul class="dropdown-menu text-center">
@@ -87,9 +87,9 @@
                 <li class="user-header right_referralletter_view patient_referral_letter">
                   <a href="javascript:void();"><i class="fa fa-envelope"></i>Referral</a>
                 </li>
-<!--                 <li class="user-header right_admitting_order_view patient_admitting_order">
+                <li class="user-header right_admitting_order_view patient_admitting_order">
                   <a href="javascript:void();"><i class="fa fa-envelope"></i>Admitting Order</a>
-                </li> -->
+                </li>
             </ul>
           </li>
           <!-- User Account: style can be found in dropdown.less -->

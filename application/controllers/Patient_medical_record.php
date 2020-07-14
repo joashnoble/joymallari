@@ -30,7 +30,12 @@ class Patient_medical_record extends CORE_Controller
                 $ref_patient_id=$this->input->post('ref_patient_id',TRUE);
                 $response['data']=$this->Patient_medical_record_model->get_list(
                     array('patient_medical_certificate.ref_patient_id'=>$ref_patient_id,'patient_medical_certificate.is_deleted'=>FALSE),
-                    'patient_medical_certificate.*'
+                    'patient_medical_certificate.*,
+                    (CASE
+                        WHEN DATE_FORMAT(medical_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(medical_date, "%m/%d/%Y")
+                    END) as medical_date'
                     );
                 echo json_encode($response);
                 break;
@@ -82,16 +87,22 @@ class Patient_medical_record extends CORE_Controller
                 $response['stat']='success';
                 $response['msg']='Medical Certficate successfully created.';
                 $response['row_added'] = $this->Patient_medical_record_model->get_list($patient_medical_certificate_id,
-                    'patient_medical_certificate.*'
-                    );
+                    'patient_medical_certificate.*, (CASE
+                        WHEN DATE_FORMAT(medical_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(medical_date, "%m/%d/%Y")
+                    END) as medical_date');
                 echo json_encode($response);
                 break;
 
             case 'update':
                 $m_medical_record=$this->Patient_medical_record_model;
                 $patient_medical_certificate_id=$this->input->post('patient_medical_certificate_id',TRUE);
+                $date=$this->input->post('medical_date',TRUE);
+                $medical_date = date("Y-m-d",strtotime($date));
 
-                $m_medical_record->medical_date=$this->input->post('medical_date',TRUE);
+
+                $m_medical_record->medical_date=$medical_date;
                 $m_medical_record->medical_diagnostics=$this->input->post('medical_diagnostics',TRUE);
                 $m_medical_record->modified_by = $this->session->user_id;
 
@@ -99,7 +110,13 @@ class Patient_medical_record extends CORE_Controller
                     $response['title']='Success!';
                     $response['stat']='success';
                     $response['msg']='Medical Record successfully updated.';
-                    $response['row_updated']=$m_medical_record->get_list($patient_medical_certificate_id);
+                    $response['row_updated'] = $m_medical_record->get_list($patient_medical_certificate_id,
+                        'patient_medical_certificate.*, (CASE
+                            WHEN DATE_FORMAT(medical_date, "%Y") <= "1970"
+                            THEN ""
+                            ELSE DATE_FORMAT(medical_date, "%m/%d/%Y")
+                        END) as medical_date');
+
                     echo json_encode($response);
                 }
                 break;
@@ -118,11 +135,6 @@ class Patient_medical_record extends CORE_Controller
                     }
 
                 break;     
-
-
-
         }
-
-
     }
 }

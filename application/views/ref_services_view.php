@@ -42,7 +42,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="tbl_services" class="table table-bordered table-striped">
+              <table id="tbl_services" class="table table-striped">
                 <thead class="tbl-header">
                     <tr>
                         <th >Code</th>
@@ -54,7 +54,7 @@
                 </thead>
                 <tbody>
                 </tbody>
-                <tfoot>
+<!--                 <tfoot>
                 <tr>
                     <th >Code</th>
                     <th >Service Description</th>
@@ -62,7 +62,7 @@
                     <th >Notes</th>
                     <th style="text-align:center;">Action</th>
                 </tr>
-                </tfoot>
+                </tfoot> -->
               </table>
             </div>
             <!-- /.box-body -->
@@ -133,7 +133,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> Modified by JBPV
+      <b>Version</b> Modified by JBPV | JJLN
     </div>
     <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
     reserved.
@@ -239,7 +239,7 @@
                         clearFields($('#frm_Ref_services'))
                     }).always(function(){
                         $('#modal_Ref_services').modal('hide');
-                        $.unblockUI();
+                        // $.unblockUI();
                     });
                     return;
                 }
@@ -250,7 +250,7 @@
                         dt.row(_selectRowObj).data(response.row_updated[0]).draw();
                     }).always(function(){
                         $('#modal_Ref_services').modal('hide');
-                        $.unblockUI();
+                        // $.unblockUI();
                     });
                     return;
                 }
