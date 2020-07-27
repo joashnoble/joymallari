@@ -15,6 +15,8 @@ class Ref_patient extends CORE_Controller {
         $this->load->model('Patient_Info_model');
         $this->load->model('Ref_service_desc_model');
         $this->load->model('Company_info_model');
+        $this->load->model('Stamp_settings_model');
+        $this->load->model('Header_settings_model');
         $this->load->library('excel');
         $this->load->library('M_pdf');
 
@@ -41,13 +43,17 @@ class Ref_patient extends CORE_Controller {
 
         $data['_right_navigation']=$this->load->view('template/elements/right_bar_navigation','',TRUE);
 
-        $data['header_1']=$this->load->view('template/elements/header_1','',TRUE);
+        $data_1['data']=$this->Header_settings_model->get_list()[0];
+        $data['header_1']=$this->load->view('template/elements/header_1',$data_1,TRUE);
 
-        $data['header_2']=$this->load->view('template/elements/header_2','',TRUE);
+        $data['header_2']=$this->load->view('template/elements/header_2',$data_1,TRUE);
 
         $data['_rights']=$this->load->view('template/elements/rights','',TRUE);
 
-        $data['company']=$this->Company_info_model->get_list();
+        // $data['company']=$this->Company_info_model->get_list();
+
+        $data_1['stamp_data']=$this->Stamp_settings_model->get_list()[0];
+        $data['stamp']=$this->load->view('template/stamp',$data_1,TRUE);
 
         $data['service_desc']=$this->Ref_service_desc_model->get_list(
 

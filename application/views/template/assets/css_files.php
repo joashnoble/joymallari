@@ -178,7 +178,7 @@
       margin-top: 10px;
     }
 
-    table.table_patient{
+    table.table_patient, .table-list-border{
       width: 100%;border: 1px solid lightgray;
     }
 
@@ -229,10 +229,35 @@
     .uppercase{
       text-transform: uppercase;
     }
-    .close_patient_field:focus{
+    .close_patient_field:focus, .close_list:focus{
       outline: none!important;
     }
     .header-text-title{
       text-transform: 
+    }
+    .normal{
+      font-weight: normal;
+    }
+   .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    } 
+    .box-body{
+      padding: 0;
+    }
+
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+      background-color: #FFFACD;
+    }  
+
+    #tbl_patient_prescription_filter, #tbl_lab_filter, #tbl_billing_filter, #tbl_visiting_record_filter, #tbl_clinical_filter,#tbl_patient_medical_abstract_filter,#tbl_patient_nephro_order_filter,#tbl_patient_lab_report_filter,#tbl_med_cert_report_filter,#tbl_nephro_record_filter,#tbl_patient_referral_filter,#tbl_patient_admitting_order_filter{
+      display: none;
+    }
+
+    .padding-top{
+      padding-top: 5px;
+    }
+    .header-icon{
+      color: #222d32;
     }
   </style>

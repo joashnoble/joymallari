@@ -24,17 +24,6 @@
     tr.details td.patient-details {
         background: url('assets/img/icons/Folder_Opened.png') no-repeat center center;
     }
-    td.details-control {
-        background: url('assets/img/icons/Folder_Closed.png') no-repeat center center;
-        cursor: pointer;
-    }
-    td.details-control-print {
-        background: url('assets/img/icons/print.png') no-repeat center center;
-        cursor: pointer;
-    }
-    tr.details td.details-control {
-        background: url('assets/img/icons/Folder_Opened.png') no-repeat center center;
-    }    
     .ospace{
         margin:0 !important;
         padding:0 !important;
@@ -94,8 +83,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <span class="module-icon"><span class="fa fa-users"></span></span>
-        <span class="module-title">Patient General Information</span>
+        Patient General Information
       </h1>
       <ol class="breadcrumb">
         <li><a href="Homepage"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -105,47 +93,44 @@
 
     <!-- Main content -->
     <section class="content">
+
         <div id="div_patient_list" class="table-list">
             <div class="box">
                 <div class="box-header" style="">
-                    <div>
-                        <button class="btn btn-dark right_patientref_create" id="btn_new_refpatient">
-                            <i class="fa fa-user" aria-hidden="true"></i> New Patient
-                        </button>
+                    <button class="btn btn-dark right_patientref_create" id="btn_new_refpatient">
+                        <i class="fa fa-user" aria-hidden="true"></i> New Patient
+                    </button>
 
-                        <a href="Ref_patient/transaction/export-patient-masterlist" class="btn btn-default" style="float: right;" data-toggle="tooltip" data-placement="bottom" title="Export Patient Masterlist">
-                            <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-                        </a>
-                        <hr>                        
-                    </div>
+                    <a href="Ref_patient/transaction/export-patient-masterlist" class="btn btn-default" style="float: right;" data-toggle="tooltip" data-placement="bottom" title="Export Patient Masterlist">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                    </a>
+                    <hr>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="table-responsive">
-                        <table id="tbl_ref_patient" class="table table-striped table_patient" width="100%">
-                            <thead class="tbl-header">
-                                <tr>
-                                    <th><center>#</center></th>
-                                    <th>Fullname</th>
-                                    <th>Birthdate</th>
-                                    <th>Sex</th>
-                                    <th>Telephone #</th>
-                                    <th>Mobile #</th>
-                                    <th style="text-align:center;">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                      </table>
-                    </div>
+                <div class="box-body table-responsive" >
+                  <table id="tbl_ref_patient" width="100%" class="table table-striped table_patient">
+                    <thead class="tbl-header">
+                        <tr>
+                            <th><center>#</center></th>
+                            <th>Fullname</th>
+                            <th>Birthdate</th>
+                            <th>Sex</th>
+                            <th>Telephone #</th>
+                            <th>Mobile #</th>
+                            <th style="text-align:center;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
                 </div>
                 <!-- /.box-body -->
               </div>
         </div>
-        <div id="div_patient_field" class="table-field" style="display: none;">
+        <div id="div_patient_fields" class="table-field" style="display: none;">
             <div class="box">
                 <div class="box-header" style="">
-                        <h4 class="bh-text-title"><span class="header-text-title"></span> | <small> <span class="header-text-info"></span></small>
+                    <h4 class="bh-text-title"><span class="header-text-title"></span> | <small> <span class="header-text-info"></span></small>
                         <div style="float: right;margin-top: -10px;">
                             <button class="btn btn-default close_patient_field" style="border-radius: 50%;">
                                 <i class="fa fa-close" aria-hidden="true"></i>
@@ -447,627 +432,41 @@
                 </div>
             </div> 
         </div>         
-        <div id="div_prescription_list" class="table-list" style="display: none;">
+        <div id="div_prescription_list" class="table-list">
             <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_prescription" class="btn btn-dark bgm-green waves-effect right_prescription_create" style="float: left;">
-                            <i class="fa fa-plus-circle"></i> New Prescription
-                    </button>  
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_patient_prescription" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
+                <div class="box-header" style="">
+                    <button class="btn btn-dark right_patientref_create" id="btn_new_refpatient">
+                        <i class="fa fa-user" aria-hidden="true"></i> New Prescription
+                    </button>
+
+                    <a href="Ref_patient/transaction/export-patient-masterlist" class="btn btn-default" style="float: right;" data-toggle="tooltip" data-placement="bottom" title="Export Patient Masterlist">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                    </a>
+                    <hr>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_patient_prescription">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_patient_prescription" class="table table-striped table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th width="5%"></th>
-                                        <th width="5%"></th>
-                                        <th>PR #</th>
-                                        <th>Date Prescribed</th>
-                                        <th style="text-align:center;color:white;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
+                <div class="box-body table-responsive" >
+                  <table id="tbl_ref_patient" width="100%" class="table table-striped table_patient">
+                    <thead class="tbl-header">
+                        <tr>
+                            <th><center>#</center></th>
+                            <th>Fullname</th>
+                            <th>Birthdate</th>
+                            <th>Sex</th>
+                            <th>Telephone #</th>
+                            <th>Mobile #</th>
+                            <th style="text-align:center;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
                 </div>
                 <!-- /.box-body -->
               </div>
         </div>
-        <div id="div_laboratory_report_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_laboratory" class="btn btn-dark bgm-green waves-effect right_medlab_create">
-                        <i class="fa fa-plus-circle"></i> New Laboratory
-                    </button>     
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_lab" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_lab">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_lab" class="table table-striped table-hover table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th style="color:white;">Date</th>
-                                        <th style="color:white;">Details</th>
-                                        <th style="text-align:center;color:white;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>
-        <div id="div_billing_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_billing" class="btn btn-dark bgm-green waves-effect right_billing_create">
-                        <i class="fa fa-plus-circle"></i> New Billing
-                    </button>  
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_billing" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_billing">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_billing" class="table table-striped table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th width="5%"></th>
-                                        <th width="5%"></th>
-                                        <th>Billing Code</th>
-                                        <th>Date</th>
-                                        <th style="text-align:center;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>        
-        <div id="div_visiting_record_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_visiting_record" class="btn btn-dark bgm-green waves-effect right_visiting_create">
-                        <i class="fa fa-plus-circle"></i> New Visiting Record
-                    </button> 
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_visiting_record" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_visiting_record">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_visiting_record" class="table table-striped table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th width="5%"></th>
-                                        <th width="5%"></th>
-                                        <th>Date</th>
-                                        <th>Note</th>
-                                        <th>Diagnostics</th>
-                                        <th style="text-align:center;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>          
-        <div id="div_clinical_database_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_clinical" class="btn btn-dark bgm-green waves-effect right_clinicaldb_create">
-                        <i class="fa fa-plus-circle"></i> New Clinical Database
-                    </button> 
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_clinical" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_clinical">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_clinical" class="table table-striped table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th width="5%"></th>
-                                        <th width="5%"></th>
-                                        <th>Date</th>
-                                        <th style="color:white;">Diagnostics</th>
-                                        <th style="color:white;">Treatment</th>
-                                        <th style="color:white;">Medication</th>
-                                        <th style="color:white;">Remarks</th>
-                                        <th style="text-align:center;color:white;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>    
-        <div id="div_medical_abstract_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_medical_abstract" class="btn btn-dark bgm-green waves-effect right_medical_abstract_create">
-                        <i class="fa fa-plus-circle"></i> New Medical Abstract
-                    </button>
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_patient_medical_abstract" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_patient_medical_abstract">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_patient_medical_abstract" class="table table-striped table-hover table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th style="color:white;">Code</th>
-                                        <th style="color:white;">Case No</th>
-                                        <th style="color:white;">Date Created</th>
-                                        <th style="text-align:center;color:white;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>       
-        <div id="div_nephro_order_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_nephro_order" class="btn btn-dark bgm-green waves-effect right_nephro_order_create">
-                        <i class="fa fa-plus-circle"></i> New Nephro Order
-                    </button>  
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_patient_nephro_order" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_patient_nephro_order">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_patient_nephro_order" class="table table-striped table-hover table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th style="color:white;">Code #</th>
-                                        <th style="color:white;">Date Created</th>
-                                        <th style="text-align:center;color:white;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>         
-        <div id="div_patient_lab_report_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_diagnostic" class="btn btn-dark bgm-green waves-effect right_diagnostic_create">
-                        <i class="fa fa-plus-circle"></i> New Diagnostic Test
-                    </button>
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_patient_lab_report" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_patient_lab_report">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_patient_lab_report" class="table table-striped table-hover table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th style="color:white;">Code #</th>
-                                        <th style="color:white;">Date Created</th>
-                                        <th style="text-align:center;color:white;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>  
-        <div id="div_med_cert_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_medical_cert" class="btn btn-dark bgm-green waves-effect right_medical_cert">
-                        <i class="fa fa-plus-circle"></i> New Medical Certificate
-                    </button>  
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_med_cert_report" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                         <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_med_cert_report">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_med_cert_report" class="table table-striped table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th width="5%"></th>
-                                        <th width="5%"></th>
-                                        <th>Code #</th>
-                                        <th>Date Created</th>
-                                        <th style="text-align:center;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>        
-        <div id="div_nephro_record_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button class="btn btn-dark right_patientinfo_create" id="btn_new">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i> 
-                        New Nephro Record
-                    </button>
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_nephro_record" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_nephro_record">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_nephro_record" class="table table-striped table-hover table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Attending Physician</th>
-                                        <th>Treatment No.</th>
-                                        <th style="text-align:center;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>
-        <div id="div_patient_referral_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_referral" class="btn btn-dark bgm-green waves-effect right_medical_cert">
-                        <i class="fa fa-plus-circle"></i> New Referral Letter
-                    </button>
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_patient_referral" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_patient_referral">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_patient_referral" class="table table-striped table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th width="5%"></th>
-                                        <th width="5%"></th>
-                                        <th>Referral Code #</th>
-                                        <th>Referral Date</th>
-                                        <th style="text-align:center;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>                                    
-        <div id="div_patient_admitting_order_list" class="table-list" style="display: none;">
-            <div class="box">
-                <div class="box-header" style="border-bottom: 1px solid lightgray;">
-                    <button id="new_admitting_order" class="btn btn-dark bgm-green waves-effect right_admitting_order">
-                        <i class="fa fa-plus-circle"></i> New Admitting Order
-                    </button>
-                    <div style="float: right;">
-                        <button class="btn btn-default close_list" data-id="tbl_patient_admitting_order" style="border-radius: 50%;">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-lg-9" style="padding-top: 10px;">
-                            <h4 class="bh-text-title">
-                                <label class="label patient-info-label">
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
-                                        PATIENT
-                                    </span> : <span class="header-text-title"></span>
-                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
-                                </label>
-                            </h4>   
-                        </div>
-                        <div class="col-lg-3 padding-top">
-                            Search :<br />
-                            <input type="text" class="form-control" id="searchbox_tbl_patient_admitting_order">
-                        </div>
-                    </div>
-                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
-                        <div class="table-responsive">   
-                            <table id="tbl_patient_admitting_order" class="table table-striped table-hover table-list-border" width="100%">
-                                <thead class="tbl-header">
-                                    <tr>
-                                        <th style="color:white;">Admitting Code #</th>
-                                        <th style="color:white;">Date</th>
-                                        <th style="text-align:center;color:white;">Action</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>        
-                        </div> 
-                    </div>               
-                </div>
-                <!-- /.box-body -->
-              </div>
-        </div>                               
         <!--patient modal-->
-<!--    <div id="modal_ref_patient" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
+<!--         <div id="modal_ref_patient" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bgm-indigo">
@@ -1092,7 +491,7 @@
         <!-- patient modal -->
 
         <!-- modal patient prescription start -->
-<!--         <div class="modal fade" id="modal_patient_prescription" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_patient_prescription" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#27ae60;" class="table table-striped">
@@ -1104,6 +503,18 @@
                     </div>
                     <div class="modal-body">
                         <div class="">
+                          <table id="tbl_patient_prescription" class="table table-striped">
+                            <thead class="tbl-header">
+                                <tr>
+                                    <th style="color:white;">PR #</th>
+                                    <th style="color:white;">Date Prescribed</th>
+                                    <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -1115,7 +526,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal patient presription end -->
 
         <!-- modal new prescription -->
@@ -1270,18 +681,43 @@
         <!-- modal patient prescription end -->
 
         <!-- modal patient laboratory -->
-<!--         <div class="modal fade" id="modal_patient_laboratory" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_patient_laboratory" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#e67e22;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                        <h4 class="modal-title">
+                            <span class="fa fa-stethoscope"></span> Laboratory Report of : <areafullname class="areafullname"></areafullname>
+                        </h4>
                     </div>
                     <div class="modal-body">
+                        <div>
+                            <table id="tbl_lab" width="100%" class="table table-striped">
+                                <thead class="tbl-header">
+                                <tr>
+                                    <th style="color:white;">Date</th>
+                                    <th style="color:white;">Details</th>
+                                    <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="new_laboratory" class="btn btn-dark bgm-green waves-effect right_medlab_create">
+                            <i class="fa fa-plus-circle"></i> New Laboratory
+                        </button>
+                        <button type="button" id="close_laboratory" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal patient laboratory -->
 
         <!-- modal newpatient new lab -->
@@ -1385,18 +821,43 @@
         <!-- modal patient lab details -->
 
         <!-- modal patient billing start -->
-<!--         <div class="modal fade" id="modal_patient_billing" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_patient_billing" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#2980b9;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                        <h4 class="modal-title">
+                            <span class="fa fa-money"></span> Patient Billing of : <areafullname class="areafullname"></areafullname>
+                        </h4>
                     </div>
                     <div class="modal-body">
+                        <div>
+                        <table id="tbl_billing" width="100%" class="table table-striped">
+                            <thead class="tbl-header">
+                            <tr>
+                                <th style="color:white;">Billing Code</th>
+                                <th style="color:white;">Date</th>
+                                <th style="text-align:center;color:white;">Action</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="new_billing" class="btn btn-dark bgm-green waves-effect right_billing_create">
+                            <i class="fa fa-plus-circle"></i> New Billing
+                        </button>
+                        <button type="button" id="close_billing" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal patient billing end -->
 
         <!-- modal new billing -->
@@ -1531,18 +992,44 @@
         <!-- modal patient prescription end -->
 
         <!-- modal patient visiting -->
-<!--         <div class="modal fade" id="modal_visiting_record" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_vising_record" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#2980b9;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                        <h4 class="modal-title">
+                            <span class="fa fa-file-text-o"></span> Patient Visiting Record of : <b><areafullname class="areafullname"></areafullname>
+                        </h4></b>
                     </div>
                     <div class="modal-body">
+                        <div>
+                        <table id="tbl_visiting_record" width="100%" class="table table-striped">
+                            <thead class="tbl-header">
+                            <tr>
+                                <th style="color:white;">Date</th>
+                                <th style="color:white;">Note</th>
+                                <th style="color:white;">Diagnostics</th>
+                                <th style="text-align:center;color:white;">Action</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="new_visiting_record" class="btn btn-dark bgm-green waves-effect right_visiting_create">
+                            <i class="fa fa-plus-circle"></i> New Visiting Record
+                        </button>
+                        <button type="button" id="close_visiting" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal patient visiting end -->
 
         <!-- modal new p visiting record start -->
@@ -1652,53 +1139,61 @@
                             <div id="printcontentvisitingdetails">
                                 <div class="card">
                                     <div class="card-body card-padding">
-                                        <?php echo $header_2; ?>
-                                        <hr>
+                                    <?php echo $header_2; ?>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 style="float:left;font-weight:400;">Date Visited : <datevisited id="datevisited"></datevisited></h4>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4 style="float:right;font-weight:400;">Next Visit Date : <nextvisitdate id="nextvisitdate"></nextvisitdate></h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                               <center><h3>Visiting Record</h3></center> 
-                                            </div>
+                                                <h4 style="float:left;font-weight:400;">Note :</h4>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <h4 style="float:left;font-weight:400;">Date Visited : <datevisited id="datevisited"></datevisited></h4>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 style="float:right;font-weight:400;">Next Visit Date : <nextvisitdate id="nextvisitdate"></nextvisitdate></h4>
-                                            </div>
+                                                <p style="float:left;"><visitingnote id="visitingnote"></visitingnote></p>
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                    <h4 style="float:left;font-weight:400;">Note :</h4>
-                                            </div>
-                                            <div class="row">
-                                                    <p style="float:left;"><visitingnote id="visitingnote"></visitingnote></p>
-                                            </div>
-                                            <div class="row">
-                                                    <h4 style="float:left;font-weight:400;">Diagnostics :</h4>
-                                            </div>
-                                            <div class="row">
-                                                    <p style="float:left;"><visitingdiagnostics id="visitingdiagnostics"></visitingdiagnostics></p>
-                                            </div>
-                                            <div class="row">
-                                                    <h4 style="float:left;font-weight:400;">Findings :</h4>
-                                            </div>
-                                            <div class="row">
-                                                    <p style="float:left;"><visitingfindings id="visitingfindings"></visitingfindings></p>
-                                            </div>
-                                            <div class="row">
-                                                    <h4 style="float:left;font-weight:400;">Treatment :</h4>
-                                            </div>
-                                            <div class="row">
-                                                    <p style="float:left;"><visitingtreatment id="visitingtreatment"></visitingtreatment></p>
-                                            </div>
-                                            <div class="row">
-                                                    <h4 style="float:left;font-weight:400;">Remarks :</h4>
-                                            </div>
-                                            <div class="row">
-                                                    <p style="float:left;"><visitingremarks id="visitingremarks"></visitingremarks></p>
-                                            </div>
+                                        <div class="row">
+                                                <h4 style="float:left;font-weight:400;">Diagnostics :</h4>
                                         </div>
+                                        <div class="row">
+                                                <p style="float:left;"><visitingdiagnostics id="visitingdiagnostics"></visitingdiagnostics></p>
+                                        </div>
+                                        <div class="row">
+                                                <h4 style="float:left;font-weight:400;">Findings :</h4>
+                                        </div>
+                                        <div class="row">
+                                                <p style="float:left;"><visitingfindings id="visitingfindings"></visitingfindings></p>
+                                        </div>
+                                        <div class="row">
+                                                <h4 style="float:left;font-weight:400;">Treatment :</h4>
+                                        </div>
+                                        <div class="row">
+                                                <p style="float:left;"><visitingtreatment id="visitingtreatment"></visitingtreatment></p>
+                                        </div>
+                                        <div class="row">
+                                                <h4 style="float:left;font-weight:400;">Remarks :</h4>
+                                        </div>
+                                        <div class="row">
+                                                <p style="float:left;"><visitingremarks id="visitingremarks"></visitingremarks></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- <footer class="m-t-15 p-20">
+                                        <ul class="list-inline text-center list-unstyled">
+                                            <li class="m-l-5 m-r-5">
+                                                <small><?php echo "iamjbpv@outlook.com"; ?></small>
+                                            </li>
+                                            <li class="m-l-5 m-r-5">
+                                                <small><?php echo '099540932xx'; ?></small>
+                                            </li>
+                                            <li class="m-l-5 m-r-5">
+                                                <small><?php echo "www.jbvillamayor.com"; ?></small>
+                                            </li>
+                                        </ul>
+                                    </footer> -->
                                     </div>
                                 </div>
                             </div>
@@ -1719,18 +1214,46 @@
         <!-- modalvisiting detailsend -->
 
         <!-- modal patient clinical -->
-<!--         <div class="modal fade" id="modal_clinical" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_clinical" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#2980b9;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                            <h4 class="modal-title">
+                                <i class="fa fa-medkit"></i> Clinical Database of: <areafullname class="areafullname"></areafullname>
+                            </h4>
                     </div>
                     <div class="modal-body">
+                        <div>
+                        <table id="tbl_clinical" width="100%" class="table table-striped">
+                            <thead class="tbl-header">
+                            <tr>
+                                <th>Date</th>
+                                <th style="color:white;">Diagnostics</th>
+                                <th style="color:white;">Treatment</th>
+                                <th style="color:white;">Medication</th>
+                                <th style="color:white;">Remarks</th>
+                                <th style="text-align:center;color:white;">Action</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="new_clinical" class="btn btn-dark bgm-green waves-effect right_clinicaldb_create">
+                            <i class="fa fa-plus-circle"></i> New Clinical Database
+                        </button>
+                        <button type="button" id="close_visiting" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal patient clinical end -->
 
         <!-- modal new clinical start -->
@@ -1820,15 +1343,81 @@
                     <div class="modal-body">
                         <form> 
                             <div id="printcontentclinicaldetails">
-                                <?php echo $header_2; ?>
-                                <hr>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                       <center><h3>Clinical Database</h3></center> 
+                                    <div class="text-center">
+                                        <h4 style="font-family:tahoma;font-size:14pt;">JOY D. MALLARI - DE LARA ,MD ,FPCP ,FPSN</h4>
+                                        
+                                        <span class="text-muted">
+                                            <address style="font-family:tahoma;font-size:14pt;">
+                                                Internal Medicine - Nephrology<br>
+                                                Clinical Database
+                                            </address>
+                                        </span>
                                     </div>
-                                </div>                                
+                                </div>
                                 <div class="card">
+                                    <!-- <div class="card-header ch-alt text-center">
+                                        <img class="i-logo company_print" id="company_print" src="" alt="">
+                                    </div> -->
+
                                     <div class="card-body card-padding">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="text-right">
+                                                    <h4 class="text-uppercase" style="font-family:tahoma;font-size:10pt;">Dizon-Mallari Medical Clinic</h4>
+                                                    
+                                                    <span class="text-muted">
+                                                        <address style="font-family:tahoma;font-size:8pt;">
+                                                            092 Hi way San Pablo, Mexio, Pampanga<br>
+                                                            Clinic hours Mon thru Fridays (except Wed) 9-11am<br>
+                                                            Tel # 09156285228 (045) 4353646
+                                                        </address>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="text-left">
+                                                    <h4 class="text-uppercase" style="font-family:tahoma;font-size:10pt;">V.L MAKABALI MEMORIAL HOSPITAL</h4>
+                                                    
+                                                    <span class="text-muted">
+                                                        <address style="font-family:tahoma;font-size:8pt;">
+                                                            Medical Arts Building Rm 2113<br>
+                                                            Wednesdays and Fridays 2-4 pm<br>
+                                                            Tel # (045) 4361275 / 09267200990
+                                                        </address>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="text-right">
+                                                    <h4 class="text-uppercase" style="font-family:tahoma;font-size:10pt;">ACCU-RENAL MEDICAL SERVICES</h4>
+                                                    
+                                                    <span class="text-muted">
+                                                        <address style="font-family:tahoma;font-size:8pt;">
+                                                            Brgy Mabiga, Mabalacat, Pampanga<br>
+                                                            Clinic hours T Th 2-4 pm<br>
+                                                            Tel # (045) 6245699
+                                                        </address>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="text-left">
+                                                    <h4 class="text-uppercase" style="font-family:tahoma;font-size:10pt;">THE MEDICAL CITY CLARK</h4>
+                                                    
+                                                    <span class="text-muted">
+                                                        <address style="font-family:tahoma;font-size:8pt;">
+                                                            Global Gateway Logistics City, Clark Free Port Zone<br>
+                                                            Wed 10-12nn Room 210<br>
+                                                            Tel # 09430100581
+                                                        </address>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     <div class="col-md-12">
                                         <div class="row">
                                                 <h4 style="float:left;font-weight:400;">Date :</h4>
@@ -1861,6 +1450,20 @@
                                                 <p style="float:left;"><clinical id="clinical_remarks"></clinical></p>
                                         </div>
                                     </div>
+
+                                    <!-- <footer class="m-t-15 p-20">
+                                        <ul class="list-inline text-center list-unstyled">
+                                            <li class="m-l-5 m-r-5">
+                                                <small><?php echo "iamjbpv@outlook.com"; ?></small>
+                                            </li>
+                                            <li class="m-l-5 m-r-5">
+                                                <small><?php echo '099540932xx'; ?></small>
+                                            </li>
+                                            <li class="m-l-5 m-r-5">
+                                                <small><?php echo "www.jbvillamayor.com"; ?></small>
+                                            </li>
+                                        </ul>
+                                    </footer> -->
                                     </div>
                                 </div>
                             </div>
@@ -1881,18 +1484,44 @@
         <!-- modalvisiting detailsend -->
 
         <!-- modal patient medical abstract list start -->
-<!--         <div class="modal fade" id="modal_medical_abstract_list" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_medical_abstract_list" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#27ae60;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                        <h4 class="modal-title">
+                            <span class="fa fa-stethoscope"></span> Medical Abstract of : <areafullname class="areafullname"></areafullname>
+                        </h4>
                     </div>
                     <div class="modal-body">
+                        <div>
+                          <table id="tbl_patient_medical_abstract" class="table table-striped">
+                            <thead class="tbl-header">
+                                <tr>
+                                    <th style="color:white;">Code</th>
+                                    <th style="color:white;">Case No</th>
+                                    <th style="color:white;">Date Created</th>
+                                    <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="new_medical_abstract" class="btn btn-dark bgm-green waves-effect right_medical_abstract_create">
+                            <i class="fa fa-plus-circle"></i> New Medical Abstract
+                        </button>
+                        <button type="button" id="close_medical_abstract" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal patient medical abstract list end -->
 
         <!--  med abstract MODAL -->
@@ -2257,18 +1886,43 @@
          <!--  medical abstract -->
 
         <!-- modal nephro order list start -->
-<!--         <div class="modal fade" id="modal_nephro_order_list" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_nephro_order_list" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#27ae60;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                            <h4 class="modal-title">
+                                <span class="fa fa-heart"></span> Nephrologist's Order of : <areafullname class="areafullname"></areafullname>
+                            </h4>
                     </div>
                     <div class="modal-body">
+                        <div>
+                          <table id="tbl_patient_nephro_order" class="table table-striped">
+                            <thead class="tbl-header">
+                                <tr>
+                                    <th style="color:white;">Code #</th>
+                                    <th style="color:white;">Date Created</th>
+                                    <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="new_nephro_order" class="btn btn-dark bgm-green waves-effect right_nephro_order_create">
+                            <i class="fa fa-plus-circle"></i> New Nephro Order
+                        </button>
+                        <button type="button" id="close_nephro_order" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal nephro order list end -->
 
            <!--  NEPHRO ORDER MODAL -->
@@ -2424,18 +2078,43 @@
         <!-- modal nephro order end -->
 
         <!-- modal diagnostic list start -->
-<!--         <div class="modal fade" id="modal_lab_report_list" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_lab_report_list" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#27ae60;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                        <h4 class="modal-title">
+                            <span class="fa fa-commenting-o"></span> Laboratory Request of : <areafullname class="areafullname"></areafullname>
+                        </h4>
                     </div>
                     <div class="modal-body">
+                        <div>
+                          <table id="tbl_patient_lab_report" class="table table-striped">
+                            <thead class="tbl-header">
+                                <tr>
+                                    <th style="color:white;">Code #</th>
+                                    <th style="color:white;">Date Created</th>
+                                    <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="new_diagnostic" class="btn btn-dark bgm-green waves-effect right_diagnostic_create">
+                            <i class="fa fa-plus-circle"></i> New Diagnostic Test
+                        </button>
+                        <button type="button" id="close_diagnostic" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal diagnostic list end -->
 
         <!--  laboratory request modal -->
@@ -2595,18 +2274,43 @@
          <!--  laboratroy report MODAL -->
 
         <!-- modal medical certificate list start -->
-<!--         <div class="modal fade" id="modal_med_cert_list" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_med_cert_list" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#27ae60;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                        <h4 class="modal-title">
+                            <span class="fa fa-certificate"></span> Medical Report of : <areafullname class="areafullname"></areafullname>
+                        </h4>
                     </div>
                     <div class="modal-body">
+                        <div>
+                          <table id="tbl_med_cert_report" class="table table-striped">
+                            <thead class="tbl-header">
+                                <tr>
+                                    <th style="color:white;">Code #</th>
+                                    <th style="color:white;">Date Created</th>
+                                    <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="new_medical_cert" class="btn btn-dark bgm-green waves-effect right_medical_cert">
+                            <i class="fa fa-plus-circle"></i> New Medical Certificate
+                        </button>
+                        <button type="button" id="close_medical_cert" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal diagnostic list end -->
 
         <!--  MEDICAL CERTIFICATE MODAL -->
@@ -2698,18 +2402,43 @@
         <!-- modal cert -->
 
         <!-- modal patient clinical -->
-<!--         <div class="modal fade" id="modal_nephro_record" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_nephro_record" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#2980b9;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                        <h4 class="modal-title"> 
+                            <span class="fa fa-heartbeat"></span> Nephro Record of : <areafullname class="areafullname"></areafullname>
+                        </h4>
                     </div>
                     <div class="modal-body">
+                        <div>
+                        <table id="tbl_nephro_record" class="table table-striped">
+                        <thead class="tbl-header">
+                            <tr>
+                                <th>Date</th>
+                                <th>Attending Physician</th>
+                                <th>Treatment No.</th>
+                                <th style="text-align:center;">Action</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button class="btn btn-dark right_patientinfo_create" id="btn_new">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i> New Nephro Record</button>
+                        <button type="button" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal patient clinical end -->
 
           <!-- modal patient info-->
@@ -4310,18 +4039,43 @@
         <!-- modal patient info end -->
 
         <!-- modal patient referral list start -->
-<!--         <div class="modal fade" id="modal_referral_list" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_referral_list" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#27ae60;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                        <h4 class="modal-title">
+                            <span class="fa fa-envelope"></span> Patient Referral of : <areafullname class="areafullname"></areafullname>
+                        </h4>
                     </div>
                     <div class="modal-body">
+                        <div>
+                          <table id="tbl_patient_referral" class="table table-striped">
+                            <thead class="tbl-header">
+                                <tr>
+                                    <th style="color:white;">Referral Code #</th>
+                                    <th style="color:white;">Referral Date</th>
+                                    <th style="text-align:center;color:white;">Action</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="new_referral" class="btn btn-dark bgm-green waves-effect right_medical_cert">
+                            <i class="fa fa-plus-circle"></i> New Referral Letter
+                        </button>
+                        <button type="button" id="close_referral" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal diagnostic list end -->
 
         <!--  Referral Letter Modal -->
@@ -4439,18 +4193,42 @@
         <!-- modal cert -->
 
         <!-- modal patient admitting order start -->
-<!--         <div class="modal fade" id="modal_admitting_order_list" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_admitting_order_list" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color:#27ae60;" class="table table-striped">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                        <h4 class="modal-title">
+                            <span class="fa fa-list"></span> Patient Admitting Order of : <areafullname class="areafullname"></areafullname>
+                        </h4>
                     </div>
                     <div class="modal-body">
+                        <div class="box-body">
+                          <table id="tbl_patient_admitting_order" class="table table-striped">
+                            <thead class="tbl-header">
+                                <tr>
+                                    <th style="color:white;">Admitting Code #</th>
+                                    <th style="color:white;">Date</th>
+                                    <th style="text-align:center;color:white;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="new_admitting_order" class="btn btn-dark bgm-green waves-effect right_admitting_order">
+                            <i class="fa fa-plus-circle"></i> New Admitting Order
+                        </button>
+                        <button type="button" id="close_admitting_order" class="btn btn-danger bgm-red waves-effect" data-dismiss="modal">
+                            <i class="fa fa-times-circle"></i> Close
+                        </button>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- modal patient admitting order end -->
         
         <!--  Admitting Order Modal -->
@@ -5132,7 +4910,6 @@
 
         var initializeControls=function(){
         dt=$('#tbl_ref_patient').DataTable({
-            "responsive": true,
             "aLengthMenu": [[15, 25, 50], [15, 25, 50]],
             "order": [[ 1, "asc" ]],
             "ajax" : "Ref_patient/transaction/list",
@@ -5171,619 +4948,6 @@
         });
 
         $('.numeric').autoNumeric('init');
-
-        patient_prescription_dt=$('#tbl_patient_prescription').DataTable({            
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 5, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true,               
-            "ajax": {
-                "url": "Patient_prescription/transaction/list",
-                "bDestroy": true,  
-                "type": "POST",
-                "data": function ( d ) {
-                    return $.extend( {}, d, {
-                        "ref_patient_id": _selectedID //id of the user
-                        } );
-                    }
-            },         
-            "columns": [
-                {
-                    "targets": [0],
-                    "class":          "details-control",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },
-                {
-                    "targets": [1],
-                    "class":          "details-control-print",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },                    
-                { targets:[2],data: "prescription_code" },
-                { targets:[3],data: "date_prescribed" },
-                {
-                    targets:[4],
-                    render: function (data, type, full, meta){
-
-                        var view_prescription = '<button class="btn btn-default btn-xs" name="view_prescription_details" data-toggle="tooltip" data-placement="left" title="View Details" style="margin-left: 5px;"><i class="fa fa-eye"></i> </button>';
-
-                        return '<center>'+view_prescription+edit_prescription+delete_prescription+'</center>';
-                    }
-                },
-                { visible:false, targets:[5],data: "patient_prescription_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-
-        });
-
-        patient_lab_dt=$('#tbl_lab').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 3, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true,  
-            "ajax": {
-                "url": "Patient_laboratory/transaction/list",
-                "bDestroy": true,  
-                "type": "POST",
-                "data": function ( d ) {
-                    return $.extend( {}, d, {
-                        "ref_patient_id": _selectedID //id of the user
-                        } );
-                    }
-            },
-            "columns": [
-                { targets:[0],data: "date_lab" },
-                { targets:[1],data: "results" },
-                {
-                    targets:[2],
-                    render: function (data, type, full, meta){
-                         var view_lab_details='<button class="btn btn-default btn-xs" name="view_lab_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
-                        
-                        return '<center>'+view_lab_details+edit_lab+remove_lab+'</center>';
-                    }
-                },
-                { visible:false, targets:[3],data: "patient_lab_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-
-        });
-
-        patient_billing_dt=$('#tbl_billing').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 5, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true,       
-            "ajax": {
-                "url": "Patient_billing/transaction/list",
-                "bDestroy": true,  
-                "type": "POST",
-                "data": function ( d ) {
-                    return $.extend( {}, d, {
-                        "ref_patient_id": _selectedID //id of the user
-                        } );
-                    }
-            },
-            "columns": [
-                {
-                    "targets": [0],
-                    "class":          "details-control",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },
-                {
-                    "targets": [1],
-                    "class":          "details-control-print",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },             
-                { targets:[2],data: "billing_code" },
-                { targets:[3],data: "billing_date" },
-                {
-                    targets:[4],
-                    render: function (data, type, full, meta){
-                        var view_billing_details='<button class="btn btn-default btn-xs" name="view_billing_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
-                        
-                        return '<center>'+view_billing_details+edit_billing+remove_billing+'</center>';
-                    }
-                },
-                { visible:false, targets:[5],data: "patient_billing_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-
-        });
-
-        patient_visiting_record_dt=$('#tbl_visiting_record').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 6, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true,      
-            "ajax": {
-                "url": "Patient_visiting/transaction/list",
-                "type": "POST",
-                "bDestroy": true,
-                "data": function ( d ) {
-                    return $.extend( {}, d, {
-                        "ref_patient_id": _selectedID //id of the user
-                        } );
-                    }
-            },
-            "columns": [
-                {
-                    "targets": [0],
-                    "class":          "details-control",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },
-                {
-                    "targets": [1],
-                    "class":          "details-control-print",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },                
-                { targets:[2],data: "visiting_date" },
-                { targets:[3],data: "visiting_note" },
-                { targets:[4],data: "visiting_diagnostics" },
-                {
-                    targets:[5],
-                    render: function (data, type, full, meta){
-                        var view_visiting_details='<button class="btn btn-default btn-xs" name="view_visiting_details_record"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
-                        
-                        return '<center>'+view_visiting_details+edit_visiting+remove_visiting+'</center>';
-                    }
-                },
-                { visible:false, targets:[6],data: "patient_visiting_record_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-        });
-
-        patient_clinical_dt=$('#tbl_clinical').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 8, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true,          
-            "ajax": {
-                "url": "Patient_clinical/transaction/list",
-                "bDestroy": true,
-                "type": "POST",
-                "data": function ( d ) {
-                    return $.extend( {}, d, {
-                        "ref_patient_id": _selectedID //id of the user
-                        } );
-                    }
-            },
-            "columns": [
-                {
-                    "targets": [0],
-                    "class":          "details-control",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },
-                {
-                    "targets": [1],
-                    "class":          "details-control-print",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },                  
-                { targets:[2],data: "date_created" },
-                { targets:[3],data: "clinical_diagnostics" },
-                { targets:[4],data: "clinical_treatment" },
-                { targets:[5],data: "clinical_medication" },
-                { targets:[6],data: "clinical_remarks" },
-                {
-                    targets:[7],
-                    render: function (data, type, full, meta){
-                        var view_clinical_details='<button class="btn btn-default btn-xs" name="view_clinical_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
-                        
-                        return '<center>'+view_clinical_details+edit_clinical+remove_clinical+'</center>';
-                    }
-                },
-                { visible:false, targets:[8],data: "patient_clinical_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-
-        });
-
-        patient_medical_abstract_dt=$('#tbl_patient_medical_abstract').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 4, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true,  
-            "ajax": {
-            "url": "Patient_medical_abstract/transaction/medical_abstract_list",
-            "type": "POST",
-            "data": function ( d ) {
-                return $.extend( {}, d, {
-                    "ref_patient_id": _selectedID //id of the user
-                    } );
-                }
-            },
-            "columns": [
-                { targets:[0],data: "medical_abstract_code" },
-                { targets:[1],data: "case_no" },
-                { targets:[2],data: "date_created" },
-                {
-                    targets:[3],
-                    render: function (data, type, full, meta){
-                         var view_medical_abstract_details='<button class="btn btn-default btn-xs" name="view_medical_abstract_details" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
-
-                        return '<center>'+view_medical_abstract_details+edit_medical_abstract+delete_medical_abstract+'</center>';
-                    }
-                },
-                { visible:false, targets:[4],data: "patient_medical_abstract_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-
-        });
-
-        patient_nephro_order_dt=$('#tbl_patient_nephro_order').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 3, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true, 
-            "ajax": {
-            "url": "Patient_nephro_order/transaction/list",
-            "type": "POST",
-            "data": function ( d ) {
-                return $.extend( {}, d, {
-                    "ref_patient_id": _selectedID //id of the user
-                    } );
-                }
-            },
-            "columns": [
-                { targets:[0],data: "nephro_order_code" },
-                { targets:[1],data: "date_created" },
-                {
-                    targets:[2],
-                    render: function (data, type, full, meta){
-                         var view_nephro_order='<button class="btn btn-default btn-xs" name="view_nephro_order" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
-
-                        return '<center>'+view_nephro_order+edit_nephro_order+delete_nephro_order+'</center>';
-                    }
-                },
-                { visible:false, targets:[3],data: "patient_nephro_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-
-        });
-
-        patient_lab_report_dt=$('#tbl_patient_lab_report').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 3, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true, 
-            "ajax": {
-            "url": "Patient_lab_diagnostics/transaction/list",
-            "type": "POST",
-            "data": function ( d ) {
-                return $.extend( {}, d, {
-                    "ref_patient_id": _selectedID //id of the user
-                    } );
-                }
-            },
-            "columns": [
-                { targets:[0],data: "diagnostic_code" },
-                { targets:[1],data: "lab_report_date" },
-                {
-                    targets:[2],
-                    render: function (data, type, full, meta){
-                         var view_diagnostic='<button class="btn btn-default btn-xs" name="view_diagnostic" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
-
-                        return '<center>'+view_diagnostic+edit_diagnostic+remove_diagnostic+'</center>';
-                    }
-                },
-                { visible:false, targets:[3],data: "patient_lab_report_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-
-        });
-
-        patient_medical_certificate_dt=$('#tbl_med_cert_report').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 5, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true, 
-            "ajax": {
-                "url": "Patient_medical_record/transaction/list",
-                "bDestroy": true,
-                "type": "POST",
-                "data": function ( d ) {
-                    return $.extend( {}, d, {
-                        "ref_patient_id": _selectedID //id of the user
-                        } );
-                    }
-                },
-            "columns": [
-                {
-                    "targets": [0],
-                    "class":          "details-control",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },
-                {
-                    "targets": [1],
-                    "class":          "details-control-print",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },               
-                { targets:[2],data: "medical_certificate_code" },
-                { targets:[3],data: "medical_date" },
-                {
-                    targets:[4],
-                    render: function (data, type, full, meta){
-                         var view_med_cert='<button class="btn btn-default btn-xs" name="view_med_cert" data-toggle="tooltip" data-placement="left" title="View Details"><i class="fa fa-eye"></i> </button>';
-
-                        return '<center>'+view_med_cert+edit_med_cert+remove_med_cert+'</center>';
-                    }
-                },
-                { visible:false, targets:[5],data: "patient_medical_certificate_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-
-        });
-
-        dt_patient_nephro_record=$('#tbl_nephro_record').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 4, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true, 
-            "ajax": {
-            "url": "Patient_Info/transaction/list",
-            "type": "POST",
-            "data": function ( d ) {
-                return $.extend( {}, d, {
-                    "ref_patient_id": _selectedID //id of the user
-                    } );
-                }
-            },
-            "columns": [
-                { targets:[0],data: "nephrorecorddate" },
-                { targets:[1],data: "attending_physc" },
-                { targets:[2],data: "treatment_no" },
-                {
-                    targets:[3],
-                    render: function (data, type, full, meta){
-
-                        return '<center>'+btn_nephrorecord_edit+btn_nephrorecord_trash+'</center>';
-                    }
-                },
-                { visible:false, targets:[4],data: "patient_info_id" }
-
-                ],
-                language: {
-                             searchPlaceholder: ""
-                         },
-                "rowCallback":function( row, data, index ){
-
-                    $(row).find('td').eq(10).attr({
-                        "align": "right"
-                    });
-                }
-            });
-
-        patient_referral_dt=$('#tbl_patient_referral').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 5, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true,  
-            "ajax": {
-                "url": "Patient_referral/transaction/list",
-                "bDestroy": true,
-                "type": "POST",
-                "data": function ( d ) {
-                    return $.extend( {}, d, {
-                        "ref_patient_id": _selectedID //id of the user
-                        } );
-                    }
-            },
-            "columns": [
-                {
-                    "targets": [0],
-                    "class":          "details-control",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },
-                {
-                    "targets": [1],
-                    "class":          "details-control-print",
-                    "orderable":      false,
-                    "data":           null,
-                    "defaultContent": ""
-                },             
-                { targets:[2],data: "referral_code" },
-                { targets:[3],data: "referral_date" },
-                {
-                    targets:[4],
-                    render: function (data, type, full, meta){
-                         var view_referral='<button class="btn btn-default btn-xs" name="view_referral" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
-
-                        return '<center>'+view_referral+edit_referral+remove_referral+'</center>';
-                    }
-                },
-                { visible:false, targets:[5],data: "patient_referral_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-
-        });
-
-        patient_admitting_order_dt=$('#tbl_patient_admitting_order').DataTable({
-            "dom": '<"toolbar">frtip',
-            "bLengthChange":false,
-            "pageLength":15,
-            "order": [[ 3, "desc" ]],         
-            oLanguage: {
-                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
-            },
-            processing : true,
-            "ajax": {
-            "url": "Patient_admitting_order/transaction/list",
-            "type": "POST",
-            "data": function ( d ) {
-                return $.extend( {}, d, {
-                    "ref_patient_id": _selectedID //id of the user
-                    } );
-                }
-            },
-            "columns": [
-                { targets:[0],data: "admitting_order_code" },
-                { targets:[1],data: "admitting_order_date" },
-                {
-                    targets:[2],
-                    render: function (data, type, full, meta){
-                         var view_admitting_order='<button class="btn btn-default btn-xs" name="view_admitting_order" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
-
-                        return '<center>'+view_admitting_order+edit_admitting_order+remove_admitting_order+'</center>';
-                    }
-                },
-                { visible:false, targets:[3],data: "patient_admitting_order_id" }
-            ],
-            language: {
-                 searchPlaceholder: ""
-             },
-             "rowCallback":function( row, data, index ){
-
-                $(row).find('td').css({
-                    "padding": "8px"
-                });
-            }
-
-        });
-
     }();
 
     var reInitializeNumeric=function(){
@@ -5816,18 +4980,12 @@
         // $('#patient_txn').text('New');
         // $('#modal_ref_patient').modal('show');
         clearFields($('#frm_ref_patients'));
-        showList('patient_field',false,'Patient General Information','fa-users');
+        showList(false);
     });
 
     $('#btn_cancel_refpatient, .close_patient_field').click(function(){
-        showList('patient_list',true,'Patient General Information','fa-users');
+        showList(true);
     }); 
-
-    $('.close_list').click(function(){
-        // var tbl = $(this).data("id");
-        $('.top-icon').removeClass('active');
-        showList('patient_list',true,'Patient General Information','fa-users');
-    });     
 
     $('#btn_createrefpatient').click(function(){
             if(validateRequiredFields($('#frm_ref_patients'))){
@@ -5839,7 +4997,7 @@
                         clearFields($('#frm_ref_patients'))
                     }).always(function(){
                         // $('#modal_ref_patient').modal('hide');
-                        showList('patient_list',true,'Patient General Information','fa-users');
+                        showList(true);
                         $.unblockUI();
                     });
                     return;
@@ -5851,7 +5009,7 @@
                         dt.row(_selectRowObj).data(response.row_updated[0]).draw();
                     }).always(function(){
                         // $('#modal_ref_patient').modal('hide');
-                        showList('patient_list',true,'Patient General Information','fa-users');
+                        showList(true);
                         $.unblockUI();
                     });
                     return;
@@ -5881,7 +5039,7 @@
 
         $('.header-text-title').html(data.fullname);
         $('.header-text-info').html('Edit');
-        showList('patient_field',false,'Patient General Information','fa-users');
+        showList(false);
         // $('#modal_ref_patient').modal('toggle');
 
     });
@@ -5935,23 +5093,15 @@
         }
     });
 
-    var showList=function(list,icon,header,module_icon){
-        $('.table-list').hide();
-        $('.table-field').hide();
-        if(icon){
-            $('.top-icon').show();
+    var showList=function(b){
+        if(b){
+            $('#div_patient_list').show();
+            $('#div_patient_fields').hide();
         }else{
-            $('.top-icon').hide();
+            $('#div_patient_list').hide();
+            $('#div_patient_fields').show();
         }
-        $('.module-icon').html('<span class="fa '+module_icon+'"></span>');
-        $('.module-title').html(header);
-        $('#div_'+list).show();     
     };
-
-    $('.top-icon').click(function(){
-        $('.top-icon').removeClass('active');
-        $(this).addClass('active');
-    });
 
     var createPatient=function(){
         var _data=$('#frm_ref_patients').serializeArray();
@@ -5997,21 +5147,69 @@
 
     $('.patient_prescription').click(function(){
         if(_isChecked==true){
-                
-            $('.header-text-title').html(_selectedname);
-
+            $('#tbl_patient_prescription').dataTable().fnDestroy();
             showSpinningProgressLOADING();
+
             setTimeout(function() {
-                patient_prescription_dt.ajax.reload($.unblockUI());
+                 getPrescription();
             }, 200);
 
-            showList('prescription_list',true,'Prescriptions','fa-user-md');
+            $('#modal_patient_prescription').modal('toggle');
         }
         else{
             notice_notif();
         }
         
     });
+
+    var getPrescription=function(){
+            patient_prescription_dt=$('#tbl_patient_prescription').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
+            "paging":true,
+            "order": [[ 3, "desc" ]],            
+            "ajax": {
+            "url": "Patient_prescription/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "prescription_code" },
+                { targets:[1],data: "date_prescribed" },
+                {
+                    targets:[2],
+                    render: function (data, type, full, meta){
+                         var view_prescription_details='<button class="btn btn-default btn-xs" name="view_prescription_details" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+
+                        return '<center>'+view_prescription_details+edit_prescription+delete_prescription+'</center>';
+                    }
+                },
+                { visible:false, targets:[3],data: "patient_prescription_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
 
     $('#new_prescription').click(function(){
         _txnprescription="new";
@@ -6267,50 +5465,6 @@
         }
     });
 
-    $('#tbl_patient_prescription tbody').on( 'click', 'tr td.details-control-print', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_prescription_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );                
-            var d=row.data();
-            window.open("Templates/transaction/prescription-details/"+ d.patient_prescription_id+"?type=pdf");
-    });
-
-    $('#tbl_patient_prescription tbody').on( 'click', 'tr td.details-control', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_prescription_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );
-
-        if ( row.child.isShown() ) {
-            tr.removeClass( 'details' );
-            row.child.hide();
-
-            // Remove from the 'open' array
-            detailRows.splice( idx, 1 );
-        }
-        else {
-            tr.addClass( 'details' );
-            var d=row.data();
-
-            $.ajax({
-                "dataType":"html",
-                "type":"POST",
-                "url":"Templates/transaction/prescription-details/"+ d.patient_prescription_id+"?type=fullview",
-                "beforeSend" : function(){
-                    row.child( '<center><br /><img src="assets/img/loader/ajax-loader-lg.gif" /><br /><br /></center>' ).show();
-                }
-            }).done(function(response){
-                row.child( response ).show();
-                // Add to the 'open' array
-                if ( idx === -1 ) {
-                    detailRows.push( tr.attr('id') );
-                }
-            });
-
-        }
-    });    
-
     $('#tbl_patient_prescription tbody').on('click','button[name="view_prescription_details"]',function(){
 
         _txnprescription="view";
@@ -6466,7 +5620,8 @@
                 "dataType":"json",
                 "type":"POST",
                 "url":"Patient_prescription/transaction/getitems",
-                "data":_data
+                "data":_data,
+                "beforeSend": showSpinningProgressLOADING($('#btn_save'))
             });
        
     }; 
@@ -6494,19 +5649,69 @@
 
     $('.patient_laboratory').click(function(){
         if(_isChecked==true){
-            $('.header-text-title').html(_selectedname);
-            showSpinningProgressLOADING()
+            $('#tbl_lab').dataTable().fnDestroy();
+            showSpinningProgressLOADING();
+
             setTimeout(function() {
-                patient_lab_dt.ajax.reload($.unblockUI());
+                 getLaboratory();
             }, 200);
 
-            showList('laboratory_report_list',true,'Laboratory Report','fa-stethoscope');
+            $('#modal_patient_laboratory').modal('toggle');
         }
         else{
             notice_notif();
         }
         
     });
+
+    var getLaboratory=function(){
+            patient_lab_dt=$('#tbl_lab').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",
+            "paging":true,
+            "order": [[ 3, "desc" ]],
+            "ajax": {
+            "url": "Patient_laboratory/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "date_lab" },
+                { targets:[1],data: "results" },
+                {
+                    targets:[2],
+                    render: function (data, type, full, meta){
+                         var view_lab_details='<button class="btn btn-default btn-xs" name="view_lab_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                        
+                        return '<center>'+view_lab_details+edit_lab+remove_lab+'</center>';
+                    }
+                },
+                { visible:false, targets:[3],data: "patient_lab_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
 
     $('#new_laboratory').click(function(){
         _txnMode1="new";
@@ -6703,14 +5908,62 @@
 
     //start billing
 
+    var getBilling=function(){
+            patient_billing_dt=$('#tbl_billing').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",   
+            "order": [[ 3, "desc" ]],         
+            "ajax": {
+            "url": "Patient_billing/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "billing_code" },
+                { targets:[1],data: "billing_date" },
+                {
+                    targets:[2],
+                    render: function (data, type, full, meta){
+                        var view_billing_details='<button class="btn btn-default btn-xs" name="view_billing_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                        
+                        return '<center>'+view_billing_details+edit_billing+remove_billing+'</center>';
+                    }
+                },
+                { visible:false, targets:[3],data: "patient_billing_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
+
     $('.patient_billing').click(function(){
         if(_isChecked==true){
-            $('.header-text-title').html(_selectedname);
+            $('#tbl_billing').dataTable().fnDestroy();
             showSpinningProgressLOADING();
             setTimeout(function() {
-                patient_billing_dt.ajax.reload($.unblockUI());
+                 getBilling();
             }, 200);
-            showList('billing_list',true,'Patient Billing','fa-money');
+            $('#modal_patient_billing').modal('toggle');
         }
         else{
             notice_notif();
@@ -6791,50 +6044,6 @@
 
                 reInitializeNumeric();
     });
-
-    $('#tbl_billing tbody').on( 'click', 'tr td.details-control-print', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_billing_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );                
-            var d=row.data();
-            window.open("Templates/transaction/billing-details/"+ d.patient_billing_id+"?type=pdf");
-    });
-
-    $('#tbl_billing tbody').on( 'click', 'tr td.details-control', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_billing_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );
-
-        if ( row.child.isShown() ) {
-            tr.removeClass( 'details' );
-            row.child.hide();
-
-            // Remove from the 'open' array
-            detailRows.splice( idx, 1 );
-        }
-        else {
-            tr.addClass( 'details' );
-            var d=row.data();
-
-            $.ajax({
-                "dataType":"html",
-                "type":"POST",
-                "url":"Templates/transaction/billing-details/"+ d.patient_billing_id+"?type=fullview",
-                "beforeSend" : function(){
-                    row.child( '<center><br /><img src="assets/img/loader/ajax-loader-lg.gif" /><br /><br /></center>' ).show();
-                }
-            }).done(function(response){
-                row.child( response ).show();
-                // Add to the 'open' array
-                if ( idx === -1 ) {
-                    detailRows.push( tr.attr('id') );
-                }
-            });
-
-        }
-    });    
 
     $('#tbl_billing tbody').on('click','button[name="view_billing_details"]',function(){
         _selectRowObjbilling=$(this).closest('tr');
@@ -7083,21 +6292,69 @@
     //end patient billing
 
     //start visiting details
+
+    var getVisitingRecord=function(){
+            patient_visiting_record_dt=$('#tbl_visiting_record').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",      
+            "order": [[ 4, "desc" ]],      
+            "ajax": {
+            "url": "Patient_visiting/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "visiting_date" },
+                { targets:[1],data: "visiting_note" },
+                { targets:[2],data: "visiting_diagnostics" },
+                {
+                    targets:[3],
+                    render: function (data, type, full, meta){
+                        var view_visiting_details='<button class="btn btn-default btn-xs" name="view_visiting_details_record"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                        
+                        return '<center>'+view_visiting_details+edit_visiting+remove_visiting+'</center>';
+                    }
+                },
+                { visible:false, targets:[4],data: "patient_visiting_record_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
+
+
     $('.patient_visiting_record').click(function(){
         if(_isChecked==true){
+            $('#tbl_visiting_record').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            $('.header-text-title').html(_selectedname);
-
             setTimeout(function() {
-                patient_visiting_record_dt.ajax.reload($.unblockUI());
+                 getVisitingRecord();
             }, 200);
-
-            showList('visiting_record_list',true,'Patient Visiting Record','fa-file-text-o');
+            $('#modal_vising_record').modal('toggle');
         }
         else{
             notice_notif();
         }
-        
     });
 
     $('#new_visiting_record').click(function(){
@@ -7170,50 +6427,6 @@
             _selectedIDvisiting=datavisiting.patient_visiting_record_id;
             delete_notif();
     });
-
-    $('#tbl_visiting_record tbody').on( 'click', 'tr td.details-control-print', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_visiting_record_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );                
-            var d=row.data();
-            window.open("Templates/transaction/visiting-details/"+ d.patient_visiting_record_id+"?type=pdf");
-    });
-
-    $('#tbl_visiting_record tbody').on( 'click', 'tr td.details-control', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_visiting_record_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );
-
-        if ( row.child.isShown() ) {
-            tr.removeClass( 'details' );
-            row.child.hide();
-
-            // Remove from the 'open' array
-            detailRows.splice( idx, 1 );
-        }
-        else {
-            tr.addClass( 'details' );
-            var d=row.data();
-
-            $.ajax({
-                "dataType":"html",
-                "type":"POST",
-                "url":"Templates/transaction/visiting-details/"+ d.patient_visiting_record_id+"?type=fullview",
-                "beforeSend" : function(){
-                    row.child( '<center><br /><img src="assets/img/loader/ajax-loader-lg.gif" /><br /><br /></center>' ).show();
-                }
-            }).done(function(response){
-                row.child( response ).show();
-                // Add to the 'open' array
-                if ( idx === -1 ) {
-                    detailRows.push( tr.attr('id') );
-                }
-            });
-
-        }
-    });     
 
     $('#tbl_visiting_record tbody').on('click','button[name="view_visiting_details_record"]',function(){
 
@@ -7290,24 +6503,70 @@
     //end visiting details
 
     //start clinical
+    var getClinical=function(){
+            patient_clinical_dt=$('#tbl_clinical').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",  
+            "order": [[ 6, "desc" ]],           
+            "ajax": {
+            "url": "Patient_clinical/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "date_created" },
+                { targets:[1],data: "clinical_diagnostics" },
+                { targets:[2],data: "clinical_treatment" },
+                { targets:[3],data: "clinical_medication" },
+                { targets:[4],data: "clinical_remarks" },
+                {
+                    targets:[5],
+                    render: function (data, type, full, meta){
+                        var view_clinical_details='<button class="btn btn-default btn-xs" name="view_clinical_details"   data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+                        
+                        return '<center>'+view_clinical_details+edit_clinical+remove_clinical+'</center>';
+                    }
+                },
+                { visible:false, targets:[6],data: "patient_clinical_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
 
     var _txnMode4; var _selectedIDclinical; var _selectRowObjclinical;
-
     $('.patient_clinical').click(function(){
         if(_isChecked==true){
+            $('#tbl_clinical').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            $('.header-text-title').html(_selectedname);
-
             setTimeout(function() {
-                patient_clinical_dt.ajax.reload($.unblockUI());
-            }, 200);
-
-            showList('clinical_database_list',true,'Clinical Database','fa-medkit');
+                 getClinical();
+            }, 200);            
+            $('#modal_clinical').modal('toggle');
         }
         else{
             notice_notif();
         }
-        
     });
 
     $('#new_clinical').click(function(){
@@ -7371,50 +6630,6 @@
         }
         
     });
-
-    $('#tbl_clinical tbody').on( 'click', 'tr td.details-control-print', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_clinical_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );                
-            var d=row.data();
-            window.open("Templates/transaction/clinical-details/"+ d.patient_clinical_id+"?type=pdf");
-    });
-
-    $('#tbl_clinical tbody').on( 'click', 'tr td.details-control', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_clinical_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );
-
-        if ( row.child.isShown() ) {
-            tr.removeClass( 'details' );
-            row.child.hide();
-
-            // Remove from the 'open' array
-            detailRows.splice( idx, 1 );
-        }
-        else {
-            tr.addClass( 'details' );
-            var d=row.data();
-
-            $.ajax({
-                "dataType":"html",
-                "type":"POST",
-                "url":"Templates/transaction/clinical-details/"+ d.patient_clinical_id+"?type=fullview",
-                "beforeSend" : function(){
-                    row.child( '<center><br /><img src="assets/img/loader/ajax-loader-lg.gif" /><br /><br /></center>' ).show();
-                }
-            }).done(function(response){
-                row.child( response ).show();
-                // Add to the 'open' array
-                if ( idx === -1 ) {
-                    detailRows.push( tr.attr('id') );
-                }
-            });
-
-        }
-    });    
 
     $('#tbl_clinical tbody').on('click','button[name="view_clinical_details"]',function(){
         _selectRowObjclinical=$(this).closest('tr');
@@ -7493,18 +6708,68 @@
 
     $('.patient_medical_abstract').click(function(){
         if(_isChecked==true){
+            $('#tbl_patient_medical_abstract').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            $('.header-text-title').html(_selectedname);
             setTimeout(function() {
-                patient_medical_abstract_dt.ajax.reload($.unblockUI());
+                 getMedicalAbstractList();
             }, 200);
-            showList('medical_abstract_list',true,'Medical Abstract','fa-stethoscope');
+            $('#modal_medical_abstract_list').modal('toggle');
         }
         else{
             notice_notif();
         }
         
-    }); 
+    });
+
+    var getMedicalAbstractList=function(){
+            patient_medical_abstract_dt=$('#tbl_patient_medical_abstract').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
+            "paging":true,
+            "order": [[ 4, "desc" ]], 
+            "ajax": {
+            "url": "Patient_medical_abstract/transaction/medical_abstract_list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "medical_abstract_code" },
+                { targets:[1],data: "case_no" },
+                { targets:[2],data: "date_created" },
+                {
+                    targets:[3],
+                    render: function (data, type, full, meta){
+                         var view_medical_abstract_details='<button class="btn btn-default btn-xs" name="view_medical_abstract_details" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+
+                        return '<center>'+view_medical_abstract_details+edit_medical_abstract+delete_medical_abstract+'</center>';
+                    }
+                },
+                { visible:false, targets:[4],data: "patient_medical_abstract_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
 
     $('#new_medical_abstract').click(function(){
         _txnmedicalabstract="new";
@@ -7757,14 +7022,12 @@
 
     $('.patient_nephro_order').click(function(){
         if(_isChecked==true){
+            $('#tbl_patient_nephro_order').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            $('.header-text-title').html(_selectedname);
-
             setTimeout(function() {
-                patient_nephro_order_dt.ajax.reload($.unblockUI());
-            }, 200);
-
-            showList('nephro_order_list',true,"Nephrologist's Order",'fa-heart');
+                 getNephroOrderList();
+            }, 200);            
+            $('#modal_nephro_order_list').modal('toggle');
         }
         else{
             notice_notif();
@@ -7772,6 +7035,54 @@
         
     });
 
+    var getNephroOrderList=function(){
+            patient_nephro_order_dt=$('#tbl_patient_nephro_order').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
+            "paging":true,
+            "order": [[ 3, "desc" ]],
+            "ajax": {
+            "url": "Patient_nephro_order/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "nephro_order_code" },
+                { targets:[1],data: "date_created" },
+                {
+                    targets:[2],
+                    render: function (data, type, full, meta){
+                         var view_nephro_order='<button class="btn btn-default btn-xs" name="view_nephro_order" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+
+                        return '<center>'+view_nephro_order+edit_nephro_order+delete_nephro_order+'</center>';
+                    }
+                },
+                { visible:false, targets:[3],data: "patient_nephro_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
 
     $('#new_nephro_order').click(function(){
         _txnnephroorder="new";
@@ -7958,20 +7269,66 @@
 
     $('.patient_laboratory_report').click(function(){
         if(_isChecked==true){
+            $('#tbl_patient_lab_report').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            $('.header-text-title').html(_selectedname);
-
             setTimeout(function() {
-                patient_lab_report_dt.ajax.reload($.unblockUI());
-            }, 200);
-
-            showList('patient_lab_report_list',true,'Laboratory Request','fa-commenting-o');
+                 getLabReportList();
+            }, 200);            
+            $('#modal_lab_report_list').modal('toggle');
         }
         else{
             notice_notif();
         }
-        
     });
+
+    var getLabReportList=function(){
+            patient_lab_report_dt=$('#tbl_patient_lab_report').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
+            "paging":true,
+            "order": [[ 3, "desc" ]],
+            "ajax": {
+            "url": "Patient_lab_diagnostics/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "diagnostic_code" },
+                { targets:[1],data: "lab_report_date" },
+                {
+                    targets:[2],
+                    render: function (data, type, full, meta){
+                         var view_diagnostic='<button class="btn btn-default btn-xs" name="view_diagnostic" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+
+                        return '<center>'+view_diagnostic+edit_diagnostic+remove_diagnostic+'</center>';
+                    }
+                },
+                { visible:false, targets:[3],data: "patient_lab_report_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
 
     $('#new_diagnostic').click(function(){
         _txnlabreport="new";
@@ -8116,80 +7473,6 @@
         }   
     });
 
-    $("#searchbox_tbl_patient_prescription").keyup(function(){ 
-        patient_prescription_dt
-            .search(this.value)
-            .draw();
-    });    
-
-    $("#searchbox_tbl_lab").keyup(function(){ 
-        patient_lab_dt
-            .search(this.value)
-            .draw();
-    });   
-
-    $("#searchbox_tbl_billing").keyup(function(){ 
-        patient_billing_dt
-            .search(this.value)
-            .draw();
-    });   
-
-    $("#searchbox_tbl_visiting_record").keyup(function(){ 
-        patient_visiting_record_dt
-            .search(this.value)
-            .draw();
-    });   
-
-    $("#searchbox_tbl_clinical").keyup(function(){ 
-        patient_clinical_dt
-            .search(this.value)
-            .draw();
-    });  
-
-    $("#searchbox_tbl_patient_medical_abstract").keyup(function(){ 
-        patient_medical_abstract_dt
-            .search(this.value)
-            .draw();
-    });              
-
-    $("#searchbox_tbl_patient_nephro_order").keyup(function(){ 
-        patient_nephro_order_dt
-            .search(this.value)
-            .draw();
-    });             
-
-    $("#searchbox_tbl_patient_lab_report").keyup(function(){ 
-        patient_lab_report_dt
-            .search(this.value)
-            .draw();
-    });     
-
-    $("#searchbox_tbl_med_cert_report").keyup(function(){ 
-        patient_medical_certificate_dt
-            .search(this.value)
-            .draw();
-    });            
-
-    $("#searchbox_tbl_nephro_record").keyup(function(){ 
-        dt_patient_nephro_record
-            .search(this.value)
-            .draw();
-    });       
-
-    $("#searchbox_tbl_patient_referral").keyup(function(){ 
-        patient_referral_dt
-            .search(this.value)
-            .draw();
-    });       
-
-    $("#searchbox_tbl_patient_admitting_order").keyup(function(){ 
-        patient_admitting_order_dt
-            .search(this.value)
-            .draw();
-    });           
-
-    
-
     var getlabdiagnostics=function(){
         var _data=$('#').serializeArray();
             _data.push({name : "ref_patient_id" ,value : _selectedID});
@@ -8281,20 +7564,67 @@
 
     $('.patient_medical_certificate').click(function(){
         if(_isChecked==true){
+            $('#tbl_med_cert_report').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            $('.header-text-title').html(_selectedname);
-
             setTimeout(function() {
-                patient_medical_certificate_dt.ajax.reload($.unblockUI());
-            }, 200);
-
-            showList('med_cert_list',true,'Medical Certificate','fa-certificate');
+                 getMedicalCertList();
+            }, 200);            
+            $('#modal_med_cert_list').modal('toggle');
         }
         else{
             notice_notif();
         }
         
     });
+
+    var getMedicalCertList=function(){
+            patient_medical_certificate_dt=$('#tbl_med_cert_report').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
+            "paging":true,
+            "order": [[ 3, "desc" ]],
+            "ajax": {
+            "url": "Patient_medical_record/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "medical_certificate_code" },
+                { targets:[1],data: "medical_date" },
+                {
+                    targets:[2],
+                    render: function (data, type, full, meta){
+                         var view_med_cert='<button class="btn btn-default btn-xs" name="view_med_cert" data-toggle="tooltip" data-placement="left" title="View Details"><i class="fa fa-eye"></i> </button>';
+
+                        return '<center>'+view_med_cert+edit_med_cert+remove_med_cert+'</center>';
+                    }
+                },
+                { visible:false, targets:[3],data: "patient_medical_certificate_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
 
     $('#new_medical_cert').click(function(){
         _txnmedical="new";        
@@ -8350,51 +7680,6 @@
         }); 
         $('#modal_patient_medical_certificate').modal('toggle');
     });
-
-
-    $('#tbl_med_cert_report tbody').on( 'click', 'tr td.details-control-print', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_medical_certificate_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );                
-            var d=row.data();
-            window.open("Templates/transaction/certificate-details/"+ d.patient_medical_certificate_id+"?type=pdf");
-    });
-
-    $('#tbl_med_cert_report tbody').on( 'click', 'tr td.details-control', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_medical_certificate_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );
-
-        if ( row.child.isShown() ) {
-            tr.removeClass( 'details' );
-            row.child.hide();
-
-            // Remove from the 'open' array
-            detailRows.splice( idx, 1 );
-        }
-        else {
-            tr.addClass( 'details' );
-            var d=row.data();
-
-            $.ajax({
-                "dataType":"html",
-                "type":"POST",
-                "url":"Templates/transaction/certificate-details/"+ d.patient_medical_certificate_id+"?type=fullview",
-                "beforeSend" : function(){
-                    row.child( '<center><br /><img src="assets/img/loader/ajax-loader-lg.gif" /><br /><br /></center>' ).show();
-                }
-            }).done(function(response){
-                row.child( response ).show();
-                // Add to the 'open' array
-                if ( idx === -1 ) {
-                    detailRows.push( tr.attr('id') );
-                }
-            });
-
-        }
-    });    
 
     $('#tbl_med_cert_report tbody').on('click','button[name="view_med_cert"]',function(){
         _txnmedical="view";
@@ -8526,42 +7811,92 @@
     //end med certificate
 
     //start nephro record
+
+    var getNephroRecord=function(){
+            dt_patient_nephro_record=$('#tbl_nephro_record').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
+            "paging":true,
+            "order": [[ 4, "desc" ]],
+            "ajax": {
+            "url": "Patient_Info/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "nephrorecorddate" },
+                { targets:[1],data: "attending_physc" },
+                { targets:[2],data: "treatment_no" },
+                {
+                    targets:[3],
+                    render: function (data, type, full, meta){
+
+                        return '<center>'+btn_nephrorecord_edit+btn_nephrorecord_trash+'</center>';
+                    }
+                },
+                { visible:false, targets:[4],data: "patient_info_id" }
+
+                ],
+                language: {
+                             searchPlaceholder: ""
+                         },
+                "rowCallback":function( row, data, index ){
+
+                    $(row).find('td').eq(10).attr({
+                        "align": "right"
+                    });
+                }
+            });
+    }
+
+
     var _txnnephrorecord;
     var _patient_nephro_record_id;
     var _selectRowObjNephroOrder;
-
     $('.patient_nephro_record').click(function(){
+
         if(_isChecked==true){
+            $('#tbl_nephro_record').dataTable().fnDestroy();
 
             getpatients().done(function(response){
-                var show2select="";
-                    if(response.data.length==0){
-                        $('#patientsget').html("<option>No Result</option>");
-                        return;
-                    }
-                    var jsoncount=response.data.length-1;
-                     for(var i=0;parseInt(jsoncount)>=i;i++){
-                        //alert(response.available_leave[i].leave_type);
-                        show2select+='<option value='+response.data[i].ref_patient_id+'>'+response.data[i].fullname+'</option>';
-                     }
-                     $('.patientsget').html(show2select);
-            });
+                    var show2select="";
+                        if(response.data.length==0){
+                            $('#patientsget').html("<option>No Result</option>");
+                            return;
+                        }
+                        var jsoncount=response.data.length-1;
+                         for(var i=0;parseInt(jsoncount)>=i;i++){
+                            //alert(response.available_leave[i].leave_type);
+                            show2select+='<option value='+response.data[i].ref_patient_id+'>'+response.data[i].fullname+'</option>';
+                         }
+                         $('.patientsget').html(show2select);
+                }).always(function(){
+                    
+                });
 
             showSpinningProgressLOADING();
-            $('.header-text-title').html(_selectedname);
 
             setTimeout(function() {
-                dt_patient_nephro_record.ajax.reload($.unblockUI());
+                 getNephroRecord();
             }, 200);
 
-            showList('nephro_record_list',true,'Nephro Record','fa-heartbeat');
+            $('#modal_nephro_record').modal('toggle');
         }
         else{
             notice_notif();
         }
-        
     });
-
 
     var getpatients=function(){
         return $.ajax({
@@ -10724,20 +10059,68 @@
 
     $('.patient_referral_letter').click(function(){
         if(_isChecked==true){
+            $('#tbl_patient_referral').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            $('.header-text-title').html(_selectedname);
-
             setTimeout(function() {
-                patient_referral_dt.ajax.reload($.unblockUI());
-            }, 200);
-
-            showList('patient_referral_list',true,'Patient Referral','fa-envelope');
+                 getReferralList();
+            }, 200);            
+            $('#modal_referral_list').modal('toggle');
         }
         else{
             notice_notif();
         }
         
     });
+
+    //Start Referral Entry
+    var getReferralList=function(){
+            patient_referral_dt=$('#tbl_patient_referral').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
+            "paging":true,
+            "order": [[ 3, "desc" ]],  
+            "ajax": {
+            "url": "Patient_referral/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "referral_code" },
+                { targets:[1],data: "referral_date" },
+                {
+                    targets:[2],
+                    render: function (data, type, full, meta){
+                         var view_referral='<button class="btn btn-default btn-xs" name="view_referral" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+
+                        return '<center>'+view_referral+edit_referral+remove_referral+'</center>';
+                    }
+                },
+                { visible:false, targets:[3],data: "patient_referral_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
 
     $('#new_referral').click(function(){
         _txnreferral="new";
@@ -10790,50 +10173,6 @@
         }); 
         $('#modal_patient_referral').modal('toggle');
     });
-
-    $('#tbl_patient_referral tbody').on( 'click', 'tr td.details-control-print', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_referral_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );                
-            var d=row.data();
-            window.open("Templates/transaction/referral-details/"+ d.patient_referral_id+"?type=pdf");
-    });
-
-    $('#tbl_patient_referral tbody').on( 'click', 'tr td.details-control', function () {
-        var detailRows = [];
-        var tr = $(this).closest('tr');
-        var row = patient_referral_dt.row( tr );
-        var idx = $.inArray( tr.attr('id'), detailRows );
-
-        if ( row.child.isShown() ) {
-            tr.removeClass( 'details' );
-            row.child.hide();
-
-            // Remove from the 'open' array
-            detailRows.splice( idx, 1 );
-        }
-        else {
-            tr.addClass( 'details' );
-            var d=row.data();
-
-            $.ajax({
-                "dataType":"html",
-                "type":"POST",
-                "url":"Templates/transaction/referral-details/"+ d.patient_referral_id+"?type=fullview",
-                "beforeSend" : function(){
-                    row.child( '<center><br /><img src="assets/img/loader/ajax-loader-lg.gif" /><br /><br /></center>' ).show();
-                }
-            }).done(function(response){
-                row.child( response ).show();
-                // Add to the 'open' array
-                if ( idx === -1 ) {
-                    detailRows.push( tr.attr('id') );
-                }
-            });
-
-        }
-    });    
 
     $('#tbl_patient_referral tbody').on('click','button[name="view_referral"]',function(){
         _txnreferral="view";
@@ -10978,20 +10317,68 @@
 
     $('.patient_admitting_order').click(function(){
         if(_isChecked==true){
+            $('#tbl_patient_admitting_order').dataTable().fnDestroy();
             showSpinningProgressLOADING();
-            $('.header-text-title').html(_selectedname);
-
             setTimeout(function() {
-                patient_admitting_order_dt.ajax.reload($.unblockUI());
+                 getAmittingOrderList();
             }, 200);
-
-            showList('patient_admitting_order_list',true,' Patient Admitting Order','fa-list-ul');
+            $('#modal_admitting_order_list').modal('toggle');
         }
         else{
             notice_notif();
         }
         
     });
+
+    //ash
+    var getAmittingOrderList=function(){
+            patient_admitting_order_dt=$('#tbl_patient_admitting_order').DataTable({
+                "fnInitComplete": function (oSettings, json) {
+                $.unblockUI();
+                },
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "autoWidth":true,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+            "table-layout": "fixed",            
+            "paging":true,
+            "order": [[ 3, "desc" ]],
+            "ajax": {
+            "url": "Patient_admitting_order/transaction/list",
+            "type": "POST",
+            "bDestroy": true,
+            "data": function ( d ) {
+                return $.extend( {}, d, {
+                    "ref_patient_id": _selectedID //id of the user
+                    } );
+                }
+            },
+            "columns": [
+                { targets:[0],data: "admitting_order_code" },
+                { targets:[1],data: "admitting_order_date" },
+                {
+                    targets:[2],
+                    render: function (data, type, full, meta){
+                         var view_admitting_order='<button class="btn btn-default btn-xs" name="view_admitting_order" data-toggle="tooltip" data-placement="left" title="View Details" ><i class="fa fa-eye"></i> </button>';
+
+                        return '<center>'+view_admitting_order+edit_admitting_order+remove_admitting_order+'</center>';
+                    }
+                },
+                { visible:false, targets:[3],data: "patient_admitting_order_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
+    }
 
     $('#new_admitting_order').click(function(){
         _txnadmittingorder="new";
@@ -11468,10 +10855,9 @@
     };
 
     var validateRequiredFields=function(f){
-
-        var stat=true;
-        var pword=$('#user_pword').val();
-        var cpword=$('#user_confirm_pword').val();
+    var stat=true;
+    var pword=$('#user_pword').val();
+    var cpword=$('#user_confirm_pword').val();
 
         $('div.form-group').removeClass('has-error');
         $('div.fg-line').removeClass('has-error');
@@ -11504,6 +10890,9 @@
                 }
             }
             
+
+
+
         });
 
         return stat;

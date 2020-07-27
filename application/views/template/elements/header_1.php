@@ -1,16 +1,26 @@
 <div class="row report_header">
     <div class="col-xs-12">
-        <div class="text-center">
-            <img src="<?php echo base_url('assets/img/logo/psn_logo.png'); ?>" width="90" height="90" style="float: left;margin-left: 5%;">
-            <img src="<?php echo base_url('assets/img/logo/nkti_logo.jpg'); ?>" width="90" height="90" style="float: right;margin-right: 5%;">
-            <h4 style="font-family:tahoma;font-size:12pt;margin-top: 20px!important;position: relative;text-align: center!important;">
-                <b>JOY D. MALLARI - DE LARA, MD, FPCP, FPSN </b>
-                <span class="text-muted">
-                    <address style="font-family:tahoma;font-size:11pt;">
-                        Internal Medicine - Nephrology (Kidney Specialist)<br>
-                    </address>
-            </span>
-            </h4>
-        </div>
+       <table width="100%">
+            <tr>
+                <td width="15%">
+                    <?php if($data->logo_1_is_show == 1){ ?>
+                        <img src="<?php echo base_url($data->logo_1_path); ?>" width="90" height="90" style="float: left;margin-left: 5%;">
+                    <?php }?>
+                </td>
+                <td width="70%">
+                    <center>
+                        <span style="font-size: 14pt;font-weight: bold;">
+                            <?php echo $data->header_title; ?>
+                        </span>
+                        <br/><?php echo $data->header_info; ?>
+                    </center>
+                </td>
+                <td width="15%">
+                    <?php if($data->logo_2_is_show == 1){ ?>
+                        <img src="<?php echo base_url($data->logo_2_path); ?>" width="90" height="90" style="float: right;margin-right: 5%;">
+                    <?php } ?>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>

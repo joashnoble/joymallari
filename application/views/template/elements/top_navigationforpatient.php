@@ -15,43 +15,43 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <li class="hidden-xs right_prescription_view patient_prescription">
+          <li class="hidden-xs right_prescription_view patient_prescription top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Prescription"><i class="fa fa-user-md"></i></a>
           </li>
-          <li class="hidden-xs right_medlab_view patient_laboratory">
+          <li class="hidden-xs right_medlab_view patient_laboratory top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Laboratory Report"><i class="fa fa-stethoscope"></i></a>
           </li>
-          <li class="hidden-xs right_billing_view patient_billing" >
+          <li class="hidden-xs right_billing_view patient_billing top-icon" >
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Billing"><i class="fa fa-money"></i></a>
           </li>
-          <li class="hidden-xs right_visiting_view patient_visiting_record" >
+          <li class="hidden-xs right_visiting_view patient_visiting_record top-icon" >
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Visiting Record"><i class="fa fa-file-text-o"></i></a>
           </li>
-          <li class="hidden-xs right_clinicaldb_view patient_clinical">
+          <li class="hidden-xs right_clinicaldb_view patient_clinical top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Clinical Database"><i class="fa fa-medkit"></i></a>
           </li>
-          <li class="hidden-xs right_medabstract_view patient_medical_abstract" >
+          <li class="hidden-xs right_medabstract_view patient_medical_abstract top-icon" >
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Medical Abstract"><i class="fa fa-stethoscope"></i></a>
           </li>
-          <li class="hidden-xs right_nephro_view patient_nephro_order">
+          <li class="hidden-xs right_nephro_view patient_nephro_order top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Nephro Order"><i class="fa fa-heart"></i></a>
           </li>
-          <li class="hidden-xs right_labreport_view patient_laboratory_report">
+          <li class="hidden-xs right_labreport_view patient_laboratory_report top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Laboratory Request"><i class="fa fa-commenting-o"></i></a>
           </li>
-          <li class="hidden-xs right_medcert_view patient_medical_certificate">
+          <li class="hidden-xs right_medcert_view patient_medical_certificate top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Medical Certificate"><i class="fa fa-certificate"></i></a>
           </li>
-          <li class="hidden-xs right_nephrorecord_view patient_nephro_record">
+          <li class="hidden-xs right_nephrorecord_view patient_nephro_record top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Nephro Record"><i class="fa fa-heartbeat"></i></a>
           </li>
-          <li class="hidden-xs right_referralletter_view patient_referral_letter">
+          <li class="hidden-xs right_referralletter_view patient_referral_letter top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Referral"><i class="fa fa-envelope"></i></a>
           </li>
-          <li class="hidden-xs right_admitting_order_view patient_admitting_order">
+          <li class="hidden-xs right_admitting_order_view patient_admitting_order top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Admitting Order"><i class="fa fa-list-ul"></i></a>
           </li>
-          <li class="dropdown hidden-md hidden-lg hidden-sm">
+          <li class="dropdown hidden-md hidden-lg hidden-sm top-icon">
             <a href="javascript:void();" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
             <ul class="dropdown-menu text-center">
                 <li class="user-header right_prescription_view patient_prescription">

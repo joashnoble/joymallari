@@ -114,7 +114,8 @@
     $('.modal-title').css('color',textcolor);
     $('.xbutton').css('color',textcolor);
     $('.bh-text-title').css('color',selectcolor);
-
+    $('.patient-info-label').css('background-color',selectcolor);
+    $('.patient-info-label').css('color',textcolor);
     /*loadder color */
     /*$('.loader').css('background-color',selectcolor);*/
     
@@ -130,6 +131,9 @@
         $('.modal-title').css('color',textcolor);
         $('.xbutton').css('color',textcolor);
         $('.bh-text-title').css('color',selectcolor);
+        $('.patient-info-label').css('background-color',selectcolor);
+        $('.patient-info-label').css('color',textcolor);
+
     });
 
     $('#tbl_ref_patient tbody').delegate('tr', 'click', function() {
@@ -154,6 +158,9 @@
                 var data=dt.row(_selectRowObj).data();
                 _selectedID=data.ref_patient_id;
                 _selectedname = data.fullname;
+
+                $('.header-text-title').text(_selectedname);
+                $('.header-text-age').text(data.patient_age);
                 $('.areasex').text(data.sex);
                 $('.areaage').text(data.patient_age);
                 $('.areadryweight').text(data.dry_weight);
