@@ -178,7 +178,7 @@ class Patient_billing extends CORE_Controller {
 
                 $response['title'] = 'Success!';
                 $response['stat'] = 'success';
-                $response['msg'] = 'Billing Info Successfully Created.';
+                $response['msg'] = 'Billing Info Successfully Updated.';
                     
                 echo json_encode($response);
                 break;

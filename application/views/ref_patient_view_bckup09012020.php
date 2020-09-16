@@ -17,18 +17,8 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
   <style>
-    .label-disable {
-       pointer-events: none;
-       cursor: default;
-    }  
-    .medicine_table{
-        width: 49%;display: inline-block;
-    }
     .hidden{
         display: none;
-    }
-    .med_title{
-        font-size:8pt; width: 180px;display: inline-block;
     }
     td.patient-details {
         background: url('assets/img/icons/Folder_Closed.png') no-repeat center center;
@@ -79,7 +69,6 @@
 
     .normal{
         font-weight: normal!important;
-        margin-bottom: 0px;
     }
     .txt_right{
         border:0px;border-bottom:1px solid #2c3e50;text-align: right;
@@ -1941,7 +1930,7 @@
                                                     <th style="width:10%;">Age</th>
                                                     <th style="width:10%;">CS</th>
                                                     <th style="width:20%;">Date of Birth</th>
-                                                    <th style="width:20%;">Date</th>
+                                                    <th style="width:20%;">Medical Date</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1960,52 +1949,53 @@
                                         </table>
                                         Address : <u><areaaddress class="areaaddress"></areaaddress></u>
                                     </div>
-                                    <div class="col-md-12" style="font-size: 8pt!important;">
-                                        <div style="margin-bottom: 10px;">
-                                        <h5 style="margin:2px;"><b>DIAGNOSIS</b></h5>
-                                        <div class="medicine_table diag_chronic_kidney_disease">
-                                            <input class="onemargin diag_chronic_kidney_disease" type="checkbox" name="" id="diag_chronic_kidney_disease" style="width:50px;border:0px;border-bottom:1px solid black;"> 
-                                        
-                                            <tag style="font-size:10pt;" class="diag_chronic_kidney_disease">
-                                                    Chronic Kidney Disease<br><addition style="margin-left:54px;">DUE TO : (Check all that apply)</addition></tag> 
+                                    <!-- <div class="text-left">
+                                        <div class="col-xs-6" style="float:left;font-size:11pt;">Address : <u><areaaddress class="areaaddress"></areaaddress></u>
                                         </div>
-                                        <div class="medicine_table diag_end_stage">
-                                            <input class="onemargin diag_end_stage" type="checkbox" name="" id="diag_end_stage" style="width:50px;border:0px;border-bottom:1px solid black;">
+                                    </div> -->
+                                        <div class="col-xs-6" style="font-size: 8pt!important;">
+                                                <div class="checkbox-left">
+                                                   <h5 style="margin:2px;"><b>DIAGNOSIS</b></h5>
+                                                   <!-- ash -->
+                                                   <input class="onemargin diag_chronic_kidney_disease" type="checkbox" name="" id="diag_chronic_kidney_disease" style="width:50px;border:0px;border-bottom:1px solid black;"> 
+
+                                                   <tag style="font-size:10pt;" class="diag_chronic_kidney_disease">
+                                                    Chronic Kidney Disease<br><addition style="margin-left:54px;">DUE TO : (Check all that apply)</addition><br></tag> 
+
+                                                   <input class="onemargin diag_chronic_glomeru" type="checkbox" name="" id="diag_chronic_glomeru" style="width:50px;border:0px;border-bottom:1px solid black;"> 
+                                                   <tag style="font-size:10pt;" class="diag_chronic_glomeru">Chronic glomerulonephritis <br/></tag> 
+
+                                                   <input class="onemargin diag_chronic_pyelone" type="checkbox" name="" id="diag_chronic_pyelone" style="width:50px;border:0px;border-bottom:1px solid black;"> 
+                                                   <tag style="font-size:10pt;" class="diag_chronic_pyelone">Chronic pyelonephritis <br/></tag> 
+
+                                                   <input class="onemargin diag_obs_uropathy" type="checkbox" name="" id="diag_obs_uropathy" style="width:50px;border:0px;border-bottom:1px solid black;"> 
+                                                   <tag style="font-size:10pt;" class="diag_obs_uropathy">Obstructive Uropathy <br/></tag>
+                                                   
+                                                </div>
+                                        </div>
+                                        <div class="col-xs-6"  style="font-size: 8pt!important;">
+                                            <div class="checkbox-left">
+                                               <br>
+                                               <input class="onemargin diag_end_stage" type="checkbox" name="" id="diag_end_stage" style="width:50px;border:0px;border-bottom:1px solid black;">
                                                <tag style="font-size:10pt;" class="diag_end_stage">End Stage Renal Disease <br/></tag>
-                                        </div>
-                                        <div class="medicine_table diag_chronic_glomeru">
-                                            <input class="onemargin diag_chronic_glomeru" type="checkbox" name="" id="diag_chronic_glomeru" style="width:50px;border:0px;border-bottom:1px solid black;"> 
-                                                   <tag style="font-size:10pt;" class="diag_chronic_glomeru">Chronic glomerulonephritis</tag> 
-                                        </div>
-                                        <div class="medicine_table diag_hypertension">
-                                            <input class="onemargin diag_hypertension" type="checkbox" name="" id="diag_hypertension" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                               <tag style="font-size:10pt;" class="diag_hypertension">Hypertension</tag> 
-                                        </div>
-                                        <div class="medicine_table diag_chronic_pyelone">
-                                            <input class="onemargin diag_chronic_pyelone" type="checkbox" name="" id="diag_chronic_pyelone" style="width:50px;border:0px;border-bottom:1px solid black;"> 
-                                                   <tag style="font-size:10pt;" class="diag_chronic_pyelone">Chronic pyelonephritis</tag> 
-                                        </div>
-                                        <div class="medicine_table diag_diabetic">
-                                            <input class="onemargin diag_diabetic" type="checkbox" name="" id="diag_diabetic" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                               <tag style="font-size:10pt;" class="diag_diabetic">Diabetic Nephropathy</tag>
-                                        </div>
-                                        <div class="medicine_table diag_obs_uropathy">
-                                            <input class="onemargin diag_obs_uropathy" type="checkbox" name="" id="diag_obs_uropathy" style="width:50px;border:0px;border-bottom:1px solid black;"> 
-                                                   <tag style="font-size:10pt;" class="diag_obs_uropathy">Obstructive Uropathy</tag>
-                                        </div>
-                                        <div class="medicine_table diag_uric_acid_nephro">
-                                            <input class="onemargin diag_uric_acid_nephro" type="checkbox" name="" id="diag_uric_acid_nephro" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                               <tag style="font-size:10pt;" class="diag_uric_acid_nephro">Uric Acid Nephropathy </tag>
-                                        </div>
-                                        <div class="medicine_table diag_other_specify">
-                                            <others class="onemargin" style="margin-left:15px;"> 
+
+                                               <input class="onemargin diag_hypertension" type="checkbox" name="" id="diag_hypertension" style="width:50px;border:0px;border-bottom:1px solid black;">
+                                               <tag style="font-size:10pt;" class="diag_hypertension">Hypertension <br /></tag> 
+
+                                               <input class="onemargin diag_diabetic" type="checkbox" name="" id="diag_diabetic" style="width:50px;border:0px;border-bottom:1px solid black;">
+                                               <tag style="font-size:10pt;" class="diag_diabetic">Diabetic Nephropathy <br/></tag>
+
+                                               <input class="onemargin diag_uric_acid_nephro" type="checkbox" name="" id="diag_uric_acid_nephro" style="width:50px;border:0px;border-bottom:1px solid black;">
+                                               <tag style="font-size:10pt;" class="diag_uric_acid_nephro">Uric Acid Nephropathy <br/></tag>
+
+                                               <others  class="onemargin" style="margin-left:15px;"> 
                                                     <tag style="font-size:10pt;" class="diag_other_specify">Others Specify :</tag>
                                                </others>
+
                                                <br><input type="text" class="diag_other_specify" name="diag_other_specify" id="" style="margin-left:15px;width:70%;border:0px;border-bottom:1px solid black;margin-left:15px;">
-                                                                                         
+                                               <br>
+                                            </div>
                                         </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <h6 style="margin:2px;"><b>TREATMENT</b></h6>
                                 <div class="row">
@@ -2073,459 +2063,262 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                            <div class="medicine_table med_cal_carbo">
+                                    <table style="width:100%;margin:10px;">
+                                        <tr>
+                                            <td style="width:27.5%;">
                                                 <input class="onemargin med_cal_carbo" type="checkbox" name="" id="med_cal_carbo" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                    <div class="med_title med_cal_carbo">Calcium carbonate 500mg</div>
-                                                <input class="margin med_cal_carbo_od" type="checkbox" name="" id="med_cal_carbo_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                        <tag style="font-size:7pt;" class="med_cal_carbo_od">OD</tag>
-                                                <input class="margin med_cal_carbo_bid" type="checkbox" name="" id="med_cal_carbo_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                        <tag style="font-size:7pt;" class="med_cal_carbo_bid">BID</tag>
-                                                <input class="margin med_cal_carbo_tid" type="checkbox" name="" id="med_cal_carbo_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                        <tag style="font-size:7pt;" class="med_cal_carbo_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_atenolol">
+                                                <tag style="font-size:8pt;" class="med_cal_carbo">Calcium carbonate 500mg</tag>
+                                            </td>
+                                            <td style="width:7.5%;">
+                                                <input class="margin med_cal_carbo_od" type="checkbox" name="" id="med_cal_carbo_od" style="width:15px;border:0px;border-bottom:1px solid black;"> 
+                                                <tag style="font-size:7pt;" class="med_cal_carbo_od">OD</tag>
+                                            </td>
+                                            <td style="width:7.5%;">
+                                                <input class="margin med_cal_carbo_bid" type="checkbox" name="" id="med_cal_carbo_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> 
+                                                <tag style="font-size:7pt;" class="med_cal_carbo_bid">BID</tag>
+                                            </td>
+                                            <td style="width:7.5%;">
+                                                <input class="margin med_cal_carbo_tid" type="checkbox" name="" id="med_cal_carbo_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> 
+                                                <tag style="font-size:7pt;" class="med_cal_carbo_tid">TID</tag>
+                                            </td>
+
+                                            <td style="width:27.5%;">
                                                 <input class="onemargin med_atenolol" type="checkbox" name="" id="med_atenolol" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                    <div class="med_title med_atenolol">
-                                                        Atenolol
-                                                        <input type="text" class="mgright" name="med_atenolol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                    </div>
-                                                <input class="margin med_atenolol_od" type="checkbox" name="" id="med_atenolol_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                        <tag style="font-size:7pt;" class="med_atenolol_od">OD</tag>
-                                                <input class="margin med_atenolol_bid" type="checkbox" name="" id="med_atenolol_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                        <tag style="font-size:7pt;" class="med_atenolol_bid">BID</tag>
-                                                <input class="margin med_atenolol_tid" type="checkbox" name="" id="med_atenolol_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                        <tag style="font-size:7pt;" class="med_atenolol_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_sevelamer">
-                                                <input class="onemargin med_sevelamer" type="checkbox" name="" id="med_sevelamer" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_sevelamer">Sevelamer carbonate 800mg</div>
-                                                <input class="margin med_sevelamer_od" type="checkbox" name="" id="med_sevelamer_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_sevelamer_od">OD</tag>
-
-                                                <input class="margin med_sevelamer_bid" type="checkbox" name="" id="med_sevelamer_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                    <tag style="font-size:7pt;" class="med_sevelamer_bid">BID</tag>
-
-                                                <input class="margin med_sevelamer_tid" type="checkbox" name="" id="med_sevelamer_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                    <tag style="font-size:7pt;" class="med_sevelamer_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_carvedilol">
-                                                <input class="onemargin med_carvedilol" type="checkbox" name="" id="med_carvedilol" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_carvedilol">Carvedilol
-                                                    <input type="text" class="mgright" name="med_carvedilol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_carvedilol_od" type="checkbox" name="" id="med_carvedilol_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_carvedilol_od">OD</tag>
-
-                                                <input class="margin med_carvedilol_bid" type="checkbox" name="" id="med_carvedilol_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_carvedilol_bid">BID</tag>
-
-                                                <input class="margin med_carvedilol_tid" type="checkbox" name="" id="med_carvedilol_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_carvedilol_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_calcitriol">
-                                                <input class="onemargin med_calcitriol" type="checkbox" name="" id="med_calcitriol" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                    <div class="med_title med_calcitriol">
-                                                        Calcitriol<input type="text" class="mgright" name="med_calcitriol_mcg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    </div>
-                                                    <input class="margin med_calcitriol_od" type="checkbox" name="" id="med_calcitriol_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                    <tag style="font-size:7pt;" class="med_calcitriol_od">OD</tag>
-
-                                                    <input class="margin med_calcitriol_bid" type="checkbox" name="" id="med_calcitriol_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                    <tag style="font-size:7pt;" class="med_calcitriol_bid">BID</tag>
-
-                                                    <input class="margin med_calcitriol_tid" type="checkbox" name="" id="med_calcitriol_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                    <tag style="font-size:7pt;" class="med_calcitriol_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_metoprolol">
-                                                <input class="onemargin med_metoprolol" type="checkbox" name="" id="med_metoprolol" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_metoprolol">Metoprolol
-                                                    <input type="text" class="mgright" name="med_metoprolol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_metoprolol_od" type="checkbox" name="" id="med_metoprolol_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_metoprolol_od">OD</tag>
-                                                <input class="margin med_metoprolol_bid" type="checkbox" name="" id="med_metoprolol_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_metoprolol_bid">BID</tag>
-                                                <input class="margin med_metoprolol_tid" type="checkbox" name="" id="med_metoprolol_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_metoprolol_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_clopidogrel">
-                                                <input class="onemargin med_clopidogrel" type="checkbox" name="" id="med_clopidogrel" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_clopidogrel">Clopidogrel 75mg</div>
-                                                <input class="margin med_clopidogrel_od" type="checkbox" name="" id="med_clopidogrel_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_clopidogrel_od">OD</tag>
-                                                <input class="margin med_clopidogrel_bid" type="checkbox" name="" id="med_clopidogrel_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_clopidogrel_bid">BID</tag>
-                                                <input class="margin med_clopidogrel_tid" type="checkbox" name="" id="med_clopidogrel_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_clopidogrel_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_clonidine">
-                                                <input class="onemargin med_clonidine" type="checkbox" name="" id="med_clonidine" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_clonidine">Clonidine
-                                                    <input type="text" class="mgright" name="med_clonidine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_clonidine_od" type="checkbox" name="" id="med_clonidine_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_clonidine_od">OD</tag>
-                                                <input class="margin med_clonidine_bid" type="checkbox" name="" id="med_clonidine_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_clonidine_bid">BID</tag>
-                                                <input class="margin med_clonidine_tid" type="checkbox" name="" id="med_clonidine_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_clonidine_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_ferrous">
-                                                <input class="onemargin med_ferrous" type="checkbox" name="" id="med_ferrous" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_ferrous">Ferrous sulfate 325mg
-                                                    <input type="text" class="mgright" name="med_ferrous_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                </div>
-                                                <input class="margin med_ferrous_od" type="checkbox" name="" id="med_ferrous_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_ferrous_od">OD</tag>
-                                                <input class="margin med_ferrous_bid" type="checkbox" name="" id="med_ferrous_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_ferrous_bid">BID</tag>
-                                                <input class="margin med_ferrous_tid" type="checkbox" name="" id="med_ferrous_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_ferrous_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_atorvastatin">
-                                                <input class="onemargin med_atorvastatin" type="checkbox" name="" id="med_atorvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_atorvastatin">Atorvastatin
-                                                    <input type="text" class="mgright" name="med_atorvastatin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_atorvastatin_od" type="checkbox" name="" id="med_atorvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_atorvastatin_od">OD</tag>
-                                                <input class="margin med_atorvastatin_bid" type="checkbox" name="" id="med_atorvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;">
-                                                <tag style="font-size:7pt;" class="med_atorvastatin_bid">BID</tag>
-                                                <input class="margin med_atorvastatin_tid" type="checkbox" name="" id="med_atorvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_atorvastatin_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_folic_acid">
-                                                <input class="onemargin med_folic_acid" type="checkbox" name="" id="med_folic_acid" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_folic_acid">Folic Acid 5mg</div>
-                                                <input class="margin med_folic_acid_od" type="checkbox" name="" id="med_folic_acid_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_folic_acid_od">OD</tag>
-                                                <input class="margin med_folic_acid_bid" type="checkbox" name="" id="med_folic_acid_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_folic_acid_bid">BID</tag>
-                                                <input class="margin med_folic_acid_tid" type="checkbox" name="" id="med_folic_acid_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_folic_acid_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_fluvastatin">
-                                                <input class="onemargin med_fluvastatin" type="checkbox" name="" id="med_fluvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_fluvastatin">
-                                                    Fluvastatin
-                                                    <input type="text" class="mgright" name="med_fluvastatin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_fluvastatin_od" type="checkbox" name="" id="med_fluvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_fluvastatin_od">OD</tag>
-                                                <input class="margin med_fluvastatin_bid" type="checkbox" name="" id="med_fluvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_fluvastatin_bid">BID</tag>
-                                                <input class="margin med_fluvastatin_tid" type="checkbox" name="" id="med_fluvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_fluvastatin_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_vitamin_c">
-                                                <input class="onemargin med_vitamin_c" type="checkbox" name="" id="med_vitamin_c" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_vitamin_c">Vitamin C 500mg</div>
-                                                <input class="margin med_vitamin_c_od" type="checkbox" name="" id="med_vitamin_c_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_vitamin_c_od">OD</tag>
-                                                <input class="margin med_vitamin_c_bid" type="checkbox" name="" id="med_vitamin_c_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_vitamin_c_bid">BID</tag>
-                                                <input class="margin med_vitamin_c_tid" type="checkbox" name="" id="med_vitamin_c_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_vitamin_c_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_simvastatin">
-                                                <input class="onemargin med_simvastatin" type="checkbox" name="" id="med_simvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_simvastatin">Simvastatin
-                                                    <input type="text" class="mgright" name="med_simvastatin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_simvastatin_od" type="checkbox" name="" id="med_simvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_simvastatin_od">OD</tag>
-                                                <input class="margin med_simvastatin_bid" type="checkbox" name="" id="med_simvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_simvastatin_bid">BID</tag>
-                                                <input class="margin med_simvastatin_tid" type="checkbox" name="" id="med_simvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_simvastatin_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_vitamin_b_complex">
-                                                <input class="onemargin med_vitamin_b_complex" type="checkbox" name="" id="med_vitamin_b_complex" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_vitamin_b_complex">Vitamin b complex 1 tablet</div>
-                                                <input class="margin med_vitamin_b_complex_od" type="checkbox" name="" id="med_vitamin_b_complex_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_vitamin_b_complex_od">OD</tag>
-                                                <input class="margin med_vitamin_b_complex_bid" type="checkbox" name="" id="med_vitamin_b_complex_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_vitamin_b_complex_bid">BID</tag>
-                                                <input class="margin med_vitamin_b_complex_tid" type="checkbox" name="" id="med_vitamin_b_complex_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_vitamin_b_complex_tid">TID</tag> 
-                                            </div>
-                                            <div class="medicine_table med_lanoxin">
-                                                <input class="onemargin med_lanoxin" type="checkbox" name="" id="med_lanoxin" style="width:15px;border:0px;border-bottom:1px solid black;">
-                                                <div class="med_title med_lanoxin">Lanoxin
-                                                    <input type="text" class="mgright" name="med_lanoxin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_lanoxin_od" type="checkbox" name="" id="med_lanoxin_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_lanoxin_od">OD</tag>
-                                                <input class="margin med_lanoxin_bid" type="checkbox" name="" id="med_lanoxin_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_lanoxin_bid">BID</tag>
-                                                <input class="margin med_lanoxin_tid" type="checkbox" name="" id="med_lanoxin_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_lanoxin_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_amlodipine">
-                                                <input class="onemargin med_amlodipine" type="checkbox" name="" id="med_amlodipine" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_amlodipine">Amlodipine<input type="text" class="mgright" name="med_amlodipine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_amlodipine_od" type="checkbox" name="" id="med_amlodipine_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_amlodipine_od">OD</tag>
-                                                <input class="margin med_amlodipine_bid" type="checkbox" name="" id="med_amlodipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_amlodipine_bid">BID</tag>
-                                                <input class="margin med_amlodipine_tid" type="checkbox" name="" id="med_amlodipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_amlodipine_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_allopurinol">
-                                                <input class="onemargin med_allopurinol" type="checkbox" name="" id="med_allopurinol" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_allopurinol">Allopurinol
-                                                    <input type="text" class="mgright" name="med_allopurinol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_allopurinol_od" type="checkbox" name="" id="med_allopurinol_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_allopurinol_od">OD</tag>
-                                                <input class="margin med_allopurinol_bid" type="checkbox" name="" id="med_allopurinol_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_allopurinol_bid">BID</tag>
-                                                <input class="margin med_allopurinol_tid" type="checkbox" name="" id="med_allopurinol_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_allopurinol_tid">TID</tag> 
-                                            </div>
-                                            <div class="medicine_table med_felodipine">
-                                                <input class="onemargin med_felodipine" type="checkbox" name="" id="med_felodipine" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_felodipine">Felodipine<input type="text" class="mgright" name="med_felodipine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</div>
-                                                <input class="margin med_felodipine_od" type="checkbox" name="" id="med_felodipine_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_felodipine_od">OD</tag>
-                                                <input class="margin med_felodipine_bid" type="checkbox" name="" id="med_felodipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_felodipine_bid">BID</tag>
-                                                <input class="margin med_felodipine_tid" type="checkbox" name="" id="med_felodipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_felodipine_tid">TID</tag> 
-                                            </div>
-                                            <div class="medicine_table med_gliclazide">
-                                                <input class="onemargin med_gliclazide" type="checkbox" name="" id="med_gliclazide" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_gliclazide">Gliclazide
-                                                    <input type="text" class="mgright" name="med_gliclazide_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_gliclazide_od" type="checkbox" name="" id="med_gliclazide_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_gliclazide_od">OD</tag>
-                                                <input class="margin med_gliclazide_bid" type="checkbox" name="" id="med_gliclazide_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_gliclazide_bid">BID</tag>
-                                                <input class="margin med_gliclazide_tid" type="checkbox" name="" id="med_gliclazide_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_gliclazide_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_nifedipine">
-                                                <input class="onemargin med_nifedipine" type="checkbox" name="" id="med_nifedipine" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_nifedipine">Nitedipine<input type="text" class="mgright" name="med_nifedipine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_nifedipine_od" type="checkbox" name="" id="med_nifedipine_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_nifedipine_od">OD</tag>
-                                                <input class="margin med_nifedipine_bid" type="checkbox" name="" id="med_nifedipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_nifedipine_bid">BID</tag>
-                                                <input class="margin med_nifedipine_tid" type="checkbox" name="" id="med_nifedipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_nifedipine_tid">TID</tag> 
-                                            </div>
-                                            <div class="medicine_table med_metformin">
-                                                <input class="onemargin med_metformin" type="checkbox" name="" id="med_metformin" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_metformin">Metformin<input type="text" class="mgright" name="med_metformin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</div>
-                                                <input class="margin med_metformin_od" type="checkbox" name="" id="med_metformin_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_metformin_od">OD</tag>
-                                                <input class="margin med_metformin_bid" type="checkbox" name="" id="med_metformin_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_metformin_bid">BID</tag>
-                                                <input class="margin med_metformin_tid" type="checkbox" name="" id="med_metformin_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_metformin_tid">TID</tag> 
-                                            </div>
-                                            <div class="medicine_table med_diltiazcm">
-                                                <input class="onemargin med_diltiazcm" type="checkbox" name="" id="med_diltiazcm" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_diltiazcm">Diltiazem<input type="text" class="mgright" name="med_diltiazcm_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_diltiazcm_od" type="checkbox" name="" id="med_diltiazcm_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_diltiazcm_od">OD</tag>
-                                                <input class="margin med_diltiazcm_bid" type="checkbox" name="" id="med_diltiazcm_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_diltiazcm_bid">BID</tag>
-                                                <input class="margin med_diltiazcm_tid" type="checkbox" name="" id="med_diltiazcm_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_diltiazcm_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_renvela">
-                                                <input class="onemargin med_renvela" type="checkbox" name="" id="med_renvela" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_renvela">Renvela
-                                                    <input type="text" class="mgright" name="med_renvela_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</div>
-                                                <input class="margin med_renvela_od" type="checkbox" name="" id="med_renvela_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_renvela_od">OD</tag>
-                                                <input class="margin med_renvela_bid" type="checkbox" name="" id="med_renvela_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_renvela_bid">BID</tag>
-                                                <input class="margin med_renvela_tid" type="checkbox" name="" id="med_renvela_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_renvela_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_irbesartan">
-                                                <input class="onemargin med_irbesartan" type="checkbox" name="" id="med_irbesartan" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_irbesartan">Irbesartan<input type="text" class="mgright" name="med_irbesartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_irbesartan_od" type="checkbox" name="" id="med_irbesartan_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_irbesartan_od">OD</tag>
-                                                <input class="margin med_irbesartan_bid" type="checkbox" name="" id="med_irbesartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_irbesartan_bid">BID</tag>
-                                                <input class="margin med_irbesartan_tid" type="checkbox" name="" id="med_irbesartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_irbesartan_tid">TID</tag> 
-                                            </div>
-                                            <div class="medicine_table med_exforge">
-                                                <input class="onemargin med_exforge" type="checkbox" name="" id="med_exforge" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_exforge">Exforge
-                                                    <input type="text" class="mgright" name="med_exforge_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_exforge_od" type="checkbox" name="" id="med_exforge_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_exforge_od">OD</tag>
-                                                <input class="margin med_exforge_bid" type="checkbox" name="" id="med_exforge_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_exforge_bid">BID</tag>
-                                                <input class="margin med_exforge_tid" type="checkbox" name="" id="med_exforge_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_exforge_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_losartan">
-                                                <input class="onemargin med_losartan" type="checkbox" name="" id="med_losartan" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_losartan">Losartan<input type="text" class="mgright" name="med_losartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</div>
-                                                <input class="margin med_losartan_od" type="checkbox" name="" id="med_losartan_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_losartan_od">OD</tag>
-                                                <input class="margin med_losartan_bid" type="checkbox" name="" id="med_losartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_losartan_bid">BID</tag>
-                                                <input class="margin med_losartan_tid" type="checkbox" name="" id="med_losartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_losartan_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_twynsta">
-                                                <input class="onemargin med_twynsta" type="checkbox" name="" id="med_twynsta" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_twynsta">Twynsta
-                                                    <input type="text" class="mgright" name="med_twynsta_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_twynsta_od" type="checkbox" name="" id="med_twynsta_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_twynsta_od">OD</tag>
-                                                <input class="margin med_twynsta_bid" type="checkbox" name="" id="med_twynsta_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_twynsta_bid">BID</tag>
-                                                <input class="margin med_twynsta_tid" type="checkbox" name="" id="med_twynsta_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_twynsta_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_telmisartan">
-                                                <input class="onemargin med_telmisartan" type="checkbox" name="" id="med_telmisartan" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_telmisartan">Telmisartan<input type="text" class="mgright" name="med_telmisartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
-                                                </div>
-                                                <input class="margin med_telmisartan_od" type="checkbox" name="" id="med_telmisartan_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_telmisartan_od">OD</tag>
-                                                <input class="margin med_telmisartan_bid" type="checkbox" name="" id="med_telmisartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_telmisartan_bid">BID</tag>
-                                                <input class="margin med_telmisartan_tid" type="checkbox" name="" id="med_telmisartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_telmisartan_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_lacipil">
-                                                <input class="onemargin med_lacipil" type="checkbox" name="" id="med_lacipil" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_lacipil">Lacipil
-                                                    <input type="text" class="mgright" name="med_lacipil_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</div>
-                                                <input class="margin med_lacipil_od" type="checkbox" name="" id="med_lacipil_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_lacipil_od">OD</tag>
-                                                <input class="margin med_lacipil_bid" type="checkbox" name="" id="med_lacipil_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_lacipil_bid">BID</tag>
-                                                <input class="margin med_lacipil_tid" type="checkbox" name="" id="med_lacipil_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_lacipil_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_valsartan">
-                                                <input class="onemargin med_valsartan" type="checkbox" name="" id="med_valsartan" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_valsartan">Valsartan<input type="text" class="mgright" name="med_valsartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</div>
-                                                <input class="margin med_valsartan_od" type="checkbox" name="" id="med_valsartan_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_valsartan_od">OD</tag>
-                                                <input class="margin med_valsartan_bid" type="checkbox" name="" id="med_valsartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_valsartan_bid">BID</tag>
-                                                <input class="margin med_valsartan_tid" type="checkbox" name="" id="med_valsartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_valsartan_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_insulin_glargine">
-                                                <input class="onemargin med_insulin_glargine" type="checkbox" name="" id="med_insulin_glargine" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_insulin_glargine">Insulin glargine
-                                                    <input type="text" class="mgright" name="med_insulin_glargine_units" id="" style="width:50px;border:0px;border-bottom:1px solid black;">units</div>
-                                                <input class="margin med_insulin_glargine_od" type="checkbox" name="" id="med_insulin_glargine_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_insulin_glargine_od">OD</tag>
-                                                <input class="margin med_insulin_glargine_bid" type="checkbox" name="" id="med_insulin_glargine_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_insulin_glargine_bid">BID</tag>
-                                                <input class="margin med_insulin_glargine_tid" type="checkbox" name="" id="med_insulin_glargine_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_insulin_glargine_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_ketosteril">
-                                                <input class="onemargin med_ketosteril" type="checkbox" name="" id="med_ketosteril" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_ketosteril">Ketosteril 600mg<input type="text" class="mgright" name="med_ketosteril_tab" id="" style="width:50px;border:0px;border-bottom:1px solid black;">tab</div>
-                                                <input class="margin med_ketosteril_od" type="checkbox" name="" id="med_ketosteril_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_ketosteril_od">OD</tag>
-                                                <input class="margin med_ketosteril_bid" type="checkbox" name="" id="med_ketosteril_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_ketosteril_bid">BID</tag>
-                                                <input class="margin med_ketosteril_tid" type="checkbox" name="" id="med_ketosteril_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_ketosteril_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_linagliptin">
-                                                <input class="onemargin med_linagliptin" type="checkbox" name="" id="med_linagliptin" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_linagliptin">Linagliptin 5mg</div>
-                                                <input class="margin med_linagliptin_od" type="checkbox" name="" id="med_linagliptin_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_linagliptin_od">OD</tag>
-                                                <input class="margin med_linagliptin_bid" type="checkbox" name="" id="med_linagliptin_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_linagliptin_bid">BID</tag>
-                                                <input class="margin med_linagliptin_tid" type="checkbox" name="" id="med_linagliptin_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_linagliptin_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_kremezin">
-                                                <input class="onemargin med_kremezin" type="checkbox" name="" id="med_kremezin" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_kremezin">Kremezin 2g sachet<input type="text" class="mgright" name="med_perindopril_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;"></div>
-                                                <input class="margin med_kremezin_od" type="checkbox" name="" id="med_kremezin_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_kremezin_od">OD</tag>
-                                                <input class="margin med_kremezin_bid" type="checkbox" name="" id="med_kremezin_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_kremezin_bid">BID</tag>
-                                                <input class="margin med_kremezin_tid" type="checkbox" name="" id="med_kremezin_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_kremezin_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_vildaglitpin">
-                                                <input class="onemargin med_vildaglitpin" type="checkbox" name="" id="med_vildaglitpin" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_vildaglitpin">Vildagliptin 50mg</div>
-                                                <input class="margin med_vildaglitpin_od" type="checkbox" name="" id="med_vildaglitpin_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;">
-                                                <tag style="font-size:7pt;" class="med_vildaglitpin_od">OD</tag>
-                                                <input class="margin med_vildaglitpin_bid" type="checkbox" name="" id="med_vildaglitpin_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_vildaglitpin_bid">BID</tag>
-                                                <input class="margin med_vildaglitpin_tid" type="checkbox" name="" id="med_vildaglitpin_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_vildaglitpin_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_perindopril">
-                                               <input class="margin med_perindopril" type="checkbox" name="" id="med_perindopril" style="width:15px;border:0px;border-bottom:1px solid black;"> 
-                                                <div class="med_title med_perindopril">Perindopril<input type="text" class="mgright" name="med_perindopril_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</div>
-                                                <input class="margin med_perindopril_od" type="checkbox" name="" id="med_perindopril_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_perindopril_od">OD</tag>
-                                                <input class="margin med_perindopril_bid" type="checkbox" name="" id="med_perindopril_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_perindopril_bid">BID</tag>
-                                                <input class="margin med_perindopril_tid" type="checkbox" name="" id="med_perindopril_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_perindopril_tid">TID</tag>
-                                            </div>
-                                            <div class="medicine_table med_glipizide">
-                                                <input class="onemargin med_glipizide" type="checkbox" name="" id="med_glipizide" style="width:15px;border:0px;border-bottom:1px solid black;">
-                                                <div class="med_title med_glipizide">Glipizide 50mg</div>
-                                                <input class="margin med_glipizide_od" type="checkbox" name="" id="med_glipizide_od" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_glipizide_od">OD</tag>
-                                                <input class="margin med_glipizide_bid" type="checkbox" name="" id="med_glipizide_bid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_glipizide_bid">BID</tag>
-                                                <input class="margin med_glipizide_tid" type="checkbox" name="" id="med_glipizide_tid" style="width:15px;border:0px;border-bottom:1px solid black;margin-left: 30px;"> 
-                                                <tag style="font-size:7pt;" class="med_glipizide_tid">TID</tag>
-                                            </div>
-                                    </div>
+                                                <tag style="font-size:8pt;" class="med_atenolol">
+                                                    Atenolol
+                                                    <input type="text" class="mgright" name="med_atenolol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg
+                                                </tag>
+                                            </td>
+                                            
+                                            <td style="width:7.5%;">
+                                                <input class="margin med_atenolol_od" type="checkbox" name="" id="med_atenolol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> 
+                                                <tag style="font-size:7pt;" class="med_atenolol_od">OD</tag>
+                                            </td>
+                                            
+                                            <td style="width:7.5%;">
+                                                <input class="margin med_atenolol_bid" type="checkbox" name="" id="med_atenolol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> 
+                                                <tag style="font-size:7pt;" class="med_atenolol_bid">BID</tag>
+                                            </td>
+                                            
+                                            <td style="width:7.5%;">
+                                                <input class="margin med_atenolol_tid" type="checkbox" name="" id="med_atenolol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> 
+                                                <tag style="font-size:7pt;" class="med_atenolol_tid">TID</tag>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_sevelamer" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Sevelamer carbonate 800mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_sevelamer_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_sevelamer_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_sevelamer_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_carvedilol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Carvedilol
+                                                <input type="text" class="mgright" name="med_carvedilol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_carvedilol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_carvedilol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_carvedilol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_calcitriol" style="width:15px;border:0px;border-bottom:1px solid black;"> 
+                                                <tag style="font-size:8pt;">Calcitriol<input type="text" class="mgright" name="med_calcitriol_mcg" id="" style="width:50px;border:0px;border-bottom:1px solid black;"></tag>
+                                            </td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_calcitriol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_calcitriol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_calcitriol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_metoprolol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Metoprolol
+                                                <input type="text" class="mgright" name="med_metoprolol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metoprolol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metoprolol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metoprolol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_clopidogrel" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Clopidogrel 75mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clopidogrel_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clopidogrel_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clopidogrel_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_clonidine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Clonidine
+                                                <input type="text" class="mgright" name="med_clonidine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clonidine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clonidine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_clonidine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_ferrous" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Ferrous sulfate 325mg</tag><input type="text" class="mgright" name="med_ferrous_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;"></tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ferrous_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ferrous_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ferrous_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_atorvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Atorvastatin
+                                                <input type="text" class="mgright" name="med_atorvastatin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_atorvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_atorvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_atorvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_folic_acid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Folic Acid 5mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_folic_acid_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_folic_acid_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_folic_acid_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_fluvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Fluvastatin
+                                                <input type="text" class="mgright" name="med_fluvastatin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_fluvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_fluvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_fluvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_vitamin_c" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Vitamin C 500mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_c_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_c_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_c_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input type="checkbox" name="" id="med_simvastatin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Simvastatin
+                                                <input type="text" class="mgright" name="med_simvastatin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_simvastatin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_simvastatin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_simvastatin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_vitamin_b_complex" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Vitamin b complex 1 tablet</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_b_complex_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_b_complex_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vitamin_b_complex_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_lanoxin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Lanoxin
+                                                <input type="text" class="mgright" name="med_lanoxin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lanoxin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lanoxin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lanoxin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_amlodipine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Amlodipine<input type="text" class="mgright" name="med_amlodipine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_amlodipine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_amlodipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_amlodipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_allopurinol" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Allopurinol
+                                                <input type="text" class="mgright" name="med_allopurinol_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_allopurinol_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_allopurinol_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_allopurinol_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_felodipine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Felodipine<input type="text" class="mgright" name="med_felodipine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_felodipine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_felodipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_felodipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_gliclazide" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Gliclazide
+                                                <input type="text" class="mgright" name="med_gliclazide_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_gliclazide_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_gliclazide_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_gliclazide_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_nifedipine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Nitedipine<input type="text" class="mgright" name="med_nifedipine_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_nifedipine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_nifedipine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_nifedipine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_metformin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Metformin<input type="text" class="mgright" name="med_metformin_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metformin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metformin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_metformin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_diltiazcm" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Diltiazem<input type="text" class="mgright" name="med_diltiazcm_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_diltiazcm_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_diltiazcm_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_diltiazcm_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_renvela" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Renvela
+                                                <input type="text" class="mgright" name="med_renvela_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_renvela_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_renvela_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_renvela_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_irbesartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Irbesartan<input type="text" class="mgright" name="med_irbesartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_irbesartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_irbesartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_irbesartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_exforge" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Exforge
+                                                <input type="text" class="mgright" name="med_exforge_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_exforge_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_exforge_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_exforge_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_losartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Losartan<input type="text" class="mgright" name="med_losartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_losartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_losartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_losartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_twynsta" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Twynsta
+                                                <input type="text" class="mgright" name="med_twynsta_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_twynsta_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_twynsta_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_twynsta_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_telmisartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Telmisartan<input type="text" class="mgright" name="med_telmisartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_telmisartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_telmisartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_telmisartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_lacipil" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Lacipil
+                                                <input type="text" class="mgright" name="med_lacipil_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lacipil_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lacipil_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_lacipil_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_valsartan" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Valsartan<input type="text" class="mgright" name="med_valsartan_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_valsartan_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_valsartan_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_valsartan_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_insulin_glargine" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Insulin glargine
+                                                <input type="text" class="mgright" name="med_insulin_glargine_units" id="" style="width:50px;border:0px;border-bottom:1px solid black;">units</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_insulin_glargine_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_insulin_glargine_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_insulin_glargine_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_ketosteril" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Ketosteril 600mg<input type="text" class="mgright" name="med_ketosteril_tab" id="" style="width:50px;border:0px;border-bottom:1px solid black;">tab</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ketosteril_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ketosteril_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_ketosteril_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_linagliptin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Linagliptin 5mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_linagliptin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_linagliptin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_linagliptin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_kremezin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Kremezin 2g sachet<input type="text" class="mgright" name="med_perindopril_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;"></tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_kremezin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_kremezin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_kremezin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_vildaglitpin" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Vildagliptin 50mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vildaglitpin_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vildaglitpin_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_vildaglitpin_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:27.5%;"><input class="margin" type="checkbox" name="" id="med_perindopril" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Perindopril<input type="text" class="mgright" name="med_perindopril_mg" id="" style="width:50px;border:0px;border-bottom:1px solid black;">mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_perindopril_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_perindopril_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_perindopril_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                            <td style="width:27.5%;"><input class="onemargin" type="checkbox" name="" id="med_glipizide" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:8pt;">Glipizide 50mg</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_glipizide_od" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">OD</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_glipizide_bid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">BID</tag></td>
+                                            <td style="width:7.5%;"><input class="margin" type="checkbox" name="" id="med_glipizide_tid" style="width:15px;border:0px;border-bottom:1px solid black;"> <tag style="font-size:7pt;">TID</tag></td>
+                                        </tr>
+                                    </table>
                                 </div>
-                                <div class="row" style="padding-top: 15px;">
+                               
+                                <div class="row">
                                     <div class="col-xs-7">
-                                        <div class="med_others_med">
-                                            <p style="font-size:8pt;" class="ospace">Others:</p>
-                                            <input type="text" id="medarea" rows="3" name="med_others_med" class="ospace" style="width:100%;border:0px;border-bottom:1px solid black;margin-top: -10px!important;">
-                                        </div>
-                                        <div class="med_medications_no">
-                                            <p class="ospace" style="font-size:8pt;">Indicate how many medications checked:</p>
-                                            <input type="text" name="med_medications_no" style="width:100%;border:0px;border-bottom:1px solid black;margin-top: -10px;">
-                                        </div>
-                                        <div class="med_recommendations">
-                                            <p class="ospace" style="font-size:8pt;">Recommendations</p>
-                                            <input type="text" id="recomarea" rows="3" name="med_recommendations" style="width:100%;border:0px;border-bottom:1px solid black;margin-top: -10px;">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <div id="ftr_medical_abstract">
-                                            <div class="list-inline text-right list-unstyled" style="font-size:8pt;line-height: 100%;float: right;margin-top: 10px;">
-                                                <?php echo $stamp; ?>
-                                            </div>
-                                        </div>
+                                        <p style="font-size:8pt;" class="ospace">Others:</p>
+                                        <input type="text" id="medarea" rows="3" name="med_others_med" class="ospace" style="width:100%;border:0px;border-bottom:1px solid black;margin-top: -10px!important;">
+                                        <p class="ospace" style="font-size:8pt;">Indicate how many medications checked:</p>
+                                        <input type="text" name="med_medications_no" style="width:100%;border:0px;border-bottom:1px solid black;margin-top: -10px;">
+                                        <p class="ospace" style="font-size:8pt;">Recommendations</p>
+                                        <input type="text" id="recomarea" rows="3" name="med_recommendations" style="width:100%;border:0px;border-bottom:1px solid black;margin-top: -10px;">
                                     </div>
                                 </div>
-<!--                                 <footer class="m-t-15 p-20" id="ftr_medical_abstract">
-                                    
-                                </footer> -->
+                                <footer class="m-t-15 p-20" id="ftr_medical_abstract">
+                                    <div class="list-inline text-right list-unstyled" style="font-size:8pt;line-height: 100%;float: right;margin-top: -80px;">
+                                        <?php echo $stamp; ?>
+                                    </div>
+                                </footer>
                             </div>
                             </form>
                         </div>
@@ -2618,79 +2411,79 @@
                                     </div>
                                 </div><br>
                                 <div class="row">
-                                        <div class="text-left inc_freq_3x">
-                                            <input type="text" name="inc_freq_3x" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            Increase frequency to 3 x a week
-                                        </div>
-                                        <div class="text-left upd_medical_sheet">
-                                            <input type="text" name="upd_medical_sheet" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            Update Medical Sheet
-                                        </div>
-                                        <div class="text-left shift_recormon_500">
+                                    <div class="text-left">
+                                        <input type="text" name="inc_freq_3x" name="nephro_inc_freq" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
+                                        Increase frequency to 3 x a week
+                                    </div>
+                                    <div class="text-left">
+                                        <input type="text" name="upd_medical_sheet" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
+                                        Update Medical Sheet
+                                    </div>
+                                        <div class="text-left">
                                             <input type="text" name="shift_recormon_500" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             Shift to Recormon 5000 u sc route at 1x/ 2x/ 3x a week
                                         </div>
-                                        <div class="text-left shift_eprex_4000">
+                                        <div class="text-left">
                                             <input type="text" name="shift_eprex_4000" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             Shift to Eprex 4000 u SC at 1x/ 2x/ 3x a week
                                         </div>
-                                        <div class="text-left shift_eposino_4000u">
+                                        <div class="text-left">
                                             <input type="text" name="shift_eposino_4000u" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             Shift to Eposino 4000u SC at 1x/ 2x/ 3x a week
                                         </div>
-                                        <div class="text-left shift_eposino_6000u">
+                                        <div class="text-left">
                                             <input type="text" name="shift_eposino_6000u" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             Shift to Eposino 6000u SC at 1x/ 2x/ a week
                                         </div>
-                                        <div class="text-left iv_sc_2weeks">
+                                        <div class="text-left">
                                             <input type="text" name="iv_sc_2weeks" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             IV Iron sucrose 100 mg q 2 weeks (discontinue oral iron)
                                         </div>
-                                        <div class="text-left iv_sc_10doses">
+                                        <div class="text-left">
                                             <input type="text" name="iv_sc_10doses" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             IV Iron sucrose 100 mg q week for 10 doses then every 2 weeks (discontinue oral iron)
                                         </div>
-                                        <div class="text-left upd_medication">
+                                        <div class="text-left">
                                             <input type="text" name="upd_medication" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             update all medications as indicated in new prescription given to patient
                                         </div>
-                                    <div class="text-left sen_nurse_cann_avf">
+                                    <div class="text-left">
                                         <input type="text" name="sen_nurse_cann_avf" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                         Senior nurse to cannulate AVF at all times
                                     </div>
-                                    <div class="text-left mod_anticoag">
+                                    <div class="text-left">
                                         <input type="text" name="mod_anticoag" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                         Modify anticoagulation as follows:
                                     </div>
-                                        <div class="text-left no_heparin">
+                                        <div class="text-left">
                                             <input type="text" name="no_heparin" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             No heparin for <input name="no_heparin_for" type="text" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             weeks prior
                                             <input type="text" name="weeks_prior" style="border:0px;border-bottom:1px solid #2c3e50;width:300px;font-size:10pt;"> 
                                         </div>
-                                        <div class="text-left no_heparin2">
+                                        <div class="text-left">
                                             <input type="text" name="no_heparin2" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             No heparin for <input type="text" name="no_heparin_for2" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             weeks after
                                         <input type="text" name="weeks_after" style="border:0px;border-bottom:1px solid #2c3e50;width:300px;font-size:10pt;"> 
                                         </div>
-                                        <div class="text-left give_uhf">
+                                        <div class="text-left">
                                             <input type="text" name="give_uhf"  style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             Give UHF <input type="text" name="give_uhf_units" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                             units bolus then <input type="text" name="give_uhf_units_bolus" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;">
                                         </div>
-                                    <div class="text-left please_do_monthly">
+                                    <div class="text-left">
                                         <input type="text" name="please_do_monthly" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
                                         Please do monthly labs on or before <input name="on_or_before" type="text" style="border:0px;border-bottom:1px solid #2c3e50;width:375px;font-size:10pt;"> 
                                     </div>
-                                    <div class="text-left others_orders">
+                                    <div class="text-left">
                                         <input type="text" name="others_orders" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;">
                                         others orders
                                     </div>
-                                        <div class="text-center more_details1">
+                                        <div class="text-center">
                                             <input type="text" name="more_details1" style="border:0px;border-bottom:1px solid #2c3e50;width:83%;font-size:10pt;">
                                         </div>
-                                        <div class="text-center more_details2">
+                                        <div class="text-center">
                                             <input type="text" name="more_details2" style="border:0px;border-bottom:1px solid #2c3e50;width:83%;font-size:10pt;">
                                         </div>
                                     <div class="text-left" style="margin-top:50px;font-weight:bold;">
@@ -2784,171 +2577,64 @@
                                         <div class="col-xs-12">
                                             <div class="col-xs-4">
                                                 <h6><b>HEMATOLOGY</b></h6>
-                                               
-                                               <div class="hm_cbc">
-                                                    <input type="checkbox" class="hm_cbc" name="" id="hm_cbc" style="width:50px;border:0px;border-bottom:1px solid black;"> 
-                                                    <label for="hm_cbc" class="normal">CBC with PC</label>   
-                                               </div>
-                                               <div class="hm_ph_bsmear">
-                                                   <input type="checkbox" name="" id="hm_ph_bsmear" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="hm_ph_bsmear" class="normal">Peripheral Blood Smear</label>  
-                                               </div>
-
+                                               <input type="checkbox" name="" id="hm_cbc" style="width:50px;border:0px;border-bottom:1px solid black;">CBC with PC <br>
+                                               <input type="checkbox" name="" id="hm_ph_bsmear" style="width:50px;border:0px;border-bottom:1px solid black;">Peripheral Blood Smear <br>
                                                <h6><b>CHEMISTRY</b></h6>
-
-                                               <div class="chem_bun_prepost">
-                                                    <input type="checkbox" name="" id="chem_bun_prepost" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_bun_prepost" class="normal">BUN (Pre and Post HD)</label>  
-                                               </div>
-                                               <div class="chem_bun">
-                                                   <input type="checkbox" name="" id="chem_bun" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_bun" class="normal">BUN</label>  
-                                               </div>
-                                               <div class="chem_creatinine">
-                                                   <input type="checkbox" name="" id="chem_creatinine" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_creatinine" class="normal">Creatinine</label>  
-                                               </div>
-                                               <div class="chem_na">
-                                                   <input type="checkbox" name="" id="chem_na" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_na" class="normal">Na</label> 
-                                               </div>
-                                               <div class="chem_k">
-                                                   <input type="checkbox" name="" id="chem_k" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_k" class="normal">K</label> 
-                                               </div>
-                                               <div class="chem_fbs">
-                                                   <input type="checkbox" name="" id="chem_fbs" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_fbs" class="normal">FBS</label> 
-                                               </div>
-                                               <div class="chem_ion_calc">
-                                                   <input type="checkbox" name="" id="chem_ion_calc" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_ion_calc" class="normal">Ionized Calcium</label> 
-                                               </div>
-                                               <div class="chem_phosporus">
-                                                   <input type="checkbox" name="" id="chem_phosporus" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_phosporus" class="normal">Phosphorus</label> 
-                                               </div>
-                                               <div class="chem_albumin">
-                                                   <input type="checkbox" name="" id="chem_albumin" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_albumin" class="normal">Albumin</label>
-                                               </div>
-                                               <div class="chem_uricacid">
-                                                   <input type="checkbox" name="" id="chem_uricacid" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_uricacid" class="normal">Uric Acid</label>
-                                               </div>
-                                               <div class="chem_lipidprofile">
-                                                   <input type="checkbox" name="" id="chem_lipidprofile" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_lipidprofile" class="normal">Lipid Profile</label>
-                                               </div>
-                                               <div class="chem_sgpt">
-                                                   <input type="checkbox" name="" id="chem_sgpt" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_sgpt" class="normal">SGPT</label>
-                                               </div>
-                                               <div class="chem_specify">
-                                                   <input type="checkbox" name="" id="chem_specify" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_specify" class="normal">Others, please specify </label>
-                                                   <input type="text" name="chem_specify_txt" style="width:65px;border:0px;border-bottom:1px solid black;">
-                                               </div>
+                                               <input type="checkbox" name="" id="chem_bun_prepost" style="width:50px;border:0px;border-bottom:1px solid black;">BUN (Pre and Post HD) <br>
+                                               <input type="checkbox" name="" id="chem_bun" style="width:50px;border:0px;border-bottom:1px solid black;">BUN <br>
+                                               <input type="checkbox" name="" id="chem_creatinine" style="width:50px;border:0px;border-bottom:1px solid black;">Creatinine <br>
+                                               <input type="checkbox" name="" id="chem_na" style="width:50px;border:0px;border-bottom:1px solid black;">Na <br>
+                                               <input type="checkbox" name="" id="chem_k" style="width:50px;border:0px;border-bottom:1px solid black;">K <br>
+                                               <input type="checkbox" name="" id="chem_fbs" style="width:50px;border:0px;border-bottom:1px solid black;">FBS <br>
+                                               <input type="checkbox" name="" id="chem_ion_calc" style="width:50px;border:0px;border-bottom:1px solid black;">Ionized Calcium <br>
+                                               <input type="checkbox" name="" id="chem_phosporus" style="width:50px;border:0px;border-bottom:1px solid black;">Phosphorus <br>
+                                               <input type="checkbox" name="" id="chem_albumin" style="width:50px;border:0px;border-bottom:1px solid black;">Albumin <br>
+                                               <input type="checkbox" name="" id="chem_uricacid" style="width:50px;border:0px;border-bottom:1px solid black;">Uric Acid <br>
+                                               <input type="checkbox" name="" id="chem_lipidprofile" style="width:50px;border:0px;border-bottom:1px solid black;">Lipid Profile <br>
+                                               <input type="checkbox" name="" id="chem_sgpt" style="width:50px;border:0px;border-bottom:1px solid black;">SGPT <br>
+                                               <input type="checkbox" name="" id="chem_specify" style="width:50px;border:0px;border-bottom:1px solid black;">Others, please specify <input type="text" name="chem_specify_txt" style="width:65px;border:0px;border-bottom:1px solid black;"><br>
                                             </div>
                                             <div class="col-xs-8">
                                                 <div class="row">
-                                                    <div class="col-xs-12">
-                                                        <h6><b>IMAGING STUDIES</b></h6>
-
-                                                        <div class="medicine_table imag_12lecg">
-                                                            <input type="checkbox" id="imag_12lecg" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_12lecg" class="normal med_title">12 L ECG</label>
-                                                        </div>
-                                                        <div class="medicine_table imag_cxrpa">
-                                                            <input type="checkbox" id="imag_cxrpa" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_cxrpa" class="normal">CXR PA</label>
-                                                        </div>
-                                                        <div class="medicine_table imag_kubxray">
-                                                            <input type="checkbox" id="imag_kubxray" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_kubxray" class="normal">KUB XRAY</label>
-                                                        </div>
-                                                        <div class="medicine_table imag_ctstronogram">
-                                                            <input type="checkbox" id="imag_ctstronogram" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_ctstronogram" class="normal">CT STONOGRAM</label>
-                                                        </div>
-                                                        <div class="medicine_table imag_kubultrasound">
-                                                            <input type="checkbox" id="imag_kubultrasound" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_kubultrasound" class="normal">KUB Ultrasound</label>
-                                                        </div>
-                                                        <div class="medicine_table imag_prosultra">
-                                                            <input type="checkbox" id="imag_prosultra" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_prosultra" class="normal">Prostate Ultrasound</label>
-                                                        </div>
-                                                        <div class="medicine_table imag_abdomen">
-                                                            <input type="checkbox" id="imag_abdomen" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_abdomen" class="normal">Ultrasound of WAB</label>
-                                                        </div>
-                                                        <div class="medicine_table imag_decho_plain">
-                                                            <input type="checkbox" id="imag_decho_plain" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_decho_plain" class="normal">2 Dechocardiography (Plain)</label>
-                                                        </div>
-                                                        <div class="medicine_table imag_ct_angiography">
-                                                            <input type="checkbox" id="imag_ct_angiography" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_ct_angiography" class="normal">CT angiography</label>
-                                                        </div>
-                                                        <div class="medicine_table imag_decho_doppler">
-                                                            <input type="checkbox" id="imag_decho_doppler" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_decho_doppler" class="normal">2 Dechocardiography (with doppler)</label>
-                                                        </div>
-                                                        <div class="medicine_table imag_renal_duplex">
-                                                            <input type="checkbox" id="imag_renal_duplex" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="imag_renal_duplex" class="normal">Renal Duplex Scan</label>
-                                                        </div> 
-                                                        <div class="medicine_table imag_others">
-                                                           <input type="checkbox" id="imag_others" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            Others:
-                                                           <input type="text" style="width:120px;border:0px;border-bottom:1px solid black;" name="imag_others_txt"> 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row renal_gfr">
                                                     <div class="col-xs-5">
-                                                        <h6><b>RENAL FUNCTION TEST</b></h6>
-                                                        <input type="checkbox" id="renal_gfr" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                        <label for="renal_gfr" class="normal">Nuclear GFR Scan</label>
+                                                        <h6><b>IMAGING STUDIES</b></h6>
+                                                        <input type="checkbox" id="imag_12lecg" style="width:50px;border:0px;border-bottom:1px solid black;">12 L ECG <br />
+                                                        <input type="checkbox" id="imag_kubxray" style="width:50px;border:0px;border-bottom:1px solid black;">KUB XRAY <br />
+                                                        <input type="checkbox" id="imag_kubultrasound" style="width:50px;border:0px;border-bottom:1px solid black;">KUB Ultrasound <br />
+                                                        <input type="checkbox" id="imag_abdomen" style="width:50px;border:0px;border-bottom:1px solid black;">Ultrasound of WAB <br />
+                                                        <input type="checkbox" id="imag_ct_angiography" style="width:50px;border:0px;border-bottom:1px solid black;">CT angiography<br />
+                                                        <input type="checkbox" id="imag_renal_duplex" style="width:50px;border:0px;border-bottom:1px solid black;">Renal Duplex Scan <br />
+                                                    </div>
+                                                    <div class="col-xs-7">
+                                                        <br><br>
+                                                        <input type="checkbox" id="imag_cxrpa" style="width:50px;border:0px;border-bottom:1px solid black;">CXR PA <br/>
+                                                        <input type="checkbox" id="imag_ctstronogram" style="width:50px;border:0px;border-bottom:1px solid black;">CT STONOGRAM<br/>
+                                                        <input type="checkbox" id="imag_prosultra" style="width:50px;border:0px;border-bottom:1px solid black;">Prostate Ultrasound<br/>
+                                                        <input type="checkbox" id="imag_decho_plain" style="width:50px;border:0px;border-bottom:1px solid black;">2 Dechocardiography (Plain)<br/>
+                                                        <input type="checkbox" id="imag_decho_doppler" style="width:50px;border:0px;border-bottom:1px solid black;">2 Dechocardiography (with doppler)<br/>
+                                                        <input type="checkbox" id="imag_others" style="width:50px;border:0px;border-bottom:1px solid black;">Others: <input type="text" style="width:160px;border:0px;border-bottom:1px solid black;" name="imag_others_txt"> <br/>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-xs-12">
+                                                    <div class="col-xs-5">
+                                                        <h6><b>RENAL FUNCTION TEST</b></h6>
+                                                        <input type="checkbox" id="renal_gfr" style="width:50px;border:0px;border-bottom:1px solid black;"> Nuclear GFR Scan <br>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-5">
                                                         <h6><b>URINE EXAMS</b></h6>
-
-                                                        <div class="medicine_table urine_routine_analysis">
-                                                            <input type="checkbox" id="urine_routine_analysis" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="urine_routine_analysis" class="normal">Routine Urinalysis</label>
-                                                        </div>
-                                                        <div class="medicine_table urine_rbc_morph">
-                                                            <input type="checkbox" id="urine_rbc_morph" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="urine_rbc_morph" class="normal">24 hour urine total protein</label>
-                                                        </div>
-                                                        <div class="medicine_table urine_random">
-                                                            <input type="checkbox" id="urine_random" style="width:50px;border:0px;border-bottom:1px solid black;"> 
-                                                            <label for="urine_random" class="normal">Urine RBC morphology</label>
-                                                        </div>
-                                                        <div class="medicine_table urine_sodium">
-                                                            <input type="checkbox" id="urine_sodium" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="urine_sodium" class="normal">24 hour creatinine clearance</label>
-                                                        </div>
-                                                        <div class="medicine_table urine_calcium">
-                                                            <input type="checkbox" id="urine_calcium" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="urine_calcium" class="normal">Random Urine Protein </label>
-                                                        </div>
-                                                        <div class="medicine_table urine_creatinine_ratio">
-                                                            <input type="checkbox" id="urine_creatinine_ratio" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="urine_creatinine_ratio" class="normal">Urine Albumin Creatinine Ratio</label>
-                                                        </div>
-                                                        <div class="medicine_table urine_afb">
-                                                            <input type="checkbox" id="urine_afb" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="urine_afb" class="normal">Urine AFB</label>
-                                                        </div>
-                                                        <div class="medicine_table urine_cytology">
-                                                            <input type="checkbox" id="urine_cytology" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                            <label for="urine_cytology" class="normal">Urine Cytology</label>
-                                                        </div>  
+                                                            <input type="checkbox" id="urine_routine_analysis" style="width:50px;border:0px;border-bottom:1px solid black;">Routine Urinalysis <br />
+                                                            <input type="checkbox" id="urine_random" style="width:50px;border:0px;border-bottom:1px solid black;">Urine RBC morphology  <br />
+                                                            <input type="checkbox" id="urine_calcium" style="width:50px;border:0px;border-bottom:1px solid black;">Random Urine Protein  <br />
+                                                            <input type="checkbox" id="urine_afb" style="width:50px;border:0px;border-bottom:1px solid black;">Urine AFB <br />
+                                                    </div>
+                                                    <div class="col-xs-7">
+                                                        <br><br>
+                                                        <input type="checkbox" id="urine_rbc_morph" style="width:50px;border:0px;border-bottom:1px solid black;">24 hour urine total protein<br>
+                                                       <input type="checkbox" id="urine_sodium" style="width:50px;border:0px;border-bottom:1px solid black;">24 hour creatinine clearance<br>
+                                                       <input type="checkbox" id="urine_creatinine_ratio" style="width:50px;border:0px;border-bottom:1px solid black;">Urine Albumin Creatinine Ratio<br>
+                                                       <input type="checkbox" id="urine_cytology" style="width:50px;border:0px;border-bottom:1px solid black;">Urine Cytology<br>
                                                     </div>
                                                 </div>                                     
                                             </div>
@@ -2957,38 +2643,26 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="text-left">
-                                            <div class="sentence1">
-                                                Please have this test done on/or before <input type="text" name="sentence1" style="width:40%;border:0px;border-bottom:1px solid black;"> at <input type="text" style="width:28%;border:0px;border-bottom:1px solid black;" name="sentence2">
-                                            </div>
+                                            Please have this test done on/or before <input type="text" name="sentence1" style="width:40%;border:0px;border-bottom:1px solid black;"> at <input type="text" style="width:28%;border:0px;border-bottom:1px solid black;" name="sentence2"><br> 
                                             Instructions : 
-                                            <div class="non_fasting">
-                                                <input type="checkbox" id="non_fasting" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px"> 
-                                                <label for="non_fasting" class="normal">Nonfasting</label>
-                                            </div>
-                                            <div class="fasting" style="display: inline-block;">
-                                                <input type="checkbox" id="fasting" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px"> 
-                                                <label for="fasting" class="normal">Fasting</label>
-                                            </div>
-                                            <div class="fasting_6hrs" style="display: inline-block;">
-                                                <input type="checkbox" id="fasting_6hrs" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px">
-                                                <label for="fasting_6hrs" class="normal">6 Hours</label>
-                                            </div>
-                                            <div class="fasting_8hrs" style="display: inline-block;">
-                                                <input type="checkbox" id="fasting_8hrs" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px">
-                                                <label for="fasting_8hrs" class="normal">8 Hours</label>
-                                            </div>
-                                            <div class="fasting_10hrs" style="display: inline-block;">
-                                                <input type="checkbox" id="fasting_10hrs" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px">
-                                                <label for="fasting_10hrs" class="normal">10 Hours</label>
-                                            </div>
-                                            <div class="instruct_others">
+                                                <br />
+                                                <input type="checkbox" id="non_fasting" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px"> Nonfasting 
+                                                <br />
+
+                                                <input type="checkbox" id="fasting" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px"> Fasting
+                                                <input type="checkbox" id="fasting_6hrs" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px"> 6 Hours
+                                                <input type="checkbox" id="fasting_8hrs" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px"> 8 Hours
+                                                <input type="checkbox" id="fasting_10hrs" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px"> 10 Hours 
+                                                <br />
+
                                                 <input type="checkbox" id="instruct_others" style="width:50px;border:0px;border-bottom:1px solid black;margin-left:10px"> Others: <input type="text" style="width:350px;border:0px;border-bottom:1px solid black;" name="instruct_others_txt">
-                                            </div>
+
+                                                
                                          </div>
                                     </div>
                                 </div>
                                 <footer class="m-t-15 p-20" id="ftr_lab_report">
-                                    <div class="list-inline text-right list-unstyled" style="font-size:8pt;line-height: 100%;float: right;">
+                                    <div class="list-inline text-right list-unstyled" style="font-size:8pt;line-height: 100%;float: right;margin-top: -55px;">
                                         <?php echo $stamp; ?>
                                     </div>
                                 </footer>
@@ -5550,15 +5224,6 @@
         var _nephrotxn; var _patient_nephro_id; var _selectedDryWeight;
         var d = new Date();
         var today = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
-        var checkbox_report;
-
-        var getCheckboxReport=function(){
-            return $.ajax({
-                "dataType":"json",
-                "type":"POST",
-                "url":"StampSettings/transaction/list"
-            });
-        }; 
 
         var initializeControls=function(){
         dt=$('#tbl_ref_patient').DataTable({
@@ -5598,10 +5263,6 @@
                     "align": "right"
                 });
             }
-        });
-
-        getCheckboxReport().done(function(response){
-            checkbox_report = response.data.checkbox_report;
         });
 
         $('.numeric').autoNumeric('init');
@@ -6670,31 +6331,31 @@
               if (isConfirm) {
                 if(validateRequiredFields($('#frm_patient_prescription'))){
                     createPatient_prescription().done(function(response){
-                        showNotification(response);
-                        if(response.stat=="success"){
-                            $('#tbl_patient_prescription').DataTable().ajax.reload();
-                        }
-                    }).always(function(){
-                        $.unblockUI();
-                        $('#modal_new_prescription').modal('toggle');
-                    });
-                    swal("Success!", "Nephro Record Succesfully Created", "success");
+                                                showNotification(response);
+                                                if(response.stat=="success"){
+                                                    $('#tbl_patient_prescription').DataTable().ajax.reload();
+                                                }
+                                            }).always(function(){
+                                                $.unblockUI();
+                                                $('#modal_new_prescription').modal('toggle');
+                                            });
                 }
+                swal("Success!", "Nephro Record Succesfully Created", "success");
               } 
               else {
                 if(validateRequiredFields($('#frm_patient_prescription'))){
                     editPatient_prescription().done(function(response){
-                        showNotification(response);
-                        if(response.stat=="success"){
-                            $('#tbl_patient_prescription').DataTable().ajax.reload();
-                        }
-                    }).always(function(){
-                        $.unblockUI();
-                        $('#modal_new_prescription').modal('toggle');
-                    });
-                    swal("Success!", "Nephro Record Succesfully Updated", "success");
+                                                showNotification(response);
+                                                if(response.stat=="success"){
+                                                    $('#tbl_patient_prescription').DataTable().ajax.reload();
+                                                }
+                                            }).always(function(){
+                                                $.unblockUI();
+                                                $('#modal_new_prescription').modal('toggle');
+                                            });
                 }
               }
+              swal("Success!", "Nephro Record Succesfully Updated", "success");
             });
             
         }
@@ -7356,47 +7017,18 @@
                 });
             }
             if(_txnMode2=="edit"){
-                swal({
-                  title: "Confirmation",
-                  text: "Save as new data or Update current data?",
-                  type: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: "Save",
-                  cancelButtonText: "Update",
-                  closeOnConfirm: false,
-                  closeOnCancel: false
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    if(validateRequiredFields($('#frm_patient_billing'))){
-                        createPatient_billing().done(function(response){
-                        if(response.stat=="success"){
-                            $('#tbl_billing').DataTable().ajax.reload();
-                            }
-                            }).always(function(){
-                            $.unblockUI();
-                            $('#modal_new_billing').modal('toggle');
-                        });
-                        swal("Success!", "Billing Info Succesfully Created", "success");
+                updatePatient_billing().done(function(response){
+                showNotification(response);
+                if(response.stat=="success"){
+                    $('#tbl_billing').DataTable().ajax.reload();
                     }
-                  } 
-                  else {
-                    if(validateRequiredFields($('#frm_patient_billing'))){
-                        updatePatient_billing().done(function(response){
-                        if(response.stat=="success"){
-                            $('#tbl_billing').DataTable().ajax.reload();
-                            }
-                            }).always(function(){
-                            $.unblockUI();
-                            $('#modal_new_billing').modal('toggle');
-                        });    
-                        swal("Success!", "Billing Info Succesfully Updated", "success");                    
-                    }
-                  }
+                    }).always(function(){
+                    $.unblockUI();
+                    $('#modal_new_billing').modal('toggle');
                 });
             }
         }
+        
     });
 
     $('#tbl_billing tbody').on('click','button[name="edit_billing_details"]',function(){
@@ -7590,49 +7222,18 @@
                 });
             }
             if(_txnMode3=="edit"){
-                swal({
-                  title: "Confirmation",
-                  text: "Save as new data or Update current data?",
-                  type: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: "Save",
-                  cancelButtonText: "Update",
-                  closeOnConfirm: false,
-                  closeOnCancel: false
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    if(validateRequiredFields($('#frm_patient_visiting_record'))){
-                        createPatientVisitingRecord().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_visiting_record').DataTable().ajax.reload();
-                            }
-                                }).always(function(){
-                                $.unblockUI();
-                                $('#modal_new_visit').modal('toggle');
-                        });
-                        swal("Success!", "Visiting Record Succesfully Created", "success");
+                updatePatientVisitingRecord().done(function(response){
+                showNotification(response);
+                if(response.stat=="success"){
+                    $('#tbl_visiting_record').DataTable().ajax.reload();
                     }
-                  } 
-                  else {
-                    if(validateRequiredFields($('#frm_patient_visiting_record'))){
-                        updatePatientVisitingRecord().done(function(response){
-                        showNotification(response);
-                        if(response.stat=="success"){
-                            $('#tbl_visiting_record').DataTable().ajax.reload();
-                            }
-                            }).always(function(){
-                            $.unblockUI();
-                            $('#modal_new_visit').modal('toggle');
-                        });
-                        swal("Success!", "Visiting Record Succesfully Updated", "success");
-                    }
-                  }
+                    }).always(function(){
+                    $.unblockUI();
+                    $('#modal_new_visit').modal('toggle');
                 });
             }
         }
+        
     });
 
     $('#tbl_visiting_record tbody').on('click','button[name="edit_visiting_record"]',function(){
@@ -7851,49 +7452,18 @@
                 });
             }
             if(_txnMode4=="edit"){
-                swal({
-                  title: "Confirmation",
-                  text: "Save as new data or Update current data?",
-                  type: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: "Save",
-                  cancelButtonText: "Update",
-                  closeOnConfirm: false,
-                  closeOnCancel: false
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    if(validateRequiredFields($('#frm_clinical_db'))){
-                        createClinical().done(function(response){
-                        showNotification(response);
-                        if(response.stat=="success"){
-                            $('#tbl_clinical').DataTable().ajax.reload();
-                        }
-                            }).always(function(){
-                            $.unblockUI();
-                            $('#modal_new_clinical').modal('toggle');
-                        });
-                        swal("Success!", "Clinical Database Succesfully Created", "success");
+                updateClinical().done(function(response){
+                showNotification(response);
+                if(response.stat=="success"){
+                    $('#tbl_clinical').DataTable().ajax.reload();
                     }
-                  } 
-                  else {
-                    if(validateRequiredFields($('#frm_clinical_db'))){
-                        updateClinical().done(function(response){
-                        showNotification(response);
-                        if(response.stat=="success"){
-                            $('#tbl_clinical').DataTable().ajax.reload();
-                            }
-                            }).always(function(){
-                            $.unblockUI();
-                            $('#modal_new_clinical').modal('toggle');
-                        });
-                        swal("Success!", "Clinical Database Succesfully Updated", "success");
-                    }
-                  }
+                    }).always(function(){
+                    $.unblockUI();
+                    $('#modal_new_clinical').modal('toggle');
                 });
             }
         }
+        
     });
 
     $('#tbl_clinical tbody').on( 'click', 'tr td.details-control-print', function () {
@@ -8130,23 +7700,19 @@
                     if(_elem.attr('name')==name){
                         _elem.val(value);
 
-                        if(checkbox_report==1){
-                            if(value== "" || value==null){
-                                $('.'+name).addClass('hidden');
-                            }else{
-                                $('.'+name).removeClass('hidden');
-                            }
+                        if(value== "" || value==null){
+                            $('.'+name).addClass('hidden');
+                        }else{
+                            $('.'+name).removeClass('hidden');
                         }
                     }
 
                     if(_elem.attr('id')==name){
 
-                        if(checkbox_report==1){
-                            if(value!=1){
-                                $('.'+name).addClass('hidden');
-                            }else{
-                                $('.'+name).removeClass('hidden');
-                            }
+                        if(value!=1){
+                            $('.'+name).addClass('hidden');
+                        }else{
+                            $('.'+name).removeClass('hidden');
                         }
 
                         if(value==1){ _elem.prop('checked', true); }
@@ -8183,46 +7749,15 @@
                 });
             }
             if(_txnmedicalabstract=="edit"){
-                swal({
-                  title: "Confirmation",
-                  text: "Save as new data or Update current data?",
-                  type: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: "Save",
-                  cancelButtonText: "Update",
-                  closeOnConfirm: false,
-                  closeOnCancel: false
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    if(validateRequiredFields($('#frm_medical_abstract'))){
-                        Savemedicalabstract().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_patient_medical_abstract').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_medical_abstract').modal('toggle');
-                        });
-                        swal("Success!", "Medical Abstract Succesfully Created", "success");
+
+                Updatemedicalabstract().done(function(response){
+                    showNotification(response);
+                    if(response.stat=="success"){
+                        $('#tbl_patient_medical_abstract').DataTable().ajax.reload();
                     }
-                  } 
-                  else {
-                    if(validateRequiredFields($('#frm_medical_abstract'))){
-                        Updatemedicalabstract().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_patient_medical_abstract').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_medical_abstract').modal('toggle');
-                        });
-                        swal("Success!", "Medical Abstract Succesfully Updated", "success");
-                    }
-                  }
+                }).always(function(){
+                    $.unblockUI();
+                    $('#modal_medical_abstract').modal('toggle');
                 });
             }
         }   
@@ -8358,8 +7893,6 @@
         $('.patient_txn').text('New');
         clearFields($('#frm_nephro_order'));
 
-        $('#frm_nephro_order').find('.hidden').removeClass('hidden');
-
         $('#nephro_order_date').val(today);
         $('.inputareadryweight').val(_selectedDryWeight);
 
@@ -8380,8 +7913,6 @@
         checkHeader(_txnnephroorder);
         $('.patient_txn').text('Edit');
         clearFields($('#frm_nephro_order'));
-
-        $('#frm_nephro_order').find('.hidden').removeClass('hidden');
 
         $('#nephro_order_icon').removeClass();
         $('#nephro_order_icon').addClass('fa fa-edit');
@@ -8431,14 +7962,6 @@
                 $.each(datanephroorder,function(name,value){
                     if(_elem.attr('name')==name){
                         _elem.val(value);
-
-                        if(checkbox_report==1){
-                            if(value=="" || value==null){
-                                $('.'+name).addClass('hidden');
-                            }else{
-                                $('.'+name).removeClass('hidden');
-                            }
-                        }
                     }
                 });
         }); 
@@ -8468,46 +7991,14 @@
                 });
             }
             if(_txnnephroorder=="edit"){
-                swal({
-                  title: "Confirmation",
-                  text: "Save as new data or Update current data?",
-                  type: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: "Save",
-                  cancelButtonText: "Update",
-                  closeOnConfirm: false,
-                  closeOnCancel: false
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    if(validateRequiredFields($('#frm_nephro_order'))){
-                        Savenephro().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_patient_nephro_order').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_patient_nephro_order').modal('toggle');
-                        });
-                        swal("Success!", "Nephro Order Succesfully Created", "success");
+                Updatenephro().done(function(response){
+                    showNotification(response);
+                    if(response.stat=="success"){
+                        $('#tbl_patient_nephro_order').DataTable().ajax.reload();
                     }
-                  } 
-                  else {
-                    if(validateRequiredFields($('#frm_nephro_order'))){
-                        Updatenephro().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_patient_nephro_order').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_patient_nephro_order').modal('toggle');
-                        });
-                        swal("Success!", "Nephro Order Succesfully Updated", "success");
-                    }
-                  }
+                }).always(function(){
+                    $.unblockUI();
+                    $('#modal_patient_nephro_order').modal('toggle');
                 });
             }
         }   
@@ -8605,8 +8096,6 @@
         $('.patient_txn').text('New');
         clearFields($('#frm_lab_diagnostic'));
 
-        $('#frm_lab_diagnostic').find('.hidden').removeClass('hidden');
-
         $('#diagnostic_icon').removeClass();
         $('#diagnostic_icon').addClass('fa fa-plus-circle');
 
@@ -8618,8 +8107,6 @@
 
         $("#frm_lab_diagnostic input:checkbox").prop('checked',false);
         $("#frm_lab_diagnostic input:text").prop('disabled',false); 
-
-        $("#frm_lab_diagnostic label").removeClass('label-disable');
 
         $("#frm_lab_diagnostic input:checkbox").css('pointer-events','all'); 
         $("#frm_lab_diagnostic input:text").css('pointer-events','all'); 
@@ -8633,15 +8120,11 @@
         $('.patient_txn').text('Edit');
         clearFields($('#frm_lab_diagnostic'));
 
-        $('#frm_lab_diagnostic').find('.hidden').removeClass('hidden');
-
         $('#diagnostic_icon').removeClass();
         $('#diagnostic_icon').addClass('fa fa-edit');
 
         $("#frm_lab_diagnostic input:checkbox").prop('checked',false);
         $("#frm_lab_diagnostic input:text").prop('disabled',false);
-
-        $("#frm_lab_diagnostic label").removeClass('label-disable');
 
         $("#frm_lab_diagnostic input:checkbox").css('pointer-events','all'); 
         $("#frm_lab_diagnostic input:text").css('pointer-events','all'); 
@@ -8684,8 +8167,6 @@
         $("#frm_lab_diagnostic input:checkbox").prop('checked',false);
         $("#frm_lab_diagnostic input:text").prop('disabled',true);
 
-        $("#frm_lab_diagnostic label").addClass('label-disable');
-
         $("#frm_lab_diagnostic input:checkbox").css('pointer-events','none'); 
         $("#frm_lab_diagnostic input:text").css('pointer-events','none'); 
 
@@ -8702,26 +8183,10 @@
                 $.each(datalabdiagnostic,function(name,value){
 
                     if(_elem.attr('name')==name){
-                        if(checkbox_report==1){
-                            if(value=="" || value==null){
-                                $('.'+name).addClass('hidden');
-                            }else{
-                                $('.'+name).removeClass('hidden');
-                            }
-                        }
                         _elem.val(value);
                     }
 
                     if(_elem.attr('id')==name){
-                        
-                        if(checkbox_report==1){
-                            if(value!=1){
-                                $('.'+name).addClass('hidden');
-                            }else{
-                                $('.'+name).removeClass('hidden');
-                            }
-                        }
-
                         if(value==1){ _elem.prop('checked', true); }
                         else{ _elem.prop('checked', false); }
                     }
@@ -8754,46 +8219,15 @@
                 });
             }
             if(_txnlabreport=="edit"){
-                swal({
-                  title: "Confirmation",
-                  text: "Save as new data or Update current data?",
-                  type: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: "Save",
-                  cancelButtonText: "Update",
-                  closeOnConfirm: false,
-                  closeOnCancel: false
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    if(validateRequiredFields($('#frm_lab_diagnostic'))){
-                        Savelabdiagnostics().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_patient_lab_report').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_laboratory_report').modal('toggle');
-                        });
-                        swal("Success!", "Laboratory Request Succesfully Created", "success");
+
+                Updatelabdiagnostics().done(function(response){
+                    showNotification(response);
+                    if(response.stat=="success"){
+                        $('#tbl_patient_lab_report').DataTable().ajax.reload();
                     }
-                  } 
-                  else {
-                    if(validateRequiredFields($('#frm_lab_diagnostic'))){
-                        Updatelabdiagnostics().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_patient_lab_report').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_laboratory_report').modal('toggle');
-                        });
-                        swal("Success!", "Laboratory Request Succesfully Updated", "success");
-                    }
-                  }
+                }).always(function(){
+                    $.unblockUI();
+                    $('#modal_laboratory_report').modal('toggle');
                 });
             }
         }   
@@ -9133,46 +8567,15 @@
                 });
             }
             if(_txnmedical=="edit"){
-                swal({
-                  title: "Confirmation",
-                  text: "Save as new data or Update current data?",
-                  type: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: "Save",
-                  cancelButtonText: "Update",
-                  closeOnConfirm: false,
-                  closeOnCancel: false
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    if(validateRequiredFields($('#frm_medical_record'))){
-                        Savemedicalcertificate().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_med_cert_report').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_patient_medical_certificate').modal('toggle');
-                        });
-                        swal("Success!", "Medical Certificate Succesfully Created", "success");
+
+                Updatemedicalcertificate().done(function(response){
+                    showNotification(response);
+                    if(response.stat=="success"){
+                        $('#tbl_med_cert_report').DataTable().ajax.reload();
                     }
-                  } 
-                  else {
-                    if(validateRequiredFields($('#frm_medical_record'))){
-                        Updatemedicalcertificate().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_med_cert_report').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_patient_medical_certificate').modal('toggle');
-                        });
-                        swal("Success!", "Medical Certificate Succesfully Updated", "success");
-                    }
-                  }
+                }).always(function(){
+                    $.unblockUI();
+                    $('#modal_patient_medical_certificate').modal('toggle');
                 });
             }
         }   
@@ -11604,46 +11007,15 @@
                 });
             }
             if(_txnreferral=="edit"){
-                swal({
-                  title: "Confirmation",
-                  text: "Save as new data or Update current data?",
-                  type: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: "Save",
-                  cancelButtonText: "Update",
-                  closeOnConfirm: false,
-                  closeOnCancel: false
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    if(validateRequiredFields($('#frm_referral'))){
-                        SaveReferral().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_patient_referral').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_patient_referral').modal('toggle');
-                        });
-                        swal("Success!", "Referral Letter Succesfully Created", "success");
+
+                UpdateReferral().done(function(response){
+                    showNotification(response);
+                    if(response.stat=="success"){
+                        $('#tbl_patient_referral').DataTable().ajax.reload();
                     }
-                  } 
-                  else {
-                    if(validateRequiredFields($('#frm_referral'))){
-                        UpdateReferral().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_patient_referral').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_patient_referral').modal('toggle');
-                        });
-                        swal("Success!", "Referral Letter Succesfully Updated", "success");
-                    }
-                  }
+                }).always(function(){
+                    $.unblockUI();
+                    $('#modal_patient_referral').modal('toggle');
                 });
             }
         }   
@@ -11872,46 +11244,15 @@
                 });
             }
             if(_txnadmittingorder=="edit"){
-                swal({
-                  title: "Confirmation",
-                  text: "Save as new data or Update current data?",
-                  type: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#DD6B55",
-                  confirmButtonText: "Save",
-                  cancelButtonText: "Update",
-                  closeOnConfirm: false,
-                  closeOnCancel: false
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    if(validateRequiredFields($('#frm_admitting_order'))){
-                        Saveadmittingorder().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_patient_admitting_order').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_admitting_order').modal('toggle');
-                        });
-                        swal("Success!", "Admitting Order Succesfully Created", "success");
+
+                Updateadmittingorder().done(function(response){
+                    showNotification(response);
+                    if(response.stat=="success"){
+                        $('#tbl_patient_admitting_order').DataTable().ajax.reload();
                     }
-                  } 
-                  else {
-                    if(validateRequiredFields($('#frm_admitting_order'))){
-                        Updateadmittingorder().done(function(response){
-                            showNotification(response);
-                            if(response.stat=="success"){
-                                $('#tbl_patient_admitting_order').DataTable().ajax.reload();
-                            }
-                        }).always(function(){
-                            $.unblockUI();
-                            $('#modal_admitting_order').modal('toggle');
-                        });
-                        swal("Success!", "Admitting Order Succesfully Updated", "success");
-                    }
-                  }
+                }).always(function(){
+                    $.unblockUI();
+                    $('#modal_admitting_order').modal('toggle');
                 });
             }
         }   

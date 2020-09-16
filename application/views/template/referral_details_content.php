@@ -79,7 +79,7 @@
 			<table width="100%" style="border-collapse: collapse;font-family: calibri;">
 					<tr>
 						<td width="35%" valign="bottom">
-							<center><?php echo $info->appointment_date; ?></center>
+							<!-- <center><?php echo $info->appointment_date; ?></center> -->
 						</td>
 						<td width="30%"></td>
 						<td rowspan="3" width="35%">
@@ -87,8 +87,9 @@
 						</td>
 					</tr>	
 					<tr>
-						<td valign="top" style="border-top: 1px solid lightgray;">
-							<center>Your next appointment will be on</center>
+						<!-- <td valign="top" style="border-top: 1px solid lightgray;"> -->
+						<td>
+							<!-- <center>Your next appointment will be on</center> -->
 						</td>
 					</tr>
 			</table>

@@ -31,7 +31,12 @@ class Patient_nephro_order extends CORE_Controller
                 $ref_patient_id=$this->input->post('ref_patient_id',TRUE);
                 $response['data']=$this->Patient_nephro_order_model->get_list(
                     array('patient_nephro.ref_patient_id'=>$ref_patient_id,'patient_nephro.is_deleted'=>FALSE),
-                    'patient_nephro.*,DATE_FORMAT(date_created, "%m/%d/%Y") as date_created'
+                    'patient_nephro.*,DATE_FORMAT(date_created, "%m/%d/%Y") as date_created,
+                    (CASE
+                        WHEN DATE_FORMAT(nephro_order_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(nephro_order_date, "%m/%d/%Y")
+                    END) as nephro_order_date'
                     );
                 echo json_encode($response);
                 break;
@@ -90,6 +95,9 @@ class Patient_nephro_order extends CORE_Controller
                 $m_nephro->more_details1=$this->input->post('more_details1',TRUE);
                 $m_nephro->more_details2=$this->input->post('more_details2',TRUE);
                 $m_nephro->date_created = date("Y-m-d");
+                $nephro_order_date = date("Y-m-d",strtotime($this->input->post('nephro_order_date')));
+                $m_nephro->nephro_order_date = $nephro_order_date;
+                $m_nephro->dry_weight=$this->input->post('dry_weight',TRUE);
                 $m_nephro->save();
                 $response['title']='Success!';
                 $response['stat']='success';
@@ -140,6 +148,9 @@ class Patient_nephro_order extends CORE_Controller
                 $m_nephro->others_orders=$this->input->post('others_orders',TRUE);
                 $m_nephro->more_details1=$this->input->post('more_details1',TRUE);
                 $m_nephro->more_details2=$this->input->post('more_details2',TRUE);
+                $nephro_order_date = date("Y-m-d",strtotime($this->input->post('nephro_order_date')));
+                $m_nephro->nephro_order_date = $nephro_order_date;
+                $m_nephro->dry_weight=$this->input->post('dry_weight',TRUE);
                 $m_nephro->modified_by = $this->session->user_id;
 
                 if($m_nephro->modify($patient_nephro_id)){

@@ -9,7 +9,7 @@
 	</style>
 </head>
 <body>
-	<?php if($type=='pdf'){ include 'elements/header_1.php'; ?>
+	<?php if($type=='pdf'){ include 'elements/header_2.php'; ?>
 	<hr style="border: 2px solid lightgray!important;">
 	<div class="row">
 		<table width="100%">

@@ -158,6 +158,7 @@
                 var data=dt.row(_selectRowObj).data();
                 _selectedID=data.ref_patient_id;
                 _selectedname = data.fullname;
+                _selectedDryWeight=data.dry_weight;
 
                 $('.header-text-title').text(_selectedname);
                 $('.header-text-age').text(data.patient_age);

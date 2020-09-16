@@ -30,7 +30,12 @@ class Patient_medical_abstract extends CORE_Controller
                 $ref_patient_id=$this->input->post('ref_patient_id',TRUE);
                 $response['data']=$this->Patient_medical_abstract_model->get_list(
                     array('patient_medical_abstract.ref_patient_id'=>$ref_patient_id),
-                    'patient_medical_abstract.*, DATE_FORMAT(date_created, "%m/%d/%Y") as date_created'
+                    'patient_medical_abstract.*, DATE_FORMAT(date_created, "%m/%d/%Y") as date_created,
+                    (CASE
+                        WHEN DATE_FORMAT(medical_abstract_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(medical_abstract_date, "%m/%d/%Y")
+                    END) as medical_abstract_date'
                     );
                 echo json_encode($response);
             break;
@@ -39,7 +44,12 @@ class Patient_medical_abstract extends CORE_Controller
                 $ref_patient_id=$this->input->post('ref_patient_id',TRUE);
                 $response['data']=$this->Patient_medical_abstract_model->get_list(
                     array('patient_medical_abstract.ref_patient_id'=>$ref_patient_id,'patient_medical_abstract.is_deleted'=>FALSE),
-                    'patient_medical_abstract.*, DATE_FORMAT(date_created, "%m/%d/%Y") as date_created'
+                    'patient_medical_abstract.*, DATE_FORMAT(date_created, "%m/%d/%Y") as date_created,
+                    (CASE
+                        WHEN DATE_FORMAT(medical_abstract_date, "%Y") <= "1970"
+                        THEN ""
+                        ELSE DATE_FORMAT(medical_abstract_date, "%m/%d/%Y")
+                    END) as medical_abstract_date'
                     );
                 echo json_encode($response);
             break;
@@ -73,7 +83,12 @@ class Patient_medical_abstract extends CORE_Controller
 
                 foreach($_POST as $key => $val)  
                 {  
-                    $m_medabstract->$key=$this->input->post($key);
+                    if ($key == 'medical_abstract_date'){
+                        $medical_abstract_date = date("Y-m-d",strtotime($this->input->post($key)));
+                        $m_medabstract->medical_abstract_date = $medical_abstract_date;
+                    }else{
+                        $m_medabstract->$key=$this->input->post($key);
+                    }
                 }
 
                 $m_medabstract->date_created = date("Y-m-d");
@@ -104,7 +119,13 @@ class Patient_medical_abstract extends CORE_Controller
                 {  
                     if($key=="patient_medical_abstract_id"){}
                     else{
-                        $m_medabstract->$key=$this->input->post($key);
+
+                        if ($key == 'medical_abstract_date'){
+                            $medical_abstract_date = date("Y-m-d",strtotime($this->input->post($key)));
+                            $m_medabstract->medical_abstract_date = $medical_abstract_date;
+                        }else{
+                            $m_medabstract->$key=$this->input->post($key);
+                        }
                     }
                 }
 

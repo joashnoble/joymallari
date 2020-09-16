@@ -33,60 +33,10 @@ class StampSettings extends CORE_Controller
 
         switch($txn){
             case 'list':
-                $m_users=$this->Users_model;
-                $response['data']=$m_users->get_list(
-                    'user_accounts.is_deleted=0 AND user_accounts.user_id!=1',
-                    'user_accounts.*,CONCAT(user_accounts.user_fname," ",user_accounts.user_mname," ",user_accounts.user_lname) as full_name,user_groups.user_group',
-                    array(
-                        array('user_groups','user_groups.user_group_id=user_accounts.user_group_id','left'),
-                        )
-                    );
+                $m_header=$this->Header_settings_model;
+                $response['data'] = $m_header->get_list()[0];
                 echo json_encode($response);
                 break;
-
-            case 'create':
-
-                $m_users=$this->Users_model;
-                $this->load->library('form_validation');
-                $this->load->helper('security');
-                $this->form_validation->set_rules('user_name', 'UserName', 'strip_tags|trim|xss_clean|required|is_unique[user_accounts.user_name]');      
-                if ($this->form_validation->run() == TRUE) 
-                {     
-                    $m_users->user_name=$this->input->post('user_name',TRUE);
-                    $m_users->user_pword=sha1($this->input->post('user_pword',TRUE));
-                    $m_users->user_lname=$this->input->post('user_lname',TRUE);
-                    $m_users->user_fname=$this->input->post('user_fname',TRUE);
-                    $m_users->user_mname=$this->input->post('user_mname',TRUE);
-                    $m_users->user_address=$this->input->post('user_address',TRUE);
-                    $m_users->user_email=$this->input->post('user_email',TRUE);
-                    $m_users->user_mobile=$this->input->post('user_mobile',TRUE);
-                    $m_users->user_telephone=$this->input->post('user_telephone',TRUE);
-                    $m_users->user_bdate=date('Y-m-d',strtotime($this->input->post('user_bdate',TRUE)));
-                    $m_users->user_group_id=$this->input->post('user_group_id',TRUE);
-                    $m_users->photo_path=$this->input->post('photo_path',TRUE);
-                    date_default_timezone_set("Asia/Manila");
-                    $date_created = date("Y-m-d");
-                    $m_users->date_created=$date_created;
-                    $m_users->save();
-
-                    $user_account_id=$m_users->last_insert_id();
-
-                    $response['title']='Success!';
-                    $response['stat']='success';
-                    $response['msg']='User account information successfully created.';
-                    $response['row_added']=$m_users->get_user_list($user_account_id);
-                }
-                else
-                {
-                    $response['title'] = 'Error!';
-                    $response['stat'] = 'error';
-                    $response['msg'] = validation_errors();
-                } 
-                echo json_encode($response);
-
-                break;
-
-            //****************************************************************************************************************
            
             case 'update':
                 $m_stamp=$this->Stamp_settings_model;
@@ -113,6 +63,7 @@ class StampSettings extends CORE_Controller
                 $m_header->logo_2_path = $this->input->post('logo_2_path', TRUE);
                 $m_header->logo_1_is_show = intval($this->input->post('logo_1_is_show', TRUE));
                 $m_header->logo_2_is_show = intval($this->input->post('logo_2_is_show', TRUE));
+                $m_header->checkbox_report = intval($this->input->post('checkbox_report', TRUE));
                 $m_header->modify($header_id);
 
 

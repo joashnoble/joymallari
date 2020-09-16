@@ -226,6 +226,24 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <i class="fa fa-file-o"></i> <b class="uppercase">Report Setup</b>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">                                 
+                                                <div class="form-group">
+                                                    <input type="checkbox" name="checkbox_report" id="checkbox_report"
+                                                    <?php if($header->checkbox_report == 1){ echo 'checked'; } ?>>
+                                                    <label for="checkbox_report" class="normal">
+                                                        Remove checkbox on print when not checked
+                                                    </label>
+                                                </div>                                                         
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="panel panel-default">
@@ -387,6 +405,7 @@
         _data.push({name : "is_show_print" ,value : $('#is_show_print').is(':checked') ? 1 : 0});
         _data.push({name : "logo_1_is_show" ,value : $('#logo_1_is_show').is(':checked') ? 1 : 0});
         _data.push({name : "logo_2_is_show" ,value : $('#logo_2_is_show').is(':checked') ? 1 : 0});
+        _data.push({name : "checkbox_report" ,value : $('#checkbox_report').is(':checked') ? 1 : 0});
 
         return $.ajax({
             "dataType":"json",
