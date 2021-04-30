@@ -42,6 +42,9 @@
           <li class="hidden-xs right_medcert_view patient_medical_certificate top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Medical Certificate"><i class="fa fa-certificate"></i></a>
           </li>
+          <li class="hidden-xs right_nephro_clearance_view patient_nephro_clearance top-icon">
+            <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Nephrology Clearance"><i class="fa fa-file"></i></a>
+          </li>
           <li class="hidden-xs right_nephrorecord_view patient_nephro_record top-icon">
             <a href="javascript:void();" data-toggle="tooltip" data-placement="bottom" title="Nephro Record"><i class="fa fa-heartbeat"></i></a>
           </li>
@@ -81,6 +84,9 @@
                 <li class="user-header right_medcert_view patient_medical_certificate">
                   <a href="javascript:void();"><i class="fa fa-certificate"></i>Medical Certificate</a>
                 </li>
+                <li class="user-header right_nephro_clearance_view patient_nephro_clearance">
+                  <a href="javascript:void();"><i class="fa fa-file"></i>Nephrology Clearance</a>
+                </li>                
                 <li class="user-header right_nephrorecord_view patient_nephro_record">
                   <a href="javascript:void();"><i class="fa fa-heartbeat"></i>Nephro Record</a>
                 </li>

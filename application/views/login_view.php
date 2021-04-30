@@ -665,7 +665,7 @@ input:focus{
 
                                         Medical Arts Building Rm 2113<br>
 
-                                        Wednesdays and Fridays 2-4 pm<br>
+                                        Wednesdays and Fridays 3-5 pm<br>
 
                                         Tel # (045) 4361275 / 09267200990
 
@@ -735,6 +735,32 @@ input:focus{
 
                             </div>
 
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                      
+                        <div class="col-md-12 text-center">
+
+                            <h4 class="text-uppercase" style="font-family:tahoma;font-size:10pt;">
+                              Green City Medical Center
+                            </h4>
+
+                            <span>
+                              
+                                    <address style="font-family:tahoma;font-size:8pt;">
+
+                                        San Fernando, Pampanga<br/>
+
+                                        Clinic Hours: Tuesday &amp; Thursday 3-5pm RM 9<br>
+
+                                        Tel # 09463301837
+
+                                    </address>
+
+                            </span>
                         </div>
 
                     </div>
@@ -811,7 +837,7 @@ input:focus{
 
                                         Medical Arts Building Rm 2113<br>
 
-                                        Wednesdays and Fridays 2-4 pm<br>
+                                        Wednesdays and Fridays 3-5 pm<br>
 
                                         Tel # (045) 4361275 / 09267200990
 
@@ -879,6 +905,31 @@ input:focus{
 
                             </div>
 
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                      
+                        <div class="col-md-12 text-center">
+
+                            <h4 class="text-uppercase" style="font-family:tahoma;font-size:10pt;">
+                              Green City Medical Center
+                            </h4>
+
+                            <span>
+                              
+                                    <address style="font-family:tahoma;font-size:8pt;">
+
+                                        San Fernando, Pampanga<br/>
+
+                                        Clinic Hours: Tuesday &amp; Thursday 3-5pm RM 9<br>
+
+                                        Tel # 09463301837
+
+                                    </address>
+
+                            </span>
                         </div>
 
                     </div>

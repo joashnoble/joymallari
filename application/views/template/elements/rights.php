@@ -23,6 +23,9 @@
         var edit_med_cert='<button class="btn btn-success btn-xs" name="edit_med_cert" data-toggle="tooltip" data-placement="left" title="Edit Details" style="margin-left:5px;"><i class="fa fa-pencil-square-o"></i> </button>';
         var remove_med_cert='<button class="btn btn-danger btn-xs" name="remove_med_cert"  data-toggle="tooltip" data-placement="left" title="Move to trash" style="margin-left:5px;"><i class="fa fa-trash"></i> </button>';        
 
+        var btn_edit_nephro_clearance='<button class="btn btn-success btn-xs" name="edit_nephro_clearance" data-toggle="tooltip" data-placement="left" title="Edit Details" style="margin-left:5px;"><i class="fa fa-pencil-square-o"></i> </button>';
+        var btn_remove_nephro_clearance='<button class="btn btn-danger btn-xs" name="remove_nephro_clearance"  data-toggle="tooltip" data-placement="left" title="Move to trash" style="margin-left:5px;"><i class="fa fa-trash"></i> </button>';    
+
 		/*patient lab buttons*/
         var edit_lab='<button class="btn btn-success btn-xs" name="edit_lab_details" data-toggle="tooltip" data-placement="left" title="Edit Details" style="margin-left:5px;"><i class="fa fa-pencil-square-o"></i> </button>';
         var remove_lab='<button class="btn btn-danger btn-xs" name="remove_lab"  data-toggle="tooltip" data-placement="left" title="Move to trash" style="margin-left:5px;"><i class="fa fa-trash"></i> </button>';
@@ -116,6 +119,12 @@
 
 	echo ($this->session->right_medcert_view==0 || NULL ? '<script> $(".right_medcert_view").remove(); </script>' : '');
 	echo ($this->session->right_medcert_create==0 || NULL ? '<script> $(".right_medcert_create").remove(); </script>' : '');
+
+	/* Nephrology Clearance */
+	echo ($this->session->right_nephro_clearance_view==0 || NULL ? '<script> $(".right_nephro_clearance_view").remove(); </script>' : '');
+	echo ($this->session->right_nephro_clearance_create==0 || NULL ? '<script> $(".right_nephro_clearance_create").remove(); </script>' : '');
+	echo ($this->session->right_nephro_clearance_edit==0 || NULL ? '<script> var btn_edit_nephro_clearance=" "; </script>' : '');
+	echo ($this->session->right_nephro_clearance_delete==0 || NULL ? '<script> var btn_remove_nephro_clearance=" "; </script>' : '');
 
 	echo ($this->session->right_patientref_view==0 || NULL ? '<script> $(".right_patientref_view").remove(); </script>' : '');
 	echo ($this->session->right_patientref_create==0 || NULL ? '<script> $(".right_patientref_create").remove(); </script>' : '');

@@ -250,7 +250,7 @@
       background-color: #FFFACD;
     }  
 
-    #tbl_patient_prescription_filter, #tbl_lab_filter, #tbl_billing_filter, #tbl_visiting_record_filter, #tbl_clinical_filter,#tbl_patient_medical_abstract_filter,#tbl_patient_nephro_order_filter,#tbl_patient_lab_report_filter,#tbl_med_cert_report_filter,#tbl_nephro_record_filter,#tbl_patient_referral_filter,#tbl_patient_admitting_order_filter{
+    #tbl_patient_prescription_filter, #tbl_lab_filter, #tbl_billing_filter, #tbl_visiting_record_filter, #tbl_clinical_filter,#tbl_patient_medical_abstract_filter,#tbl_patient_nephro_order_filter,#tbl_patient_lab_report_filter,#tbl_med_cert_report_filter,#tbl_nephro_record_filter,#tbl_patient_referral_filter,#tbl_patient_admitting_order_filter,#tbl_nephro_clearance_filter{
       display: none;
     }
 

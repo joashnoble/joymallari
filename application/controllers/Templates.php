@@ -10,6 +10,7 @@ class Templates extends CORE_Controller {
         $this->validate_session();
         $this->load->model('Ref_patient_model');
         $this->load->model('Patient_Info_model');
+        $this->load->model('Patient_nephro_order_model');
         $this->load->model('Patient_prescription_model');
         $this->load->model('Patient_prescription_items_model');
         $this->load->model('Patient_billing_model');
@@ -17,7 +18,10 @@ class Templates extends CORE_Controller {
         $this->load->model('Patient_visiting_model');
         $this->load->model('Patient_clinical_model');
         $this->load->model('Patient_medical_record_model');
+        $this->load->model('Patient_nephrology_clearance_model');
+        $this->load->model('Patient_admitting_order_model');
         $this->load->model('Patient_referral_model');
+        $this->load->model('Patient_lab_diagnostics_model');
         $this->load->model('Ref_service_desc_model');
         $this->load->model('Company_info_model');
         $this->load->model('Stamp_settings_model');
@@ -31,6 +35,160 @@ class Templates extends CORE_Controller {
     function transaction($txn = null,$filter_value=null) {
 
         switch ($txn) {
+
+
+            case 'laboratory-request':
+                $m_lab_request = $this->Patient_lab_diagnostics_model;
+                $patient_lab_report_id = $filter_value;
+                $type=$this->input->get('type',TRUE);
+                $date = date('Y-m-d');
+
+                $info=$m_lab_request->get_list(
+                    $patient_lab_report_id,
+                    'patient_lab_report.*,
+                    CONCAT(ref_patient.first_name," ",ref_patient.middle_name," ",ref_patient.last_name) as fullname,
+                    TIMESTAMPDIFF(YEAR,ref_patient.bdate,"'.$date.'") as patient_age, ref_patient.sex, ref_patient.address',
+                       array(
+                            array('ref_patient','ref_patient.ref_patient_id=patient_lab_report.ref_patient_id','left')
+                        )
+                    );
+
+                $data['stamp_data']=$this->Stamp_settings_model->get_list()[0];
+                $data['data']=$this->Header_settings_model->get_list()[0];
+                $data['info']=$info[0];
+
+                if($type=='fullview'||$type==null){
+                    echo $this->load->view('template/patient_laboratory_request_content',$data,TRUE);
+                }
+
+                if($type=='pdf'){
+                    $file_name='Laboratory Request : '.$info[0]->fullname;
+                    $pdfFilePath = $file_name.".pdf"; //generate filename base on id
+                    $pdf = $this->m_pdf->load(); //pass the instance of the mpdf class
+                    $content=$this->load->view('template/patient_laboratory_request_content',$data,TRUE); //load the template
+                    // $pdf->setFooter('{PAGENO}');
+                    $pdf->WriteHTML($content);
+                    //download it.
+                    $pdf->Output();
+                }
+                
+
+                break;
+
+
+            case 'admitting-order':
+                $m_admitting_order = $this->Patient_admitting_order_model;
+                $patient_admitting_order_id = $filter_value;
+                $type=$this->input->get('type',TRUE);
+                $date = date('Y-m-d');
+
+                $info=$m_admitting_order->get_list(
+                    $patient_admitting_order_id,
+                    'patient_admitting_order.*,
+                    CONCAT(ref_patient.first_name," ",ref_patient.middle_name," ",ref_patient.last_name) as fullname,
+                    TIMESTAMPDIFF(YEAR,ref_patient.bdate,"'.$date.'") as patient_age, ref_patient.sex, ref_patient.address',
+                       array(
+                            array('ref_patient','ref_patient.ref_patient_id=patient_admitting_order.ref_patient_id','left')
+                        )
+                    );
+
+                $data['stamp_data']=$this->Stamp_settings_model->get_list()[0];
+                $data['data']=$this->Header_settings_model->get_list()[0];
+                $data['info']=$info[0];
+
+                if($type=='fullview'||$type==null){
+                    echo $this->load->view('template/patient_admitting_order_content',$data,TRUE);
+                }
+
+                if($type=='pdf'){
+                    $file_name='Admitting Order : '.$info[0]->fullname;
+                    $pdfFilePath = $file_name.".pdf"; //generate filename base on id
+                    $pdf = $this->m_pdf->load(); //pass the instance of the mpdf class
+                    $content=$this->load->view('template/patient_admitting_order_content',$data,TRUE); //load the template
+                    // $pdf->setFooter('{PAGENO}');
+                    $pdf->WriteHTML($content);
+                    //download it.
+                    $pdf->Output();
+                }
+                
+
+                break;
+
+            case 'nephro-clearance':
+                $m_nephro_clearance = $this->Patient_nephrology_clearance_model;
+                $nephro_clearance_id = $filter_value;
+                $type=$this->input->get('type',TRUE);
+                $date = date('Y-m-d');
+
+                $info=$m_nephro_clearance->get_list(
+                    $nephro_clearance_id,
+                    'patient_nephro_clearance.*,
+                    CONCAT(ref_patient.first_name," ",ref_patient.middle_name," ",ref_patient.last_name) as fullname,
+                    TIMESTAMPDIFF(YEAR,ref_patient.bdate,"'.$date.'") as patient_age, ref_patient.sex, ref_patient.address',
+                       array(
+                            array('ref_patient','ref_patient.ref_patient_id=patient_nephro_clearance.ref_patient_id','left')
+                        )
+                    );
+
+                $data['stamp_data']=$this->Stamp_settings_model->get_list()[0];
+                $data['data']=$this->Header_settings_model->get_list()[0];
+                $data['info']=$info[0];
+
+                if($type=='fullview'||$type==null){
+                    echo $this->load->view('template/patient_nephro_clearance_content',$data,TRUE);
+                }
+
+                if($type=='pdf'){
+                    $file_name='Nephro Order : '.$info[0]->fullname;
+                    $pdfFilePath = $file_name.".pdf"; //generate filename base on id
+                    $pdf = $this->m_pdf->load(); //pass the instance of the mpdf class
+                    $content=$this->load->view('template/patient_nephro_clearance_content_pdf',$data,TRUE); //load the template
+                    // $pdf->setFooter('{PAGENO}');
+                    $pdf->WriteHTML($content);
+                    //download it.
+                    $pdf->Output();
+                }
+                
+
+                break;
+
+            case 'nephro-order':
+                $m_nephro = $this->Patient_nephro_order_model;
+                $patient_nephro_id = $filter_value;
+                $type=$this->input->get('type',TRUE);
+                $date = date('Y-m-d');
+
+                $info=$m_nephro->get_list(
+                    $patient_nephro_id,
+                    'patient_nephro.*,
+                    CONCAT(ref_patient.first_name," ",ref_patient.middle_name," ",ref_patient.last_name) as fullname,
+                    TIMESTAMPDIFF(YEAR,ref_patient.bdate,"'.$date.'") as patient_age, ref_patient.sex',
+                       array(
+                            array('ref_patient','ref_patient.ref_patient_id=patient_nephro.ref_patient_id','left')
+                        )
+                    );
+
+                $data['stamp_data']=$this->Stamp_settings_model->get_list()[0];
+                $data['data']=$this->Header_settings_model->get_list()[0];
+                $data['info']=$info[0];
+
+                if($type=='fullview'||$type==null){
+                    echo $this->load->view('template/patient_nephro_order_content',$data,TRUE);
+                }
+
+                if($type=='pdf'){
+                    $file_name='Nephro Order : '.$info[0]->fullname;
+                    $pdfFilePath = $file_name.".pdf"; //generate filename base on id
+                    $pdf = $this->m_pdf->load(); //pass the instance of the mpdf class
+                    $content=$this->load->view('template/patient_nephro_order_content',$data,TRUE); //load the template
+                    // $pdf->setFooter('{PAGENO}');
+                    $pdf->WriteHTML($content);
+                    //download it.
+                    $pdf->Output();
+                }
+                
+
+                break;
 
             case 'patient-details':
                 $m_ref_patient = $this->Ref_patient_model;

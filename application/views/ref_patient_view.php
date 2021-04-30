@@ -924,7 +924,59 @@
                 </div>
                 <!-- /.box-body -->
               </div>
+        </div>
+        <div id="div_nephro_clearance_list" class="table-list" style="display: none;">
+            <div class="box">
+                <div class="box-header" style="border-bottom: 1px solid lightgray;">
+                    <button id="new_nephrology_clearance" class="btn btn-dark bgm-green waves-effect right_nephro_clearance_create">
+                        <i class="fa fa-plus-circle"></i> New Nephrology Clearance
+                    </button>  
+                    <div style="float: right;">
+                        <button class="btn btn-default close_list" data-id="tbl_nephro_clearance" style="border-radius: 50%;">
+                            <i class="fa fa-close" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                         <div class="col-lg-9" style="padding-top: 10px;">
+                            <h4 class="bh-text-title">
+                                <label class="label patient-info-label">
+                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;">
+                                        PATIENT
+                                    </span> : <span class="header-text-title"></span>
+                                    <span style="color: white;background: #2F4F4F;padding: 3px 4px 4px;margin-left: 10px;">AGE</span> : <span class="header-text-age"></span> yrs old
+                                </label>
+                            </h4>   
+                        </div>
+                        <div class="col-lg-3 padding-top">
+                            Search :<br />
+                            <input type="text" class="form-control" id="searchbox_tbl_nephro_clearance">
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left: 15px; padding-right: 15px;">
+                        <div class="table-responsive">   
+                            <table id="tbl_nephro_clearance" class="table table-striped table-list-border" width="100%">
+                                <thead class="tbl-header">
+                                    <tr>
+                                        <th width="5%"></th>
+                                        <th>Code #</th>
+                                        <th>Date Created</th>
+                                        <th style="text-align:center;">Action</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>        
+                        </div> 
+                    </div>               
+                </div>
+                <!-- /.box-body -->
+              </div>
         </div>        
+
         <div id="div_nephro_record_list" class="table-list" style="display: none;">
             <div class="box">
                 <div class="box-header" style="border-bottom: 1px solid lightgray;">
@@ -1593,25 +1645,25 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1"><span class="required">*</span> Note :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Vital Signs :</label>
                                             <div class="fg-line">
-                                               <textarea name="visiting_note" placeholder="Note" class="form-control" data-error-msg="Diagnostics is required." required></textarea>            
+                                               <textarea name="visiting_note" placeholder="Vital Signs" class="form-control" data-error-msg="Vital Signs is required." required></textarea>            
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1"><span class="required">*</span> Diagnostics :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Clinical Assessment:</label>
                                             <div class="fg-line">
-                                               <textarea name="visiting_diagnostics" placeholder="Diagnostics" class="form-control" data-error-msg="Diagnostics is required." required></textarea>            
+                                               <textarea name="visiting_diagnostics" placeholder="Clinical Assessment" class="form-control" data-error-msg="Clinical Assessment is required." required></textarea>            
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="" for="inputEmail1"><span class="required">*</span> Findings :</label>
+                                            <label class="" for="inputEmail1"><span class="required">*</span> Ultrasound Findings :</label>
                                             <div class="fg-line">
-                                               <textarea  name="visiting_findings" placeholder="Findings" class="form-control" data-error-msg="Findings is required." required></textarea>            
+                                               <textarea  name="visiting_findings" placeholder="Ultrasound Findings" class="form-control" data-error-msg="Ultrasound Findings is required." required></textarea>            
                                             </div>
                                         </div>
                                     </div>
@@ -1673,43 +1725,53 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <h4 style="float:left;font-weight:400;">Date Visited : <datevisited id="datevisited"></datevisited></h4>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 style="float:right;font-weight:400;">Next Visit Date : <nextvisitdate id="nextvisitdate"></nextvisitdate></h4>
+                                            <div class="col-md-12">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td width="50%">
+                                                            <h4>Date Visited : <datevisited id="datevisited"></datevisited></h4>
+                                                        </td>
+                                                        <td width="50%">
+                                                            <h4>Next Visit Date : <nextvisitdate id="nextvisitdate"></nextvisitdate></h4>
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="row">
-                                                    <h4 style="float:left;font-weight:400;">Note :</h4>
-                                            </div>
-                                            <div class="row">
-                                                    <p style="float:left;"><visitingnote id="visitingnote"></visitingnote></p>
-                                            </div>
-                                            <div class="row">
-                                                    <h4 style="float:left;font-weight:400;">Diagnostics :</h4>
-                                            </div>
-                                            <div class="row">
-                                                    <p style="float:left;"><visitingdiagnostics id="visitingdiagnostics"></visitingdiagnostics></p>
-                                            </div>
-                                            <div class="row">
-                                                    <h4 style="float:left;font-weight:400;">Findings :</h4>
-                                            </div>
-                                            <div class="row">
-                                                    <p style="float:left;"><visitingfindings id="visitingfindings"></visitingfindings></p>
-                                            </div>
-                                            <div class="row">
-                                                    <h4 style="float:left;font-weight:400;">Treatment :</h4>
-                                            </div>
-                                            <div class="row">
-                                                    <p style="float:left;"><visitingtreatment id="visitingtreatment"></visitingtreatment></p>
-                                            </div>
-                                            <div class="row">
-                                                    <h4 style="float:left;font-weight:400;">Remarks :</h4>
-                                            </div>
-                                            <div class="row">
-                                                    <p style="float:left;"><visitingremarks id="visitingremarks"></visitingremarks></p>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Vital Signs : </h4>
+                                                            <visitingnote id="visitingnote"></visitingnote>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Clinical Assessment : </h4>
+                                                            <visitingdiagnostics id="visitingdiagnostics"></visitingdiagnostics>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Ultrasound Findings :</h4>
+                                                            <visitingfindings id="visitingfindings"></visitingfindings>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Treatment : </h4>
+                                                            <visitingtreatment id="visitingtreatment"></visitingtreatment>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h4>Remarks : </h4>
+                                                            <visitingremarks id="visitingremarks"></visitingremarks>
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -2562,7 +2624,33 @@
         </div> -->
         <!-- modal nephro order list end -->
 
-           <!--  NEPHRO ORDER MODAL -->
+        <div id="modal_patient_nephro_order_view" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#27ae60;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                            <h4 class="modal-title" style="color: white;">
+                                <i class="fa fa-eye"></i> Nephro Order <small style="color: white;">View</small>
+                            </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div style="padding: 10px!important;">
+                            <div id="patient_nephro_order_response"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bgm-green btn-default waves-effect" id="print_nephro">
+                            <i class="fa fa-print"></i> Print
+                        </button>
+                        <button type="button" class="btn bgm-red btn-danger waves-effect close_new_prescription" data-dismiss="modal">
+                            <i class="fa fa-arrow-left"></i> Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  NEPHRO ORDER MODAL -->
         <div id="modal_patient_nephro_order" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -2619,83 +2707,223 @@
                                 </div><br>
                                 <div class="row">
                                         <div class="text-left inc_freq_3x">
-                                            <input type="text" name="inc_freq_3x" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            Increase frequency to 3 x a week
+                                            <input type="checkbox" name="inc_freq_3x" id="inc_freq_3x">
+                                            <label class="normal" for="inc_freq_3x">Increase frequency to 3 x a week</label>
                                         </div>
                                         <div class="text-left upd_medical_sheet">
-                                            <input type="text" name="upd_medical_sheet" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            Update Medical Sheet
+                                            <input type="checkbox" name="upd_medical_sheet" id="upd_medical_sheet">
+                                            <label class="normal" for="upd_medical_sheet">Update Medical Sheet</label>
                                         </div>
                                         <div class="text-left shift_recormon_500">
-                                            <input type="text" name="shift_recormon_500" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            Shift to Recormon 5000 u sc route at 1x/ 2x/ 3x a week
+                                            <input type="checkbox" name="shift_recormon_500" id="shift_recormon_500" style="margin-left:70px;">
+                                            <label class="normal" for="shift_recormon_500">Shift to Recormon 5000 u sc route at</label>
+                                            <input type="checkbox" name="shift_recormon_500_1x" id="shift_recormon_500_1x" style="margin-left:30px;"> 
+                                            <label class="normal" for="shift_recormon_500_1x">1x a week</label> 
+
+                                            <input type="checkbox" name="shift_recormon_500_2x" id="shift_recormon_500_2x"> 
+                                            <label class="normal" for="shift_recormon_500_2x">2x a week</label> 
+
+                                            <input type="checkbox" name="shift_recormon_500_3x" id="shift_recormon_500_3x"> 
+                                            <label class="normal" for="shift_recormon_500_3x">3x a week</label> 
                                         </div>
                                         <div class="text-left shift_eprex_4000">
-                                            <input type="text" name="shift_eprex_4000" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            Shift to Eprex 4000 u SC at 1x/ 2x/ 3x a week
+                                            <input type="checkbox" name="shift_eprex_4000" id="shift_eprex_4000" style="margin-left:70px;">
+                                            <label class="normal" for="shift_eprex_4000">Shift to Eprex 4000 u SC at</label>
+
+                                            <input type="checkbox" name="shift_eprex_4000_1x" id="shift_eprex_4000_1x" style="margin-left:88px;"> 
+                                            <label class="normal" for="shift_eprex_4000_1x">1x a week</label> 
+
+                                            <input type="checkbox" name="shift_eprex_4000_2x" id="shift_eprex_4000_2x"> 
+                                            <label class="normal" for="shift_eprex_4000_2x">2x a week</label> 
+
+                                            <input type="checkbox" name="shift_eprex_4000_3x" id="shift_eprex_4000_3x"> 
+                                            <label class="normal" for="shift_eprex_4000_3x">3x a week</label> 
+
                                         </div>
                                         <div class="text-left shift_eposino_4000u">
-                                            <input type="text" name="shift_eposino_4000u" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            Shift to Eposino 4000u SC at 1x/ 2x/ 3x a week
+                                            <input type="checkbox" name="shift_eposino_4000u" id="shift_eposino_4000u" style="margin-left:70px;">
+                                            <label class="normal" for="shift_eposino_4000u">Shift to Eposino 4000u SC at</label>
+
+                                            <input type="checkbox" name="shift_eposino_4000u_1x" id="shift_eposino_4000u_1x" style="margin-left:77px;"> 
+                                            <label class="normal" for="shift_eposino_4000u_1x">1x a week</label> 
+
+                                            <input type="checkbox" name="shift_eposino_4000u_2x" id="shift_eposino_4000u_2x"> 
+                                            <label class="normal" for="shift_eposino_4000u_2x">2x a week</label> 
+
+                                            <input type="checkbox" name="shift_eposino_4000u_3x" id="shift_eposino_4000u_3x"> 
+                                            <label class="normal" for="shift_eposino_4000u_3x">3x a week</label> 
                                         </div>
                                         <div class="text-left shift_eposino_6000u">
-                                            <input type="text" name="shift_eposino_6000u" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            Shift to Eposino 6000u SC at 1x/ 2x/ a week
+                                            <input type="checkbox" name="shift_eposino_6000u" id="shift_eposino_6000u" style="margin-left:70px;"> 
+                                            <label class="normal" for="shift_eposino_6000u">Shift to Eposino 6000u SC at</label>
+
+                                            <input type="checkbox" name="shift_eposino_6000u_1x" id="shift_eposino_6000u_1x" style="margin-left:77px;"> 
+                                            <label class="normal" for="shift_eposino_6000u_1x">1x a week</label> 
+
+                                            <input type="checkbox" name="shift_eposino_6000u_2x" id="shift_eposino_6000u_2x"> 
+                                            <label class="normal" for="shift_eposino_6000u_2x">2x a week</label> 
+                                        </div>
+                                        <div class="text-left iv_sc_1month">
+                                            <input type="checkbox" name="iv_sc_1month" id="iv_sc_1month" style="margin-left:70px;"> 
+                                            <label class="normal" for="iv_sc_1month">IV Iron sucrose 100 mg once a month</label>
                                         </div>
                                         <div class="text-left iv_sc_2weeks">
-                                            <input type="text" name="iv_sc_2weeks" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            IV Iron sucrose 100 mg q 2 weeks (discontinue oral iron)
+                                            <input type="checkbox" name="iv_sc_2weeks" id="iv_sc_2weeks" style="margin-left:70px;"> 
+                                            <label class="normal" for="iv_sc_2weeks">IV Iron sucrose 100 mg q 2 weeks (discontinue oral iron)</label>
                                         </div>
                                         <div class="text-left iv_sc_10doses">
-                                            <input type="text" name="iv_sc_10doses" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            IV Iron sucrose 100 mg q week for 10 doses then every 2 weeks (discontinue oral iron)
+                                            <input type="checkbox" name="iv_sc_10doses" id="iv_sc_10doses" style="margin-left:70px;"> 
+                                            <label class="normal" for="iv_sc_10doses">IV Iron sucrose 100 mg q week for 10 doses then every 2 weeks (discontinue oral iron)</label>
                                         </div>
                                         <div class="text-left upd_medication">
-                                            <input type="text" name="upd_medication" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            update all medications as indicated in new prescription given to patient
+                                            <input type="checkbox" name="upd_medication" id="upd_medication" style="margin-left:70px;"> 
+                                            <label class="normal" for="upd_medication">update all medications as indicated in new prescription given to patient</label>
                                         </div>
                                     <div class="text-left sen_nurse_cann_avf">
-                                        <input type="text" name="sen_nurse_cann_avf" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                        Senior nurse to cannulate AVF at all times
+                                            <input type="checkbox" name="sen_nurse_cann_avf" id="sen_nurse_cann_avf"> 
+                                            <label class="normal" for="sen_nurse_cann_avf">Senior nurse to cannulate AVF at all times</label>
                                     </div>
+                                    <div class="text-left rem_int_jug_catheter">
+                                            <input type="checkbox" name="rem_int_jug_catheter" id="rem_int_jug_catheter"> 
+                                            <label class="normal" for="rem_int_jug_catheter">May remove internal jugular catheter after 4 successful 2 needle cannulation using gauge 16 AV Fistula needle</label>
+                                    </div>
+                                    <div class="text-left rest_avf_2weeks">
+                                            <input type="checkbox" name="rest_avf_2weeks" id="rest_avf_2weeks"> 
+                                            <label class="normal" for="rest_avf_2weeks">Rest AVF for 2 weeks before recannulation</label>
+                                    </div>
+
                                     <div class="text-left mod_anticoag">
-                                        <input type="text" name="mod_anticoag" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                        Modify anticoagulation as follows:
+                                            <input type="checkbox" name="mod_anticoag" id="mod_anticoag"> 
+                                            <label class="normal" for="mod_anticoag">Modify anticoagulation as follows:</label>
                                     </div>
-                                        <div class="text-left no_heparin">
-                                            <input type="text" name="no_heparin" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            No heparin for <input name="no_heparin_for" type="text" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            weeks prior
-                                            <input type="text" name="weeks_prior" style="border:0px;border-bottom:1px solid #2c3e50;width:300px;font-size:10pt;"> 
-                                        </div>
-                                        <div class="text-left no_heparin2">
-                                            <input type="text" name="no_heparin2" style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            No heparin for <input type="text" name="no_heparin_for2" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            weeks after
-                                        <input type="text" name="weeks_after" style="border:0px;border-bottom:1px solid #2c3e50;width:300px;font-size:10pt;"> 
-                                        </div>
-                                        <div class="text-left give_uhf">
-                                            <input type="text" name="give_uhf"  style="margin-left:70px;border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            Give UHF <input type="text" name="give_uhf_units" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                            units bolus then <input type="text" name="give_uhf_units_bolus" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;">
-                                        </div>
+                                    <div class="text-left no_heparin">
+                                        <input type="checkbox" name="no_heparin" id="no_heparin" style="margin-left: 70px;"> 
+                                        <label class="normal" for="no_heparin">No heparin for</label> 
+
+                                        <input name="no_heparin_for" type="text" style="border:0px;border-bottom:1px solid #2c3e50;width:100px;font-size:10pt;"> 
+                                        weeks prior
+                                        <input type="text" name="weeks_prior" style="border:0px;border-bottom:1px solid #2c3e50;width:400px;font-size:10pt;"> 
+                                    </div>
+                                    <div class="text-left no_heparin2">
+                                        <input type="checkbox" name="no_heparin2" id="no_heparin2" style="margin-left: 70px;"> 
+                                        <label class="normal" for="no_heparin2">No heparin for</label> 
+
+                                        <input type="text" name="no_heparin_for2" style="border:0px;border-bottom:1px solid #2c3e50;width:100px;font-size:10pt;"> 
+                                        weeks after
+                                        <input type="text" name="weeks_after" style="border:0px;border-bottom:1px solid #2c3e50;width:400px;font-size:10pt;"> 
+                                    </div>
+                                    <div class="text-left give_uhf">
+                                            <input type="checkbox" name="give_uhf" id="give_uhf" style="margin-left: 70px;"> 
+                                            <label class="normal" for="give_uhf">Give UHF</label>
+
+                                            <input type="text" name="give_uhf_units" style="border:0px;border-bottom:1px solid #2c3e50;width:100px;font-size:10pt;"> 
+                                        units bolus then <input type="text" name="give_uhf_units_bolus" style="border:0px;border-bottom:1px solid #2c3e50;width:300px;font-size:10pt;">
+                                    </div>
+                                    <div class="text-left heparin_free_dialysis">
+                                            <input type="checkbox" name="heparin_free_dialysis" id="heparin_free_dialysis" style="margin-left: 70px;"> 
+                                            <label class="normal" for="heparin_free_dialysis">Heparin Free Dialysis</label>
+                                    </div>
+                                    <div class="text-left no_heparin_last_hr">
+                                            <input type="checkbox" name="no_heparin_last_hr" id="no_heparin_last_hr" style="margin-left: 70px;"> 
+                                            <label class="normal" for="no_heparin_last_hr">No Heparin on last hour of dialysis</label>
+                                    </div>
+                                    <div class="text-left hold_oral_anticoagulant_1wk_prior">
+                                            <input type="checkbox" name="hold_oral_anticoagulant_1wk_prior" id="hold_oral_anticoagulant_1wk_prior" style="margin-left: 70px;"> 
+                                            <label class="normal" for="hold_oral_anticoagulant_1wk_prior">Hold oral anticoagulant (aspirin, clopidogrel, warfarin, etc) 1 week prior to operation</label>
+                                    </div>
+                                    <div class="text-left hold_oral_anticoagulant_1wk_post">
+                                            <input type="checkbox" name="hold_oral_anticoagulant_1wk_post" id="hold_oral_anticoagulant_1wk_post" style="margin-left: 70px;"> 
+                                            <label class="normal" for="hold_oral_anticoagulant_1wk_post">Hold oral anticoagulant (aspirin, clopidogrel, warfarin, etc) 1 week post operation</label>
+                                    </div>
+                                    <div class="text-left qb_post_dilution">
+                                        <input type="checkbox" name="qb_post_dilution" id="qb_post_dilution"> 
+                                        <label class="normal" for="qb_post_dilution">QB 350-450 mL/min QD 800 mL/min post dilution HDF with 40 L Substitution Fluid</label>
+                                    </div>
+                                    <div class="text-left qb_pre_dilution">
+                                        <input type="checkbox" name="qb_pre_dilution" id="qb_pre_dilution"> 
+                                        <label class="normal" for="qb_pre_dilution">QB 350-450 mL/min QD 800 mL/min pre dilution HDF with 40 L Substitution Fluid</label>
+                                    </div>
+                                    <div class="text-left qb_low_flux_dialyzer">
+                                        <input type="checkbox" name="qb_low_flux_dialyzer" id="qb_low_flux_dialyzer"> 
+                                        <label class="normal" for="qb_low_flux_dialyzer">QB 350 mL/min QD 500 mL/min Low Flux Dialyzer</label>
+                                    </div>
+                                    <div class="text-left qb_hi_flux_dialyzer">
+                                        <input type="checkbox" name="qb_hi_flux_dialyzer" id="qb_hi_flux_dialyzer"> 
+                                        <label class="normal" for="qb_hi_flux_dialyzer">QB 350 mL/min QD 800 mL/min Hi Flux Dialyzer</label>
+                                    </div>
+
+                                    <div class="text-left gentamycin_lock">
+                                        <input type="checkbox" name="gentamycin_lock" id="gentamycin_lock"> 
+                                        <label class="normal" for="gentamycin_lock">Gentamycin lock 20 mg/port (antibiotic lock) after each dialysis</label>
+                                    </div>
+                                    <div class="text-left ampicillin_lock">
+                                        <input type="checkbox" name="ampicillin_lock" id="ampicillin_lock"> 
+                                        <label class="normal" for="ampicillin_lock">Ampicillin lock 250 mg/port (antibiotic lock) after each dialysis</label>
+                                    </div>
+                                    <div class="text-left citrate_lock_4">
+                                        <input type="checkbox" name="citrate_lock_4" id="citrate_lock_4"> 
+                                        <label class="normal" for="citrate_lock_4">Citrate lock 4% as antibiotic lock</label>
+                                    </div>
+                                    <div class="text-left citrate_lock_30">
+                                        <input type="checkbox" name="citrate_lock_30" id="citrate_lock_30"> 
+                                        <label class="normal" for="citrate_lock_30">Citrate lock 30% as antibiotic lock</label>
+                                    </div>
+
+                                    <div class="text-left monthly_body_comp_analysis">
+                                        <input type="checkbox" name="monthly_body_comp_analysis" id="monthly_body_comp_analysis"> 
+                                        <label class="normal" for="monthly_body_comp_analysis">Monthly in Body Composition Analysis (In Body Scan/ Maltron BIA, etc)</label>
+                                    </div>
+
                                     <div class="text-left please_do_monthly">
-                                        <input type="text" name="please_do_monthly" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;"> 
-                                        Please do monthly labs on or before <input name="on_or_before" type="text" style="border:0px;border-bottom:1px solid #2c3e50;width:375px;font-size:10pt;"> 
+                                            <input type="checkbox" name="please_do_monthly" id="please_do_monthly">
+                                            <label class="normal" for="please_do_monthly">Please do monthly labs on or before</label>
+                                            <input name="on_or_before" type="text" style="border:0px;border-bottom:1px solid #2c3e50;width:414px;font-size:10pt;"> 
                                     </div>
                                     <div class="text-left others_orders">
-                                        <input type="text" name="others_orders" style="border:0px;border-bottom:1px solid #2c3e50;width:60px;font-size:10pt;">
-                                        others orders
+                                            <input type="checkbox" name="others_orders" id="others_orders">
+                                            <label class="normal" for="others_orders">Other orders</label>
                                     </div>
-                                        <div class="text-center more_details1">
-                                            <input type="text" name="more_details1" style="border:0px;border-bottom:1px solid #2c3e50;width:83%;font-size:10pt;">
+                                    <div class="text-center more_details1">
+                                        <textarea class="form-control" name="more_details1" style="font-size:10pt;"></textarea>
+                                    </div>
+                                    <br/>
+                                    <div class="text-center more_details2">
+                                        <textarea class="form-control" name="more_details2" style="font-size:10pt;"></textarea>
+                                    </div>
+                                    <br/>
+                                    <div class="cartoon_lungs">
+                                        <div class="col-md-6">
+                                            <img src="assets/img/cartoon-lungs.png" style="border: 1px solid lightgray;">
                                         </div>
-                                        <div class="text-center more_details2">
-                                            <input type="text" name="more_details2" style="border:0px;border-bottom:1px solid #2c3e50;width:83%;font-size:10pt;">
+                                        <div class="col-md-6">
+                                            <input type="checkbox" name="cartoon_lungs" id="cartoon_lungs"> 
+                                            <label class="normal" for="cartoon_lungs">Cartoon Lungs</label><br/>
+                                            Remarks : <br/>
+                                            <textarea class="form-control" rows="8" name="cartoon_lungs_remarks"></textarea> <br/>
+                                            <input type="checkbox" name="plural_effusion_both_lungs" id="plural_effusion_both_lungs">
+                                            <label class="normal" for="plural_effusion_both_lungs">
+                                                Pleural Effusion both lungs
+                                            </label> <br/>
+
+                                            <input type="checkbox" name="plural_effusion_left_lung" id="plural_effusion_left_lung">
+                                            <label class="normal" for="plural_effusion_left_lung">
+                                                Pleural Effusion left lung
+                                            </label> <br/>
+
+                                            <input type="checkbox" name="plural_effusion_right_lung" id="plural_effusion_right_lung">
+                                            <label class="normal" for="plural_effusion_right_lung">
+                                                Pleural Effusion right lung
+                                            </label>
                                         </div>
-                                    <div class="text-left" style="margin-top:50px;font-weight:bold;">
+                                    </div>
+
+<!--                                     <div class="row">
+                                        <div class="text-left" style="font-weight:bold;">
                                         Noted by :  <input type="text" style="border:0px;border-bottom:1px solid #2c3e50;width:250px;font-size:12pt;pointer-events: none!important;">
-                                    </div>
+                                        </div>
+                                    </div> -->
+
+                                    
                                     <footer class="m-t-15 p-20" id="ftr_nephro_order">
                                         <div class="list-inline text-right list-unstyled" style="font-size:8pt;line-height: 100%;float: left;margin-left: 85px; margin-top: 10px;">
                                             <?php echo $stamp; ?>
@@ -2711,9 +2939,6 @@
                         <button type="button" class="btn btn-success bgm-green waves-effect save_nephro right_nephro_create" id="save_nephro">
                             <i class="fa fa-check-circle"></i> Save
                         </button>
-                        <button type="button" class="btn btn-default bgm-green waves-effect" id="print_nephro">
-                            <i class="fa fa-print"></i> Print
-                        </button>
                         <button type="button" class="btn btn-danger bgm-red waves-effect close_nephro" data-dismiss="modal">
                             <i class="fa fa-arrow-left"></i> Back
                         </button>
@@ -2722,6 +2947,151 @@
             </div>
         </div>
         <!-- modal nephro order end -->
+
+        <!--  Nephro Clearance Modal -->
+        <div id="modal_patient_nephro_clearance" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#27ae60;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                            <h4 class="modal-title" style="color: white;">
+                                <span id="nephrology_clearance_icon"></span>
+                                Nephrology Clearance 
+                                <small class="patient_txn"></small>
+                            </h4>
+                    </div>
+                    <div class="modal-body" style="padding:5px;">
+                        <div id="print_nephro_content">
+                            <div class="container-fluid">
+                                <form id="frm_nephrology_clearance">
+                                <div class="row">   
+                                    <div class="text-left">
+                                        <div class="col-xs-6" style="float:left;font-size:11pt;">Name : <u><areafullname class="areafullname"></areafullname></u>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="col-xs-6" style="float:right;font-size:11pt;">Age/Sex : <u><areaage class="areaage"></areaage></u> / <u><areasex class="areasex"></areasex></u>
+                                        </div>
+                                    </div>
+                                    <div class="text-left">
+                                        <div class="col-xs-6" style="float:left;font-size:11pt;">Address : <u><areaaddress class="areaaddress"></areaaddress></u>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="col-xs-6" style="float:right;font-size:11pt;">Date : <areamedcertdate class="areamedcertdate"><input type="text" class="date-picker" id="nephro_clearance_date" name="nephro_clearance_date" style="border:0px;border-bottom:1px solid #2c3e50;width:78px;text-align: center;" required data-error-msg="Date is required"></areamedcertdate>
+                                        </div>
+                                    </div>
+                                </div><br>
+                                <div class="row">
+                                    <div class="text-center">
+                                        <h4 class="text-uppercase" style="font-family:tahoma;font-size:13pt;font-weight:bold;">
+                                            Nephrology Clearance
+                                        </h4>
+                                    </div>
+                                </div><br>
+                                <div class="row">
+                                        <div class="text-left">
+                                            <input type="checkbox" name="contemplated_surgery_renal" id="contemplated_surgery_renal">
+                                            <label class="normal" for="contemplated_surgery_renal">May go ahead with contemplated surgery renal wise</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="no_nsaids_cox2" id="no_nsaids_cox2" style="margin-left:70px;">
+                                            <label class="normal" for="no_nsaids_cox2">No NSAIDs and COX 2 inhibitors as plain reliever</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="avoid_fluid_overload" id="avoid_fluid_overload" style="margin-left:70px;">
+                                            <label class="normal" for="avoid_fluid_overload">Avoid fluid overload</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="no_ace_inhi_arb" id="no_ace_inhi_arb" style="margin-left:70px;">
+                                            <label class="normal" for="no_ace_inhi_arb">No ACE Inhibitors or ARB as antihypertensive</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="np_potassium_iv_fluid" id="np_potassium_iv_fluid" style="margin-left:70px;">
+                                            <label class="normal" for="np_potassium_iv_fluid">No potassium containing IV fluid</label>
+                                        </div>
+                                        <br/>
+
+                                        <div class="text-left">
+                                            <input type="checkbox" name="contemplates_ct_scan" id="contemplates_ct_scan">
+                                            <label class="normal" for="contemplates_ct_scan">May go ahead with contemplated CT Scan with contrast</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="use_non_ionic_isoosmolar" id="use_non_ionic_isoosmolar" style="margin-left:70px;">
+                                            <label class="normal" for="use_non_ionic_isoosmolar">Please use non ionic isoosmolar contrast (GE Visipaque) less than 100 mL</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="give_n_acetylcysteine" id="give_n_acetylcysteine" style="margin-left:70px;">
+                                            <label class="normal" for="give_n_acetylcysteine">Give N Acetylcysteine 600 mg 2x a day 2 days before and after CT Scan</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="give_trimetazidine" id="give_trimetazidine" style="margin-left:70px;">
+                                            <label class="normal" for="give_trimetazidine">Give Trimetazidine 35 mg 2x a day 2 days before and after CT Scan</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="oral_hydration_2l_day" id="oral_hydration_2l_day" style="margin-left:70px;">
+                                            <label class="normal" for="oral_hydration_2l_day">Oral hydration at least 2 liters per day</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="repeate_creatinine_2d_ctscan" id="repeate_creatinine_2d_ctscan" style="margin-left:70px;">
+                                            <label class="normal" for="repeate_creatinine_2d_ctscan">Repeat Creatinine 2 days after CT Scan</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="for_cystatin_c_ctscan" id="for_cystatin_c_ctscan" style="margin-left:70px;">
+                                            <label class="normal" for="for_cystatin_c_ctscan">For Cystatin C immediately after CT Scan</label>
+                                        </div>
+                                        <div class="text-left">
+                                            <input type="checkbox" name="urine_ngal_ctscan" id="urine_ngal_ctscan" style="margin-left:70px;">
+                                            <label class="normal" for="urine_ngal_ctscan">Urine NGAL immediately after CT Scan</label>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> 
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success bgm-green waves-effect save_nephro_clearance right_nephro_clearance_create" id="save_nephro_clearance">
+                            <i class="fa fa-check-circle"></i> Save
+                        </button>
+                        <button type="button" class="btn btn-danger bgm-red waves-effect close_nephro_clearance" data-dismiss="modal">
+                            <i class="fa fa-arrow-left"></i> Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal nephro order end -->
+
+        <div id="modal_patient_nephro_clearance_view" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#27ae60;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                            <h4 class="modal-title" style="color: white;">
+                                <i class="fa fa-eye"></i> Nephro Clearance <small style="color: white;">View</small>
+                            </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div style="padding: 10px!important;">
+                            <div id="patient_nephro_clearance_response"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bgm-green btn-default waves-effect" id="print_nephro_clearance">
+                            <i class="fa fa-print"></i> Print
+                        </button>
+                        <button type="button" class="btn bgm-red btn-danger waves-effect close_nephro_clearance" data-dismiss="modal">
+                            <i class="fa fa-arrow-left"></i> Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- modal diagnostic list start -->
 <!--         <div class="modal fade" id="modal_lab_report_list" tabindex="-1" role="dialog" aria-hidden="true">
@@ -2737,6 +3107,33 @@
             </div>
         </div> -->
         <!-- modal diagnostic list end -->
+
+        <div id="modal_laboratory_report_view" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#27ae60;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                            <h4 class="modal-title" style="color: white;">
+                                <i class="fa fa-eye"></i> Laboratory Request <small style="color: white;">View</small>
+                            </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div style="padding: 10px!important;">
+                            <div id="patient_laboratory_request_response"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bgm-green btn-default waves-effect" id="print_labreport_diagnostics">
+                            <i class="fa fa-print"></i> Print
+                        </button>
+                        <button type="button" class="btn bgm-red btn-danger waves-effect" data-dismiss="modal">
+                            <i class="fa fa-arrow-left"></i> Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!--  laboratory request modal -->
         <div id="modal_laboratory_report" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
@@ -2846,8 +3243,8 @@
                                                </div>
                                                <div class="chem_specify">
                                                    <input type="checkbox" name="" id="chem_specify" style="width:50px;border:0px;border-bottom:1px solid black;">
-                                                    <label for="chem_specify" class="normal">Others, please specify </label>
-                                                   <input type="text" name="chem_specify_txt" style="width:65px;border:0px;border-bottom:1px solid black;">
+                                                    <label for="chem_specify" class="normal">Others, please specify </label> <br/>
+                                                    <textarea class="form-control" rows="3" name="chem_specify_txt"></textarea>
                                                </div>
                                             </div>
                                             <div class="col-xs-8">
@@ -3000,9 +3397,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success bgm-green waves-effect right_labreport_create" id="save_labreport_diagnostics">
                             <i class="fa fa-check-circle"></i> Save
-                        </button>
-                        <button type="button" class="btn btn-default bgm-green waves-effect" id="print_labreport_diagnostics">
-                            <i class="fa fa-print"></i> Print
                         </button>
                         <button type="button" class="btn btn-danger bgm-red waves-effect close_labreport" data-dismiss="modal">
                             <i class="fa fa-arrow-left"></i> Back
@@ -4872,6 +5266,34 @@
         </div> -->
         <!-- modal patient admitting order end -->
         
+
+        <div id="modal_admitting_order_view" class="modal fade"  tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#27ae60;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="xbutton">×</span></button>
+                            <h4 class="modal-title" style="color: white;">
+                                <i class="fa fa-eye"></i> Admitting Order <small style="color: white;">View</small>
+                            </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div style="padding: 10px!important;">
+                            <div id="patient_admitting_order_response"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bgm-green btn-default waves-effect" id="print_admitting_order">
+                            <i class="fa fa-print"></i> Print
+                        </button>
+                        <button type="button" class="btn bgm-red btn-danger waves-effect close_admitting_order" data-dismiss="modal">
+                            <i class="fa fa-arrow-left"></i> Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--  Admitting Order Modal -->
         <div id="modal_admitting_order" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -4914,137 +5336,164 @@
                                             <h4 style="font-family:tahoma;font-size:14pt;font-weight:bold;text-transform: uppercase;">
                                                 <u>Admitting Order</u>
                                             </h4>
-                                            <button type="button" class="btn btn-success hidden" id="btn_check_all_checkbox">
+            <!--                                 <button type="button" class="btn btn-success hidden" id="btn_check_all_checkbox">
                                                 Check all checkbox
-                                            </button>
+                                            </button> -->
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12">
                                             <div class="text-left">
-                                                    <i class="fa fa-angle-right"></i> Please admit to 
-                                                        <input type="checkbox" name="cb_icu" id="cb_icu"> <label for="cb_icu" class="normal">ICU</label> <br />
-                                                        <input type="checkbox" name="cb_room" id="cb_room" style="margin-left: 100px;"> <label for="cb_room" class="normal">Room of choice under my service.</label> <br />
+                                                    <i class="fa fa-angle-right"></i> Please admit to <br/>
+                                                        <div class="cb_icu">
+                                                            <input type="checkbox" name="cb_icu" id="cb_icu" style="margin-left: 100px;"> 
+                                                            <label for="cb_icu" class="normal">ICU</label> <br />
+                                                        </div>
+                                                        <div class="cb_room">
+                                                            <input type="checkbox" name="cb_room" id="cb_room" style="margin-left: 100px;"> <label for="cb_room" class="normal">Room of choice under my service.</label> <br />
+                                                        </div>
                                                     <i class="fa fa-angle-right"></i> Secure consent for admission &amp; management <br />
-                                                    <i class="fa fa-angle-right"></i> Monitor VS q 
-                                                        <input type="text" class="txt_right" name="txt_mon_vsq" id="txt_mon_vsq" style="width: 30px;"> hours <br />
-                                                    <i class="fa fa-angle-right"></i> Monitor 1 &amp; 0 q
+                                                        
+                                                    <div class="txt_mon_vsq">
+                                                        <i class="fa fa-angle-right"></i> Monitor VS q 
+                                                        <input type="text" class="txt_right" name="txt_mon_vsq" id="txt_mon_vsq" style="width: 30px;"> hours <br /> 
+                                                    </div>
+                                                    <div class="txt_mon_10">
+                                                        <i class="fa fa-angle-right"></i> Monitor 1 &amp; 0 q
                                                         <input type="text" class="txt_right" name="txt_mon_10" id="txt_mon_10" style="width: 30px;"> hours <br />
+                                                    </div>
                                                     <i class="fa fa-angle-right"></i> Diet: <br/ >
-
+                                                    <div class="cb_low_fat_salt_diet">
                                                         <input type="checkbox" name="cb_low_fat_salt_diet" id="cb_low_fat_salt_diet"> 
                                                         <label for="cb_low_fat_salt_diet" class="normal">Low salt, low fat diet</label><br />
-
+                                                    </div>
+                                                    <div class="cb_daib_renal_diet">
                                                         <input type="checkbox" name="cb_daib_renal_diet" id="cb_daib_renal_diet"> 
                                                         <label for="cb_daib_renal_diet" class="normal">Diabetic Renal Diet</label><br />
-
-                                                        <div style="margin-left: 50px;">
-                                                            TCR : <input type="text" class="txt_right" name="txt_drdtcr_kcal_day" style="width:105px;" id="txt_drdtcr_kcal_day"> kcal/day divided into 
-                                                            <br />
-                                                            <input type="checkbox" name="cb_drdtc_na_day" id="cb_drdtc_na_day"> 
-                                                            <input type="text" name="txt_drdtc_na_day" id="txt_drdtc_na_day" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_drdtc_na_day" class="normal">Na/day</label>
-
-                                                            <input type="checkbox" name="cb_drdtc_g_phosp_day" id="cb_drdtc_g_phosp_day" style="margin-left: 50px;"> 
-                                                            <input type="text" name="txt_drdtc_g_phosp_day" id="txt_drdtc_g_phosp_day" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_drdtc_g_phosp_day" class="normal">g Phosphorous /day</label>
-                                                            <br />
-
-                                                            <input type="checkbox" name="cb_drdtc_gk_day" id="cb_drdtc_gk_day"> 
-                                                            <input type="text" name="txt_drdtc_gk_day" id="txt_drdtc_gk_day" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_drdtc_gk_day" class="normal">g K/day</label>
-
-                                                            <input type="checkbox" name="cb_drdtc_g_fats" id="cb_drdtc_g_fats" style="margin-left: 48px;"> 
-                                                            <input type="text" name="txt_drdtc_g_fats" id="txt_drdtc_g_fats" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_drdtc_g_fats" class="normal">g Fats/day</label>
-                                                            <br />
-
-                                                            <input type="checkbox" name="cb_drdtc_l_fluids_day" id="cb_drdtc_l_fluids_day"> 
-                                                            <input type="text" name="txt_drdtc_l_fluids_day" id="txt_drdtc_l_fluids_day" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_drdtc_l_fluids_day" class="normal">L fluids/day</label>
-
-                                                            <input type="checkbox" name="cb_drdtc_g_cho" id="cb_drdtc_g_cho" style="margin-left: 25px;"> 
-                                                            <input type="text" name="txt_drdtc_g_cho" id="txt_drdtc_g_cho" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_drdtc_g_cho" class="normal">g Carbohydrates/day</label>
-                                                            <br />
-
-                                                            <input type="checkbox" name="cb_drdtc_g_protein" id="cb_drdtc_g_protein"> 
-                                                            <input type="text" name="txt_drdtc_g_protein" id="txt_drdtc_g_protein" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_drdtc_g_protein" class="normal">g Protein/day</label>
-                                                            <br />
+                                                    </div>
+                                                        <div style="margin-left: 50px; width: 50%;">
+                                                            <div class="txt_drdtcr_kcal_day">
+                                                                TCR : <input type="text" class="txt_right" name="txt_drdtcr_kcal_day" style="width:105px;" id="txt_drdtcr_kcal_day"> kcal/day divided into 
+                                                                <br />
+                                                            </div>
+                                                            <div class="medicine_table cb_drdtc_na_day">
+                                                                <input type="checkbox" name="cb_drdtc_na_day" id="cb_drdtc_na_day"> 
+                                                                <input type="text" name="txt_drdtc_na_day" id="txt_drdtc_na_day" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_drdtc_na_day" class="normal">Na/day</label>    
+                                                            </div>
+                                                            <div class="medicine_table cb_drdtc_g_phosp_day">
+                                                                <input type="checkbox" name="cb_drdtc_g_phosp_day" id="cb_drdtc_g_phosp_day"> 
+                                                                <input type="text" name="txt_drdtc_g_phosp_day" id="txt_drdtc_g_phosp_day" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_drdtc_g_phosp_day" class="normal">g Phosphorous /day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_drdtc_gk_day">
+                                                                <input type="checkbox" name="cb_drdtc_gk_day" id="cb_drdtc_gk_day"> 
+                                                                <input type="text" name="txt_drdtc_gk_day" id="txt_drdtc_gk_day" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_drdtc_gk_day" class="normal">g K/day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_drdtc_g_fats">
+                                                                <input type="checkbox" name="cb_drdtc_g_fats" id="cb_drdtc_g_fats"> 
+                                                                <input type="text" name="txt_drdtc_g_fats" id="txt_drdtc_g_fats" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_drdtc_g_fats" class="normal">g Fats/day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_drdtc_l_fluids_day">    
+                                                                <input type="checkbox" name="cb_drdtc_l_fluids_day" id="cb_drdtc_l_fluids_day"> 
+                                                                <input type="text" name="txt_drdtc_l_fluids_day" id="txt_drdtc_l_fluids_day" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_drdtc_l_fluids_day" class="normal">L fluids/day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_drdtc_g_cho">
+                                                                <input type="checkbox" name="cb_drdtc_g_cho" id="cb_drdtc_g_cho"> 
+                                                                <input type="text" name="txt_drdtc_g_cho" id="txt_drdtc_g_cho" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_drdtc_g_cho" class="normal">g Carbohydrates/day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_drdtc_g_protein">
+                                                                <input type="checkbox" name="cb_drdtc_g_protein" id="cb_drdtc_g_protein"> 
+                                                                <input type="text" name="txt_drdtc_g_protein" id="txt_drdtc_g_protein" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_drdtc_g_protein" class="normal">g Protein/day</label>
+                                                            </div>
                                                         </div>
 
                                                         <!-- renal diet -->
-
-                                                        <input type="checkbox" name="cb_renal_diet" id="cb_renal_diet"> 
-                                                        <label for="cb_renal_diet" class="normal">Renal Diet</label><br />
-
-                                                        <div style="margin-left: 50px;">
-                                                            TCR : <input type="text" class="txt_right" name="txt_rdtcr_kcal_day" style="width:105px;" id="txt_rdtcr_kcal_day"> kcal/day divided into 
-                                                            <br />
-                                                            <input type="checkbox" name="cb_rdtc_na_day" id="cb_rdtc_na_day"> 
-                                                            <input type="text" name="txt_rdtc_na_day" id="txt_rdtc_na_day" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_rdtc_na_day" class="normal">Na/day</label>
-
-                                                            <input type="checkbox" name="cb_rdtc_g_phosp_day" id="cb_rdtc_g_phosp_day" style="margin-left: 50px;"> 
-                                                            <input type="text" name="txt_rdtc_g_phosp_day" id="txt_rdtc_g_phosp_day" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_rdtc_g_phosp_day" class="normal">g Phosphorous /day</label>
-                                                            <br />
-
-                                                            <input type="checkbox" name="cb_rdtc_gk_day" id="cb_rdtc_gk_day"> 
-                                                            <input type="text" name="txt_rdtc_gk_day" id="txt_rdtc_gk_day" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_rdtc_gk_day" class="normal">g K/day</label>
-
-                                                            <input type="checkbox" name="cb_rdtc_g_fats" id="cb_rdtc_g_fats" style="margin-left: 48px;"> 
-                                                            <input type="text" name="txt_rdtc_g_fats" id="txt_rdtc_g_fats" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_rdtc_g_fats" class="normal">g Fats/day</label>
-                                                            <br />
-
-                                                            <input type="checkbox" name="cb_rdtc_l_fluids_day" id="cb_rdtc_l_fluids_day"> 
-                                                            <input type="text" name="txt_rdtc_l_fluids_day" id="txt_rdtc_l_fluids_day" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_rdtc_l_fluids_day" class="normal">L fluids/day</label>
-
-                                                            <input type="checkbox" name="cb_rdtc_g_cho" id="cb_rdtc_g_cho" style="margin-left: 25px;"> 
-                                                            <input type="text" name="txt_rdtc_g_cho" id="txt_rdtc_g_cho" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_rdtc_g_cho" class="normal">g Carbohydrates/day</label>
-                                                            <br />
-
-                                                            <input type="checkbox" name="cb_rdtc_g_protein" id="cb_rdtc_g_protein"> 
-                                                            <input type="text" name="txt_rdtc_g_protein" id="txt_rdtc_g_protein" class="txt_right" style="width: 50px;">
-                                                            <label for="cb_rdtc_g_protein" class="normal">g Protein/day</label>
-                                                            <br />
+                                                        <div class="cb_renal_diet">
+                                                            <input type="checkbox" name="cb_renal_diet" id="cb_renal_diet"> 
+                                                            <label for="cb_renal_diet" class="normal">Renal Diet</label><br />
+                                                        </div>
+                                                        <div style="margin-left: 50px;width: 50%;">
+                                                            <div class="txt_rdtcr_kcal_day">
+                                                                TCR : <input type="text" class="txt_right" name="txt_rdtcr_kcal_day" style="width:105px;" id="txt_rdtcr_kcal_day"> kcal/day divided into 
+                                                                <br />
+                                                            </div>    
+                                                            <div class="medicine_table cb_rdtc_na_day">
+                                                                <input type="checkbox" name="cb_rdtc_na_day" id="cb_rdtc_na_day"> 
+                                                                <input type="text" name="txt_rdtc_na_day" id="txt_rdtc_na_day" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_rdtc_na_day" class="normal">Na/day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_rdtc_g_phosp_day">
+                                                                <input type="checkbox" name="cb_rdtc_g_phosp_day" id="cb_rdtc_g_phosp_day">
+                                                                <input type="text" name="txt_rdtc_g_phosp_day" id="txt_rdtc_g_phosp_day" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_rdtc_g_phosp_day" class="normal">g Phosphorous /day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_rdtc_gk_day">
+                                                                <input type="checkbox" name="cb_rdtc_gk_day" id="cb_rdtc_gk_day"> 
+                                                                <input type="text" name="txt_rdtc_gk_day" id="txt_rdtc_gk_day" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_rdtc_gk_day" class="normal">g K/day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_rdtc_g_fats">
+                                                                <input type="checkbox" name="cb_rdtc_g_fats" id="cb_rdtc_g_fats"> 
+                                                                <input type="text" name="txt_rdtc_g_fats" id="txt_rdtc_g_fats" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_rdtc_g_fats" class="normal">g Fats/day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_rdtc_l_fluids_day">
+                                                                <input type="checkbox" name="cb_rdtc_l_fluids_day" id="cb_rdtc_l_fluids_day"> 
+                                                                <input type="text" name="txt_rdtc_l_fluids_day" id="txt_rdtc_l_fluids_day" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_rdtc_l_fluids_day" class="normal">L fluids/day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_rdtc_g_cho">
+                                                                <input type="checkbox" name="cb_rdtc_g_cho" id="cb_rdtc_g_cho"> 
+                                                                <input type="text" name="txt_rdtc_g_cho" id="txt_rdtc_g_cho" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_rdtc_g_cho" class="normal">g Carbohydrates/day</label>
+                                                            </div>
+                                                            <div class="medicine_table cb_rdtc_g_protein">
+                                                                <input type="checkbox" name="cb_rdtc_g_protein" id="cb_rdtc_g_protein"> 
+                                                                <input type="text" name="txt_rdtc_g_protein" id="txt_rdtc_g_protein" class="txt_right" style="width: 50px;">
+                                                                <label for="cb_rdtc_g_protein" class="normal">g Protein/day</label>
+                                                            </div>
                                                         </div>
 
                                                         <div style="margin-left: 20px;">
-                                                            Diagnosis : <input type="checkbox" name="cb_chronic_kds" id="cb_chronic_kds"> 
-                                                            <label for="cb_chronic_kds" class="normal"> Chronic Kidney Disease Stage </label> 
-                                                            <input type="text" class="txt_right" name="txt_chronic_kds" id="txt_chronic_kds" style="width: 60px;"> secondary <br>
-                                                            <span style="margin-left: 200px;">to</span> 
-                                                            <input type="checkbox" name="cb_chronic_kds_dmn" id="cb_chronic_kds_dmn"> 
-                                                            <label for="cb_chronic_kds_dmn" class="normal"> DM Nephropathy </label>
 
-                                                            <br/>
-
-                                                            <input type="checkbox" name="cb_chronic_kds_un" id="cb_chronic_kds_un" style="margin-left: 215px;"> 
-                                                            <label for="cb_chronic_kds_un" class="normal"> Urate Nephropathy </label>
-
-                                                            <br/>
-
-                                                            <input type="checkbox" name="cb_chronic_kds_hn" id="cb_chronic_kds_hn" style="margin-left: 215px;">
-                                                            <label for="cb_chronic_kds_hn" class="normal"> Hypertensive Nephropathy </label>
-
-                                                            <br/>
-
-                                                            <input type="checkbox" name="cb_chronic_kds_others" id="cb_chronic_kds_others" style="margin-left: 215px;">
-                                                            <label for="cb_chronic_kds_others" class="normal"> Others: </label>
-                                                            <input type="text" name="txt_chronic_kds_others" id="txt_chronic_kds_others" class="txt_left" style="width: 205px;">
-                                                            
-                                                            <br/>
-
-                                                            <input type="checkbox" name="cb_diag_others" id="cb_diag_others" style="margin-left: 70px;">
-                                                            <label for="cb_diag_others" class="normal"> Others: </label>
-                                                            <input type="text" name="txt_diag_others" id="txt_diag_others" class="txt_left" style="width: 350px;">
-                                                            
-                                                            <br/>
+                                                            Diagnosis : 
+                                                            <div class="cb_chronic_kds">
+                                                                <input type="checkbox" name="cb_chronic_kds" id="cb_chronic_kds"> 
+                                                                <label for="cb_chronic_kds" class="normal"> Chronic Kidney Disease Stage </label> 
+                                                                <input type="text" class="txt_right" name="txt_chronic_kds" id="txt_chronic_kds" style="width: 60px;"> secondary to <br>
+                                                            </div>
+                                                            <div class="cb_chronic_kds_dmn">
+                                                                <input type="checkbox" name="cb_chronic_kds_dmn" id="cb_chronic_kds_dmn" style="margin-left: 215px;"> 
+                                                                <label for="cb_chronic_kds_dmn" class="normal"> DM Nephropathy </label>
+                                                                <br/>
+                                                            </div>
+                                                            <div class="cb_chronic_kds_un">
+                                                                <input type="checkbox" name="cb_chronic_kds_un" id="cb_chronic_kds_un" style="margin-left: 215px;"> 
+                                                                <label for="cb_chronic_kds_un" class="normal"> Urate Nephropathy </label>
+                                                                <br/>
+                                                            </div>
+                                                            <div class="cb_chronic_kds_hn">
+                                                                <input type="checkbox" name="cb_chronic_kds_hn" id="cb_chronic_kds_hn" style="margin-left: 215px;">
+                                                                <label for="cb_chronic_kds_hn" class="normal"> Hypertensive Nephropathy </label>
+                                                                <br/>
+                                                            </div>
+                                                            <div class="cb_chronic_kds_others">
+                                                                <input type="checkbox" name="cb_chronic_kds_others" id="cb_chronic_kds_others" style="margin-left: 215px;">
+                                                                <label for="cb_chronic_kds_others" class="normal"> Others: </label>
+                                                                <input type="text" name="txt_chronic_kds_others" id="txt_chronic_kds_others" class="txt_left" style="width: 205px;">
+                                                                <br/>    
+                                                            </div>
+                                                            <div class="cb_diag_others">
+                                                                <input type="checkbox" name="cb_diag_others" id="cb_diag_others" style="margin-left: 70px;">
+                                                                <label for="cb_diag_others" class="normal"> Others: </label>
+                                                                <input type="text" name="txt_diag_others" id="txt_diag_others" class="txt_left" style="width: 350px;">
+                                                                <br/>
+                                                            </div>
                                                         </div>
                                             </div>
                                             </div>
@@ -5057,42 +5506,100 @@
                                             </div>
                                             <div class="col-xs-4">
                                                 <h5><b>HEMATOLOGY</b></h5>
-                                               <input type="checkbox" name="cb_diag_hm_cbc" id="cb_diag_hm_cbc" style="width:50px;border:0px;border-bottom:1px solid black;"><label for="cb_diag_hm_cbc" class="normal">CBC with PC</label> <br>
-                                               <input type="checkbox" name="cb_diag_hm_ph_bsmear" id="cb_diag_hm_ph_bsmear" style="width:50px;border:0px;border-bottom:1px solid black;"><label for="cb_diag_hm_ph_bsmear" class="normal">Peripheral Blood Smear</label> <br>
+                                               
+                                                <div class="cb_diag_hm_cbc">
+                                                    <input type="checkbox" name="cb_diag_hm_cbc" id="cb_diag_hm_cbc" style="width:50px;border:0px;border-bottom:1px solid black;"><label for="cb_diag_hm_cbc" class="normal">CBC with PC</label> <br>
+                                                </div>
+                                                <div class="cb_diag_hm_ph_bsmear">
+                                                    <input type="checkbox" name="cb_diag_hm_ph_bsmear" id="cb_diag_hm_ph_bsmear" style="width:50px;border:0px;border-bottom:1px solid black;"><label for="cb_diag_hm_ph_bsmear" class="normal">Peripheral Blood Smear</label> <br>
+                                                </div>
+                                            
                                                <h5><b>CHEMISTRY</b></h5>
-                                               <input type="checkbox" name="cb_diag_chem_bun_prepost" id="cb_diag_chem_bun_prepost" style="width:50px;border:0px;border-bottom:1px solid black;">BUN (Pre and Post HD) <br>
-                                               <input type="checkbox" name="cb_diag_chem_bun" id="cb_diag_chem_bun" style="width:50px;border:0px;border-bottom:1px solid black;">BUN <br>
-                                               <input type="checkbox" name="cb_diag_chem_creatinine" id="cb_diag_chem_creatinine" style="width:50px;border:0px;border-bottom:1px solid black;">Creatinine <br>
-                                               <input type="checkbox" name="cb_diag_chem_na" id="cb_diag_chem_na" style="width:50px;border:0px;border-bottom:1px solid black;">Na <br>
-                                               <input type="checkbox" name="cb_diag_chem_k" id="cb_diag_chem_k" style="width:50px;border:0px;border-bottom:1px solid black;">K <br>
-                                               <input type="checkbox" name="cb_diag_chem_fbs" id="cb_diag_chem_fbs" style="width:50px;border:0px;border-bottom:1px solid black;">FBS <br>
-                                               <input type="checkbox" name="cb_diag_chem_ion_calc" id="cb_diag_chem_ion_calc" style="width:50px;border:0px;border-bottom:1px solid black;">Ionized Calcium <br>
-                                               <input type="checkbox" name="cb_diag_chem_phosporus" id="cb_diag_chem_phosporus" style="width:50px;border:0px;border-bottom:1px solid black;">Phosphorus <br>
-                                               <input type="checkbox" name="cb_diag_chem_albumin" id="cb_diag_chem_albumin" style="width:50px;border:0px;border-bottom:1px solid black;">Albumin <br>
-                                               <input type="checkbox" name="cb_diag_chem_uricacid" id="cb_diag_chem_uricacid" style="width:50px;border:0px;border-bottom:1px solid black;">Uric Acid <br>
-                                               <input type="checkbox" name="cb_diag_chem_lipidprofile" id="cb_diag_chem_lipidprofile" style="width:50px;border:0px;border-bottom:1px solid black;">Lipid Profile <br>
-                                               <input type="checkbox" name="cb_diag_chem_sgpt" id="cb_diag_chem_sgpt" style="width:50px;border:0px;border-bottom:1px solid black;">SGPT <br>
-                                               <input type="checkbox" name="cb_diag_chem_specify" id="cb_diag_chem_specify" style="width:50px;border:0px;border-bottom:1px solid black;">Others, please specify <input type="text" name="txt_diag_chem_specify" id="txt_diag_chem_specify" style="width:65px;border:0px;border-bottom:1px solid black;"><br>
+
+                                               <div class="cb_diag_chem_bun_prepost">
+                                                   <input type="checkbox" name="cb_diag_chem_bun_prepost" id="cb_diag_chem_bun_prepost" style="width:50px;border:0px;border-bottom:1px solid black;">BUN (Pre and Post HD) 
+                                               </div>
+                                               <div class="cb_diag_chem_bun">
+                                                   <input type="checkbox" name="cb_diag_chem_bun" id="cb_diag_chem_bun" style="width:50px;border:0px;border-bottom:1px solid black;">BUN
+                                               </div>
+                                               <div class="cb_diag_chem_creatinine">
+                                                    <input type="checkbox" name="cb_diag_chem_creatinine" id="cb_diag_chem_creatinine" style="width:50px;border:0px;border-bottom:1px solid black;">Creatinine
+                                               </div>
+                                               <div class="cb_diag_chem_na">
+                                                   <input type="checkbox" name="cb_diag_chem_na" id="cb_diag_chem_na" style="width:50px;border:0px;border-bottom:1px solid black;">Na
+                                               </div>
+                                               <div class="cb_diag_chem_k">
+                                                   <input type="checkbox" name="cb_diag_chem_k" id="cb_diag_chem_k" style="width:50px;border:0px;border-bottom:1px solid black;">K
+                                               </div>
+                                               <div class="cb_diag_chem_fbs">
+                                                   <input type="checkbox" name="cb_diag_chem_fbs" id="cb_diag_chem_fbs" style="width:50px;border:0px;border-bottom:1px solid black;">FBS
+                                               </div>
+                                               <div class="cb_diag_chem_ion_calc">
+                                                    <input type="checkbox" name="cb_diag_chem_ion_calc" id="cb_diag_chem_ion_calc" style="width:50px;border:0px;border-bottom:1px solid black;">Ionized Calcium
+                                               </div>
+                                               <div class="cb_diag_chem_phosporus">
+                                                   <input type="checkbox" name="cb_diag_chem_phosporus" id="cb_diag_chem_phosporus" style="width:50px;border:0px;border-bottom:1px solid black;">Phosphorus                                                   
+                                               </div>
+                                               <div class="cb_diag_chem_albumin">
+                                                   <input type="checkbox" name="cb_diag_chem_albumin" id="cb_diag_chem_albumin" style="width:50px;border:0px;border-bottom:1px solid black;">Albumin
+                                               </div>
+                                               <div class="cb_diag_chem_uricacid">
+                                                   <input type="checkbox" name="cb_diag_chem_uricacid" id="cb_diag_chem_uricacid" style="width:50px;border:0px;border-bottom:1px solid black;">Uric Acid
+                                               </div>
+                                               <div class="cb_diag_chem_lipidprofile">
+                                                   <input type="checkbox" name="cb_diag_chem_lipidprofile" id="cb_diag_chem_lipidprofile" style="width:50px;border:0px;border-bottom:1px solid black;">Lipid Profile
+                                               </div>
+                                               <div class="cb_diag_chem_sgpt">  
+                                                   <input type="checkbox" name="cb_diag_chem_sgpt" id="cb_diag_chem_sgpt" style="width:50px;border:0px;border-bottom:1px solid black;">SGPT
+                                               </div>
+                                               <div class="cb_diag_chem_specify">
+                                                    <input type="checkbox" name="cb_diag_chem_specify" id="cb_diag_chem_specify" style="width:50px;border:0px;border-bottom:1px solid black;">Others, please specify <input type="text" name="txt_diag_chem_specify" id="txt_diag_chem_specify" style="width:100px;border:0px;border-bottom:1px solid black;">
+                                               </div>
                                             </div>
                                             <div class="col-xs-8">
                                                 <div class="row">
-                                                    <div class="col-xs-5">
+                                                    <div class="col-xs-12">
                                                         <h5><b>IMAGING STUDIES</b></h5>
-                                                        <input type="checkbox" name="cb_diag_imag_12lecg" id="cb_diag_imag_12lecg" style="width:50px;border:0px;border-bottom:1px solid black;">12 L ECG <br />
-                                                        <input type="checkbox" name="cb_diag_imag_kubxray" id="cb_diag_imag_kubxray" style="width:50px;border:0px;border-bottom:1px solid black;">KUB XRAY <br />
-                                                        <input type="checkbox" name="cb_diag_imag_kubultrasound" id="cb_diag_imag_kubultrasound" style="width:50px;border:0px;border-bottom:1px solid black;">KUB Ultrasound <br />
-                                                        <input type="checkbox" name="cb_diag_imag_abdomen" id="cb_diag_imag_abdomen" style="width:50px;border:0px;border-bottom:1px solid black;">Ultrasound of WAB <br />
-                                                        <input type="checkbox" name="cb_diag_imag_ct_angiography" id="cb_diag_imag_ct_angiography" style="width:50px;border:0px;border-bottom:1px solid black;">CT angiography<br />
-                                                        <input type="checkbox" name="cb_diag_imag_renal_duplex" id="cb_diag_imag_renal_duplex" style="width:50px;border:0px;border-bottom:1px solid black;">Renal Duplex Scan <br />
-                                                    </div>
-                                                    <div class="col-xs-7">
-                                                        <br><br>
-                                                        <input type="checkbox" name="cb_diag_imag_cxrpa" id="cb_diag_imag_cxrpa" style="width:50px;border:0px;border-bottom:1px solid black;">CXR PA <br/>
-                                                        <input type="checkbox" name="cb_diag_imag_ctstronogram" id="cb_diag_imag_ctstronogram" style="width:50px;border:0px;border-bottom:1px solid black;">CT STONOGRAM<br/>
-                                                        <input type="checkbox" name="cb_diag_imag_prosultra" id="cb_diag_imag_prosultra" style="width:50px;border:0px;border-bottom:1px solid black;">Prostate Ultrasound<br/>
-                                                        <input type="checkbox" name="cb_diag_imag_decho_plain" id="cb_diag_imag_decho_plain" style="width:50px;border:0px;border-bottom:1px solid black;">2 Dechocardiography (Plain)<br/>
-                                                        <input type="checkbox" name="cb_diag_imag_decho_doppler" id="cb_diag_imag_decho_doppler" style="width:50px;border:0px;border-bottom:1px solid black;">2 Dechocardiography (with doppler)<br/>
-                                                        <input type="checkbox" name="cb_diag_imag_others" id="cb_diag_imag_others" style="width:50px;border:0px;border-bottom:1px solid black;">Others: <input type="text" style="width:160px;border:0px;border-bottom:1px solid black;" name="txt_diag_imag_others" id="txt_diag_imag_others"> <br/>
+                                                        <div class="medicine_table cb_diag_imag_12lecg">
+                                                            <input type="checkbox" name="cb_diag_imag_12lecg" id="cb_diag_imag_12lecg" style="width:50px;border:0px;border-bottom:1px solid black;"><label for="cb_diag_imag_12lecg" class="normal med_title">12 L ECG</label>
+                                                        </div>
+
+                                                        <div class="medicine_table cb_diag_imag_cxrpa">
+                                                            <input type="checkbox" name="cb_diag_imag_cxrpa" id="cb_diag_imag_cxrpa" style="width:50px;border:0px;border-bottom:1px solid black;">CXR PA
+                                                        </div>
+                                                        <div class="medicine_table cb_diag_imag_kubxray">
+                                                            <input type="checkbox" name="cb_diag_imag_kubxray" id="cb_diag_imag_kubxray" style="width:50px;border:0px;border-bottom:1px solid black;">KUB XRAY
+                                                        </div>
+                                                        <div class="medicine_table cb_diag_imag_ctstronogram">
+                                                            <input type="checkbox" name="cb_diag_imag_ctstronogram" id="cb_diag_imag_ctstronogram" style="width:50px;border:0px;border-bottom:1px solid black;">CT STONOGRAM
+                                                        </div>
+                                                        <div class="medicine_table cb_diag_imag_kubultrasound">
+                                                            <input type="checkbox" name="cb_diag_imag_kubultrasound" id="cb_diag_imag_kubultrasound" style="width:50px;border:0px;border-bottom:1px solid black;">KUB Ultrasound
+                                                        </div>
+                                                        <div class="medicine_table cb_diag_imag_prosultra">
+                                                            <input type="checkbox" name="cb_diag_imag_prosultra" id="cb_diag_imag_prosultra" style="width:50px;border:0px;border-bottom:1px solid black;">Prostate Ultrasound
+                                                        </div>
+                                                        <div class="medicine_table cb_diag_imag_abdomen">
+                                                            <input type="checkbox" name="cb_diag_imag_abdomen" id="cb_diag_imag_abdomen" style="width:50px;border:0px;border-bottom:1px solid black;">Ultrasound of WAB
+                                                        </div>
+                                                        <div class="medicine_table cb_diag_imag_decho_plain">
+                                                            <input type="checkbox" name="cb_diag_imag_decho_plain" id="cb_diag_imag_decho_plain" style="width:50px;border:0px;border-bottom:1px solid black;">2 Dechocardiography (Plain)
+                                                        </div>
+                                                        <div class="medicine_table cb_diag_imag_ct_angiography">
+                                                            <input type="checkbox" name="cb_diag_imag_ct_angiography" id="cb_diag_imag_ct_angiography" style="width:50px;border:0px;border-bottom:1px solid black;">CT angiography
+                                                        </div>
+                                                        <div class="medicine_table cb_diag_imag_decho_doppler">
+                                                            <input type="checkbox" name="cb_diag_imag_decho_doppler" id="cb_diag_imag_decho_doppler" style="width:50px;border:0px;border-bottom:1px solid black;">
+                                                            <label for="cb_diag_imag_decho_doppler" class="normal med_title">
+                                                                2 Dechocardiography (with doppler)
+                                                            </label>
+                                                        </div>
+                                                        <div class="medicine_table cb_diag_imag_renal_duplex">
+                                                            <input type="checkbox" name="cb_diag_imag_renal_duplex" id="cb_diag_imag_renal_duplex" style="width:50px;border:0px;border-bottom:1px solid black;">Renal Duplex Scan
+                                                        </div>
+                                                        <div class="medicine_table cb_diag_imag_others">
+                                                            <input type="checkbox" name="cb_diag_imag_others" id="cb_diag_imag_others" style="width:50px;border:0px;border-bottom:1px solid black;">Others: <input type="text" style="width:160px;border:0px;border-bottom:1px solid black;" name="txt_diag_imag_others" id="txt_diag_imag_others">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -5413,7 +5920,7 @@
                                     <div class="row" style="padding-left: 12px;padding-right: 12px;">
                                         <div class="col-xs-12">
                                             <input type="checkbox" name="cb_emer_hemo" id="cb_emer_hemo"> For Emergency Hemodialysis once with consent <br />
-                                            <input type="checkbox" name="cb_emer_refer_to" id="cb_emer_refer_to"> Refer to 
+                                            <input type="checkbox" name="cb_emer_refer_to" id="cb_emer_refer_to"> Refer to  <br/>
                                             <input type="checkbox" name="cb_emer_dr_1" id="cb_emer_dr_1"> Dr. Steven Charo <br />
                                             <input type="checkbox" name="cb_emer_dr_2" id="cb_emer_dr_2"> Dr. Arnel Ayro <br />
                                             <input type="checkbox" name="cb_emer_dr_3" id="cb_emer_dr_3"> Dr. Patrick Maglaya <br/>
@@ -5424,8 +5931,7 @@
                                             Anticoagulant : <br />
                                             <input type="checkbox" name="cb_no_heparin" id="cb_no_heparin"> No Heparin <br />
                                             <input type="checkbox" name="cb_lmwh" id="cb_lmwh"> LMWH <input type="text" name="txt_lmwh_cc" id="txt_lmwh_cc" class="txt_right"> cc <br />
-                                            <input type="checkbox" name="cb_unfractionated" id="cb_unfractionated"> Unfractionated Heparin<br />
-                                            Dose <br />
+                                            <input type="checkbox" name="cb_unfractionated" id="cb_unfractionated"> Unfractionated Heparin Dose <br />
                                             <input type="checkbox" name="cb_standard_u_hr" id="cb_standard_u_hr"> Standard Dose : 2000 'U' then <input type="text" name="txt_standard_u_hr" id="txt_standard_u_hr" class="txt_right"> 'U'/hr <br />
 
                                             <input type="checkbox" name="cb_hepa_u_hr" id="cb_hepa_u_hr"> Tight Heparization : 1000 'U' then <input type="text" name="txt_hepa_u_hr" id="txt_hepa_u_hr" class="txt_right"> 'U'/hr<br />
@@ -5470,9 +5976,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success bgm-green waves-effect right_referral_create" id="save_admitting_order">
                             <i class="fa fa-check-circle"></i> Save
-                        </button>
-                        <button type="button" class="btn btn-default bgm-green waves-effect" id="print_admitting_order">
-                            <i class="fa fa-print"></i> Print
                         </button>
                         <button type="button" class="btn btn-danger bgm-red waves-effect close_admitting_order" data-dismiss="modal">
                             <i class="fa fa-times-circle"></i> Back
@@ -5539,7 +6042,7 @@
         var _dhh=0; var _discharge_stat;
         var _selectedname; var _isChecked;
         var _selectRowObjprescription; var _selectedIDprescription; var _selectedIDmedicalabstract;
-        var _selectedIDmedicalcert;
+        var _selectedIDmedicalcert; var _selectedIDnephroclearance;
         var _selectedIDLabDiagnostic;
         var _selectedIDnephroorder;
         var _selectRowObjlab; var _selectedIDlab;
@@ -6072,6 +6575,58 @@
             }
 
         });
+
+        patient_nephro_clearance_dt=$('#tbl_nephro_clearance').DataTable({
+            "dom": '<"toolbar">frtip',
+            "bLengthChange":false,
+            "pageLength":15,
+            "order": [[ 4, "desc" ]],         
+            oLanguage: {
+                    sProcessing: '<center><br /><img src="assets/img/loader/ajax-loader-sm.gif" /><br /><br /></center>'
+            },
+            processing : true, 
+            "ajax": {
+                "url": "Patient_nephrology_clearance/transaction/list",
+                "bDestroy": true,
+                "type": "POST",
+                "data": function ( d ) {
+                    return $.extend( {}, d, {
+                        "ref_patient_id": _selectedID //id of the user
+                        } );
+                    }
+                },
+            "columns": [
+                {
+                    "targets": [0],
+                    "class":          "details-control-print",
+                    "orderable":      false,
+                    "data":           null,
+                    "defaultContent": ""
+                },               
+                { targets:[1],data: "nephro_clearance_code" },
+                { targets:[2],data: "nephro_clearance_date" },
+                {
+                    targets:[3],
+                    render: function (data, type, full, meta){
+                         var view_nephro_clearance='<button class="btn btn-default btn-xs" name="view_nephro_clearance" data-toggle="tooltip" data-placement="left" title="View Details"><i class="fa fa-eye"></i> </button>';
+
+                        return '<center>'+view_nephro_clearance+btn_edit_nephro_clearance+btn_remove_nephro_clearance+'</center>';
+                    }
+                },
+                { visible:false, targets:[4],data: "nephro_clearance_id" }
+            ],
+            language: {
+                 searchPlaceholder: ""
+             },
+             "rowCallback":function( row, data, index ){
+
+                $(row).find('td').css({
+                    "padding": "8px"
+                });
+            }
+
+        });
+
 
         dt_patient_nephro_record=$('#tbl_nephro_record').DataTable({
             "dom": '<"toolbar">frtip',
@@ -6834,8 +7389,7 @@
             "dataType":"json",
             "type":"POST",
             "url":"Patient_prescription/transaction/delete",
-            "data":{patient_prescription_id: _selectedIDprescription},
-            "beforeSend": showSpinningProgress($('#btn_save'))
+            "data":{patient_prescription_id: _selectedIDprescription}
         });
     };
 
@@ -6845,8 +7399,7 @@
             "dataType":"json",
             "type":"POST",
             "url":"Patient_medical_abstract/transaction/delete",
-            "data":{patient_medical_abstract_id: _selectedIDmedicalabstract},
-            "beforeSend": showSpinningProgress($('#btn_save'))
+            "data":{patient_medical_abstract_id: _selectedIDmedicalabstract}
         });
     };     
 
@@ -6855,8 +7408,7 @@
             "dataType":"json",
             "type":"POST",
             "url":"Patient_admitting_order/transaction/delete",
-            "data":{patient_admitting_order_id: _selectedIDadmittingorder},
-            "beforeSend": showSpinningProgress($('#btn_save'))
+            "data":{patient_admitting_order_id: _selectedIDadmittingorder}
         });
     };             
 
@@ -6865,8 +7417,7 @@
             "dataType":"json",
             "type":"POST",
             "url":"Patient_nephro_order/transaction/delete",
-            "data":{patient_nephro_id: _selectedIDnephroorder},
-            "beforeSend": showSpinningProgress($('#btn_save'))
+            "data":{patient_nephro_id: _selectedIDnephroorder}
         });
     };  
 
@@ -6875,19 +7426,25 @@
             "dataType":"json",
             "type":"POST",
             "url":"Patient_lab_diagnostics/transaction/delete",
-            "data":{patient_lab_report_id: _selectedIDLabDiagnostic},
-            "beforeSend": showSpinningProgress($('#btn_save'))
+            "data":{patient_lab_report_id: _selectedIDLabDiagnostic}
         });
     };        
-
 
     var removeMedicalCertificate=function(){
         return $.ajax({
             "dataType":"json",
             "type":"POST",
             "url":"Patient_medical_record/transaction/delete",
-            "data":{patient_medical_certificate_id: _selectedIDmedicalcert},
-            "beforeSend": showSpinningProgress($('#btn_save'))
+            "data":{patient_medical_certificate_id: _selectedIDmedicalcert}
+        });
+    };        
+
+    var removeNephroClearance=function(){
+        return $.ajax({
+            "dataType":"json",
+            "type":"POST",
+            "url":"Patient_nephrology_clearance/transaction/delete",
+            "data":{nephro_clearance_id: _selectedIDnephroclearance}
         });
     };        
 
@@ -8360,6 +8917,10 @@
 
         $('#frm_nephro_order').find('.hidden').removeClass('hidden');
 
+        $( "#frm_nephro_order" ).find('input[type="checkbox"]').each(function() {
+            $(this).prop('checked', false); // Unchecks it
+        });
+
         $('#nephro_order_date').val(today);
         $('.inputareadryweight').val(_selectedDryWeight);
 
@@ -8369,7 +8930,6 @@
         $("#frm_nephro_order input:text").prop('disabled',false); 
 
         $('#save_nephro').show();
-        $('#print_nephro').hide();
         $('#ftr_nephro_order').hide();
 
         $('#modal_patient_nephro_order').modal('toggle');
@@ -8389,14 +8949,13 @@
         $("#frm_nephro_order input:text").prop('disabled',false); 
 
         $('#save_nephro').show();
-        $('#print_nephro').hide();
         $('#ftr_nephro_order').hide();
 
         _selectRowObjNephroOrder =$(this).closest('tr');
         var datanephroorder=patient_nephro_order_dt.row(_selectRowObjNephroOrder).data();
         _selectedIDnephroorder=datanephroorder.patient_nephro_id;
 
-        $('input,textarea').each(function(){
+        $('input[type="text"],textarea').each(function(){
                 var _elem=$(this);
                 $.each(datanephroorder,function(name,value){
                     if(_elem.attr('name')==name){
@@ -8404,45 +8963,38 @@
                     }
                 });
         }); 
+
+        $('input[type="checkbox"]').each(function(){
+                var _elem_checkbox=$(this);
+                $.each(datanephroorder,function(name,value){
+                    if(_elem_checkbox.attr('name')==name){
+                        if(value >= 1){
+                            _elem_checkbox.prop('checked', true); // checks it
+                        }else{
+                            _elem_checkbox.prop('checked', false); // Unchecks it
+                        }
+                    }
+                });
+        });         
+
         $('#modal_patient_nephro_order').modal('toggle');
     });    
 
     $('#tbl_patient_nephro_order tbody').on('click','button[name="view_nephro_order"]',function(){
-        _txnnephroorder="view";
-        checkHeader(_txnnephroorder);
-        $('.patient_txn').text('View');
-        clearFields($('#frm_nephro_order'));
-
-        $('#nephro_order_icon').removeClass();
-        $('#nephro_order_icon').addClass('fa fa-print');
-
-        $("#frm_nephro_order input:text").prop('disabled',true); 
-
-        $('#save_nephro').hide();
-        $('#print_nephro').show();
-        $('#ftr_nephro_order').show();
-
         _selectRowObjNephroOrder =$(this).closest('tr');
         var datanephroorder=patient_nephro_order_dt.row(_selectRowObjNephroOrder).data();
         _selectedIDnephroorder=datanephroorder.patient_nephro_id;
 
-        $('input,textarea').each(function(){
-                var _elem=$(this);
-                $.each(datanephroorder,function(name,value){
-                    if(_elem.attr('name')==name){
-                        _elem.val(value);
-
-                        if(checkbox_report==1){
-                            if(value=="" || value==null){
-                                $('.'+name).addClass('hidden');
-                            }else{
-                                $('.'+name).removeClass('hidden');
-                            }
-                        }
-                    }
-                });
-        }); 
-        $('#modal_patient_nephro_order').modal('toggle');
+        $.ajax({
+            "dataType":"html",
+            "type":"POST",
+            "url":"Templates/transaction/nephro-order/"+_selectedIDnephroorder
+        }).done(function(response){
+            $('#patient_nephro_order_response').html('');
+            $('#patient_nephro_order_response').html(response);
+            $('#modal_patient_nephro_order_view').modal('toggle');
+        });
+        
     });
 
     $('#tbl_patient_nephro_order tbody').on('click','button[name="remove_nephro_order"]',function(){
@@ -8533,6 +9085,10 @@
         var _data=$('#frm_nephro_order').serializeArray();
             _data.push({name : "ref_patient_id" ,value : _selectedID});
 
+            $( "#frm_nephro_order" ).find('input[type="checkbox"]').each(function() {
+                _data.push({name : $(this).attr('name') ,value : $(this).is(':checked') ? 1 : 0 });
+            });
+
             return $.ajax({
                 "dataType":"json",
                 "type":"POST",
@@ -8547,6 +9103,10 @@
         var _data=$('#frm_nephro_order').serializeArray();
             _data.push({name : "patient_nephro_id" ,value : _selectedIDnephroorder});
             _data.push({name : "ref_patient_id" ,value : _selectedID});
+
+            $( "#frm_nephro_order" ).find('input[type="checkbox"]').each(function() {
+                _data.push({name : $(this).attr('name') ,value : $(this).is(':checked') ? 1 : 0 });
+            });
 
             return $.ajax({
                 "dataType":"json",
@@ -8564,7 +9124,7 @@
         var output = currentURL.match(/^(.*)\/[^/]*$/)[1];
         output = output+"/assets/css/css_special_files.css";
         /*alert(output);*/
-        $("#print_nephro_content").printThis({
+        $("#patient_nephro_order_response").printThis({
             debug: false,         
             importCSS: true,       
             importStyle: true,       
@@ -8573,6 +9133,7 @@
             formValues:true,
             canvas: false 
         });
+        // window.open("Templates/transaction/nephro-order/"+ _selectedIDnephroorder+"?type=pdf");    
     });
 
     //end nephro order
@@ -8613,7 +9174,6 @@
         $('#lab_report_date').val(today);
 
         $('#save_labreport_diagnostics').show();
-        $('#print_labreport_diagnostics').hide();
         $('#ftr_lab_report').hide();
 
         $("#frm_lab_diagnostic input:checkbox").prop('checked',false);
@@ -8647,7 +9207,6 @@
         $("#frm_lab_diagnostic input:text").css('pointer-events','all'); 
 
         $('#save_labreport_diagnostics').show();
-        $('#print_labreport_diagnostics').hide();
         $('#ftr_lab_report').hide();
 
         _selectRowObjLabDiagnostic =$(this).closest('tr');
@@ -8673,63 +9232,80 @@
     });
 
     $('#tbl_patient_lab_report tbody').on('click','button[name="view_diagnostic"]',function(){
-        _txnlabreport="view";
-        checkHeader(_txnlabreport);
-        $('.patient_txn').text('View');
-        clearFields($('#frm_lab_diagnostic'));
-
-        $('#diagnostic_icon').removeClass();
-        $('#diagnostic_icon').addClass('fa fa-print');
-
-        $("#frm_lab_diagnostic input:checkbox").prop('checked',false);
-        $("#frm_lab_diagnostic input:text").prop('disabled',true);
-
-        $("#frm_lab_diagnostic label").addClass('label-disable');
-
-        $("#frm_lab_diagnostic input:checkbox").css('pointer-events','none'); 
-        $("#frm_lab_diagnostic input:text").css('pointer-events','none'); 
-
-        $('#save_labreport_diagnostics').hide();
-        $('#print_labreport_diagnostics').show();
-        $('#ftr_lab_report').show();
-
         _selectRowObjLabDiagnostic =$(this).closest('tr');
         var datalabdiagnostic=patient_lab_report_dt.row(_selectRowObjLabDiagnostic).data();
         _selectedIDLabDiagnostic=datalabdiagnostic.patient_lab_report_id;
 
-        $('input,textarea').each(function(){
-                var _elem=$(this);
-                $.each(datalabdiagnostic,function(name,value){
-
-                    if(_elem.attr('name')==name){
-                        if(checkbox_report==1){
-                            if(value=="" || value==null){
-                                $('.'+name).addClass('hidden');
-                            }else{
-                                $('.'+name).removeClass('hidden');
-                            }
-                        }
-                        _elem.val(value);
-                    }
-
-                    if(_elem.attr('id')==name){
-                        
-                        if(checkbox_report==1){
-                            if(value!=1){
-                                $('.'+name).addClass('hidden');
-                            }else{
-                                $('.'+name).removeClass('hidden');
-                            }
-                        }
-
-                        if(value==1){ _elem.prop('checked', true); }
-                        else{ _elem.prop('checked', false); }
-                    }
-
-                });
-        }); 
-        $('#modal_laboratory_report').modal('toggle');
+        $.ajax({
+            "dataType":"html",
+            "type":"POST",
+            "url":"Templates/transaction/laboratory-request/"+_selectedIDLabDiagnostic
+        }).done(function(response){
+            $('#patient_laboratory_request_response').html('');
+            $('#patient_laboratory_request_response').html(response);
+            $('#modal_laboratory_report_view').modal('toggle');
+        });
+        
     });
+
+    // $('#tbl_patient_lab_report tbody').on('click','button[name="view_diagnostic"]',function(){
+    //     _txnlabreport="view";
+    //     checkHeader(_txnlabreport);
+    //     $('.patient_txn').text('View');
+    //     clearFields($('#frm_lab_diagnostic'));
+
+    //     $('#diagnostic_icon').removeClass();
+    //     $('#diagnostic_icon').addClass('fa fa-print');
+
+    //     $("#frm_lab_diagnostic input:checkbox").prop('checked',false);
+    //     $("#frm_lab_diagnostic input:text").prop('disabled',true);
+
+    //     $("#frm_lab_diagnostic label").addClass('label-disable');
+
+    //     $("#frm_lab_diagnostic input:checkbox").css('pointer-events','none'); 
+    //     $("#frm_lab_diagnostic input:text").css('pointer-events','none'); 
+
+    //     $('#save_labreport_diagnostics').hide();
+    //     $('#print_labreport_diagnostics').show();
+    //     $('#ftr_lab_report').show();
+
+    //     _selectRowObjLabDiagnostic =$(this).closest('tr');
+    //     var datalabdiagnostic=patient_lab_report_dt.row(_selectRowObjLabDiagnostic).data();
+    //     _selectedIDLabDiagnostic=datalabdiagnostic.patient_lab_report_id;
+
+    //     $('input,textarea').each(function(){
+    //             var _elem=$(this);
+    //             $.each(datalabdiagnostic,function(name,value){
+
+    //                 if(_elem.attr('name')==name){
+    //                     if(checkbox_report==1){
+    //                         if(value=="" || value==null){
+    //                             $('.'+name).addClass('hidden');
+    //                         }else{
+    //                             $('.'+name).removeClass('hidden');
+    //                         }
+    //                     }
+    //                     _elem.val(value);
+    //                 }
+
+    //                 if(_elem.attr('id')==name){
+                        
+    //                     if(checkbox_report==1){
+    //                         if(value!=1){
+    //                             $('.'+name).addClass('hidden');
+    //                         }else{
+    //                             $('.'+name).removeClass('hidden');
+    //                         }
+    //                     }
+
+    //                     if(value==1){ _elem.prop('checked', true); }
+    //                     else{ _elem.prop('checked', false); }
+    //                 }
+
+    //             });
+    //     }); 
+    //     $('#modal_laboratory_report').modal('toggle');
+    // });
 
     $('#tbl_patient_lab_report tbody').on('click','button[name="remove_diagnostic"]',function(){
         _txdelete="labreport";
@@ -8853,6 +9429,12 @@
             .draw();
     });            
 
+    $("#searchbox_tbl_nephro_clearance").keyup(function(){ 
+        patient_nephro_clearance_dt
+            .search(this.value)
+            .draw();
+    });
+
     $("#searchbox_tbl_nephro_record").keyup(function(){ 
         dt_patient_nephro_record
             .search(this.value)
@@ -8934,17 +9516,17 @@
         var output = currentURL.match(/^(.*)\/[^/]*$/)[1];
         output = output+"/assets/css/css_special_files.css";
 
-        $('#frm_lab_diagnostic input:checkbox').each(function() {
-            if($(this).is (':checked')) {
-               $(this).attr('checked', true);
-            }
-        });
+        // $('#frm_lab_diagnostic input:checkbox').each(function() {
+        //     if($(this).is (':checked')) {
+        //        $(this).attr('checked', true);
+        //     }
+        // });
 
-        $('#frm_lab_diagnostic input:text').each(function() {
-                $(this).attr('value', $(this).val());
-        });
+        // $('#frm_lab_diagnostic input:text').each(function() {
+        //         $(this).attr('value', $(this).val());
+        // });
 
-        $("#print_labreport_content").printThis({
+        $("#patient_laboratory_request_response").printThis({
             debug: false,         
             importCSS: true,       
             importStyle: true,       
@@ -9238,6 +9820,280 @@
     });
 
     //end med certificate
+
+
+
+
+
+    //start nephrology clearance
+
+    var _patient_nephro_clearance_id;
+    var _txnmnephroclearance;
+    var _selectRowObjnephroclearance;
+
+    $('.patient_nephro_clearance').click(function(){
+        if(_isChecked==true){
+            showSpinningProgressLOADING();
+            $('.header-text-title').html(_selectedname);
+
+            setTimeout(function() {
+                patient_nephro_clearance_dt.ajax.reload($.unblockUI());
+            }, 200);
+
+            showList('nephro_clearance_list',true,'Nephrology Clearance','fa-file');
+        }
+        else{
+            notice_notif();
+        }
+        
+    });
+
+    $('#new_nephrology_clearance').click(function(){
+        _txnmnephroclearance="new";        
+        checkHeader(_txnmnephroclearance);
+        $('.patient_txn').text('New');
+        clearFields($('#frm_nephrology_clearance'));
+
+        $('#nephrology_clearance_icon').removeClass();
+        $('#nephrology_clearance_icon').addClass('fa fa-plus-circle');
+
+        $( "#frm_nephrology_clearance" ).find('input[type="checkbox"]').each(function() {
+            $(this).prop('checked', false); // Unchecks it
+        });
+
+        var d = new Date();
+        var today = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
+
+        $('#nephro_clearance_date').val(today);   
+        $('#modal_patient_nephro_clearance').modal('toggle');
+    });    
+
+    $('#tbl_nephro_clearance tbody').on('click','button[name="edit_nephro_clearance"]',function(){
+        _txnmnephroclearance="edit";
+        checkHeader(_txnmnephroclearance);
+        $('.patient_txn').text('Edit');
+        clearFields($('#frm_nephrology_clearance'));
+
+        $('#nephrology_clearance_icon').removeClass();
+        $('#nephrology_clearance_icon').addClass('fa fa-edit');       
+
+        _selectRowObjnephroclearance =$(this).closest('tr');
+        var datanephroclearance=patient_nephro_clearance_dt.row(_selectRowObjnephroclearance).data();
+        _selectedIDnephroclearance=datanephroclearance.nephro_clearance_id;
+
+        $('input[type="text"],textarea').each(function(){
+                var _elem=$(this);
+                $.each(datanephroclearance,function(name,value){
+                    if(_elem.attr('name')==name){
+                        _elem.val(value);
+                    }
+                });
+        }); 
+
+        $('input[type="checkbox"]').each(function(){
+                var _elem_checkbox=$(this);
+                $.each(datanephroclearance,function(name,value){
+                    if(_elem_checkbox.attr('name')==name){
+                        if(value >= 1){
+                            _elem_checkbox.prop('checked', true); // checks it
+                        }else{
+                            _elem_checkbox.prop('checked', false); // Unchecks it
+                        }
+                    }
+                });
+        });         
+
+
+        $('#modal_patient_nephro_clearance').modal('toggle');
+    });
+
+
+    $('#tbl_nephro_clearance tbody').on( 'click', 'tr td.details-control-print', function () {
+        var detailRows = [];
+        var tr = $(this).closest('tr');
+        var row = patient_nephro_clearance_dt.row( tr );
+        var idx = $.inArray( tr.attr('id'), detailRows );                
+            var d=row.data();
+            window.open("Templates/transaction/nephro-clearance/"+ d.nephro_clearance_id+"?type=pdf");
+    });
+
+    $('#tbl_nephro_clearance tbody').on('click','button[name="view_nephro_clearance"]',function(){
+        _selectRowObjnephroclearance =$(this).closest('tr');
+        var datanephroclearance=patient_nephro_clearance_dt.row(_selectRowObjnephroclearance).data();
+        _selectedIDnephroclearance=datanephroclearance.nephro_clearance_id;
+
+        $.ajax({
+            "dataType":"html",
+            "type":"POST",
+            "url":"Templates/transaction/nephro-clearance/"+_selectedIDnephroclearance
+        }).done(function(response){
+            $('#patient_nephro_clearance_response').html('');
+            $('#patient_nephro_clearance_response').html(response);
+            $('#modal_patient_nephro_clearance_view').modal('toggle');
+        });
+        
+    });
+
+    $('#tbl_nephro_clearance tbody').on('click','button[name="remove_nephro_clearance"]',function(){
+        _txdelete="nephroclearance";
+        _selectRowObjnephroclearance =$(this).closest('tr');
+        var datanephroclearance=patient_nephro_clearance_dt.row(_selectRowObjnephroclearance).data();
+        _selectedIDnephroclearance=datanephroclearance.nephro_clearance_id;
+
+        delete_notif();
+    });
+
+   $('#save_nephro_clearance').click(function(){
+        if(validateRequiredFields($('#frm_nephrology_clearance'))){
+            if(_txnmnephroclearance=="new"){
+                SaveNephroClearance().done(function(response){
+                    showNotification(response);
+                    if(response.stat=="success"){
+                        $('#tbl_nephro_clearance').DataTable().ajax.reload();
+                    }
+                }).always(function(){
+                    $.unblockUI();
+                    $('#modal_patient_nephro_clearance').modal('toggle');
+                });
+            }
+            if(_txnmnephroclearance=="edit"){
+                swal({
+                  title: "Confirmation",
+                  text: "Save as new data or Update current data?",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#DD6B55",
+                  confirmButtonText: "Save",
+                  cancelButtonText: "Update",
+                  closeOnConfirm: false,
+                  closeOnCancel: false
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    if(validateRequiredFields($('#frm_nephrology_clearance'))){
+                        SaveNephroClearance().done(function(response){
+                            showNotification(response);
+                            if(response.stat=="success"){
+                                $('#tbl_nephro_clearance').DataTable().ajax.reload();
+                            }
+                        }).always(function(){
+                            $.unblockUI();
+                            $('#modal_patient_nephro_clearance').modal('toggle');
+                        });
+                        swal("Success!", "Nephrology Clearance Succesfully Created", "success");
+                    }
+                  } 
+                  else {
+                    if(validateRequiredFields($('#frm_nephrology_clearance'))){
+                        UpdateNephroClearance().done(function(response){
+                            showNotification(response);
+                            if(response.stat=="success"){
+                                $('#tbl_nephro_clearance').DataTable().ajax.reload();
+                            }
+                        }).always(function(){
+                            $.unblockUI();
+                            $('#modal_patient_nephro_clearance').modal('toggle');
+                        });
+                        swal("Success!", "Nephrology Clearance Succesfully Updated", "success");
+                    }
+                  }
+                });
+            }
+        }   
+    });
+
+    var SaveNephroClearance=function(){
+        var _data=$('#frm_nephrology_clearance').serializeArray();
+            _data.push({name : "ref_patient_id" ,value : _selectedID});
+
+            $( "#frm_nephrology_clearance" ).find('input[type="checkbox"]').each(function() {
+                _data.push({name : $(this).attr('name') ,value : $(this).is(':checked') ? 1 : 0 });
+            });
+
+            return $.ajax({
+                "dataType":"json",
+                "type":"POST",
+                "url":"Patient_nephrology_clearance/transaction/create",
+                "data":_data,
+                "beforeSend": showSpinningProgress($('#btn_save'))
+            });
+    };
+
+    var UpdateNephroClearance=function(){
+        var _data=$('#frm_nephrology_clearance').serializeArray();
+            _data.push({name : "nephro_clearance_id" ,value : _selectedIDnephroclearance});
+            _data.push({name : "ref_patient_id" ,value : _selectedID});
+
+            $( "#frm_nephrology_clearance" ).find('input[type="checkbox"]').each(function() {
+                _data.push({name : $(this).attr('name') ,value : $(this).is(':checked') ? 1 : 0 });
+            });
+
+            return $.ajax({
+                "dataType":"json",
+                "type":"POST",
+                "url":"Patient_nephrology_clearance/transaction/update",
+                "data":_data,
+                "beforeSend": showSpinningProgress($('#btn_save'))
+            });
+       
+    };
+
+    $('#print_nephro_clearance').click(function(event){
+        var currentURL = window.location.href;
+        var output = currentURL.match(/^(.*)\/[^/]*$/)[1];
+        output = output+"/assets/css/css_special_files.css";
+        /*alert(output);*/
+        $("#patient_nephro_clearance_response").printThis({
+            debug: false,         
+            importCSS: true,       
+            importStyle: true,       
+            printContainer: true,
+            loadCSS: output,
+            formValues:true,
+            canvas: false 
+        });
+    });
+
+    //end med certificate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //start nephro record
     var _txnnephrorecord;
@@ -11744,6 +12600,8 @@
         $('.patient_txn').text('New');
         clearFields($('#frm_admitting_order'));
 
+        $('#frm_admitting_order').find('.hidden').removeClass('hidden');
+
         $('#admitting_order_icon').removeClass();
         $('#admitting_order_icon').addClass('fa fa-plus-circle');
 
@@ -11754,7 +12612,6 @@
         $('#admitting_order_date').val(today);   
 
         $('#save_admitting_order').show();
-        $('#print_admitting_order').hide();
         $('#ftr_admitting_order').hide();
 
         $('#modal_admitting_order').modal('toggle');
@@ -11771,6 +12628,8 @@
         $('.patient_txn').text('Edit');
         clearFields($('#frm_admitting_order'));
 
+        $('#frm_admitting_order').find('.hidden').removeClass('hidden');
+
         $('#admitting_order_icon').removeClass();
         $('#admitting_order_icon').addClass('fa fa-edit');
 
@@ -11781,7 +12640,6 @@
         $("#frm_admitting_order input:text").css('pointer-events','all'); 
 
         $('#save_admitting_order').show();
-        $('#print_admitting_order').hide();
         $('#ftr_admitting_order').hide();
 
         _selectRowObjadmittingorder =$(this).closest('tr');
@@ -11806,47 +12664,80 @@
         $('#modal_admitting_order').modal('toggle');
     });
 
-
     $('#tbl_patient_admitting_order tbody').on('click','button[name="view_admitting_order"]',function(){
-        _txnadmittingorder="view";
-        checkHeader(_txnadmittingorder);
-        $('.patient_txn').text('View');
-        clearFields($('#frm_admitting_order'));
-
-        $('#admitting_order_icon').removeClass();
-        $('#admitting_order_icon').addClass('fa fa-print');
-
-        $("#frm_admitting_order input:checkbox").prop('checked',false);
-        $("#frm_admitting_order input:text").prop('disabled',true);
-
-        $("#frm_admitting_order input:checkbox").css('pointer-events','none'); 
-        $("#frm_admitting_order input:text").css('pointer-events','none'); 
-
-        $('#save_admitting_order').hide();
-        $('#print_admitting_order').show();
-        $('#ftr_admitting_order').show();        
-
         _selectRowObjadmittingorder =$(this).closest('tr');
         var dataadmittingorder=patient_admitting_order_dt.row(_selectRowObjadmittingorder).data();
         _selectedIDadmittingorder=dataadmittingorder.patient_admitting_order_id;
 
-        $('input,textarea').each(function(){
-                var _elem=$(this);
-                $.each(dataadmittingorder,function(name,value){
-
-                    if(_elem.attr('name')==name){
-                        _elem.val(value);
-                    }
-
-                    if(_elem.attr('id')==name){
-                        if(value==1){ _elem.prop('checked', true); }
-                        else{ _elem.prop('checked', false); }
-                    }
-
-                });
-        }); 
-        $('#modal_admitting_order').modal('toggle');        
+        $.ajax({
+            "dataType":"html",
+            "type":"POST",
+            "url":"Templates/transaction/admitting-order/"+_selectedIDadmittingorder
+        }).done(function(response){
+            $('#patient_admitting_order_response').html('');
+            $('#patient_admitting_order_response').html(response);
+            $('#modal_admitting_order_view').modal('toggle');
+        });
+        
     });
+
+    // $('#tbl_patient_admitting_order tbody').on('click','button[name="view_admitting_order"]',function(){
+    //     _txnadmittingorder="view";
+    //     checkHeader(_txnadmittingorder);
+    //     $('.patient_txn').text('View');
+    //     clearFields($('#frm_admitting_order'));
+
+    //     $('#admitting_order_icon').removeClass();
+    //     $('#admitting_order_icon').addClass('fa fa-print');
+
+    //     $("#frm_admitting_order input:checkbox").prop('checked',false);
+    //     $("#frm_admitting_order input:text").prop('disabled',true);
+
+    //     $("#frm_admitting_order input:checkbox").css('pointer-events','none'); 
+    //     $("#frm_admitting_order input:text").css('pointer-events','none'); 
+
+    //     $('#save_admitting_order').hide();
+    //     $('#print_admitting_order').show();
+    //     $('#ftr_admitting_order').show();        
+
+    //     _selectRowObjadmittingorder =$(this).closest('tr');
+    //     var dataadmittingorder=patient_admitting_order_dt.row(_selectRowObjadmittingorder).data();
+    //     _selectedIDadmittingorder=dataadmittingorder.patient_admitting_order_id;
+
+    //     $('input,textarea').each(function(){
+    //             var _elem=$(this);
+    //             $.each(dataadmittingorder,function(name,value){
+
+    //                 if(_elem.attr('name')==name){
+    //                     _elem.val(value);
+
+    //                     if(checkbox_report==1){
+    //                         if(value== "" || value==null){
+    //                             $('.'+name).addClass('hidden');
+    //                         }else{
+    //                             $('.'+name).removeClass('hidden');
+    //                         }
+    //                     }
+    //                 }
+
+    //                 if(_elem.attr('id')==name){
+
+    //                     if(checkbox_report==1){
+    //                         if(value!=1){
+    //                             $('.'+name).addClass('hidden');
+    //                         }else{
+    //                             $('.'+name).removeClass('hidden');
+    //                         }
+    //                     }
+
+    //                     if(value==1){ _elem.prop('checked', true); }
+    //                     else{ _elem.prop('checked', false); }
+    //                 }
+
+    //             });
+    //     }); 
+    //     $('#modal_admitting_order').modal('toggle');        
+    // });
 
     $('#tbl_patient_admitting_order tbody').on('click','button[name="remove_info"]',function(){
         _txdelete="admittingorder";
@@ -11968,11 +12859,11 @@
                $(this).attr('checked', 'false') 
         });*/
 
-        $('#frm_admitting_order input:checkbox').each(function() {
-            if($(this).is (':checked')) {
-               $(this).attr('checked', true);
-            }
-        });
+        // $('#frm_admitting_order input:checkbox').each(function() {
+        //     if($(this).is (':checked')) {
+        //        $(this).attr('checked', true);
+        //     }
+        // });
 
         /*$('input[type="checkbox"]').each(function() {
             if($(this).is (':checked')) {
@@ -11980,18 +12871,18 @@
             }
         });*/
 
-        $('#frm_admitting_order input:text').each(function() {
-               /*var val = $(this).val();
-               var id = $(this).attr('id');
-               $('#'++'').val(10);*/
-                $(this).attr('value', $(this).val());
+        // $('#frm_admitting_order input:text').each(function() {
+        //        var val = $(this).val();
+        //        var id = $(this).attr('id');
+        //        $('#'++'').val(10);
+        //         $(this).attr('value', $(this).val());
 
-        });
+        // });
 
 
         
 
-        $("#print_admitting_order_content").printThis({
+        $("#patient_admitting_order_response").printThis({
             debug: false,         
             importCSS: true,       
             importStyle: true,       
@@ -12074,6 +12965,15 @@
                     removeMedicalCertificate().done(function(response){
                     showNotification(response);
                         patient_medical_certificate_dt.row(_selectRowObjmedicalcert).remove().draw();
+                        $.unblockUI();
+                    });
+                }
+
+                if(_txdelete=="nephroclearance"){
+                    swal("Deleted!", "Nephrology Clearance has been deleted.", "success");
+                    removeNephroClearance().done(function(response){
+                    showNotification(response);
+                        patient_nephro_clearance_dt.row(_selectRowObjnephroclearance).remove().draw();
                         $.unblockUI();
                     });
                 }

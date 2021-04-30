@@ -657,6 +657,67 @@
                                         <div class="panel box box-success">
                                           <div class="box-header with-border">
                                             <h4 class="box-title">
+                                              <a data-toggle="collapse" data-parent="#accordion" href="#collapsenephroclearance" class="collapsed" aria-expanded="false">
+                                                Request Form : Nephrology Clearance
+                                              </a>
+                                            </h4>
+                                          </div>
+                                          <div id="collapsenephroclearance" class="panel-collapse collapse" aria-expanded="false">
+                                            <div class="box-body">
+                                              <div class="form-group">
+                                                    <label class="col-sm-3" style="margin-top:8px;" for="inputEmail1">View :</label>
+                                                    <div class="col-sm-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-cogs" aria-hidden="true"></i></span>
+                                                                <select class="form-control" name="right_nephro_clearance_view" >
+                                                                    <option value="0">Off</option>
+                                                                    <option value="1">On</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               <div class="form-group">
+                                                    <label class="col-sm-3" style="margin-top:8px;" for="inputEmail1">Create :</label>
+                                                    <div class="col-sm-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-cogs" aria-hidden="true"></i></span>
+                                                                <select class="form-control" name="right_nephro_clearance_create" >
+                                                                    <option value="0">Off</option>
+                                                                    <option value="1">On</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3" style="margin-top:8px;" for="inputEmail1">Edit :</label>
+                                                    <div class="col-sm-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-cogs" aria-hidden="true"></i></span>
+                                                                <select class="form-control" name="right_nephro_clearance_edit" >
+                                                                    <option value="0">Off</option>
+                                                                    <option value="1">On</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3" style="margin-top:8px;" for="inputEmail1">Delete :</label>
+                                                    <div class="col-sm-9">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-cogs" aria-hidden="true"></i></span>
+                                                                <select class="form-control" name="right_nephro_clearance_delete" >
+                                                                    <option value="0">Off</option>
+                                                                    <option value="1">On</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="panel box box-success">
+                                          <div class="box-header with-border">
+                                            <h4 class="box-title">
                                               <a data-toggle="collapse" data-parent="#accordion" href="#collapsepatientinfo" class="collapsed" aria-expanded="false">
                                                 Medical Record : Nephro Record
                                               </a>

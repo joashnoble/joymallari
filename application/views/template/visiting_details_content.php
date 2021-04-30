@@ -38,7 +38,7 @@
 			<br/>
 			<table class="table table-striped table-bordered" style="border-collapse: collapse;" width="100%" cellpadding="5" cellspacing="5">
 				<tr>
-					<td style="border-bottom: 1px solid lightgray;"><b>Note : </b></td>
+					<td style="border-bottom: 1px solid lightgray;"><b>Vital Signs : </b></td>
 				</tr>
 				<tr>
 					<td>
@@ -47,7 +47,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td style="border-bottom: 1px solid lightgray;"><b>Diagnostics : </b></td>
+					<td style="border-bottom: 1px solid lightgray;"><b>Clinical Assessment : </b></td>
 				</tr>
 				<tr>
 					<td>
@@ -56,7 +56,7 @@
 					</td>
 				</tr>				
 				<tr>
-					<td style="border-bottom: 1px solid lightgray;"><b>Findings : </b></td>
+					<td style="border-bottom: 1px solid lightgray;"><b>Ultrasound Findings : </b></td>
 				</tr>
 				<tr>
 					<td>
